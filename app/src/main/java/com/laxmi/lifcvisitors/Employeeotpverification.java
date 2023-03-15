@@ -25,5 +25,7 @@ public class Employeeotpverification extends AppCompatActivity {
           startActivity(intent);
             }
         });
+        TextView   tv = (TextView) this.findViewById(R.id.mywidget);
+        tv.setSelected(true);
     }
 }

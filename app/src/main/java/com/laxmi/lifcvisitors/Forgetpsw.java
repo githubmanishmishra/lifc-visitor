@@ -24,5 +24,8 @@ tv_getotp.setOnClickListener(new View.OnClickListener() {
         startActivity(intent);
     }
 });
-    }
+
+
+        TextView   tv = (TextView) this.findViewById(R.id.mywidget);
+        tv.setSelected(true); }
 }

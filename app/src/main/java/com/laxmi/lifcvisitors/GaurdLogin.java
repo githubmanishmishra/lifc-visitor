@@ -7,24 +7,22 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-public class Gaurd_createpswd extends AppCompatActivity {
+public class GaurdLogin extends AppCompatActivity {
+    TextView tv_forget;
     Intent intent;
-    TextView tv_createpsw;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gaurd_createpswd);
-        tv_createpsw = findViewById(R.id.tv_confirmpsw);
-        tv_createpsw.setOnClickListener(new View.OnClickListener() {
+        setContentView(R.layout.activity_gaurd_login);
+        tv_forget = findViewById(R.id.forgot_pwd_gaurd);
+        tv_forget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                intent = new Intent(Gaurd_createpswd.this,GaurdLogin.class);
+                intent = new Intent(GaurdLogin.this,Gaurdforgetpswd.class);
                 startActivity(intent);
             }
         });
-        TextView tv = (TextView) this.findViewById(R.id.mywidget);
-        tv.setSelected(true);
 
     }
 }

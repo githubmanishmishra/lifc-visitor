@@ -24,5 +24,7 @@ public class Gaurdotp_verification extends AppCompatActivity {
 
             }
         });
-    }
+
+        TextView  tv = (TextView) this.findViewById(R.id.mywidget);
+        tv.setSelected(true);}
 }

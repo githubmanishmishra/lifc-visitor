@@ -25,5 +25,8 @@ public class Gaurdregistration extends AppCompatActivity {
             }
         });
 
+      TextView  tv = (TextView) this.findViewById(R.id.mywidget);
+        tv.setSelected(true);
+
     }
 }
