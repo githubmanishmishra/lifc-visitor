@@ -12,6 +12,18 @@
         android:theme="@style/Theme.LifcVisitors"
         tools:targetApi="31">
         <activity
+            android:name=".Gaurdchangepassword"
+            android:exported="false" />
+        <activity
+            android:name=".Gaurdforgetotp"
+            android:exported="false" />
+        <activity
+            android:name=".Gaurdforgetpswd"
+            android:exported="false" />
+        <activity
+            android:name=".GaurdLogin"
+            android:exported="false" />
+        <activity
             android:name=".Gaurd_createpswd"
             android:exported="false" />
         <activity

@@ -7,12 +7,20 @@
 
         <item
             android:id="@+id/nav_slideshow"
-            android:icon="@drawable/life_logo"
-            android:title="Slideshow" />
+            android:icon="@drawable/user"
+            android:title="Name" />
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/life_logo"
-            android:title="Tools" />
+            android:id="@+id/nav_designation"
+            android:icon="@drawable/designation"
+            android:title="Designation"/>
+        <item
+            android:id="@+id/nav_Contactus"
+            android:icon="@drawable/telephone"
+            android:title="Contact Us"/>
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/logout"
+            android:title="Logout"/>
     </group>
 
     <item android:title="Communicate">

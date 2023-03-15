@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -175,5 +176,7 @@ public class EmployeeRegistratinActivity extends AppCompatActivity {
             }
         });
 
+     TextView   tv = (TextView) this.findViewById(R.id.mywidget);
+        tv.setSelected(true);
     }
 }
