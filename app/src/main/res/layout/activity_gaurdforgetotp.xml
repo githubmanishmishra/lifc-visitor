@@ -43,10 +43,10 @@
             <ImageView
                 android:id="@+id/logo_3"
                 android:layout_width="wrap_content"
-                android:layout_height="80dp"
+                android:layout_height="100dp"
                 android:layout_below="@id/elipse_1"
                 android:layout_centerInParent="true"
-                android:src="@drawable/life_logo" />
+                android:src="@drawable/new_logo_lifc" />
         </RelativeLayout>
         <TextView
             android:layout_width="wrap_content"
@@ -117,5 +117,4 @@
             android:layout_marginTop="10dp"/>
 
     </LinearLayout>
-
 </ScrollView>

@@ -17,7 +17,7 @@ public class Employeelogin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employeelogin);
-        forgetpwd = findViewById(R.id.forgot_pwd_emp);
+        forgetpwd = findViewById(R.id.forgot_pwd);
         login = findViewById(R.id.tv_login);
         forgetpwd.setOnClickListener(new View.OnClickListener() {
             @Override

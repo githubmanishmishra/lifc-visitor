@@ -11,8 +11,6 @@ public class Employeeotpverification extends AppCompatActivity {
     Intent intent;
     TextView getotp;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,5 +25,6 @@ public class Employeeotpverification extends AppCompatActivity {
         });
         TextView   tv = (TextView) this.findViewById(R.id.mywidget);
         tv.setSelected(true);
+
     }
 }

@@ -34,10 +34,10 @@
     <ImageView
         android:id="@+id/elipse_3"
         android:layout_width="wrap_content"
-        android:layout_height="80dp"
+        android:layout_height="100dp"
         android:layout_below="@id/elipse_1"
         android:layout_centerInParent="true"
-        android:src="@drawable/life_logo" />
+        android:src="@drawable/new_logo_lifc"/>
 
     <TextView
         android:id="@+id/welcome_txt"
@@ -49,7 +49,7 @@
         android:text="Welcome to Visitors"
         android:textColor="@color/black"
         android:textSize="30sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/how_can"
@@ -74,14 +74,12 @@
         android:textColor="@color/red"
         android:textSize="40sp"
         android:textStyle="bold"/>
-
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txt_gaurd"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true">
-
         <ImageView
             android:id="@+id/ellipse_4"
             android:layout_width="wrap_content"
@@ -96,9 +94,7 @@
             android:layout_alignParentEnd="true"
             android:paddingTop="80dp"
             android:src="@drawable/ellipse_3" />
-
     </RelativeLayout>
-
     <LinearLayout
         android:id="@+id/lin_lay"
         android:layout_width="match_parent"

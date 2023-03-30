@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -11,6 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LifcVisitors"
         tools:targetApi="31">
+        <activity
+            android:name=".Office_boyassign"
+            android:exported="false" />
+        <activity
+            android:name=".Visitorrequestcome_to_emplpyee"
+            android:exported="false" />
+        <activity
+            android:name=".New_visitordetail"
+            android:exported="false" />
+        <activity
+            android:name=".GuardDashboard"
+            android:exported="false" />
         <activity
             android:name=".Gaurdchangepassword"
             android:exported="false" />
@@ -22,37 +35,37 @@
             android:exported="false" />
         <activity
             android:name=".GaurdLogin"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".Gaurd_createpswd"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".Gaurdotp_verification"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".Gaurdregistration"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".EmployeeDashboard"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".Forgetcreatepswemployee"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".Employeeotpverification"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".Forgetpsw"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".Employeelogin"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".EmpcreatepswActivity"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".Otpverification"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".EmployeeRegistratinActivity"
             android:exported="false" />
@@ -61,10 +74,8 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
     </application>
-
 </manifest>

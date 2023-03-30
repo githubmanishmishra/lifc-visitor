@@ -43,10 +43,10 @@
         <ImageView
             android:id="@+id/logo_3"
             android:layout_width="wrap_content"
-            android:layout_height="80dp"
+            android:layout_height="100dp"
             android:layout_below="@id/elipse_1"
             android:layout_centerInParent="true"
-            android:src="@drawable/life_logo" />
+            android:src="@drawable/new_logo_lifc" />
         <TextView
             android:id="@+id/txt_forgetpswd"
             android:layout_width="match_parent"
@@ -56,12 +56,13 @@
             android:layout_marginRight="20dp"
             android:padding="10dp"
             android:text="Forget Password"
-            android:textColor="@color/pink"
+            android:textColor="@color/red"
             android:textAlignment="center"
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_below="@id/logo_3"/>
     </RelativeLayout>
+<!--
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -86,6 +87,25 @@
                 android:padding="10dp"
                 android:singleLine="true"/>
         </RelativeLayout>
+-->
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="   PhoneNo.-+91">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/mobile_no"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:inputType="phone"
+                android:maxLength="10"
+                android:layout_margin="10dp"
+                android:singleLine="true" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
         <TextView
             android:id="@+id/tv_getotp"
             android:layout_width="122dp"

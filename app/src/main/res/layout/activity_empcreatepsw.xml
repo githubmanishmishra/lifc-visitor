@@ -43,12 +43,12 @@
         <ImageView
             android:id="@+id/logo_3"
             android:layout_width="wrap_content"
-            android:layout_height="80dp"
+            android:layout_height="100dp"
             android:layout_below="@id/elipse_1"
             android:layout_centerInParent="true"
-            android:src="@drawable/life_logo" />
+            android:src="@drawable/new_logo_lifc" />
     </RelativeLayout>
-    <TextView
+   <!-- <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -62,9 +62,9 @@
         android:text="New Password"
         android:textColor="@color/black"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="bold" />-->
 
-    <EditText
+   <!-- <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
@@ -72,9 +72,43 @@
         android:background="@drawable/bgtext"
         android:layout_toRightOf="@+id/tv_emp_name"
         android:singleLine="true"
-        android:padding="10dp" />
+        android:padding="10dp" />-->
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="  New Password">
 
-    <TextView
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/newpswd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:padding="10dp"
+                android:maxLength="16"
+                android:layout_margin="10dp"
+                android:singleLine="true"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="   Confirm Password">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/mobile_no"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:inputType="textPassword"
+                android:maxLength="10"
+                android:layout_margin="10dp"
+                android:singleLine="true" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+      <!--  <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -88,9 +122,9 @@
         android:text="Confirm Password"
         android:textColor="@color/black"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="bold" />-->
 
-    <EditText
+   <!-- <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
@@ -100,7 +134,7 @@
         android:singleLine="true"
         android:padding="10dp" />
 
-    <TextView
+-->    <TextView
         android:id="@+id/tv_confirmpsw"
         android:layout_width="222dp"
         android:layout_height="42dp"

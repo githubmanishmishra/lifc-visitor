@@ -13,19 +13,19 @@ import androidx.fragment.app.Fragment;
 import com.laxmi.lifcvisitors.New_visitordetail;
 import com.laxmi.lifcvisitors.R;
 
-public class DashboardFragment extends Fragment {
-    TextView tv_newvisitors;
-    Intent intent;
+public class GuardDashboardFragment extends Fragment {
+TextView tv_newvisitor;
+Intent intent;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_gaurd_dashboard, container, false);
-        tv_newvisitors = view.findViewById(R.id.new_visitor);
-        tv_newvisitors.setOnClickListener(new View.OnClickListener() {
+        View view = inflater.inflate(R.layout.activity_gaurd_dashboard,container,false);
+        tv_newvisitor = view.findViewById(R.id.new_visitor);
+        tv_newvisitor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                intent = new Intent(getContext(), New_visitordetail.class);
-                startActivity(intent);
+              intent = new Intent(getContext(),New_visitordetail.class);
+              startActivity(intent);
             }
         });
         return view;

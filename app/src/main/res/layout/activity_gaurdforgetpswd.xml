@@ -44,10 +44,10 @@
             <ImageView
                 android:id="@+id/logo_3"
                 android:layout_width="wrap_content"
-                android:layout_height="80dp"
+                android:layout_height="100dp"
                 android:layout_below="@id/elipse_1"
                 android:layout_centerInParent="true"
-                android:src="@drawable/life_logo" />
+                android:src="@drawable/new_logo_lifc" />
             <TextView
                 android:id="@+id/txt_forgetpswd"
                 android:layout_width="match_parent"
@@ -63,6 +63,7 @@
                 android:textStyle="bold"
                 android:layout_below="@id/logo_3"/>
         </RelativeLayout>
+<!--
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -73,7 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="Mobile No    -"
+                android:text="Mobile No    -    "
                 android:textSize="16sp"
                 android:textStyle="bold" />
             <EditText
@@ -87,6 +88,7 @@
                 android:padding="10dp"
                 android:singleLine="true"/>
         </RelativeLayout>
+-->
         <TextView
             android:id="@+id/tv_gaurdsgetotp"
             android:layout_width="122dp"

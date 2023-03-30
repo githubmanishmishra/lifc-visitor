@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+
 public class GaurdLogin extends AppCompatActivity {
     TextView tv_forget;
     Intent intent;
+    TextView tv_login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,10 +21,17 @@ public class GaurdLogin extends AppCompatActivity {
         tv_forget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                intent = new Intent(GaurdLogin.this,Gaurdforgetpswd.class);
+                intent = new Intent(GaurdLogin.this,EmployeeDashboard.class);
                 startActivity(intent);
             }
         });
-
+        tv_login = findViewById(R.id.tv_login);
+        tv_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+             Intent intents = new Intent(GaurdLogin.this, GuardDashboard.class);
+                    startActivity(intents);
+            }
+        });
     }
 }
