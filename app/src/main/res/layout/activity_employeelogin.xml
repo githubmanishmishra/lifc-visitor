@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Employeelogin">
+    tools:context=".activity.Employeelogin">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,7 +26,7 @@
                 android:marqueeRepeatLimit="marquee_forever"
                 android:scrollHorizontally="true"
                 android:textColor="#ff4500"
-                android:text="Laxmi India Finance Private Limited Formally Known as Laxmi India Feanleasecap Private Limited"
+                android:text="Laxmi India Finance Private Limited Formerly Known as Laxmi India Feanleasecap Private Limited"
                 android:textSize="20sp"
                 android:textStyle="bold"/>
             <ImageView
@@ -134,6 +134,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint=" Password "
+
         android:layout_marginStart="5dp">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/ev_visitor_name"
@@ -141,6 +142,7 @@
             android:layout_height="wrap_content"
             android:padding="12dp"
             android:layout_margin="10dp"
+
             android:inputType="textPassword"
             android:singleLine="true"/>
     </com.google.android.material.textfield.TextInputLayout>
@@ -185,6 +187,23 @@
             android:textAlignment="center"
             android:layout_marginStart="25dp"/>
 </LinearLayout>
+        <TextView
+            android:id="@+id/registration_text"
+            android:layout_width="wrap_content"
+            android:layout_height="42dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:paddingStart="20dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="10dp"
+            android:text="@string/register_text"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_marginStart="25dp"/>
+
     </LinearLayout>
 
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Gaurd_createpswd">
+    tools:context=".activity.Gaurd_createpswd">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -48,7 +48,7 @@
                 android:layout_centerInParent="true"
                 android:src="@drawable/new_logo_lifc" />
         </RelativeLayout>
-        <TextView
+        <!--<TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -65,6 +65,7 @@
             android:textStyle="bold" />
 
         <EditText
+            android:id="@+id/ev_new_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
@@ -72,9 +73,40 @@
             android:background="@drawable/bgtext"
             android:layout_toRightOf="@+id/tv_emp_name"
             android:singleLine="true"
-            android:padding="10dp" />
+            android:padding="10dp" />-->
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint=" New Password "
+            android:layout_marginStart="5dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ev_new_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:layout_margin="10dp"
+                android:inputType="textPassword"
+                android:singleLine="true"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint=" Confirm Password "
+            android:layout_marginStart="5dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ev_confirm_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:layout_margin="10dp"
+                android:inputType="textPassword"
+                android:singleLine="true"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
+
+        <!--<TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -91,6 +123,7 @@
             android:textStyle="bold" />
 
         <EditText
+            android:id="@+id/ev_confirm_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
@@ -98,16 +131,17 @@
             android:background="@drawable/bgtext"
             android:layout_toRightOf="@+id/tv_emp_name"
             android:singleLine="true"
-            android:padding="10dp" />
+            android:padding="10dp" />-->
 
         <TextView
             android:id="@+id/tv_confirmpsw"
-            android:layout_width="222dp"
-            android:layout_height="42dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginStart="50dp"
             android:background="@drawable/btn_bg_rectangle"
             android:paddingStart="10dp"
             android:paddingTop="10dp"

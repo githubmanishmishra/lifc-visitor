@@ -1,4 +1,4 @@
-package com.laxmi.lifcvisitors;
+package com.laxmi.lifcvisitors.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+
+import com.laxmi.lifcvisitors.R;
 
 public class Gaurdforgetotp extends AppCompatActivity {
 Intent intent;
@@ -18,7 +20,7 @@ TextView tvgforgetotp;
         tvgforgetotp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                intent = new Intent(Gaurdforgetotp.this,Gaurdchangepassword.class);
+                intent = new Intent(Gaurdforgetotp.this,GaurdLogin.class);
                 startActivity(intent);
             }
         });

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Visitorrequestcome_to_emplpyee">
+    tools:context=".activity.Visitorrequestcome_to_emplpyee">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -59,6 +59,7 @@
             android:textStyle="bold" />
     </RelativeLayout>
 
+<!--
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -85,7 +86,25 @@
                 android:singleLine="true" />
 
         </RelativeLayout>
+-->
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="  Visitor Name"
+            android:layout_marginStart="5dp">
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ev_visitor_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:layout_margin="10dp"
+                android:singleLine="true"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+<!--
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -108,6 +127,26 @@
                 android:padding="10dp"
                 android:singleLine="true"/>
         </RelativeLayout>
+-->
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="   Visitor PhoneNo.-+91">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/mobile_no"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:inputType="phone"
+                android:maxLength="10"
+                android:layout_margin="10dp"
+                android:singleLine="true" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+<!--
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -131,6 +170,25 @@
                 android:padding="10dp"
                 android:singleLine="true" />
         </RelativeLayout>
+-->
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="   Purpose of Comeing">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/purposeof_coming"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_margin="10dp"
+                android:singleLine="true" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <ImageView
+            android:id="@+id/view_photo"
+            android:layout_width="260dp"
+            android:layout_height="100dp"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

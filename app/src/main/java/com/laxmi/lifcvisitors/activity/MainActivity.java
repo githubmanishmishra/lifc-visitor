@@ -1,4 +1,4 @@
-package com.laxmi.lifcvisitors;
+package com.laxmi.lifcvisitors.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.laxmi.lifcvisitors.R;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -23,7 +25,7 @@ Button btn_guard;
         btn_employee.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                intent = new Intent(MainActivity.this, EmployeeRegistratinActivity.class);
+                intent = new Intent(MainActivity.this, Employeelogin.class);
                 startActivity(intent);
             }
         });
@@ -31,7 +33,7 @@ Button btn_guard;
         btn_guard.setOnClickListener(new View.OnClickListener() {
             @Override
            public void onClick(View view) {
-                intent = new Intent(MainActivity.this,Gaurdregistration.class);
+                intent = new Intent(MainActivity.this,GaurdLogin.class);
                 startActivity(intent);
             }
         });

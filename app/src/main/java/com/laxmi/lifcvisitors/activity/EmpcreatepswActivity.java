@@ -1,4 +1,4 @@
-package com.laxmi.lifcvisitors;
+package com.laxmi.lifcvisitors.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,24 +7,25 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-public class Employeeotpverification extends AppCompatActivity {
+import com.laxmi.lifcvisitors.R;
+
+public class EmpcreatepswActivity extends AppCompatActivity {
     Intent intent;
-    TextView getotp;
+    TextView confirmpsw;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_otpverification_forget);
-        getotp = findViewById(R.id.tv_getotp);
-        getotp.setOnClickListener(new View.OnClickListener() {
+        setContentView(R.layout.activity_empcreatepsw);
+        confirmpsw = findViewById(R.id.tv_confirmpsw);
+        confirmpsw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                intent = new Intent(Employeeotpverification.this,Forgetcreatepswemployee.class);
-          startActivity(intent);
+                intent = new Intent(EmpcreatepswActivity.this,Employeelogin.class);
+                startActivity(intent);
             }
         });
         TextView   tv = (TextView) this.findViewById(R.id.mywidget);
         tv.setSelected(true);
-
     }
 }

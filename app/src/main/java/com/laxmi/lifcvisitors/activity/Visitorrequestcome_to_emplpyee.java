@@ -1,8 +1,10 @@
-package com.laxmi.lifcvisitors;
+package com.laxmi.lifcvisitors.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.laxmi.lifcvisitors.R;
 
 public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
 

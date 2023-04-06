@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.laxmi.lifcvisitors.New_visitordetail;
+import com.laxmi.lifcvisitors.activity.New_visitordetail;
 import com.laxmi.lifcvisitors.R;
 
 public class GuardDashboardFragment extends Fragment {

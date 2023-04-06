@@ -1,6 +1,8 @@
-package com.laxmi.lifcvisitors;
+package com.laxmi.lifcvisitors.activity;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -8,9 +10,15 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.laxmi.lifcvisitors.R;
+
 public class New_visitordetail extends AppCompatActivity {
     Button btn_uploadvisitor_photo;
     ImageView visitorPhoto;
+    FloatingActionButton fbDialog;
+
 public static final int CAMERA_REEQUEST_CODE =100;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +31,12 @@ public static final int CAMERA_REEQUEST_CODE =100;
         public void onClick(View view) {
             Intent iCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             startActivityForResult(iCamera,CAMERA_REEQUEST_CODE);
+        }
+    });
+    fbDialog.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+
         }
     });
     }

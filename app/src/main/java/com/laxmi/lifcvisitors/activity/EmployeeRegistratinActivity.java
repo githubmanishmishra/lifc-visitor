@@ -1,4 +1,4 @@
-package com.laxmi.lifcvisitors;
+package com.laxmi.lifcvisitors.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.laxmi.lifcvisitors.R;
 
 import java.util.ArrayList;
 
@@ -168,7 +170,6 @@ public class EmployeeRegistratinActivity extends AppCompatActivity {
         arrBranch.add("SHAMGARH (MP)");
         ArrayAdapter<String> adater_spring_branch = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, arrBranch);
         branch_spinners.setAdapter((adater_spring_branch));
-
         btn_otp = findViewById(R.id.visitor_otp);
         btn_otp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -180,7 +181,6 @@ public class EmployeeRegistratinActivity extends AppCompatActivity {
                 deletedialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-
                         Toast.makeText(EmployeeRegistratinActivity.this, "Item Deleted", Toast.LENGTH_SHORT).show();}
                 });
                 deletedialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {

@@ -1,4 +1,4 @@
-package com.laxmi.lifcvisitors;
+package com.laxmi.lifcvisitors.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,12 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.laxmi.lifcvisitors.R;
+
 public class Employeelogin extends AppCompatActivity {
     Intent intent;
     TextView forgetpwd;
     TextView login;
-
-
+    TextView tv_Registration;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +27,14 @@ public class Employeelogin extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+    tv_Registration = findViewById(R.id.registration_text);
+    tv_Registration.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        intent = new Intent(Employeelogin.this,EmployeeRegistratinActivity.class);
+        startActivity(intent);
+    }
+   });
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -34,7 +42,6 @@ public class Employeelogin extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
         TextView   tv = (TextView) this.findViewById(R.id.mywidget);
         tv.setSelected(true);
     }

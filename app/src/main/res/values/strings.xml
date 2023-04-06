@@ -11,4 +11,18 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>
+
+    <string name="pref_file">com.laxmi.lifcvisitors.preference_file</string>
+    <string name="pref_login_status">com.laxmi.lifcvisitors.preference_login_status</string>
+    <string name="pref_username">com.laxmi.lifcvisitors.preference_user_name</string>
+    <string name="pref_email">com.laxmi.lifcvisitors.preference_email</string>
+    <string name="pref_login_id">com.laxmi.lifcvisitors.preference_login_id</string>
+    <string name="pref_type">com.laxmi.lifcvisitors.preference_type</string>
+    <string name="pref_pic">com.laxmi.lifcvisitors.preference_pic</string>
+    <string name="pref_phone">com.laxmi.lifcvisitors.preference_phone</string>
+    <string name="pref_deviceId">com.laxmi.lifcvisitors.preference_deviceId</string>
+    <string name="pref_services">com.laxmi.lifcvisitors.preference_service</string>
+    <string name="register_text">Don\'t have an Account ? Create One !</string>
+    <string name="your_string_here"><![CDATA[<u>Don\'t have an Account ? Create One !</u>.]]></string>
+
 </resources>

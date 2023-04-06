@@ -1,4 +1,4 @@
-package com.laxmi.lifcvisitors;
+package com.laxmi.lifcvisitors.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,27 +15,30 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.navigation.NavigationView;
+import com.laxmi.lifcvisitors.R;
 import com.laxmi.lifcvisitors.fragments.DashboardFragment;
+import com.laxmi.lifcvisitors.fragments.GuardDashboardFragment;
 
-public class EmployeeDashboard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-
+public class GuardDashboard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+TextView tv_visitorsstatus;
+Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_employee_dashboard);
+        setContentView(R.layout.guard_dashboard);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        TextView txt_status = findViewById(R.id.total_visitor_status);
         setSupportActionBar(toolbar);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
         /*NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_camera);*/
         FragmentManager fragmentManager = getSupportFragmentManager();
-        DashboardFragment fragment = new DashboardFragment();
+        GuardDashboardFragment fragment = new GuardDashboardFragment();
         fragmentManager.beginTransaction().replace(R.id.frameLayout, fragment).commit();
 
     }
@@ -48,6 +51,7 @@ public class EmployeeDashboard extends AppCompatActivity implements NavigationVi
             super.onBackPressed();
         }
     }
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -58,13 +62,13 @@ public class EmployeeDashboard extends AppCompatActivity implements NavigationVi
         if (id == R.id.nav_slideshow) {
         } else if (id == R.id.nav_designation) {
         } else if (id == R.id.nav_Contactus) {
+
         } else if (id == R.id.nav_logout) {
         }
         fragmentManager.beginTransaction().replace(R.id.frameLayout, fragment).commit();
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-
     }
 
 }

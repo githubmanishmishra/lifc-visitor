@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Office_boyassign">
+    tools:context=".activity.Office_boyassign">
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -57,32 +57,51 @@
             android:textSize="26sp"
             android:textStyle="bold" />
     </RelativeLayout>
-    <RelativeLayout
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp">
+        android:hint=" Office Boy Name-     "
+        android:layout_marginStart="5dp">
 
-        <TextView
-            android:id="@+id/tv_officeboy_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="Office Boy Name-     "
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/ev_visitor_name"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ev_officeBoy_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_toRightOf="@+id/tv_officeboy_name"
-            android:background="@drawable/bgtext"
-            android:padding="10dp"
-            android:singleLine="true" />
+            android:padding="12dp"
+            android:layout_margin="10dp"
+            android:singleLine="true"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    </RelativeLayout>
+    <!--
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:id="@+id/tv_officeboy_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="Office Boy Name-     "
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/ev_visitor_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_toRightOf="@+id/tv_officeboy_name"
+                android:background="@drawable/bgtext"
+                android:padding="10dp"
+                android:singleLine="true" />
+
+        </RelativeLayout>
+    -->
+<!--
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -106,6 +125,26 @@
             android:padding="10dp"
             android:singleLine="true" />
     </RelativeLayout>
+-->
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="  Mobile No. - +91">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/mobile_no"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:inputType="phone"
+            android:maxLength="10"
+            android:layout_margin="10dp"
+            android:singleLine="true" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+<!--
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -129,6 +168,22 @@
             android:padding="10dp"
             android:singleLine="true"/>
     </RelativeLayout>
+-->
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint=" EmployeeCode-     "
+        android:layout_marginStart="5dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ev_officeBoy_empcode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:layout_margin="10dp"
+            android:singleLine="true"/>
+    </com.google.android.material.textfield.TextInputLayout>
     <TextView
         android:id="@+id/tv_confirmpsw"
         android:layout_width="222dp"
