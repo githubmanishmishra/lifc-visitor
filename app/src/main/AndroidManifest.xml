@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -15,47 +12,51 @@
         android:theme="@style/Theme.LifcVisitors"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Employee_Send_Request_toGaurd"
+            android:exported="false"/>
+        <activity
             android:name=".activity.Gaurd_mobileno_forget"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".activity.Office_boyassign"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".activity.Visitorrequestcome_to_emplpyee"
-            android:exported="false" />
+            android:exported="false"/>
+
         <activity
             android:name=".activity.New_visitordetail"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".activity.GuardDashboard"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".activity.Gaurdforgetotp"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".activity.Gaurdforgetpswd"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".activity.GaurdLogin"
             android:exported="false"/>
         <activity
             android:name=".activity.Gaurd_createpswd"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".activity.Gaurdotp_verification"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".activity.Gaurdregistration"
             android:exported="false" />
         <activity
             android:name=".activity.EmployeeDashboard"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".activity.Forgetcreatepswemployee"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".activity.Employeeotpverification"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".activity.Forgetpsw"
             android:exported="false" />
@@ -73,16 +74,12 @@
             android:exported="false" />
         <activity
             android:name=".activity.MainActivity"
-            android:exported="false">
-
-        </activity>
-
+            android:exported="false"/>
         <activity
             android:name=".activity.SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
