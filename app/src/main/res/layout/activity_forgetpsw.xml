@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Forgetpsw">
+    tools:context=".activity.Forgetpsw">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
     <RelativeLayout
         android:id="@+id/lifc_logo"
@@ -24,16 +24,14 @@
             android:marqueeRepeatLimit="marquee_forever"
             android:scrollHorizontally="true"
             android:textColor="#ff4500"
-            android:text="Laxmi India Finance Private Limited Formally Known as Laxmi India Feanleasecap Private Limited"
+            android:text="@string/marquee_text"
             android:textSize="20sp"
             android:textStyle="bold"/>
-
         <ImageView
             android:id="@+id/elipse_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ellipse_1" />
-
         <ImageView
             android:id="@+id/elipse_2"
             android:layout_width="wrap_content"
@@ -46,7 +44,7 @@
             android:layout_height="100dp"
             android:layout_below="@id/elipse_1"
             android:layout_centerInParent="true"
-            android:src="@drawable/new_logo_lifc" />
+            android:src="@drawable/life_logo" />
         <TextView
             android:id="@+id/txt_forgetpswd"
             android:layout_width="match_parent"
@@ -55,7 +53,7 @@
             android:layout_marginTop="40dp"
             android:layout_marginRight="20dp"
             android:padding="10dp"
-            android:text="Forget Password"
+            android:text="@string/forget_password"
             android:textColor="@color/red"
             android:textAlignment="center"
             android:textSize="20sp"
@@ -92,8 +90,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="   PhoneNo.-+91">
-
+            android:hint="@string/mobile_no_91">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/mobile_no"
                 android:layout_width="match_parent"
@@ -110,7 +107,6 @@
             android:id="@+id/tv_getotp"
             android:layout_width="122dp"
             android:layout_height="42dp"
-            android:layout_alignParentEnd="true"
             android:layout_gravity="center"
             android:layout_marginTop="40dp"
             android:layout_marginEnd="10dp"
@@ -119,7 +115,7 @@
             android:paddingTop="10dp"
             android:paddingEnd="20dp"
             android:paddingBottom="10dp"
-            android:text="Get Otp"
+            android:text="@string/get_otp"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textStyle="bold"

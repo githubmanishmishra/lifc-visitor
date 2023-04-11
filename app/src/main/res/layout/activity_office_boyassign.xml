@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Office_boyassign">
+    tools:context=".activity.Office_boyassign">
 <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
     <RelativeLayout
         android:id="@+id/lifc_logo"
@@ -17,14 +17,14 @@
             android:id="@+id/mywidget"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:singleLine="true"
             android:ellipsize="marquee"
             android:fadingEdge="horizontal"
             android:marqueeRepeatLimit="marquee_forever"
             android:scrollHorizontally="true"
             android:textColor="#ff4500"
-            android:text="Laxmi India Finance Private Limited Formally Known as Laxmi India Feanleasecap Private Limited"
+            android:text="@string/marquee_text"
             android:textSize="20sp"
             android:textStyle="bold"/>
         <ImageView
@@ -45,44 +45,62 @@
             android:layout_height="100dp"
             android:layout_below="@id/elipse_1"
             android:layout_centerInParent="true"
-            android:src="@drawable/new_logo_lifc" />
+            android:src="@drawable/life_logo" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/logo_3"
             android:layout_centerInParent="true"
             android:layout_marginTop="15dp"
-            android:text="Request"
+            android:text="@string/request"
             android:textColor="@color/red"
             android:textSize="26sp"
             android:textStyle="bold" />
     </RelativeLayout>
-    <RelativeLayout
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp">
-
-        <TextView
-            android:id="@+id/tv_officeboy_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="Office Boy Name-     "
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/ev_visitor_name"
+        android:hint="@string/office_boy_name"
+        android:layout_marginStart="5dp">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ev_officeBoy_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_toRightOf="@+id/tv_officeboy_name"
-            android:background="@drawable/bgtext"
-            android:padding="10dp"
-            android:singleLine="true" />
+            android:padding="12dp"
+            android:layout_margin="10dp"
+            android:singleLine="true"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    </RelativeLayout>
+    <!--
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:id="@+id/tv_officeboy_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="Office Boy Name-     "
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/ev_visitor_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_toRightOf="@+id/tv_officeboy_name"
+                android:background="@drawable/bgtext"
+                android:padding="10dp"
+                android:singleLine="true" />
+
+        </RelativeLayout>
+    -->
+<!--
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -106,6 +124,25 @@
             android:padding="10dp"
             android:singleLine="true" />
     </RelativeLayout>
+-->
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/mobile_no_91">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/mobile_no"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:inputType="phone"
+            android:maxLength="10"
+            android:layout_margin="10dp"
+            android:singleLine="true" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+<!--
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -129,11 +166,26 @@
             android:padding="10dp"
             android:singleLine="true"/>
     </RelativeLayout>
+-->
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/employeecode"
+        android:layout_marginStart="5dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ev_officeBoy_empcode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:layout_margin="10dp"
+            android:singleLine="true"/>
+    </com.google.android.material.textfield.TextInputLayout>
     <TextView
         android:id="@+id/tv_confirmpsw"
         android:layout_width="222dp"
         android:layout_height="42dp"
-        android:layout_alignParentEnd="true"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
@@ -142,7 +194,7 @@
         android:paddingTop="10dp"
         android:paddingEnd="20dp"
         android:paddingBottom="10dp"
-        android:text="Submit"
+        android:text="@string/submit"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textStyle="bold"

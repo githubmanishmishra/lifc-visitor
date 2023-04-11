@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".New_visitordetail">
+    tools:context=".activity.New_visitordetail">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -25,7 +25,7 @@
                 android:marqueeRepeatLimit="marquee_forever"
                 android:scrollHorizontally="true"
                 android:textColor="#ff4500"
-                android:text="Laxmi India Finance Private Limited Formally Known as Laxmi India Feanleasecap Private Limited"
+                android:text="@string/marquee_text"
                 android:textSize="20sp"
                 android:textStyle="bold"/>
 
@@ -47,7 +47,7 @@
                 android:layout_height="100dp"
                 android:layout_below="@id/elipse_1"
                 android:layout_centerInParent="true"
-                android:src="@drawable/new_logo_lifc"/>
+                android:src="@drawable/life_logo"/>
         </RelativeLayout>
 
         <!--<RelativeLayout
@@ -92,13 +92,32 @@
                 android:layout_margin="10dp"
                 android:singleLine="true"/>
 
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floating_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:src="@drawable/baseline_add_box_24"
+                android:background="#14DDB0"
+                android:tintMode="screen"
+                android:layout_gravity="end"
+                android:layout_marginEnd="10dp"
+                android:contentDescription="TODO" />
         </com.google.android.material.textfield.TextInputLayout>
+
+        <RelativeLayout
+            android:id="@+id/rel_lay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </RelativeLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="   Visitor PhoneNo.-+91">
+            android:hint="@string/visitor_phoneno_91">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/mobile_no"
@@ -151,7 +170,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="   Purpose of Comeing">
+            android:hint="@string/purpose_of_meeting">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/purposeof_coming"
@@ -207,7 +226,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:padding="10dp"
-                android:text="Visitor Photo--"
+                android:text="@string/visitor_photo"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
             <androidx.appcompat.widget.AppCompatButton
@@ -220,7 +239,7 @@
                 android:background="@drawable/btn_bg_rectangle"
                 android:padding="15dp"
                 android:paddingEnd="30dp"
-                android:text="Upload"
+                android:text="@string/upload"
                 android:textColor="@color/white" />
         </RelativeLayout>
 <!--
@@ -280,7 +299,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="   Pincode">
+            android:hint="@string/pincode">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/pincode"
                 android:layout_width="match_parent"
@@ -298,7 +317,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="State- "
+                android:text="@string/state"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:paddingTop="10dp"/>
@@ -322,7 +341,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="City- "
+                android:text="@string/city"
                 android:textSize="18sp"
                 android:textStyle="bold" />
             <Spinner
@@ -358,9 +377,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         <TextView
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Whom to meet"
+            android:text="@string/whom_to_meet"
             android:textColor="@color/red"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -398,7 +418,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="   Employee Name">
+            android:hint="@string/employee_name">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/employeename"
                 android:layout_width="match_parent"
@@ -437,7 +457,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="   Employee Mo-">
+            android:hint="@string/employee_id">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/employeemo"
@@ -457,7 +477,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="             Branch "
+                android:text="@string/branch"
                 android:textSize="16sp"
                 android:textStyle="bold"/>
             <Spinner
@@ -480,7 +500,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text=" Department "
+                android:text="@string/department"
                 android:textSize="16sp"
                 android:textStyle="bold"/>
             <Spinner
@@ -498,7 +518,7 @@
             android:id="@+id/sendrequest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Send Request"
+            android:text="@string/send_request"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:textSize="14sp"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Forgetcreatepswemployee">
+    tools:context=".activity.Forgetcreatepswemployee">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -24,29 +24,26 @@
                 android:marqueeRepeatLimit="marquee_forever"
                 android:scrollHorizontally="true"
                 android:textColor="#ff4500"
-                android:text="Laxmi India Finance Private Limited Formally Known as Laxmi India Feanleasecap Private Limited"
+                android:text="@string/marquee_text"
                 android:textSize="20sp"
                 android:textStyle="bold"/>
-
             <ImageView
                 android:id="@+id/elipse_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ellipse_1" />
-
             <ImageView
                 android:id="@+id/elipse_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ellipse_2" />
-
             <ImageView
                 android:id="@+id/logo_3"
                 android:layout_width="wrap_content"
                 android:layout_height="100dp"
                 android:layout_below="@id/elipse_1"
                 android:layout_centerInParent="true"
-                android:src="@drawable/new_logo_lifc" />
+                android:src="@drawable/life_logo" />
         </RelativeLayout>
     <!--    <TextView
             android:layout_width="wrap_content"
@@ -77,7 +74,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint=" New Password "
+            android:hint="@string/new_password"
             android:layout_marginStart="5dp">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/ev_newpsw"
@@ -118,7 +115,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint=" Confirm Password "
+            android:hint="@string/confirm_password"
             android:layout_marginStart="5dp">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/ev_confirmpsw"
@@ -134,7 +131,6 @@
             android:id="@+id/tv_confirmpsw"
             android:layout_width="222dp"
             android:layout_height="42dp"
-            android:layout_alignParentEnd="true"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
@@ -143,7 +139,7 @@
             android:paddingTop="10dp"
             android:paddingEnd="20dp"
             android:paddingBottom="10dp"
-            android:text="Change Password"
+            android:text="@string/change_password"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textStyle="bold"

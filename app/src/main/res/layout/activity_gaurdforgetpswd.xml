@@ -5,108 +5,143 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Gaurdforgetpswd">
+    tools:context=".activity.Gaurdforgetpswd">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
         <RelativeLayout
             android:id="@+id/lifc_logo"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
             <TextView
                 android:id="@+id/mywidget"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:singleLine="true"
                 android:ellipsize="marquee"
                 android:fadingEdge="horizontal"
                 android:marqueeRepeatLimit="marquee_forever"
                 android:scrollHorizontally="true"
                 android:textColor="#ff4500"
-                android:text="Laxmi India Finance Private Limited Formally Known as Laxmi India Feanleasecap Private Limited"
+                android:text="@string/marquee_text"
                 android:textSize="20sp"
                 android:textStyle="bold"/>
-
             <ImageView
                 android:id="@+id/elipse_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ellipse_1" />
-
             <ImageView
                 android:id="@+id/elipse_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ellipse_2" />
-
             <ImageView
                 android:id="@+id/logo_3"
                 android:layout_width="wrap_content"
                 android:layout_height="100dp"
                 android:layout_below="@id/elipse_1"
                 android:layout_centerInParent="true"
-                android:src="@drawable/new_logo_lifc" />
-            <TextView
-                android:id="@+id/txt_forgetpswd"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginRight="20dp"
-                android:padding="10dp"
-                android:text="Forget Password"
-                android:textColor="@color/red"
-                android:textAlignment="center"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_below="@id/logo_3"/>
+                android:src="@drawable/life_logo" />
         </RelativeLayout>
-<!--
-        <RelativeLayout
+        <!--  <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_alignParentEnd="true"
+              android:layout_gravity="center"
+              android:layout_marginTop="10dp"
+              android:layout_marginEnd="10dp"
+              android:paddingStart="10dp"
+              android:paddingTop="10dp"
+              android:paddingEnd="20dp"
+              android:paddingBottom="20dp"
+              android:text="New Password"
+              android:textColor="@color/black"
+              android:textSize="18sp"
+              android:textStyle="bold" />
+          <EditText
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginLeft="40dp"
+              android:layout_marginRight="40dp"
+              android:background="@drawable/bgtext"
+              android:layout_toRightOf="@+id/tv_emp_name"
+              android:singleLine="true"
+              android:padding="10dp" />-->
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp">
-
-            <TextView
-                android:id="@+id/tv_emp_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="Mobile No    -    "
-                android:textSize="16sp"
-                android:textStyle="bold" />
-            <EditText
-                android:id="@+id/ev_nameemp"
+            android:hint="@string/new_password"
+            android:layout_marginStart="5dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ev_newpsw"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_toRightOf="@+id/tv_emp_name"
-                android:background="@drawable/bgtext"
-                android:padding="10dp"
+                android:padding="12dp"
+                android:layout_margin="10dp"
+                android:inputType="textPassword"
                 android:singleLine="true"/>
-        </RelativeLayout>
--->
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--<TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:paddingStart="10dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="20dp"
+            android:text="Confirm Password"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:background="@drawable/bgtext"
+            android:layout_toRightOf="@+id/tv_emp_name"
+            android:singleLine="true"
+            android:padding="10dp" />-->
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/confirm_password"
+            android:layout_marginStart="5dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ev_gaurdnewpsw"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:layout_margin="10dp"
+                android:inputType="textPassword"
+                android:singleLine="true"/>
+        </com.google.android.material.textfield.TextInputLayout>
         <TextView
-            android:id="@+id/tv_gaurdsgetotp"
-            android:layout_width="122dp"
+            android:id="@+id/tv_gaurdchangepwd"
+            android:layout_width="222dp"
             android:layout_height="42dp"
             android:layout_alignParentEnd="true"
             android:layout_gravity="center"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:background="@drawable/btn_bg_rectangle"
-            android:paddingStart="20dp"
+            android:paddingStart="10dp"
             android:paddingTop="10dp"
             android:paddingEnd="20dp"
             android:paddingBottom="10dp"
-            android:text="Get Otp"
+            android:text="@string/change_password"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textStyle="bold"
-            android:textSize="14sp"/>
+            android:textSize="14sp" />
     </LinearLayout>
-
 </ScrollView>
