@@ -8,7 +8,7 @@
     tools:context=".activity.Gaurdforgetpswd">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
         <RelativeLayout
             android:id="@+id/lifc_logo"
@@ -18,14 +18,14 @@
                 android:id="@+id/mywidget"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:singleLine="true"
                 android:ellipsize="marquee"
                 android:fadingEdge="horizontal"
                 android:marqueeRepeatLimit="marquee_forever"
                 android:scrollHorizontally="true"
                 android:textColor="#ff4500"
-                android:text="Laxmi India Finance Private Limited Formally Known as Laxmi India Feanleasecap Private Limited"
+                android:text="@string/marquee_text"
                 android:textSize="20sp"
                 android:textStyle="bold"/>
             <ImageView
@@ -44,7 +44,7 @@
                 android:layout_height="100dp"
                 android:layout_below="@id/elipse_1"
                 android:layout_centerInParent="true"
-                android:src="@drawable/new_logo_lifc" />
+                android:src="@drawable/life_logo" />
         </RelativeLayout>
         <!--  <TextView
               android:layout_width="wrap_content"
@@ -74,7 +74,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint=" New Password "
+            android:hint="@string/new_password"
             android:layout_marginStart="5dp">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/ev_newpsw"
@@ -114,7 +114,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint=" Confirm Password "
+            android:hint="@string/confirm_password"
             android:layout_marginStart="5dp">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/ev_gaurdnewpsw"
@@ -138,7 +138,7 @@
             android:paddingTop="10dp"
             android:paddingEnd="20dp"
             android:paddingBottom="10dp"
-            android:text="Change Password"
+            android:text="@string/change_password"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textStyle="bold"

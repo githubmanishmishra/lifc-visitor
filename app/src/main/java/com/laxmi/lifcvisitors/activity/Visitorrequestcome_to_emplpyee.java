@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.laxmi.lifcvisitors.R;
 
@@ -65,5 +66,7 @@ if (v.getId() == R.id.btn_disapprove){
        }
     }
 });
+        TextView tv = (TextView) this.findViewById(R.id.mywidget);
+        tv.setSelected(true);
     }
 }

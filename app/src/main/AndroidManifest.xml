@@ -21,6 +21,9 @@
             android:name=".activity.Office_boyassign"
             android:exported="false"/>
         <activity
+            android:name=".floor_confrence.DetailActivity"
+            android:exported="false"/>
+        <activity
             android:name=".activity.Visitorrequestcome_to_emplpyee"
             android:exported="false"/>
 

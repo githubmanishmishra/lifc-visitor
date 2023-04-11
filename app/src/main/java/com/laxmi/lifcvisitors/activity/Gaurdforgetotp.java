@@ -20,9 +20,11 @@ TextView tvgforgetotp;
         tvgforgetotp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                intent = new Intent(Gaurdforgetotp.this,GaurdLogin.class);
+                intent = new Intent(Gaurdforgetotp.this,Gaurd_createpswd.class);
                 startActivity(intent);
             }
         });
+        TextView  tv = (TextView) this.findViewById(R.id.mywidget);
+        tv.setSelected(true);
     }
 }

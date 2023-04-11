@@ -35,20 +35,22 @@ public class GaurdLogin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gaurd_login);
+        TextView  tv = (TextView) this.findViewById(R.id.mywidget);
+        tv.setSelected(true);
         tv_forget = findViewById(R.id.forgot_pwd_gaurd);
         registration_text = findViewById(R.id.registration_text);
         tv_forget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                intent = new Intent(GaurdLogin.this, Gaurd_mobileno_forget.class);
-                startActivity(intent);
+            Intent    intents = new Intent(GaurdLogin.this,Gaurd_mobileno_forget.class);
+                startActivity(intents);
             }
         });
         registration_text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                intent = new Intent(GaurdLogin.this, Gaurdregistration.class);
-                startActivity(intent);
+              Intent  intents = new Intent(GaurdLogin.this, Gaurdregistration.class);
+                startActivity(intents);
 
             }
         });
@@ -57,7 +59,9 @@ public class GaurdLogin extends AppCompatActivity {
         ev_password = findViewById(R.id.ev_password);
         tv_login.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
+
                 if (ev_empcodes.getText().toString().isEmpty() &&
                         ev_empcodes.getText().toString().length() != 10
                         && ev_password.getText().toString().isEmpty()) {
@@ -79,9 +83,9 @@ public class GaurdLogin extends AppCompatActivity {
             public void onResponse(@NonNull Call<MSG> call, @NonNull Response<MSG> response) {
 
                 if (response.body() != null) {
-                    Log.d("Mainsj Mishra", "" + response.body().getMessage());
+            /*        Log.d("Mainsj Mishra", "" + response.body().getMessage());
 
-                    Log.d("token>>>>", response.body().getToken());
+                    Log.d("token>>>>", response.body().getToken());*/
                     if (response.body().getMessage().equalsIgnoreCase("Guard Login Successfully")) {
                         Intent intents = new Intent(GaurdLogin.this, GuardDashboard.class);
                         startActivity(intents);

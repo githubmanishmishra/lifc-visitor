@@ -7,7 +7,7 @@
     tools:context=".activity.GaurdLogin">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -18,14 +18,14 @@
                 android:id="@+id/mywidget"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:singleLine="true"
                 android:ellipsize="marquee"
                 android:fadingEdge="horizontal"
                 android:marqueeRepeatLimit="marquee_forever"
                 android:scrollHorizontally="true"
                 android:textColor="#ff4500"
-                android:text="Laxmi India Finance Private Limited Formerly Known as Laxmi India Feanleasecap Private Limited"
+                android:text="@string/marquee_text"
                 android:textSize="20sp"
                 android:textStyle="bold"/>
 
@@ -47,15 +47,14 @@
                 android:layout_height="100dp"
                 android:layout_below="@id/elipse_1"
                 android:layout_centerInParent="true"
-                android:src="@drawable/new_logo_lifc" />
-
+                android:src="@drawable/life_logo"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/logo_3"
                 android:layout_centerInParent="true"
                 android:layout_marginTop="10dp"
-                android:text="Login"
+                android:text="@string/login"
                 android:textColor="@color/red"
                 android:textSize="22sp"
                 android:textStyle="bold"/>
@@ -92,7 +91,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint=" Mobile No-/Emp Code -"
+            android:hint="@string/mobile_no_emp_code"
             android:layout_marginStart="5dp">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/ev_empcode"
@@ -135,7 +134,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint=" Password "
+            android:hint="@string/password"
             android:layout_marginStart="5dp">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/ev_password"
@@ -164,7 +163,7 @@
                 android:paddingTop="10dp"
                 android:paddingEnd="20dp"
                 android:paddingBottom="10dp"
-                android:text="Login"
+                android:text="@string/login"
                 android:layout_weight="1"
                 android:textAlignment="center"
                 android:textColor="@color/white"
@@ -181,7 +180,7 @@
                 android:paddingTop="10dp"
                 android:paddingEnd="20dp"
                 android:paddingBottom="10dp"
-                android:text="Forget Password?"
+                android:text="@string/forget_password"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 android:textStyle="bold"

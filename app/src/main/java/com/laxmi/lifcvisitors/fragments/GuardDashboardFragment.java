@@ -28,6 +28,10 @@ Intent intent;
               startActivity(intent);
             }
         });
+        TextView tv = (TextView) view.findViewById(R.id.mywidget);
+        tv.setSelected(true);
         return view;
+
+
     }
 }

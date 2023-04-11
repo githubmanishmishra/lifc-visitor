@@ -19,7 +19,6 @@ public class Gaurdotp_verification extends AppCompatActivity {
     String mob_no,emp_code;
     EditText editTextotp1,editTextotp2,editTextotp3,editTextotp4;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +27,6 @@ public class Gaurdotp_verification extends AppCompatActivity {
         editTextotp2 = findViewById(R.id.edittext_otp2);
         editTextotp3 = findViewById(R.id.edittext_otp3);
         editTextotp4 = findViewById(R.id.edittext_otp4);
-
         Bundle bundle = getIntent().getExtras();
         if(bundle!=null){
             mob_no = bundle.getString("mob_no");
@@ -44,14 +42,12 @@ editTextotp1.addTextChangedListener(new TextWatcher() {
         }
     }
 
-
     @Override
     public void beforeTextChanged(CharSequence s, int start,
                                   int count, int after) {
         // TODO Auto-generated method stub
 
     }
-
     @Override
     public void afterTextChanged(Editable editable) {
 
@@ -120,14 +116,11 @@ editTextotp1.addTextChangedListener(new TextWatcher() {
             }
 
         });
-
-
         tv_getotp = findViewById(R.id.tv_gaurd_get_otp);
         tv_getotp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                    Intent intent = new Intent(Gaurdotp_verification.this,Gaurd_createpswd.class);
+                Intent intent = new Intent(Gaurdotp_verification.this,Gaurd_createpswd.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("mob_no", mob_no);
                     bundle.putString("emp_code", emp_code);
@@ -137,5 +130,6 @@ editTextotp1.addTextChangedListener(new TextWatcher() {
         });
 
         TextView  tv = (TextView) this.findViewById(R.id.mywidget);
-        tv.setSelected(true);}
+        tv.setSelected(true);
+    }
 }

@@ -7,7 +7,7 @@
     tools:context=".activity.Visitorrequestcome_to_emplpyee">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
     <RelativeLayout
@@ -18,14 +18,14 @@
             android:id="@+id/mywidget"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:singleLine="true"
             android:ellipsize="marquee"
             android:fadingEdge="horizontal"
             android:marqueeRepeatLimit="marquee_forever"
             android:scrollHorizontally="true"
             android:textColor="#ff4500"
-            android:text="Laxmi India Finance Private Limited Formally Known as Laxmi India Feanleasecap Private Limited"
+            android:text="@string/marquee_text"
             android:textSize="20sp"
             android:textStyle="bold"/>
         <ImageView
@@ -46,14 +46,14 @@
             android:layout_height="100dp"
             android:layout_below="@id/elipse_1"
             android:layout_centerInParent="true"
-            android:src="@drawable/new_logo_lifc" />
+            android:src="@drawable/life_logo" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/logo_3"
             android:layout_centerInParent="true"
             android:layout_marginTop="15dp"
-            android:text="Request"
+            android:text="@string/request"
             android:textColor="@color/red"
             android:textSize="26sp"
             android:textStyle="bold" />
@@ -91,7 +91,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="  Visitor Name"
+            android:hint="@string/visitor_name"
             android:layout_marginStart="5dp">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -106,7 +106,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="  Second Visitor Name"
+            android:hint="@string/second_visitor_name"
             android:layout_marginStart="5dp">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -121,7 +121,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="  Third Visitor Name"
+            android:hint="@string/third_visitor_name"
             android:layout_marginStart="5dp">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -162,8 +162,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="   Visitor PhoneNo.-+91">
-
+            android:hint="@string/visitor_phoneno_91">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/mobile_no"
                 android:layout_width="match_parent"
@@ -205,7 +204,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="   Purpose of Meeting">
+            android:hint="@string/purpose_of_meeting">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/purposeof_coming"
@@ -219,7 +218,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/select_Floor"
-            android:text="Floor"
+            android:text="@string/floor"
             android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="@color/red"
@@ -233,7 +232,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/select_confrence_room"
-            android:text="Conference Room"
+            android:text="@string/conference_room"
             android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="@color/red"
@@ -258,7 +257,7 @@
                 android:id="@+id/btn_approve"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Approve"
+                android:text="@string/approve"
                 android:background="@drawable/btn_bg_rectangle"
                 android:textColor="@color/white"
                 android:layout_weight="1"/>
@@ -267,7 +266,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Disapprove"
+                android:text="@string/disapprove"
                 android:background="@drawable/btn_bg_rectangle"
                 android:textColor="@color/white"/>
         </LinearLayout>

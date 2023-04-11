@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Lifc મુલાકાતીઓ</string>
+    <string name="title_activity_employeeregistration">કર્મચારી નોંધણી
+</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">પ્રથમ ટુકડો</string>
+    <string name="second_fragment_label">બીજો ટુકડો</string>
+    <string name="next">આગળ</string>
+    <string name="previous">અગાઉના</string>
+    <string name="hello_first_fragment">હેલો પ્રથમ ટુકડો</string>
+    <string name="hello_second_fragment">
+હેલો બીજો ટુકડો. આર્ગ: %1$s</string>
+    <string name="navigation_drawer_open">ખુલ્લા</string>
+    <string name="navigation_drawer_close">
+બંધ</string>
+    <string name="pref_file">com.laxmi.lifcvisitors.preference_file</string>
+    <string name="pref_login_status">com.laxmi.lifcvisitors.preference_login_status</string>
+    <string name="pref_username">com.laxmi.lifcvisitors.preference_user_name</string>
+    <string name="pref_email">com.laxmi.lifcvisitors.preference_email</string>
+    <string name="pref_login_id">com.laxmi.lifcvisitors.preference_login_id</string>
+    <string name="pref_type">com.laxmi.lifcvisitors.preference_type</string>
+    <string name="pref_pic">com.laxmi.lifcvisitors.preference_pic</string>
+    <string name="pref_phone">com.laxmi.lifcvisitors.preference_phone</string>
+    <string name="pref_deviceId">com.laxmi.lifcvisitors.preference_deviceId</string>
+    <string name="pref_services">com.laxmi.lifcvisitors.preference_service</string>
+    <string name="register_text">તમારી પાસે ખાતું નથી? એક બનાવો!</string>
+    <string name="your_string_here"><![CDATA[<u>તમારી પાસે ખાતું નથી? એક બનાવો!</u>.]]></string>
+    <string name="marquee_text">
+લક્ષ્મી ઈન્ડિયા ફાઈનાન્સ પ્રાઈવેટ લિમિટેડ જે અગાઉ લક્ષ્મી ઈન્ડિયા ફેનલીસેકેપ પ્રાઈવેટ લિમિટેડ તરીકે જાણીતી હતી</string>
+    <string name="mobile_no_91">મોબાઈલ નંબર - +91</string>
+    <string name="new_password">નવો પાસવર્ડ
+</string>
+    <string name="confirm_password">પાસવર્ડની પુષ્ટિ કરો</string>
+    <string name="confirm">
+પુષ્ટિ કરો
+</string>
+    <string name="floor">ફ્લોર
+</string>
+    <string name="conferenceroom_cabin">કોન્ફરન્સરૂમ/કેબિન
+</string>
+    <string name="login">પ્રવેશ કરો
+</string>
+    <string name="mobile_no_emp_code">
+મોબાઇલ નંબર-/Emp કોડ -
+</string>
+    <string name="password">પાસવર્ડ</string>
+    <string name="forget_password">પાસવર્ડ ભૂલી ગયા છો?</string>
+    <string name="change_password">પાસવર્ડ બદલો</string>
+    <string name="get_otp">Otp મેળવો</string>
+    <string name="content">સામગ્રી</string>
+    <string name="Confirm">પુષ્ટિ કરો</string>
+    <string name="visitors">મુલાકાતીઓ</string>
+    <string name="total_visitor_count">
+કુલ મુલાકાતીઓની સંખ્યા</string>
+    <string name="new_visitor">નવા મુલાકાતી</string>
+    <string name="my_profile">મારી પ્રોફાઈલ</string>
+    <string name="request_pending">
+વિનંતી બાકી છે
+</string>
+    <string name="mobileno_91">મોબાઈલ નંબર-+91</string>
+    <string name="otp_verification">OTP ચકાસણી</string>
+    <string name="verify">
+ચકાસો</string>
+    <string name="sign_up">સાઇન અપ કરો</string>
+    <string name="empcode">એમ્પકોડ-</string>
+    <string name="already_have_an_account_login">પહેલેથી જ એકાઉન્ટ છે? પ્રવેશ કરો !</string>
+    <string name="welcome_to_visitors">મુલાકાતીઓ માટે આપનું સ્વાગત છે</string>
+    <string name="how_can_i_help_you">ું આપની શું મદદ કરી શકું?</string>
+    <string name="who_are_you">તમે કોણ છો ?
+</string>
+    <string name="guard">રક્ષક</string>
+    <string name="employee">કર્મચારી</string>
+    <string name="_2_dfl_tower_gopinath_marg_m_i_road_jaipur_302001">2, DFL ટાવર ગોપીનાથ માર્ગ M.I. રોડ, જયપુર -302001</string>
+    <string name="visitor_phoneno_91">મુલાકાતી ફોન નંબર-+91</string>
+    <string name="purpose_of_meeting">મીટીંગનો હેતુ</string>
+    <string name="visitor_photo">મુલાકાતી ફોટો--</string>
+    <string name="upload">અપલોડ કરો</string>
+    <string name="pincode">પીન કોડ</string>
+    <string name="state">રાજ્ય-</string>
+    <string name="city">શહેર-</string>
+    <string name="whom_to_meet">કોને મળવું</string>
+    <string name="employee_name">કોને મળવું</string>
+    <string name="employee_id">કર્મચારી આઈડી-</string>
+    <string name="branch">શાખા</string>
+    <string name="department">વિભાગ</string>
+    <string name="send_request">વિનંતી મોકલી</string>
+    <string name="request">વિનંતી</string>
+    <string name="office_boy_name">ઓફિસ બોયનું નામ-</string>
+    <string name="employeecode">કર્મચારી કોડ-</string>
+    <string name="submit">સબમિટ કરો</string>
+    <string name="enter_your_otp">તમારો Otp દાખલ કરો</string>
+    <string name="visitor_name">મુલાકાતી નામ</string>
+    <string name="second_visitor_name">બીજા મુલાકાતીનું નામ</string>
+    <string name="third_visitor_name">ત્રીજા મુલાકાતીનું નામ</string>
+    <string name="conference_room">કોન્ફરન્સ રૂમ</string>
+    <string name="approve">મંજૂર</string>
+    <string name="disapprove">નામંજૂર કરો</string>
+    <string name="total_visitor_status">કુલ મુલાકાતી સ્થિતિ</string>
+</resources>

@@ -28,6 +28,8 @@ public class DashboardFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        TextView tv = (TextView) view.findViewById(R.id.mywidget);
+        tv.setSelected(true);
         return view;
     }
 }

@@ -22,6 +22,7 @@ import com.laxmi.lifcvisitors.fragments.GuardDashboardFragment;
 public class GuardDashboard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 TextView tv_visitorsstatus;
 Intent intent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +41,6 @@ Intent intent;
         FragmentManager fragmentManager = getSupportFragmentManager();
         GuardDashboardFragment fragment = new GuardDashboardFragment();
         fragmentManager.beginTransaction().replace(R.id.frameLayout, fragment).commit();
-
     }
     @Override
     public void onBackPressed() {

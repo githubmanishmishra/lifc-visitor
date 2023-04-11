@@ -27,7 +27,7 @@
                 android:marqueeRepeatLimit="marquee_forever"
                 android:scrollHorizontally="true"
                 android:textColor="#ff4500"
-                android:text="Laxmi India Finance Private Limited Formally Known as Laxmi India Feanleasecap Private Limited"
+                android:text="Laxmi India Finance Private Limited Formerly Known as Laxmi India Feanleasecap Privated Limited"
                 android:textSize="20sp"
                 android:textStyle="bold"/>
 

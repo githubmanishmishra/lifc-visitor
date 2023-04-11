@@ -16,7 +16,7 @@
         android:marqueeRepeatLimit="marquee_forever"
         android:scrollHorizontally="true"
         android:textColor="#ff4500"
-        android:text="Laxmi India Finance Private Limited Formally Known as Laxmi India Feanleasecap Private Limited"
+        android:text="@string/marquee_text"
         android:textSize="20sp"
         android:textStyle="bold"/>
     <ImageView
@@ -37,7 +37,7 @@
         android:layout_height="100dp"
         android:layout_below="@id/elipse_1"
         android:layout_centerInParent="true"
-        android:src="@drawable/new_logo_lifc"/>
+        android:src="@drawable/life_logo"/>
 
     <TextView
         android:id="@+id/welcome_txt"
@@ -46,7 +46,7 @@
         android:layout_below="@+id/elipse_3"
         android:layout_marginTop="15dp"
         android:gravity="center"
-        android:text="Welcome to Visitors"
+        android:text="@string/welcome_to_visitors"
         android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold"/>
@@ -58,7 +58,7 @@
         android:layout_below="@id/welcome_txt"
         android:layout_marginTop="15dp"
         android:gravity="center"
-        android:text="How can i help you?"
+        android:text="@string/how_can_i_help_you"
         android:textColor="@color/black"
         android:textSize="14sp"
         android:textStyle="bold" />
@@ -70,7 +70,7 @@
         android:layout_below="@id/how_can"
         android:layout_marginTop="90dp"
         android:gravity="center_horizontal"
-        android:text="Who are you ?"
+        android:text="@string/who_are_you"
         android:textColor="@color/red"
         android:textSize="40sp"
         android:textStyle="bold"/>
@@ -115,7 +115,7 @@
             android:layout_weight="1"
             android:background="@drawable/btn_bg_rectangle"
             android:padding="20dp"
-            android:text="Guard"
+            android:text="@string/guard"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -128,7 +128,7 @@
             android:layout_weight="1"
             android:background="@drawable/btn_bg_rectangle"
             android:padding="20dp"
-            android:text="Employee"
+            android:text="@string/employee"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold"/>
@@ -144,7 +144,7 @@
         android:layout_marginTop="50dp"
         android:layout_marginEnd="20dp"
         android:gravity="center"
-        android:text="2,DFL Tower Gopinath Marg M.I.Road,Jaipur -302001"
+        android:text="@string/_2_dfl_tower_gopinath_marg_m_i_road_jaipur_302001"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold" />

@@ -14,6 +14,21 @@
             android:id="@+id/lifc_logo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/mywidget"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:ellipsize="marquee"
+                android:fadingEdge="horizontal"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:text="@string/marquee_text"
+                android:textColor="#ff4500"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
             <ImageView
                 android:id="@+id/elipse_1"
                 android:layout_width="wrap_content"
@@ -39,7 +54,7 @@
                 android:layout_below="@id/logo_3"
                 android:layout_centerInParent="true"
                 android:layout_marginTop="10dp"
-                android:text="Visitors"
+                android:text="@string/visitors"
                 android:textColor="@color/red"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -62,7 +77,7 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:layout_marginEnd="5dp"
-                android:text="Total Visitor Status"
+                android:text="@string/total_visitor_status"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold"/>
@@ -76,7 +91,7 @@
                 android:layout_weight="1"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="New Visitor E"
+                android:text="@string/new_visitor"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold"/>
@@ -133,7 +148,7 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:layout_marginEnd="5dp"
-                android:text="My Profile"
+                android:text="@string/my_profile"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -146,7 +161,7 @@
                 android:layout_weight="1"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="Request Pending"
+                android:text="@string/request_pending"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />

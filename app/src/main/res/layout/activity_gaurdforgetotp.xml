@@ -24,7 +24,7 @@
                 android:marqueeRepeatLimit="marquee_forever"
                 android:scrollHorizontally="true"
                 android:textColor="#ff4500"
-                android:text="Laxmi India Finance Private Limited Formally Known as Laxmi India Feanleasecap Private Limited"
+                android:text="@string/marquee_text"
                 android:textSize="20sp"
                 android:textStyle="bold"/>
             <ImageView
@@ -43,7 +43,7 @@
                 android:layout_height="100dp"
                 android:layout_below="@id/elipse_1"
                 android:layout_centerInParent="true"
-                android:src="@drawable/new_logo_lifc" />
+                android:src="@drawable/life_logo" />
         </RelativeLayout>
         <TextView
             android:layout_width="wrap_content"
@@ -56,7 +56,7 @@
             android:paddingTop="10dp"
             android:paddingEnd="20dp"
             android:paddingBottom="20dp"
-            android:text="OTP Verification"
+            android:text="@string/otp_verification"
             android:textColor="@color/red"
             android:textSize="20sp"
             android:textStyle="bold"/>
@@ -95,14 +95,13 @@
             android:id="@+id/tv_gaurd_verify"
             android:layout_width="202dp"
             android:layout_height="42dp"
-            android:layout_alignParentEnd="true"
             android:layout_gravity="center"
             android:background="@drawable/btn_bg_rectangle"
             android:paddingStart="10dp"
             android:paddingTop="10dp"
             android:paddingEnd="20dp"
             android:paddingBottom="10dp"
-            android:text="Verify"
+            android:text="@string/verify"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold"
