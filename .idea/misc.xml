@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ASUS/Downloads/lifc-visitor/app/src/main/res/drawable-v24/ic_baseline_visibility_24.xml" value="0.121" />
+        <entry key="..\:/Users/ASUS/Downloads/lifc-visitor/app/src/main/res/drawable-v24/show_password_selector.xml" value="0.121" />
+        <entry key="..\:/Users/ASUS/Downloads/lifc-visitor/app/src/main/res/drawable/popup_design.xml" value="0.1" />
+        <entry key="..\:/Users/ASUS/Downloads/lifc-visitor/app/src/main/res/layout/activity_new_visitordetail.xml" value="0.16799999999999998" />
         <entry key="..\:/Users/ASUS/Downloads/lifc-visitor/app/src/main/res/layout/dropdown_menu_popup.xml" value="0.25" />
       </map>
     </option>

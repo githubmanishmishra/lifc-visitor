@@ -6,31 +6,33 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.laxmi.lifcvisitors.Employee_Send_Request_toGaurd;
 import com.laxmi.lifcvisitors.R;
 import com.laxmi.lifcvisitors.model.PostCodalStateAndCity;
-import com.laxmi.lifcvisitors.model.PostOffice;
-import com.laxmi.lifcvisitors.retrofitservices.APIService;
-import com.laxmi.lifcvisitors.retrofitservices.ApiClient;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class New_visitordetail extends AppCompatActivity {
     Button btn_uploadvisitor_photo;
@@ -40,11 +42,14 @@ public class New_visitordetail extends AppCompatActivity {
     TextView rv_log;
     LinearLayout linearLayout;
     public boolean checkHide = false;
-    List<PostOffice> postOfficeArrayList = new ArrayList<>();
+    List<PostCodalStateAndCity> postOfficeArrayList = new ArrayList<>();
 
     public static final int CAMERA_REEQUEST_CODE = 100;
 
-    AutoCompleteTextView spinner_City;
+    private RequestQueue mRequestQueue;
+    private StringRequest mStringRequest;
+    private String url = "https://api.postalpincode.in/pincode/721429";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +61,6 @@ public class New_visitordetail extends AppCompatActivity {
         visitorPhoto = findViewById(R.id.visitor_photo);
         linearLayout = findViewById(R.id.editTextContainer);
         EditText pin_code = findViewById(R.id.pin_code);
-        spinner_City = findViewById(R.id.spinner_City);
 
         if (pin_code.getText().toString().isEmpty()) {
             Toast.makeText(this, "Please Enter Pin code", Toast.LENGTH_SHORT).show();
@@ -105,70 +109,59 @@ public class New_visitordetail extends AppCompatActivity {
 
     private void getState(String pinCode) {
 
-        APIService service = ApiClient.getClient().create(APIService.class);
+        //RequestQueue initialized
+        mRequestQueue = Volley.newRequestQueue(this);
 
-        Call<PostCodalStateAndCity> call = service.getPincode("842002");
-        call.enqueue(new Callback<PostCodalStateAndCity>() {
-            @Override
-            public void onResponse(@NonNull Call<PostCodalStateAndCity> call,
-                                   @NonNull Response<PostCodalStateAndCity> response) {
+        //String Request initialized
+        mStringRequest = new StringRequest(Request.Method.GET, url, response -> {
 
-                if (response.body() != null) {
-                    if (response.body().getStatus().equalsIgnoreCase("Success")) {
+            Toast.makeText(getApplicationContext(), "Response :" + response, Toast.LENGTH_LONG).show();//display the response on screen
+            Log.i("Manish Mishra", response);
 
-                        PostCodalStateAndCity postCodalStateAndCity = response.body();
+            if (response != null) {
+                try {
+                    JSONArray jsonArray = new JSONArray(response);
+                    JSONObject returnFlightChild = null;
+                    for (int j = 0; j < jsonArray.length(); j++) {
+                        JSONObject jsonObject = jsonArray.getJSONObject(j);
+                        JSONArray onwardflights = jsonObject.getJSONArray("PostOffice");
+                        for (int i = 0; i < onwardflights.length(); i++) {
+                            returnFlightChild = onwardflights.getJSONObject(i);
+                            //returnFlights objects
+                            Log.d("kjxngksjnkjsdn", returnFlightChild.getString("Name"));
 
-                      postOfficeArrayList =  postCodalStateAndCity.getPostOffice();
-
-                        Log.d("kjxngksjnkjsdn", postOfficeArrayList.get(0).getBranchType());
+                        }
 
                         List<String> listSpinner = new ArrayList<>();
-    //                    for (int i = 0; i < postCodalStateAndCity.size(); i++) {
-    //                        List<PostCodalStateAndCity.PostOffice> postOfficeList = postOfficeArrayList.get(i).getPostOffice();
-    //
-    //                        for (int j = 0; j < postOfficeList.size(); j++) {
-    //                            listSpinner.add(postOfficeList.get(j).getName());
-    //
-    //                        }
-    //
-    //                        Log.d("kjxngksjnkjsdn", listSpinner.toString());
-    //                    }
+
+                        listSpinner.add(returnFlightChild.getString("Name"));
+
                         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                                New_visitordetail.this, R.layout.dropdown_menu_popup, listSpinner);
+                                New_visitordetail.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, listSpinner);
 
-                        AutoCompleteTextView editTextFilledExposedDropdown = findViewById(R.id.spinner_City);
+                        Spinner editTextFilledExposedDropdown = findViewById(R.id.spinner_City);
                         editTextFilledExposedDropdown.setAdapter(adapter);
-
-
-                    } else {
-                        Toast.makeText(New_visitordetail.this, "Wrong Credentials", Toast.LENGTH_SHORT).show();
-
                     }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
 
-               /* final PostCodalStateAndCity allEvent = response.body();
+            } else {
+                Toast.makeText(New_visitordetail.this, "Wrong Credentials", Toast.LENGTH_SHORT).show();
 
-                postOfficeArrayList = allEvent.getPostOffice();
-
-                List<String> listSpinner = new ArrayList<>();
-                for (int i = 0; i < postOfficeArrayList.size(); i++) {
-                    listSpinner.add(postOfficeArrayList.get(i).getName());
-                }
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                        New_visitordetail.this, R.layout.dropdown_menu_popup, listSpinner);
-
-                AutoCompleteTextView editTextFilledExposedDropdown = findViewById(R.id.spinner_City);
-                editTextFilledExposedDropdown.setAdapter(adapter);
-*/
             }
 
+        }, new Response.ErrorListener() {
             @Override
-            public void onFailure(Call<PostCodalStateAndCity> call, Throwable t) {
+            public void onErrorResponse(VolleyError error) {
 
-                // pDialog.dismiss();
-                //  Log.d("Error", t.getMessage());
+                Log.i("Manish", "Error :" + error.toString());
             }
         });
+
+        mRequestQueue.add(mStringRequest);
+
     }
 
 }

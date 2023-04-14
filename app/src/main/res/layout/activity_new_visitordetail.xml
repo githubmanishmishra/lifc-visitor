@@ -415,22 +415,35 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <com.google.android.material.textfield.TextInputLayout
-
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="3dp"
                 android:layout_toEndOf="@+id/tv_city"
-                android:hint="City"
+                android:layout_weight=".28"
+                android:background="@drawable/popup_design"
                 android:orientation="horizontal">
 
-                <AutoCompleteTextView
+                <Spinner
                     android:id="@+id/spinner_City"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="none" />
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:spinnerMode="dropdown" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:src="@drawable/popup_design" />
+
+            </RelativeLayout>
 
         </RelativeLayout>
 
@@ -443,9 +456,9 @@
                 android:id="@+id/timePicker"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:scaleY="0.90"
+                android:layout_weight="1"
                 android:scaleX="0.90"
-                android:layout_weight="1" />
+                android:scaleY="0.90" />
 
             <TimePicker
                 android:id="@+id/timePicker2"
@@ -522,6 +535,7 @@
                 android:padding="20dp"
                 android:singleLine="true" />
         </RelativeLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -547,6 +561,7 @@
                 android:padding="20dp"
                 android:singleLine="true" />
         </RelativeLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
@@ -601,9 +616,6 @@
                 android:padding="10dp"
                 android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
-
-
-
 
 
         <androidx.appcompat.widget.AppCompatButton

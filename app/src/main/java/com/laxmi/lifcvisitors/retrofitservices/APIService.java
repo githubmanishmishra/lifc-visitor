@@ -1,7 +1,6 @@
 package com.laxmi.lifcvisitors.retrofitservices;
 
 import com.laxmi.lifcvisitors.model.MSG;
-import com.laxmi.lifcvisitors.model.PostCodalStateAndCity;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -12,14 +11,12 @@ import retrofit2.http.Query;
 
 public interface APIService {
 
-//    http://lifc.shailsoft.com/api/otp/send
-
     @FormUrlEncoded
     @POST("otp/send")
     Call<MSG> getOtp(@Query("mobile_number") String mobile_number
     );
 
-//    @Headers("Content-Type: application/x-www-form-urlencoded")
+    //    @Headers("Content-Type: application/x-www-form-urlencoded")
     @FormUrlEncoded
     @POST("guard/signup/request")
     Call<ResponseBody> getSignup(@Field("mobile_number") String mobile_number,
@@ -30,15 +27,6 @@ public interface APIService {
     @FormUrlEncoded
     @POST("login/request")
     Call<MSG> getLogin(@Field("mobile_code") String mobile_code,
-                                 @Field("password") String password);
+                       @Field("password") String password);
 
-    @FormUrlEncoded
-    @POST("localities-by-pincode")
-    Call<PostCodalStateAndCity> getPincode(@Field("pincode") String pin_code);
-
-
-   /* @GET("booking-service.php")
-    Call<BookingServiceData> getBookingService();
-
-*/
 }
