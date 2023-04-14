@@ -1,6 +1,5 @@
-package com.laxmi.lifcvisitors.activity;
+package com.laxmi.lifcvisitors.activity.guard;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,17 +15,20 @@ import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.navigation.NavigationView;
 import com.laxmi.lifcvisitors.R;
-import com.laxmi.lifcvisitors.fragments.DashboardFragment;
 import com.laxmi.lifcvisitors.fragments.GuardDashboardFragment;
+import com.laxmi.lifcvisitors.savedata.PrefConfig;
 
 public class GuardDashboard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-TextView tv_visitorsstatus;
-Intent intent;
+
+    PrefConfig prefConfig;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.guard_dashboard);
+
+        prefConfig = new PrefConfig(this);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -35,13 +37,18 @@ Intent intent;
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        /*NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-        navigationView.setCheckedItem(R.id.nav_camera);*/
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        View headerView = navigationView.inflateHeaderView(R.layout.gaurd_header);
+        TextView tvGuardName = headerView.findViewById(R.id.tv_guard_name);
+
+        tvGuardName.setText(prefConfig.readName());
+
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         GuardDashboardFragment fragment = new GuardDashboardFragment();
         fragmentManager.beginTransaction().replace(R.id.frameLayout, fragment).commit();
     }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

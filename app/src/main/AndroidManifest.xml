@@ -15,77 +15,9 @@
             android:name=".Employee_Send_Request_toGaurd"
             android:exported="false"/>
         <activity
-            android:name=".activity.Gaurd_mobileno_forget"
-            android:exported="false"/>
-        <activity
-            android:name=".activity.Office_boyassign"
-            android:exported="false"/>
-        <activity
             android:name=".floor_confrence.DetailActivity"
             android:exported="false"/>
-        <activity
-            android:name=".activity.Visitorrequestcome_to_emplpyee"
-            android:exported="false"/>
 
-        <activity
-            android:name=".activity.New_visitordetail"
-            android:exported="false"/>
-        <activity
-            android:name=".activity.GuardDashboard"
-            android:exported="false"/>
-        <activity
-            android:name=".activity.Gaurdforgetotp"
-            android:exported="false"/>
-        <activity
-            android:name=".activity.Gaurdforgetpswd"
-            android:exported="false"/>
-        <activity
-            android:name=".activity.GaurdLogin"
-            android:exported="false"/>
-        <activity
-            android:name=".activity.Gaurd_createpswd"
-            android:exported="false"/>
-        <activity
-            android:name=".activity.Gaurdotp_verification"
-            android:exported="false"/>
-        <activity
-            android:name=".activity.Gaurdregistration"
-            android:exported="false" />
-        <activity
-            android:name=".activity.EmployeeDashboard"
-            android:exported="false"/>
-        <activity
-            android:name=".activity.Forgetcreatepswemployee"
-            android:exported="false"/>
-        <activity
-            android:name=".activity.Employeeotpverification"
-            android:exported="false"/>
-        <activity
-            android:name=".activity.Forgetpsw"
-            android:exported="false" />
-        <activity
-            android:name=".activity.Employeelogin"
-            android:exported="false" />
-        <activity
-            android:name=".activity.EmpcreatepswActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.Otpverification"
-            android:exported="false" />
-        <activity
-            android:name=".activity.EmployeeRegistratinActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.MainActivity"
-            android:exported="false"/>
-        <activity
-            android:name=".activity.SplashScreen"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>

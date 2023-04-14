@@ -1,8 +1,8 @@
-package com.laxmi.lifcvisitors.activity;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.laxmi.lifcvisitors.activity.officeboy;
 
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.laxmi.lifcvisitors.R;
 

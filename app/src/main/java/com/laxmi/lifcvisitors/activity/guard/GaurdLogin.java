@@ -1,7 +1,4 @@
-package com.laxmi.lifcvisitors.activity;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+package com.laxmi.lifcvisitors.activity.guard;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,15 +8,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.laxmi.lifcvisitors.R;
 import com.laxmi.lifcvisitors.model.MSG;
 import com.laxmi.lifcvisitors.retrofitservices.APIService;
 import com.laxmi.lifcvisitors.retrofitservices.ApiClient;
+import com.laxmi.lifcvisitors.savedata.PrefConfig;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -30,11 +27,16 @@ public class GaurdLogin extends AppCompatActivity {
     Intent intent;
     TextView tv_login, registration_text;
     EditText ev_empcodes, ev_password;
+    public static PrefConfig prefConfig;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gaurd_login);
+
+        prefConfig = new PrefConfig(this);
+
         TextView  tv = (TextView) this.findViewById(R.id.mywidget);
         tv.setSelected(true);
         tv_forget = findViewById(R.id.forgot_pwd_gaurd);
@@ -87,6 +89,10 @@ public class GaurdLogin extends AppCompatActivity {
 
                     Log.d("token>>>>", response.body().getToken());*/
                     if (response.body().getMessage().equalsIgnoreCase("Guard Login Successfully")) {
+
+                        prefConfig.writeLoginStatus(true);
+                        prefConfig.writeName("Manish",response.body().getToken());
+
                         Intent intents = new Intent(GaurdLogin.this, GuardDashboard.class);
                         startActivity(intents);
                         Toast.makeText(GaurdLogin.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
@@ -96,30 +102,6 @@ public class GaurdLogin extends AppCompatActivity {
 
                 }
 
-
-
-               /* try {
-//                    assert response.body() != null;
-                    JSONObject myListsAll = new JSONObject(response.body().string());
-                        String string_message = myListsAll.getString("message");
-                        String token = myListsAll.getString("token");
-                        Log.d("token>>>>", token);
-                        Toast.makeText(GaurdLogin.this, string_message, Toast.LENGTH_SHORT).show();
-                        if(response.isSuccessful()){
-                            if (string_message.equalsIgnoreCase("Guard Login Successfully")) {
-                                Intent intents = new Intent(GaurdLogin.this, GuardDashboard.class);
-                                startActivity(intents);
-//                            {"status":"error","message":"Somthing Went Wrong"}
-                            }
-                        }else  if (string_message.equalsIgnoreCase("Somthing Went Wrong")){
-                                Toast.makeText(GaurdLogin.this, "Wrong credentials", Toast.LENGTH_SHORT).show();
-
-                        }
-
-                } catch (Exception e) {
-//                    e.printStackTrace();
-                    Log.d("Error", ""+e.getMessage());
-                }*/
             }
 
             @Override

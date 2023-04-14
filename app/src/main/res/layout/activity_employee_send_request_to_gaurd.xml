@@ -45,7 +45,7 @@
                 android:layout_height="100dp"
                 android:layout_below="@id/elipse_1"
                 android:layout_centerInParent="true"
-                android:src="@drawable/new_logo_lifc" />
+                android:src="@drawable/life_logo" />
         </RelativeLayout>
 
         <RelativeLayout

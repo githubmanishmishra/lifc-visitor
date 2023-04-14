@@ -2,9 +2,7 @@ package com.laxmi.lifcvisitors.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
@@ -13,6 +11,7 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.laxmi.lifcvisitors.R;
+import com.laxmi.lifcvisitors.activity.guard.GuardDashboard;
 import com.laxmi.lifcvisitors.savedata.PrefConfig;
 
 
@@ -29,7 +28,7 @@ public class SplashScreen extends AppCompatActivity {
         bounceBallImage.clearAnimation();
         TranslateAnimation transAnim = new TranslateAnimation(0, 0, 0,
                 getDisplayHeight() / 2);
-        transAnim.setStartOffset(100);
+        transAnim.setStartOffset(1000);
         transAnim.setDuration(5000);
         transAnim.setFillAfter(true);
         transAnim.setAnimationListener(new Animation.AnimationListener() {

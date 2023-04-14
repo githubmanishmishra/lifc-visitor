@@ -1,6 +1,4 @@
-package com.laxmi.lifcvisitors.activity;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.laxmi.lifcvisitors.activity.visitors;
 
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +7,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.laxmi.lifcvisitors.R;
 

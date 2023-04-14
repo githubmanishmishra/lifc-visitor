@@ -1,11 +1,11 @@
-package com.laxmi.lifcvisitors.activity;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.laxmi.lifcvisitors.activity.guard;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.laxmi.lifcvisitors.R;
 
@@ -20,7 +20,7 @@ TextView tvgforgetotp;
         tvgforgetotp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                intent = new Intent(Gaurdforgetotp.this,Gaurd_createpswd.class);
+                intent = new Intent(Gaurdforgetotp.this, Guard_createpswd.class);
                 startActivity(intent);
             }
         });

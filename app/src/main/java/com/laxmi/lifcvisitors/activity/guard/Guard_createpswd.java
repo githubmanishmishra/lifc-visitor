@@ -1,6 +1,4 @@
-package com.laxmi.lifcvisitors.activity;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.laxmi.lifcvisitors.activity.guard;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +7,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.laxmi.lifcvisitors.R;
 import com.laxmi.lifcvisitors.retrofitservices.APIService;
@@ -25,7 +25,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Gaurd_createpswd extends AppCompatActivity {
+public class Guard_createpswd extends AppCompatActivity {
     Intent intent;
     TextView tv_createpsw;
     EditText ev_new_password, ev_confirm_password;
@@ -50,24 +50,25 @@ public class Gaurd_createpswd extends AppCompatActivity {
                 String newPassword = ev_new_password.getText().toString();
                 String confirmPassword = ev_confirm_password.getText().toString();
 
-                if (newPassword.length() < 8 && !isValidPassword(newPassword)) {
+                if (newPassword.length() < 7 && !isValidPassword(newPassword)) {
                     //1 Uppercase, 1 Number and 1 Symbol and at least 8 character
 //                    System.out.println("Not Valid");
                     TextView tv_pattern = findViewById(R.id.tv_password_pattern);
-                    tv_pattern.setText("Please enter at least Eight Alphanumeric Character /n One Uppercase /n/n One Number and One Symbol ");
+                    tv_pattern.setText(getString(R.string.content));
                 }
                 else {
+
+                    registrationApi(newPassword);
+
                     if (!newPassword.isEmpty() && !confirmPassword.isEmpty()) {
                         if (!newPassword.equals(confirmPassword)) {
-                            Toast.makeText(Gaurd_createpswd.this, "Password not matched !!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Guard_createpswd.this, "Password not matched !!", Toast.LENGTH_SHORT).show();
                         } else {
-                            registrationApi(newPassword);
                         }
                     } else {
-                        Toast.makeText(Gaurd_createpswd.this, "Enter Password !!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Guard_createpswd.this, "Enter Password !!", Toast.LENGTH_SHORT).show();
 
                     }
-
                     System.out.println("Valid");
                 }
 
@@ -90,10 +91,10 @@ public class Gaurd_createpswd extends AppCompatActivity {
                     for (int i = 0; i < myListsAll.length(); i++) {
                         JSONObject jsonobject = (JSONObject) myListsAll.get(i);
                         String string_message = jsonobject.getString("message");
-                        Toast.makeText(Gaurd_createpswd.this, string_message, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Guard_createpswd.this, string_message, Toast.LENGTH_SHORT).show();
 
                         if (string_message.equalsIgnoreCase("Guard Registed Successfully")) {
-                            Intent intents = new Intent(Gaurd_createpswd.this, GaurdLogin.class);
+                            Intent intents = new Intent(Guard_createpswd.this, GaurdLogin.class);
                             startActivity(intents);
                         }
 

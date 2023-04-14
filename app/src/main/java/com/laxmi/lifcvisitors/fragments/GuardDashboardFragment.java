@@ -10,8 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.laxmi.lifcvisitors.activity.New_visitordetail;
 import com.laxmi.lifcvisitors.R;
+import com.laxmi.lifcvisitors.activity.visitors.New_visitordetail;
 
 public class GuardDashboardFragment extends Fragment {
 TextView tv_newvisitor;

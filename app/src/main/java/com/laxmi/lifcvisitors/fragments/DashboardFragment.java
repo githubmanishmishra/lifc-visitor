@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.laxmi.lifcvisitors.R;
-import com.laxmi.lifcvisitors.activity.Visitorrequestcome_to_emplpyee;
+import com.laxmi.lifcvisitors.activity.visitors.Visitorrequestcome_to_emplpyee;
 
 public class DashboardFragment extends Fragment {
     TextView tv_newvisitors;
