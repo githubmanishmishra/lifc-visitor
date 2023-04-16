@@ -33,7 +33,7 @@ public class PrefConfig {
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         editor.putString(context.getString(R.string.pref_username), name);
-        editor.putString(context.getString(R.string.pref_services), token);
+        editor.putString(context.getString(R.string.pref_token), token);
         editor.apply();
 
     }
@@ -41,5 +41,10 @@ public class PrefConfig {
     public String readName() {
 
         return sharedPreferences.getString(context.getString(R.string.pref_username), "Welcome User");
+    }
+
+    public String readToken() {
+
+        return sharedPreferences.getString(context.getString(R.string.pref_token), "");
     }
 }

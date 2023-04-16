@@ -92,6 +92,7 @@ public class GaurdLogin extends AppCompatActivity {
 
                         prefConfig.writeLoginStatus(true);
                         prefConfig.writeName("Manish",response.body().getToken());
+                        Log.d("token>>>>>>>>>>>>",response.body().getToken());
 
                         Intent intents = new Intent(GaurdLogin.this, GuardDashboard.class);
                         startActivity(intents);

@@ -1,11 +1,16 @@
 package com.laxmi.lifcvisitors.retrofitservices;
 
+import com.laxmi.lifcvisitors.model.Branches;
+import com.laxmi.lifcvisitors.model.Departments;
 import com.laxmi.lifcvisitors.model.MSG;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
+import retrofit2.http.Header;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
@@ -28,5 +33,13 @@ public interface APIService {
     @POST("login/request")
     Call<MSG> getLogin(@Field("mobile_code") String mobile_code,
                        @Field("password") String password);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @GET("departments")
+    Call<Departments> getDepartments(@Header("Authorization") String auth);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @GET("branches")
+    Call<Branches> getBranches(@Header("Authorization") String auth);
 
 }
