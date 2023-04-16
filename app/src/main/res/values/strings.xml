@@ -35,7 +35,7 @@
     <string name="forget_password">Forget Password?</string>
     <string name="change_password">Change Password</string>
     <string name="get_otp">Get Otp</string>
-    <string name="content">content</string>
+    <string name="content">Password must be of 8 character including \n 1. Number 2. Special character and 3. Alphabets  </string>
     <string name="Confirm">Confirm</string>
     <string name="visitors">Visitors</string>
     <string name="total_visitor_count">Total Visitor Count</string>

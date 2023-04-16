@@ -37,21 +37,21 @@ public class GaurdLogin extends AppCompatActivity {
 
         prefConfig = new PrefConfig(this);
 
-        TextView  tv = (TextView) this.findViewById(R.id.mywidget);
+        TextView tv = (TextView) this.findViewById(R.id.mywidget);
         tv.setSelected(true);
         tv_forget = findViewById(R.id.forgot_pwd_gaurd);
         registration_text = findViewById(R.id.registration_text);
         tv_forget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            Intent    intents = new Intent(GaurdLogin.this,Gaurd_mobileno_forget.class);
+                Intent intents = new Intent(GaurdLogin.this, Gaurd_mobileno_forget.class);
                 startActivity(intents);
             }
         });
         registration_text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              Intent  intents = new Intent(GaurdLogin.this, Gaurdregistration.class);
+                Intent intents = new Intent(GaurdLogin.this, Gaurdregistration.class);
                 startActivity(intents);
 
             }
@@ -59,20 +59,16 @@ public class GaurdLogin extends AppCompatActivity {
         tv_login = findViewById(R.id.tv_login);
         ev_empcodes = findViewById(R.id.ev_empcode);
         ev_password = findViewById(R.id.ev_password);
-        tv_login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view)
-            {
+        tv_login.setOnClickListener(view -> {
 
-                if (ev_empcodes.getText().toString().isEmpty() &&
-                        ev_empcodes.getText().toString().length() != 10
-                        && ev_password.getText().toString().isEmpty()) {
-                    Toast.makeText(GaurdLogin.this, "Enter 10 digit mobile no. and password", Toast.LENGTH_SHORT).show();
-                } else {
-                    String emp_code = ev_empcodes.getText().toString();
-                    String emp_Password = ev_password.getText().toString();
-                    getLogin(emp_code, emp_Password);
-                }
+            if (ev_empcodes.getText().toString().isEmpty() &&
+                    ev_empcodes.getText().toString().length() != 10
+                    && ev_password.getText().toString().isEmpty()) {
+                Toast.makeText(GaurdLogin.this, "Enter 10 digit mobile no. and password", Toast.LENGTH_SHORT).show();
+            } else {
+                String emp_code = ev_empcodes.getText().toString();
+                String emp_Password = ev_password.getText().toString();
+                getLogin(emp_code, emp_Password);
             }
         });
     }
@@ -91,14 +87,14 @@ public class GaurdLogin extends AppCompatActivity {
                     if (response.body().getMessage().equalsIgnoreCase("Guard Login Successfully")) {
 
                         prefConfig.writeLoginStatus(true);
-                        prefConfig.writeName("Manish",response.body().getToken());
-                        Log.d("token>>>>>>>>>>>>",response.body().getToken());
+                        prefConfig.writeName("Manish", response.body().getToken());
+                        Log.d("token>>>>>>>>>>>>", response.body().getToken());
 
                         Intent intents = new Intent(GaurdLogin.this, GuardDashboard.class);
                         startActivity(intents);
                         Toast.makeText(GaurdLogin.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                     }
-                } else  {
+                } else {
                     Toast.makeText(GaurdLogin.this, "Wrong Credentials", Toast.LENGTH_SHORT).show();
 
                 }

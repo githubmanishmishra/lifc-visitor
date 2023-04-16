@@ -64,7 +64,7 @@
                 android:layout_height="60dp"
                 android:imeOptions="actionNext"
                 android:inputType="textPassword"
-                android:hint="Password"/>
+                android:hint="New Password"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -84,7 +84,7 @@
                 android:layout_height="60dp"
                 android:imeOptions="actionNext"
                 android:inputType="textPassword"
-                android:hint="Password"/>
+                android:hint="Confirm Password"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 

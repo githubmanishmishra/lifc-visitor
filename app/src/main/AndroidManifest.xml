@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,54 +14,56 @@
         android:theme="@style/Theme.LifcVisitors"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activity.guard.GuardProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".Employee_Send_Request_toGaurd"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".activity.guard.Gaurd_mobileno_forget"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".activity.officeboy.Office_boyassign"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".floor_confrence.DetailActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".activity.visitors.Visitorrequestcome_to_emplpyee"
-            android:exported="false"/>
-
+            android:exported="false" />
         <activity
             android:name=".activity.visitors.New_visitordetail"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".activity.guard.GuardDashboard"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
-            android:name=".activity.guard.Gaurdforgetotp"
-            android:exported="false"/>
+            android:name=".activity.guard.GuardForgetOtpVerification"
+            android:exported="false" />
         <activity
-            android:name=".activity.guard.Gaurdforgetpswd"
-            android:exported="false"/>
+            android:name=".activity.guard.GuardForgotPassword"
+            android:exported="false" />
         <activity
             android:name=".activity.guard.GaurdLogin"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".activity.guard.Guard_createpswd"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".activity.guard.Gaurdotp_verification"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".activity.guard.Gaurdregistration"
             android:exported="false" />
         <activity
             android:name=".activity.employee.EmployeeDashboard"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".activity.employee.Forgetcreatepswemployee"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".activity.employee.Employeeotpverification"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".activity.employee.Forgetpsw"
             android:exported="false" />
@@ -74,12 +78,13 @@
             android:exported="false" />
         <activity
             android:name=".activity.MainActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".activity.SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
