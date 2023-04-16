@@ -42,6 +42,14 @@ public interface APIService {
     Call<MSG> getLogin(@Field("mobile_code") String mobile_code,
                        @Field("password") String password);
 
+    @FormUrlEncoded
+    @POST("profile/update")
+    Call<Profile> getProfileUpdate(@Header("Authorization") String auth,
+                                   @Field("mobile_number") String mobile_number,
+                                   @Field("name") String name,
+                                   @Field("email") String email);
+
+
     @Headers({"Content-Type: application/json;charset=UTF-8"})
     @GET("departments")
     Call<Departments> getDepartments(@Header("Authorization") String auth);
@@ -57,5 +65,6 @@ public interface APIService {
     @Headers({"Content-Type: application/json;charset=UTF-8"})
     @GET("profile")
     Call<Profile> getProfile(@Header("Authorization") String auth);
+
 
 }

@@ -32,11 +32,12 @@ public class EmployeeLogin extends AppCompatActivity {
     TextView tv_login, registration_text;
     EditText ev_empcodes, ev_password;
     public static PrefConfig prefConfig;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employeelogin);
-       tv_login = findViewById(R.id.tv_login);
+        tv_login = findViewById(R.id.tv_login);
         TextView tv = findViewById(R.id.mywidget);
         tv.setSelected(true);
         tv_forget = findViewById(R.id.forgot_pwd_emp);
@@ -51,7 +52,7 @@ public class EmployeeLogin extends AppCompatActivity {
         registration_text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intents = new Intent(GaurdLogin.this, Gaurdregistration.class);
+                Intent intents = new Intent(EmployeeLogin.this, Gaurdregistration.class);
                 startActivity(intents);
 
             }
@@ -64,7 +65,7 @@ public class EmployeeLogin extends AppCompatActivity {
             if (ev_empcodes.getText().toString().isEmpty() &&
                     ev_empcodes.getText().toString().length() != 10
                     && ev_password.getText().toString().isEmpty()) {
-                Toast.makeText(GaurdLogin.this, "Enter 10 digit mobile no. and password", Toast.LENGTH_SHORT).show();
+                Toast.makeText(EmployeeLogin.this, "Enter 10 digit mobile no. and password", Toast.LENGTH_SHORT).show();
             } else {
                 String emp_code = ev_empcodes.getText().toString();
                 String emp_Password = ev_password.getText().toString();
@@ -90,12 +91,12 @@ public class EmployeeLogin extends AppCompatActivity {
                         prefConfig.writeName("Manish", response.body().getToken());
                         Log.d("token>>>>>>>>>>>>", response.body().getToken());
 
-                        Intent intents = new Intent(GaurdLogin.this, GuardDashboard.class);
+                        Intent intents = new Intent(EmployeeLogin.this, GuardDashboard.class);
                         startActivity(intents);
-                        Toast.makeText(GaurdLogin.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EmployeeLogin.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(GaurdLogin.this, "Wrong Credentials", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EmployeeLogin.this, "Wrong Credentials", Toast.LENGTH_SHORT).show();
 
                 }
 
@@ -108,6 +109,5 @@ public class EmployeeLogin extends AppCompatActivity {
                 Log.d("Error", t.getMessage());
             }
         });
-    }
     }
 }

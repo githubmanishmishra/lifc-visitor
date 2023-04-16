@@ -381,8 +381,8 @@ public class New_visitordetail extends AppCompatActivity implements AdapterView.
                         for (int i = 0; i < onwardflights.length(); i++) {
                             returnFlightChild = onwardflights.getJSONObject(i);
                             //returnFlights objects
-                            Log.d("kjxngksjnkjsdn", returnFlightChild.getString("Name"));
-                            Log.d("kjxngksjnkjsdn", returnFlightChild.getString("Circle"));
+                         //   Log.d("kjxngksjnkjsdn", returnFlightChild.getString("Name"));
+                         //   Log.d("kjxngksjnkjsdn", returnFlightChild.getString("Circle"));
                             listSpinner.add(returnFlightChild.getString("Name"));
                             tv_spinner_state.setText(returnFlightChild.getString("Circle"));
 
@@ -425,13 +425,13 @@ public class New_visitordetail extends AppCompatActivity implements AdapterView.
                 if (response.body() != null) {
                     if (response.body().getMessage().equalsIgnoreCase("Departments List")) {
 
-                        Log.d("Departmentsssss", "" + response.body().getData());
+                  //      Log.d("Departmentsssss", "" + response.body().getData());
 
                         List<Departments.Data> dataList = response.body().getData();
 
                         for (int i = 0; i < dataList.size(); i++) {
 
-                            Log.d("kjxngksjnkjsdn", dataList.toString());
+                       //     Log.d("kjxngksjnkjsdn", dataList.toString());
 
                             HashSet<String> hashSet = new HashSet<String>();
                             hashSet.addAll(listDepartment);
@@ -481,7 +481,7 @@ public class New_visitordetail extends AppCompatActivity implements AdapterView.
 
                         for (int i = 0; i < dataList.size(); i++) {
 
-                            Log.d("kjxngksjnkjsdn", dataList.toString());
+                      //      Log.d("kjxngksjnkjsdn", dataList.toString());
 
                             HashSet<String> hashSet = new HashSet<String>();
                             hashSet.addAll(listBranches);

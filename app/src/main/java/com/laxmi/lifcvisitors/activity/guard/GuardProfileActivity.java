@@ -20,7 +20,7 @@ import retrofit2.Callback;
 
 public class GuardProfileActivity extends AppCompatActivity {
 
-    EditText et_name, et_email, et_mobile, et_role, et_reporting_branch;
+    EditText et_name, et_email, et_mobile, et_role, et_department;
     Button btn_submit;
     PrefConfig prefConfig;
 
@@ -31,24 +31,24 @@ public class GuardProfileActivity extends AppCompatActivity {
 
         prefConfig = new PrefConfig(this);
 
-        et_name = findViewById(R.id.et_name);
-        et_email = findViewById(R.id.et_email);
-        et_mobile = findViewById(R.id.et_mobile);
-        et_role = findViewById(R.id.et_role);
-        et_reporting_branch = findViewById(R.id.et_reporting_branch);
+        et_name = findViewById(R.id.ev_enter_name);
+        et_email = findViewById(R.id.ev_email);
+        et_mobile = findViewById(R.id.ev_mobile_no_);
+        et_role = findViewById(R.id.ev_role);
+        et_department = findViewById(R.id.ev_department);
         btn_submit = findViewById(R.id.btn_submit);
 
-        String name = et_name.getText().toString().trim();
-        String email = et_email.getText().toString().trim();
-        String mobile = et_mobile.getText().toString().trim();
-        String role = et_role.getText().toString().trim();
-        String reportingBranch = et_reporting_branch.getText().toString().trim();
+        getProfile();
 
         btn_submit.setOnClickListener(view -> {
-            if (name.isEmpty() && email.isEmpty() && mobile.isEmpty() && role.isEmpty() && reportingBranch.isEmpty()) {
+            if (et_name.getText().toString().matches("")
+                    && et_email.getText().toString().matches("")
+                    && et_mobile.getText().toString().matches("")
+                    && et_role.getText().toString().matches("")
+                    && et_department.getText().toString().matches("")) {
                 Toast.makeText(this, "Enter Empty Fields", Toast.LENGTH_SHORT).show();
             } else {
-                getProfile();
+                getProfileUpdate(et_name.getText().toString(), et_email.getText().toString(), et_mobile.getText().toString());
             }
         });
 
@@ -71,6 +71,36 @@ public class GuardProfileActivity extends AppCompatActivity {
 
 
                         et_mobile.setText(dataList.getMobileNumber());
+                        et_role.setText(dataList.getRole());
+
+                    }
+                } else {
+                    Toast.makeText(GuardProfileActivity.this, "Wrong Credentials", Toast.LENGTH_SHORT).show();
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Profile> call, @NonNull Throwable t) {
+
+                Log.d("Error", t.getMessage());
+            }
+        });
+    }
+
+    private void getProfileUpdate(String name, String email, String mobile) {
+        APIService service = ApiClient.getClient().create(APIService.class);
+        Call<Profile> call = service.getProfileUpdate("Bearer " + prefConfig.readToken(), mobile, name, email);
+        call.enqueue(new Callback<Profile>() {
+            @Override
+            public void onResponse(@NonNull Call<Profile> call, @NonNull retrofit2.Response<Profile> response) {
+
+                if (response.body() != null) {
+                    if (response.body().getMessage().equalsIgnoreCase("Profile Updated Successfully")) {
+
+                        Toast.makeText(GuardProfileActivity.this, "Profile Updated", Toast.LENGTH_SHORT).show();
+                        finish();
 
                     }
                 } else {
