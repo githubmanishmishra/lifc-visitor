@@ -14,6 +14,9 @@
         android:theme="@style/Theme.LifcVisitors"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activity.employee.Employee_profile_update"
+            android:exported="false" />
+        <activity
             android:name=".activity.guard.GuardProfileActivity"
             android:exported="false" />
         <activity
