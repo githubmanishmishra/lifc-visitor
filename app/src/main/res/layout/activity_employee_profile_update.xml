@@ -63,7 +63,7 @@
                 android:layout_margin="10dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/ev_enter_name"
+                    android:id="@+id/et_name"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:hint="Enter Name"
@@ -78,7 +78,7 @@
                 android:layout_margin="10dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/ev_one"
+                    android:id="@+id/et_email"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:hint="New Password"
@@ -92,12 +92,10 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp">
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/ev_two"
+                    android:id="@+id/et_mobile"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:hint="New Password"
-                    android:imeOptions="actionNext"
-                    android:inputType="textPassword" />
+                    android:hint="New Password" />
 
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
@@ -107,7 +105,7 @@
                 android:layout_margin="10dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/ev_three"
+                    android:id="@+id/et_role"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:hint="New Password"
@@ -121,7 +119,7 @@
                 android:layout_margin="10dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/ev_four"
+                    android:id="@+id/et_reporting_branch"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:hint="New Password"
@@ -205,9 +203,6 @@
                 android:singleLine="true"
                 android:text="Update"
                 android:textColor="@color/white" />
-
-
-
         </LinearLayout>
 
     </ScrollView>

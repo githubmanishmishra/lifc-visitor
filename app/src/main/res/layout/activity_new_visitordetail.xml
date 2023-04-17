@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -18,13 +19,13 @@
                 android:id="@+id/iv_back"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/ic_baseline_arrow_back_ios_24"/>
+                android:src="@drawable/ic_baseline_arrow_back_ios_24" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Visitor Detail"
                 android:gravity="center"
+                android:text="Visitor Detail"
                 android:textColor="@color/white" />
 
         </androidx.appcompat.widget.Toolbar>
@@ -332,21 +333,21 @@
             android:orientation="horizontal">
 
 
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="@string/pincode">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/pin_code"
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:padding="10dp"
-                android:singleLine="true" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_weight="1"
+                android:hint="@string/pincode">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/pin_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:singleLine="true" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_submiit"
@@ -354,17 +355,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
+                android:layout_weight="2"
                 android:padding="10dp"
-                android:text="Submit"
-                android:layout_weight="2" />
+                android:text="Submit" />
 
         </LinearLayout>
 
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tv_state"
@@ -382,17 +384,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_toEndOf="@+id/tv_state"
                 android:background="@drawable/bgtext"
+                android:hint="Select Your State"
                 android:padding="20dp"
                 android:singleLine="true" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp">
-
             <TextView
                 android:id="@+id/tv_city"
                 android:layout_width="wrap_content"
@@ -402,18 +397,16 @@
                 android:text="@string/city"
                 android:textSize="18sp"
                 android:textStyle="bold" />
-
             <Spinner
                 android:id="@+id/spinner_city"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_toEndOf="@+id/tv_city"
                 android:background="@drawable/bgtext"
                 android:padding="20dp"
-                android:singleLine="true" />
-        </RelativeLayout>
+                android:hint="Select Your city" />
+        </LinearLayout>
 
 
         <LinearLayout
@@ -433,8 +426,9 @@
                 android:id="@+id/timePicker2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="3dp"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:scaleX="0.90"
+                android:scaleY="0.90"/>
         </LinearLayout>
 
         <RelativeLayout
@@ -479,11 +473,12 @@
                         android:singleLine="true" />
                 </RelativeLayout>
         -->
-        <RelativeLayout
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp">
-
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
             <TextView
                 android:id="@+id/tv_department"
                 android:layout_width="wrap_content"
@@ -503,12 +498,6 @@
                 android:background="@drawable/bgtext"
                 android:padding="20dp"
                 android:singleLine="true" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp">
 
             <TextView
                 android:id="@+id/tv_branch"
@@ -518,18 +507,16 @@
                 android:text="@string/branch"
                 android:textSize="16sp"
                 android:textStyle="bold" />
-
             <Spinner
                 android:id="@+id/spinner_branches"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_toEndOf="@+id/tv_branch"
                 android:background="@drawable/bgtext"
                 android:padding="20dp"
-                android:singleLine="true" />
-        </RelativeLayout>
+                android:singleLine="true"/>
+        </LinearLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"

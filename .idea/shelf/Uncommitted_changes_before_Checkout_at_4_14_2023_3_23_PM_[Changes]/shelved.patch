@@ -1,0 +1,230 @@
+Index: app/src/main/java/com/laxmi/lifcvisitors/activity/Employeelogin.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.laxmi.lifcvisitors.activity;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\nimport android.view.View;\r\nimport android.widget.TextView;\r\n\r\nimport com.laxmi.lifcvisitors.R;\r\n\r\npublic class Employeelogin extends AppCompatActivity {\r\n    Intent intent;\r\n    TextView forgetpwd;\r\n    TextView login;\r\n    TextView tv_Registration;\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_employeelogin);\r\n        forgetpwd = findViewById(R.id.forgot_pwd);\r\n        login = findViewById(R.id.tv_login);\r\n        forgetpwd.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View view) {\r\n                intent = new Intent(Employeelogin.this,Forgetpsw.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n    tv_Registration = findViewById(R.id.registration_text);\r\n    tv_Registration.setOnClickListener(new View.OnClickListener() {\r\n    @Override\r\n    public void onClick(View view) {\r\n        intent = new Intent(Employeelogin.this,EmployeeRegistratinActivity.class);\r\n        startActivity(intent);\r\n    }\r\n   });\r\n        login.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View view) {\r\n                intent = new Intent(Employeelogin.this,EmployeeDashboard.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n        TextView   tv = (TextView) this.findViewById(R.id.mywidget);\r\n        tv.setSelected(true);\r\n    }\r\n}
+===================================================================
+diff --git a/app/src/main/java/com/laxmi/lifcvisitors/activity/Employeelogin.java b/app/src/main/java/com/laxmi/lifcvisitors/activity/Employeelogin.java
+--- a/app/src/main/java/com/laxmi/lifcvisitors/activity/Employeelogin.java	
++++ b/app/src/main/java/com/laxmi/lifcvisitors/activity/Employeelogin.java	
+@@ -3,7 +3,10 @@
+ import androidx.appcompat.app.AppCompatActivity;
+ 
+ import android.content.Intent;
++import android.graphics.Paint;
+ import android.os.Bundle;
++import android.text.SpannableString;
++import android.text.style.UnderlineSpan;
+ import android.view.View;
+ import android.widget.TextView;
+ 
+@@ -28,11 +31,16 @@
+             }
+         });
+     tv_Registration = findViewById(R.id.registration_text);
+-    tv_Registration.setOnClickListener(new View.OnClickListener() {
++    //underline text
++
++        tv_Registration.setPaintFlags(tv_Registration.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
++
++        tv_Registration.setOnClickListener(new View.OnClickListener() {
+     @Override
+     public void onClick(View view) {
+         intent = new Intent(Employeelogin.this,EmployeeRegistratinActivity.class);
+         startActivity(intent);
++        finish();
+     }
+    });
+         login.setOnClickListener(new View.OnClickListener() {
+@@ -40,6 +48,7 @@
+             public void onClick(View view) {
+                 intent = new Intent(Employeelogin.this,EmployeeDashboard.class);
+                 startActivity(intent);
++                finish();
+             }
+         });
+         TextView   tv = (TextView) this.findViewById(R.id.mywidget);
+Index: app/src/main/java/com/laxmi/lifcvisitors/activity/Gaurd_createpswd.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.laxmi.lifcvisitors.activity;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\nimport android.util.Log;\r\nimport android.view.View;\r\nimport android.widget.EditText;\r\nimport android.widget.TextView;\r\nimport android.widget.Toast;\r\n\r\nimport com.laxmi.lifcvisitors.R;\r\nimport com.laxmi.lifcvisitors.retrofitservices.APIService;\r\nimport com.laxmi.lifcvisitors.retrofitservices.ApiClient;\r\n\r\nimport org.json.JSONArray;\r\nimport org.json.JSONObject;\r\n\r\nimport java.util.regex.Matcher;\r\nimport java.util.regex.Pattern;\r\n\r\nimport okhttp3.ResponseBody;\r\nimport retrofit2.Call;\r\nimport retrofit2.Callback;\r\nimport retrofit2.Response;\r\n\r\npublic class Gaurd_createpswd extends AppCompatActivity {\r\n    Intent intent;\r\n    TextView tv_createpsw;\r\n    EditText ev_new_password, ev_confirm_password;\r\n    String mob_no, emp_code;\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_gaurd_createpswd);\r\n        Bundle bundle = getIntent().getExtras();\r\n        if (bundle != null) {\r\n            mob_no = bundle.getString(\"mob_no\");\r\n            emp_code = bundle.getString(\"emp_code\");\r\n        }\r\n        tv_createpsw = findViewById(R.id.tv_confirmpsw);\r\n        ev_new_password = findViewById(R.id.ev_new_password);\r\n        ev_confirm_password = findViewById(R.id.ev_confirm_password);\r\n\r\n        tv_createpsw.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View view) {\r\n                String newPassword = ev_new_password.getText().toString();\r\n                String confirmPassword = ev_confirm_password.getText().toString();\r\n\r\n                if (newPassword.length() < 8 && !isValidPassword(newPassword)) {\r\n                    //1 Uppercase, 1 Number and 1 Symbol and at least 8 character\r\n//                    System.out.println(\"Not Valid\");\r\n                    TextView tv_pattern = findViewById(R.id.tv_password_pattern);\r\n                    tv_pattern.setText(\"Please enter at least Eight Alphanumeric Character /n One Uppercase /n/n One Number and One Symbol \");\r\n                }\r\n                else {\r\n                    if (!newPassword.isEmpty() && !confirmPassword.isEmpty()) {\r\n                        if (!newPassword.equals(confirmPassword)) {\r\n                            Toast.makeText(Gaurd_createpswd.this, \"Password not matched !!\", Toast.LENGTH_SHORT).show();\r\n                        } else {\r\n                            registrationApi(newPassword);\r\n                        }\r\n                    } else {\r\n                        Toast.makeText(Gaurd_createpswd.this, \"Enter Password !!\", Toast.LENGTH_SHORT).show();\r\n\r\n                    }\r\n\r\n                    System.out.println(\"Valid\");\r\n                }\r\n\r\n            }\r\n        });\r\n        TextView tv = (TextView) this.findViewById(R.id.mywidget);\r\n        tv.setSelected(true);\r\n    }\r\n\r\n    private void registrationApi(String newPassword) {\r\n        APIService service = ApiClient.getClient().create(APIService.class);\r\n        Call<ResponseBody> call = service.getSignup(mob_no, emp_code, \"1234\", newPassword);\r\n        call.enqueue(new Callback<ResponseBody>() {\r\n            @Override\r\n            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {\r\n\r\n                try {\r\n//                    assert response.body() != null;\r\n                    JSONArray myListsAll = new JSONArray(\"[\" + response.body().string() + \"]\");\r\n                    for (int i = 0; i < myListsAll.length(); i++) {\r\n                        JSONObject jsonobject = (JSONObject) myListsAll.get(i);\r\n                        String string_message = jsonobject.getString(\"message\");\r\n                        Toast.makeText(Gaurd_createpswd.this, string_message, Toast.LENGTH_SHORT).show();\r\n\r\n                        if (string_message.equalsIgnoreCase(\"Guard Registed Successfully\")) {\r\n                            Intent intents = new Intent(Gaurd_createpswd.this, GaurdLogin.class);\r\n                            startActivity(intents);\r\n                        }\r\n\r\n                    }\r\n                } catch (Exception e) {\r\n                    e.printStackTrace();\r\n                }\r\n            }\r\n\r\n            @Override\r\n            public void onFailure(Call<ResponseBody> call, Throwable t) {\r\n\r\n                // pDialog.dismiss();\r\n                Log.d(\"Error\", t.getMessage());\r\n            }\r\n        });\r\n    }\r\n\r\n    //Strong Password Generation\r\n    public static boolean isValidPassword(final String password) {\r\n\r\n        Pattern pattern;\r\n        Matcher matcher;\r\n        final String PASSWORD_PATTERN = \"^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\\\S+$).{4,}$\";\r\n        pattern = Pattern.compile(PASSWORD_PATTERN);\r\n        matcher = pattern.matcher(password);\r\n\r\n        return matcher.matches();\r\n\r\n    }\r\n}
+===================================================================
+diff --git a/app/src/main/java/com/laxmi/lifcvisitors/activity/Gaurd_createpswd.java b/app/src/main/java/com/laxmi/lifcvisitors/activity/Gaurd_createpswd.java
+--- a/app/src/main/java/com/laxmi/lifcvisitors/activity/Gaurd_createpswd.java	
++++ b/app/src/main/java/com/laxmi/lifcvisitors/activity/Gaurd_createpswd.java	
+@@ -43,7 +43,6 @@
+         tv_createpsw = findViewById(R.id.tv_confirmpsw);
+         ev_new_password = findViewById(R.id.ev_new_password);
+         ev_confirm_password = findViewById(R.id.ev_confirm_password);
+-
+         tv_createpsw.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+@@ -91,10 +90,10 @@
+                         JSONObject jsonobject = (JSONObject) myListsAll.get(i);
+                         String string_message = jsonobject.getString("message");
+                         Toast.makeText(Gaurd_createpswd.this, string_message, Toast.LENGTH_SHORT).show();
+-
+                         if (string_message.equalsIgnoreCase("Guard Registed Successfully")) {
+                             Intent intents = new Intent(Gaurd_createpswd.this, GaurdLogin.class);
+                             startActivity(intents);
++                            finish();
+                         }
+ 
+                     }
+@@ -114,14 +113,11 @@
+ 
+     //Strong Password Generation
+     public static boolean isValidPassword(final String password) {
+-
+         Pattern pattern;
+         Matcher matcher;
+         final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{4,}$";
+         pattern = Pattern.compile(PASSWORD_PATTERN);
+         matcher = pattern.matcher(password);
+-
+         return matcher.matches();
+-
+     }
+ }
+\ No newline at end of file
+Index: app/src/main/res/layout/employee_registratin.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n<ScrollView xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:contentDescription=\"scrollview\"\r\n    tools:context=\".activity.EmployeeRegistratinActivity\">\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        android:orientation=\"vertical\">\r\n\r\n        <RelativeLayout\r\n            android:id=\"@+id/lifc_logo\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\">\r\n            <TextView\r\n                android:id=\"@+id/mywidget\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_alignParentRight=\"true\"\r\n                android:singleLine=\"true\"\r\n                android:ellipsize=\"marquee\"\r\n                android:fadingEdge=\"horizontal\"\r\n                android:marqueeRepeatLimit=\"marquee_forever\"\r\n                android:scrollHorizontally=\"true\"\r\n                android:textColor=\"#ff4500\"\r\n                android:text=\"Laxmi India Finance Private Limited Formerly Known as Laxmi India Feanleasecap Privated Limited\"\r\n                android:textSize=\"20sp\"\r\n                android:textStyle=\"bold\"/>\r\n\r\n            <ImageView\r\n                android:id=\"@+id/elipse_1\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:src=\"@drawable/ellipse_1\" />\r\n\r\n            <ImageView\r\n                android:id=\"@+id/elipse_2\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:src=\"@drawable/ellipse_2\" />\r\n\r\n            <ImageView\r\n                android:id=\"@+id/logo_3\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"100dp\"\r\n                android:layout_below=\"@id/elipse_1\"\r\n                android:layout_centerInParent=\"true\"\r\n                android:src=\"@drawable/new_logo_lifc\" />\r\n            <TextView\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:text=\"Signup\"\r\n                android:textSize=\"20sp\"\r\n                android:textColor=\"@color/red\"\r\n                android:layout_below=\"@id/logo_3\"\r\n                android:textAlignment=\"center\"\r\n                android:layout_marginBottom=\"10dp\"/>\r\n        </RelativeLayout>\r\n\r\n<!--\r\n        <RelativeLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginTop=\"16dp\">\r\n\r\n            <TextView\r\n                android:id=\"@+id/tv_emp_name\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:padding=\"10dp\"\r\n                android:text=\"Employee Name -\"\r\n                android:textSize=\"16sp\"\r\n                android:textStyle=\"bold\" />\r\n\r\n            <EditText\r\n                android:id=\"@+id/ev_nameemp\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"10dp\"\r\n                android:layout_marginRight=\"10dp\"\r\n                android:layout_toRightOf=\"@+id/tv_emp_name\"\r\n                android:background=\"@drawable/bgtext\"\r\n                android:padding=\"10dp\"\r\n                android:singleLine=\"true\" />\r\n\r\n        </RelativeLayout>\r\n-->        <com.google.android.material.textfield.TextInputLayout\r\n        style=\"@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:hint=\"  Employee Name\"\r\n        android:layout_marginStart=\"5dp\">\r\n\r\n        <com.google.android.material.textfield.TextInputEditText\r\n            android:id=\"@+id/ev_employee_name\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:padding=\"12dp\"\r\n            android:layout_margin=\"10dp\"\r\n            android:singleLine=\"true\"/>\r\n    </com.google.android.material.textfield.TextInputLayout>\r\n        <com.google.android.material.textfield.TextInputLayout\r\n            style=\"@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:hint=\"  Employee Code-\"\r\n            android:layout_marginStart=\"5dp\">\r\n            <com.google.android.material.textfield.TextInputEditText\r\n                android:id=\"@+id/ev_visitor_name\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:padding=\"12dp\"\r\n                android:layout_margin=\"10dp\"\r\n                android:singleLine=\"true\"/>\r\n        </com.google.android.material.textfield.TextInputLayout>\r\n\r\n\r\n<!--\r\n        <RelativeLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginTop=\"16dp\">\r\n\r\n            <TextView\r\n                android:id=\"@+id/tv_emp_code\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:padding=\"10dp\"\r\n                android:text=\"Employee Code -\"\r\n                android:textSize=\"16sp\"\r\n                android:textStyle=\"bold\" />\r\n\r\n            <EditText\r\n                android:id=\"@+id/emp_name\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"11dp\"\r\n                android:layout_marginRight=\"10dp\"\r\n                android:layout_toRightOf=\"@+id/tv_emp_code\"\r\n                android:background=\"@drawable/bgtext\"\r\n                android:padding=\"10dp\"\r\n                android:singleLine=\"true\" />\r\n        </RelativeLayout>\r\n-->\r\n\r\n<!--\r\n        <RelativeLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginTop=\"16dp\">\r\n\r\n            <TextView\r\n                android:id=\"@+id/tv_mob\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:padding=\"10dp\"\r\n                android:text=\"Mobile No. - +91   \"\r\n                android:textSize=\"16sp\"\r\n                android:textStyle=\"bold\" />\r\n\r\n            <EditText\r\n                android:id=\"@+id/mobile_no\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginRight=\"10dp\"\r\n                android:layout_toEndOf=\"@+id/tv_mob\"\r\n                android:background=\"@drawable/bgtext\"\r\n                android:padding=\"10dp\"\r\n                android:singleLine=\"true\" />\r\n        </RelativeLayout>\r\n-->\r\n        <com.google.android.material.textfield.TextInputLayout\r\n            style=\"@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:hint=\"   Emp PhoneNo.-+91\">\r\n\r\n            <com.google.android.material.textfield.TextInputEditText\r\n                android:id=\"@+id/mobile_no\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:padding=\"10dp\"\r\n                android:inputType=\"phone\"\r\n                android:maxLength=\"10\"\r\n                android:layout_margin=\"10dp\"\r\n                android:singleLine=\"true\" />\r\n\r\n        </com.google.android.material.textfield.TextInputLayout>\r\n        <com.google.android.material.textfield.TextInputLayout\r\n            style=\"@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:hint=\"   Email\">\r\n\r\n            <com.google.android.material.textfield.TextInputEditText\r\n                android:id=\"@+id/emp_email\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:padding=\"10dp\"\r\n                android:inputType=\"textEmailAddress\"\r\n                android:maxLength=\"36\"\r\n                android:layout_margin=\"10dp\"\r\n                android:singleLine=\"true\" />\r\n\r\n        </com.google.android.material.textfield.TextInputLayout>\r\n\r\n<!--\r\n        <RelativeLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginTop=\"16dp\">\r\n\r\n            <TextView\r\n                android:id=\"@+id/tv_email\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:padding=\"10dp\"\r\n                android:text=\"Email-                  \"\r\n                android:textSize=\"16sp\"\r\n                android:textStyle=\"bold\" />\r\n\r\n            <EditText\r\n                android:id=\"@+id/emp_email\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginLeft=\"10dp\"\r\n                android:layout_marginRight=\"10dp\"\r\n                android:layout_toEndOf=\"@+id/tv_email\"\r\n                android:background=\"@drawable/bgtext\"\r\n                android:padding=\"10dp\"\r\n                android:singleLine=\"true\" />\r\n        </RelativeLayout>\r\n-->\r\n\r\n\r\n        <TextView\r\n            android:id=\"@+id/txt_department\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginLeft=\"20dp\"\r\n            android:layout_marginTop=\"40dp\"\r\n            android:layout_marginRight=\"20dp\"\r\n            android:padding=\"10dp\"\r\n            android:text=\"Select Department\"\r\n            android:textColor=\"@color/red\"\r\n            android:textSize=\"20sp\"\r\n            android:textStyle=\"bold\"/>\r\n\r\n        <Spinner\r\n            android:id=\"@+id/spinner_department\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"48dp\"\r\n            android:layout_below=\"@id/txt_department\"\r\n            android:layout_marginLeft=\"10dp\"\r\n            android:layout_marginTop=\"20dp\"\r\n            android:layout_marginRight=\"10dp\"\r\n            android:contentDescription=\"Department\" />\r\n\r\n        <TextView\r\n            android:id=\"@+id/txt_branch\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_below=\"@id/spinner_department\"\r\n            android:layout_marginLeft=\"20dp\"\r\n            android:layout_marginTop=\"20dp\"\r\n            android:layout_marginRight=\"20dp\"\r\n            android:padding=\"10dp\"\r\n            android:text=\"Select Branch\"\r\n            android:textColor=\"@color/red\"\r\n            android:textSize=\"20sp\"\r\n            android:textStyle=\"bold\" />\r\n\r\n        <Spinner\r\n            android:id=\"@+id/branch_spinner\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"48dp\"\r\n            android:layout_below=\"@id/txt_branch\"\r\n            android:layout_marginLeft=\"10dp\"\r\n            android:layout_marginTop=\"20dp\"\r\n            android:layout_marginRight=\"10dp\"\r\n            android:contentDescription=\"Department\" />\r\n\r\n        <androidx.appcompat.widget.AppCompatButton\r\n            android:id=\"@+id/visitor_otp\"\r\n            android:layout_width=\"222dp\"\r\n            android:layout_height=\"42dp\"\r\n            android:layout_gravity=\"center\"\r\n            android:background=\"@drawable/btn_bg_rectangle\"\r\n            android:paddingStart=\"10dp\"\r\n            android:paddingTop=\"15dp\"\r\n            android:paddingEnd=\"20dp\"\r\n            android:paddingBottom=\"10dp\"\r\n            android:text=\"Get OTP\"\r\n            android:textColor=\"@color/white\"\r\n            android:textSize=\"14sp\"\r\n            android:textStyle=\"bold\" />\r\n    </LinearLayout>\r\n\r\n\r\n\r\n</ScrollView>
+===================================================================
+diff --git a/app/src/main/res/layout/employee_registratin.xml b/app/src/main/res/layout/employee_registratin.xml
+--- a/app/src/main/res/layout/employee_registratin.xml	
++++ b/app/src/main/res/layout/employee_registratin.xml	
+@@ -9,7 +9,7 @@
+ 
+     <LinearLayout
+         android:layout_width="match_parent"
+-        android:layout_height="match_parent"
++        android:layout_height="wrap_content"
+         android:orientation="vertical">
+ 
+         <RelativeLayout
+@@ -20,14 +20,14 @@
+                 android:id="@+id/mywidget"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+-                android:layout_alignParentRight="true"
++                android:layout_alignParentEnd="true"
+                 android:singleLine="true"
+                 android:ellipsize="marquee"
+                 android:fadingEdge="horizontal"
+                 android:marqueeRepeatLimit="marquee_forever"
+                 android:scrollHorizontally="true"
+                 android:textColor="#ff4500"
+-                android:text="Laxmi India Finance Private Limited Formerly Known as Laxmi India Feanleasecap Privated Limited"
++                android:text="@string/marquee_text"
+                 android:textSize="20sp"
+                 android:textStyle="bold"/>
+ 
+@@ -49,11 +49,11 @@
+                 android:layout_height="100dp"
+                 android:layout_below="@id/elipse_1"
+                 android:layout_centerInParent="true"
+-                android:src="@drawable/new_logo_lifc" />
++                android:src="@drawable/life_logo" />
+             <TextView
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+-                android:text="Signup"
++                android:text="@string/sign_up"
+                 android:textSize="20sp"
+                 android:textColor="@color/red"
+                 android:layout_below="@id/logo_3"
+@@ -92,9 +92,8 @@
+         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+-        android:hint="  Employee Name"
++        android:hint="@string/employee_name"
+         android:layout_marginStart="5dp">
+-
+         <com.google.android.material.textfield.TextInputEditText
+             android:id="@+id/ev_employee_name"
+             android:layout_width="match_parent"
+@@ -107,7 +106,7 @@
+             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+-            android:hint="  Employee Code-"
++            android:hint="@string/employeecode"
+             android:layout_marginStart="5dp">
+             <com.google.android.material.textfield.TextInputEditText
+                 android:id="@+id/ev_visitor_name"
+@@ -177,7 +176,7 @@
+             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+-            android:hint="   Emp PhoneNo.-+91">
++            android:hint="@string/emp_phoneno_91">
+ 
+             <com.google.android.material.textfield.TextInputEditText
+                 android:id="@+id/mobile_no"
+@@ -194,7 +193,7 @@
+             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+-            android:hint="   Email">
++            android:hint="@string/email">
+ 
+             <com.google.android.material.textfield.TextInputEditText
+                 android:id="@+id/emp_email"
+@@ -245,7 +244,7 @@
+             android:layout_marginTop="40dp"
+             android:layout_marginRight="20dp"
+             android:padding="10dp"
+-            android:text="Select Department"
++            android:text="@string/select_department"
+             android:textColor="@color/red"
+             android:textSize="20sp"
+             android:textStyle="bold"/>
+@@ -254,11 +253,10 @@
+             android:id="@+id/spinner_department"
+             android:layout_width="match_parent"
+             android:layout_height="48dp"
+-            android:layout_below="@id/txt_department"
+             android:layout_marginLeft="10dp"
+             android:layout_marginTop="20dp"
+             android:layout_marginRight="10dp"
+-            android:contentDescription="Department" />
++            android:contentDescription="@string/department" />
+ 
+         <TextView
+             android:id="@+id/txt_branch"
+@@ -269,7 +267,7 @@
+             android:layout_marginTop="20dp"
+             android:layout_marginRight="20dp"
+             android:padding="10dp"
+-            android:text="Select Branch"
++            android:text="@string/select_branch"
+             android:textColor="@color/red"
+             android:textSize="20sp"
+             android:textStyle="bold" />
+@@ -282,7 +280,7 @@
+             android:layout_marginLeft="10dp"
+             android:layout_marginTop="20dp"
+             android:layout_marginRight="10dp"
+-            android:contentDescription="Department" />
++            android:contentDescription="@string/department" />
+ 
+         <androidx.appcompat.widget.AppCompatButton
+             android:id="@+id/visitor_otp"
+@@ -294,12 +292,10 @@
+             android:paddingTop="15dp"
+             android:paddingEnd="20dp"
+             android:paddingBottom="10dp"
+-            android:text="Get OTP"
++            android:text="@string/get_otp"
+             android:textColor="@color/white"
+             android:textSize="14sp"
+             android:textStyle="bold" />
+     </LinearLayout>
+ 
+-
+-
+ </ScrollView>
+\ No newline at end of file

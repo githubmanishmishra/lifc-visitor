@@ -27,7 +27,7 @@ public class GuardProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_guardprofile);
 
         prefConfig = new PrefConfig(this);
 

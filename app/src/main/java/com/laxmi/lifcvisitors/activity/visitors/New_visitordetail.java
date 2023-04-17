@@ -1,7 +1,7 @@
 package com.laxmi.lifcvisitors.activity.visitors;
 
 import android.Manifest;
-import android.app.ProgressDialog;
+
 import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -57,7 +57,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
+
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -226,7 +226,6 @@ public class New_visitordetail extends AppCompatActivity implements AdapterView.
     }
 
     private void selectImage() {
-
         final CharSequence[] options = {"Take Photo", "Cancel"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Add Photo!");
@@ -429,7 +428,8 @@ public class New_visitordetail extends AppCompatActivity implements AdapterView.
 
                         List<Departments.Data> dataList = response.body().getData();
 
-                        for (int i = 0; i < dataList.size(); i++) {
+                        for (int i = 0; i < dataList.size(); i++)
+                        {
 
                             Log.d("kjxngksjnkjsdn", dataList.toString());
 
@@ -440,13 +440,14 @@ public class New_visitordetail extends AppCompatActivity implements AdapterView.
 
                             listDepartment.add(dataList.get(i).getDepartmentName());
 
+
                         }
                         //Creating the ArrayAdapter instance having the country list
                         ArrayAdapter aa = new ArrayAdapter(New_visitordetail.this, android.R.layout.simple_spinner_item, listDepartment);
                         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         //Setting the ArrayAdapter data on the Spinner
-                        spinner_department.setAdapter(aa);
 
+                        spinner_department.setAdapter(aa);
 
                     }
                 } else {
@@ -480,7 +481,6 @@ public class New_visitordetail extends AppCompatActivity implements AdapterView.
                         List<Branches.Data> dataList = response.body().getData();
 
                         for (int i = 0; i < dataList.size(); i++) {
-
                             Log.d("kjxngksjnkjsdn", dataList.toString());
 
                             HashSet<String> hashSet = new HashSet<String>();
