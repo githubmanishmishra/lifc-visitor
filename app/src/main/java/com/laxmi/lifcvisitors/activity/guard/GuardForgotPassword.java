@@ -35,6 +35,13 @@ public class GuardForgotPassword extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gaurdforgetpswd);
+     ImageView   iv_back = findViewById(R.id.iv_back);
+     iv_back.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View v) {
+             finish();
+         }
+     });
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {

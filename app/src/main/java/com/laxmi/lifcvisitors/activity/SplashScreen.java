@@ -10,6 +10,7 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.laxmi.lifcvisitors.R;
 import com.laxmi.lifcvisitors.activity.guard.GuardDashboard;
 import com.laxmi.lifcvisitors.savedata.PrefConfig;
@@ -24,10 +25,10 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
         prefConfig = new PrefConfig(this);
-        final ImageView bounceBallImage = findViewById(R.id.bounceBallImage);
-        bounceBallImage.clearAnimation();
-        TranslateAnimation transAnim = new TranslateAnimation(0, 0, 0,
-                getDisplayHeight() / 2);
+        LottieAnimationView lottie = findViewById(R.id.lottie);
+      //  final ImageView bounceBallImage = findViewById(R.id.bounceBallImage);
+       lottie.clearAnimation();
+        TranslateAnimation transAnim = new TranslateAnimation(0, 0, 0, 0);
         transAnim.setStartOffset(1000);
         transAnim.setDuration(5000);
         transAnim.setFillAfter(true);
@@ -57,13 +58,14 @@ public class SplashScreen extends AppCompatActivity {
 
             }
         });
-        bounceBallImage.startAnimation(transAnim);
+        lottie.startAnimation(transAnim);
 
     }
 
     private int getDisplayHeight()
     {
         return this.getResources().getDisplayMetrics().heightPixels;
+
     }
 
     @Override

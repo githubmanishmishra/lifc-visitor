@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.laxmi.lifcvisitors.R;
 
@@ -25,6 +26,8 @@ public class EmpcreatepswActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         TextView   tv = (TextView) this.findViewById(R.id.mywidget);
         tv.setSelected(true);
     }

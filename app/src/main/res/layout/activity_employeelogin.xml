@@ -11,15 +11,17 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#ff4500">
+            android:background="@color/reds">
 
             <ImageView
                 android:id="@+id/iv_back"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/ic_baseline_arrow_back_ios_24"/>
+                android:src="@drawable/ic_baseline_arrow_back_ios_24"
+                 app:tint="@color/white"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -104,6 +106,7 @@
                 android:padding="10dp"
                 android:singleLine="true" />
         </RelativeLayout>-->
+<!--
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
@@ -119,7 +122,41 @@
                 android:singleLine="true"/>
 
         </com.google.android.material.textfield.TextInputLayout>
+-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ev_emp_login"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:imeOptions="actionNext"
+                android:hint="@string/mobile_no_emp_code"
+                android:inputType="number"
+                android:maxLength="10"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:passwordToggleEnabled="true"
+            android:layout_margin="10dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            app:passwordToggleTint="@color/purple_700"
+            app:passwordToggleDrawable="@drawable/show_password_selector">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ev_password"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:imeOptions="actionNext"
+                android:inputType="textPassword"
+                android:hint="Password"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
 
 <!--
         <RelativeLayout
@@ -147,21 +184,22 @@
                 android:padding="10dp"
                 android:singleLine="true" />
         </RelativeLayout>
--->        <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/password"
-        android:layout_marginStart="5dp">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ev_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="12dp"
-            android:layout_margin="10dp"
-            android:inputType="textPassword"
-            android:singleLine="true"/>
-    </com.google.android.material.textfield.TextInputLayout>
+-->
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:hint="@string/password"-->
+<!--        android:layout_marginStart="5dp">-->
+<!--        <com.google.android.material.textfield.TextInputEditText-->
+<!--            android:id="@+id/ev_password"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:padding="12dp"-->
+<!--            android:layout_margin="10dp"-->
+<!--            android:inputType="textPassword"-->
+<!--            android:singleLine="true"/>-->
+<!--    </com.google.android.material.textfield.TextInputLayout>-->
 
        <!-- <TextView
             android:id="@+id/tv_login"
@@ -227,6 +265,10 @@
         <TextView
             android:id="@+id/registration_text"
             android:layout_width="wrap_content"
+            android:clickable = "true"
+            android:focusable = "true"
+            android:focusableInTouchMode="true"
+            android:isScrollContainer="true"
             android:layout_height="42dp"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"

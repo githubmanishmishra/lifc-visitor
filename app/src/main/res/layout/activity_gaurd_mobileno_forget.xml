@@ -12,13 +12,14 @@
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#ff4500">
+            android:background="@color/reds">
 
             <ImageView
                 android:id="@+id/iv_back"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/ic_baseline_arrow_back_ios_24"/>
+                android:src="@drawable/ic_baseline_arrow_back_ios_24"
+                app:tint ="@color/white"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -75,7 +76,7 @@
                 android:textStyle="bold" />
         </RelativeLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
+      <!--  <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -90,7 +91,22 @@
                 android:maxLength="10"
                 android:layout_margin="10dp"
                 android:singleLine="true" />
+        </com.google.android.material.textfield.TextInputLayout>-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/mobile_no"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:imeOptions="actionNext"
+                android:hint="@string/mobileno_91"
+                android:inputType="number"/>
         </com.google.android.material.textfield.TextInputLayout>
+
         <TextView
             android:id="@+id/tv_confirmpsw"
             android:layout_width="222dp"

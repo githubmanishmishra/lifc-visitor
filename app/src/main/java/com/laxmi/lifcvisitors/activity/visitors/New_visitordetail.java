@@ -1,13 +1,20 @@
 package com.laxmi.lifcvisitors.activity.visitors;
 
 import android.Manifest;
-
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.app.TimePickerDialog;
 import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -15,10 +22,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -40,7 +49,9 @@ import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.laxmi.lifcvisitors.Employee_Send_Request_toGaurd;
+import com.laxmi.lifcvisitors.ImageFilePath;
 import com.laxmi.lifcvisitors.R;
+import com.laxmi.lifcvisitors.languageconvert.BaseActivity;
 import com.laxmi.lifcvisitors.model.Branches;
 import com.laxmi.lifcvisitors.model.Departments;
 import com.laxmi.lifcvisitors.retrofitservices.APIService;
@@ -55,9 +66,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.List;
-
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -65,24 +77,29 @@ import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 
-public class New_visitordetail extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class New_visitordetail extends BaseActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
 
-    Button btn_uploadvisitor_photo;
+    ImageView btn_uploadvisitor_photo;
     ImageView visitorPhoto;
     AppCompatButton fbDialog;
-
     TextView rv_log;
     LinearLayout linearLayout;
     public boolean checkHide = false;
-
-
     Spinner spinner, spinner_department, spinner_branches;
     TextView tv_spinner_state;
     List<String> listSpinner = new ArrayList<>();
     List<String> listDepartment = new ArrayList<>();
     List<String> listBranches = new ArrayList<>();
-    AppCompatButton btnSubmit;
+    AppCompatButton btnSubmit, Getotp;
     PrefConfig prefConfig;
+
+    ImageView iv_back;
+
+    Button btnTimePickerIn, btnTimePickerOut;
+    EditText txtTimeIn, txtTimeOut;
+    private int mHour, mMinute;
+
+    private ProgressDialog pDialog;
 
     //Image Work
     private static final int CAMERA_REQUEST = 1888;
@@ -103,15 +120,50 @@ public class New_visitordetail extends AppCompatActivity implements AdapterView.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_visitordetail);
-
         prefConfig = new PrefConfig(this);
 
-        Log.d("token>>>>>>>M", prefConfig.readToken());
+        //Timer Work
+        TextView _tv = (TextView) findViewById(R.id.textView1);
+        btnTimePickerIn = (Button) findViewById(R.id.btn__in_time);
+        btnTimePickerOut = (Button) findViewById(R.id.btn_out_time);
+        txtTimeIn = (EditText) findViewById(R.id.in_time);
+        txtTimeOut = findViewById(R.id.out_time);
+        iv_back = findViewById(R.id.iv_back);
 
+        iv_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        btnTimePickerIn.setOnClickListener(this);
+        btnTimePickerOut.setOnClickListener(this);
+        new CountDownTimer(120000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                _tv.setText("seconds remaining: " + millisUntilFinished / 1000);
+                // logic to set the EditText could go here
+            }
+
+            public void onFinish() {
+                _tv.setText("done!");
+            }
+
+        }.start();
+
+        Log.d("token>>>>>>>M", prefConfig.readToken());
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //Permission
         allowPermission();
-
-
+        progressDialogInitialisaton();
+        Getotp = findViewById(R.id.btn_otp);
+        Getotp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(New_visitordetail.this, "manish", Toast.LENGTH_SHORT).show();
+            }
+        });
         btn_uploadvisitor_photo = findViewById(R.id.btn_uploadphoto);
 
         fbDialog = findViewById(R.id.floating_btn);
@@ -151,7 +203,17 @@ public class New_visitordetail extends AppCompatActivity implements AdapterView.
         });
 
         btn_uploadvisitor_photo.setOnClickListener(view -> {
+
+           /* if (visitorPhoto.getBackground().getConstantState().equals(getResources().getDrawable(R.drawable.baseline_person_24).getConstantState())) {
+                Toast.makeText(New_visitordetail.this, "Please Upload Photo", Toast.LENGTH_LONG).show();
+                // profile_pic.setBackgroundResource(android.R.color.transparent);
+            } else {
+                save_image_to_memory(uploading_bitmap);
+
+            }*/
+
             selectImage();
+
         });
 
         rv_log = findViewById(R.id.sendrequest);
@@ -161,10 +223,15 @@ public class New_visitordetail extends AppCompatActivity implements AdapterView.
         });
         TextView tv = this.findViewById(R.id.mywidget);
         tv.setSelected(true);
-
         getDepartments();
         getBranches();
 
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
     private void allowPermission() {
@@ -233,19 +300,14 @@ public class New_visitordetail extends AppCompatActivity implements AdapterView.
             if (options[item].equals("Take Photo")) {
                 Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(cameraIntent, CAMERA_REQUEST);
-
-
-            } /*else if (options[item].equals("Choose from Gallery")) {
-                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(intent, 2);
-            } */ else if (options[item].equals("Cancel")) {
+            } else if (options[item].equals("Cancel")) {
                 dialog.dismiss();
             }
         });
         builder.show();
     }
 
-    public void save_image_to_memory(Bitmap bm1, String data) {
+    public void save_image_to_memory(Bitmap bm1) {
         try {
             //---------------
             ContextWrapper cw = new ContextWrapper(New_visitordetail.this);
@@ -272,85 +334,11 @@ public class New_visitordetail extends AppCompatActivity implements AdapterView.
             }
             //-------------------
             File file1 = new File(directory.getAbsolutePath(), "12.PNG");
-          //  performDataUpdation(file1, data);
+            //  performDataUpdation(file1, data);
         } catch (Exception e) {
             // progress.cancel();
         }
 
-    }
-
-    private void performDataUpdation(File file1, String token, String data) {
-       /* pDialog = new ProgressDialog(this);
-        pDialog.setIndeterminate(false);
-        pDialog.setMessage("Creating Account...");
-        pDialog.setCancelable(false);
-
-        showpDialog();*/
-
-
-        RequestBody reqFile1 = RequestBody.create(MediaType.parse("image/*"), file1);
-        MultipartBody.Part image1 = MultipartBody.Part.createFormData("image", file1.getName(), reqFile1);
-
-
-       /* Call<SignUpModel> req = apiInterface.signUp(image1);
-
-
-        req.enqueue(new Callback<SignUpModel>() {
-            @Override
-            public void onResponse(Call<SignUpModel> call, retrofit2.Response<SignUpModel> response) {
-                pDialog.dismiss();
-                try {
-                    if (response.isSuccessful()) {
-                        //  JSONObject myListsAll = new JSONObject(response.body().string());
-                        assert response.body() != null;
-                        String string_message = response.body().getMessage();
-                        String name = response.body().getName();
-                        String email = response.body().getEmail();
-                        int login_id = response.body().getLoginId();
-                        int login_status = response.body().getLoginStatus();
-                        //   String servicess = myListsAll.getString("service");
-                        String pic = response.body().getPic();
-
-                        if (string_message.equalsIgnoreCase("User registered successfully")) {
-
-                            editor.putString("name", firstName + lastName);
-                            editor.putString("address", address);
-                            editor.putString("pincode", pincode);
-                            editor.putString("city", cityValue);
-                            editor.putString("state", stateValue);
-                            editor.putString("data", data);
-                            editor.apply();
-
-                            LoginRegActivity.prefConfig.writeLoginStatus(true);
-
-                            prefConfig.writeName(name, email, String.valueOf(login_id), pic, android_id, data);
-                            Toast.makeText(RegistrationActivity.this, "" + string_message, Toast.LENGTH_SHORT).show();
-
-                            //onLoginFormActivityListener.performLogin(name, email, login_id, pic);
-
-                           *//* startActivity(new Intent(RegistrationActivity.this, HomeScreen.class));
-                            finish();
-*//*
-                            Intent intent1 = new Intent(RegistrationActivity.this, HomeScreen.class);
-                            startActivity(intent1);
-                            finishAffinity();
-                        }
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Log.d("fgbfgb", e.getMessage());
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<SignUpModel> call, Throwable t) {
-                Log.e("ksjfh", call.toString() + "" + t);
-                pDialog.dismiss();
-                //    call.cancel();
-                //   pDialog.cancel();
-            }
-        });*/
     }
 
 
@@ -359,11 +347,6 @@ public class New_visitordetail extends AppCompatActivity implements AdapterView.
         //RequestQueue initialized
         RequestQueue mRequestQueue = Volley.newRequestQueue(this);
 
-        //String Request initialized
-        //display the response on screen
-        //returnFlights objects
-        //Creating the ArrayAdapter instance having the country list
-        //Setting the ArrayAdapter data on the Spinner
         String url = "https://api.postalpincode.in/pincode";
         StringRequest mStringRequest = new StringRequest(Request.Method.GET, url + "/" + pinCode, response -> {
 
@@ -371,6 +354,7 @@ public class New_visitordetail extends AppCompatActivity implements AdapterView.
             Log.i("Manish Mishra", response);
 
             if (response != null) {
+                //  pDialog.dismiss();
                 try {
                     JSONArray jsonArray = new JSONArray(response);
                     JSONObject returnFlightChild = null;
@@ -422,22 +406,20 @@ public class New_visitordetail extends AppCompatActivity implements AdapterView.
             public void onResponse(@NonNull Call<Departments> call, @NonNull retrofit2.Response<Departments> response) {
 
                 if (response.body() != null) {
+                    //  pDialog.dismiss();
                     if (response.body().getMessage().equalsIgnoreCase("Departments List")) {
 
                         Log.d("Departmentsssss", "" + response.body().getData());
 
                         List<Departments.Data> dataList = response.body().getData();
 
-                        for (int i = 0; i < dataList.size(); i++)
-                        {
+                        for (int i = 0; i < dataList.size(); i++) {
 
                             Log.d("kjxngksjnkjsdn", dataList.toString());
-
                             HashSet<String> hashSet = new HashSet<String>();
                             hashSet.addAll(listDepartment);
                             listDepartment.clear();
                             listDepartment.addAll(hashSet);
-
                             listDepartment.add(dataList.get(i).getDepartmentName());
 
 
@@ -472,14 +454,12 @@ public class New_visitordetail extends AppCompatActivity implements AdapterView.
         call.enqueue(new Callback<Branches>() {
             @Override
             public void onResponse(@NonNull Call<Branches> call, @NonNull retrofit2.Response<Branches> response) {
-
                 if (response.body() != null) {
                     if (response.body().getMessage().equalsIgnoreCase("Branches List")) {
 
                         Log.d("Branchessssss", "" + response.body().getData());
 
                         List<Branches.Data> dataList = response.body().getData();
-
                         for (int i = 0; i < dataList.size(); i++) {
                             Log.d("kjxngksjnkjsdn", dataList.toString());
 
@@ -487,7 +467,6 @@ public class New_visitordetail extends AppCompatActivity implements AdapterView.
                             hashSet.addAll(listBranches);
                             listBranches.clear();
                             listBranches.addAll(hashSet);
-
                             listBranches.add(dataList.get(i).getBranchName());
 
                         }
@@ -496,6 +475,7 @@ public class New_visitordetail extends AppCompatActivity implements AdapterView.
                         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         //Setting the ArrayAdapter data on the Spinner
                         spinner_branches.setAdapter(aa);
+                        pDialog.dismiss();
 
 
                     }
@@ -524,4 +504,94 @@ public class New_visitordetail extends AppCompatActivity implements AdapterView.
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
+
+    private void progressDialogInitialisaton() {
+
+        pDialog = new ProgressDialog(this);
+        pDialog.setMessage("Loading Data Please wait...");
+        pDialog.setIndeterminate(false);
+        pDialog.setCancelable(false);
+        pDialog.show();
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        if (v == btnTimePickerIn) {
+
+            // Get Current Time
+            final Calendar c = Calendar.getInstance();
+            mHour = c.get(Calendar.HOUR_OF_DAY);
+            mMinute = c.get(Calendar.MINUTE);
+
+            // Launch Time Picker Dialog
+            TimePickerDialog timePickerDialog = new TimePickerDialog(this,
+                    new TimePickerDialog.OnTimeSetListener() {
+
+                        @Override
+                        public void onTimeSet(TimePicker view, int hourOfDay,
+                                              int minute) {
+
+                            txtTimeIn.setText(hourOfDay + ":" + minute);
+                        }
+                    }, mHour, mMinute, false);
+            timePickerDialog.show();
+        }
+        if (v == btnTimePickerOut) {
+
+            // Get Current Time
+            final Calendar c = Calendar.getInstance();
+            mHour = c.get(Calendar.HOUR_OF_DAY);
+            mMinute = c.get(Calendar.MINUTE);
+
+            // Launch Time Picker Dialog
+            TimePickerDialog timePickerDialog = new TimePickerDialog(this,
+                    new TimePickerDialog.OnTimeSetListener() {
+
+                        @Override
+                        public void onTimeSet(TimePicker view, int hourOfDay,
+                                              int minute) {
+
+                            txtTimeOut.setText(hourOfDay + ":" + minute);
+                        }
+                    }, mHour, mMinute, false);
+            timePickerDialog.show();
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == Activity.RESULT_OK) {
+
+            if (requestCode == 1888) {
+
+                try {
+                    Bitmap photo = (Bitmap) data.getExtras().get("data");
+                    visitorPhoto.setImageBitmap(photo);
+                    uploading_bitmap = photo;
+
+                    //Remove Image
+                    visitorPhoto.setBackgroundResource(android.R.color.transparent);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else if (requestCode == 2) {
+                realPath = ImageFilePath.getPath(this, data.getData());
+                Uri selectedImage = data.getData();
+                String[] filePath = {MediaStore.Images.Media.DATA};
+                Cursor c = getContentResolver().query(selectedImage, filePath, null, null, null);
+                c.moveToFirst();
+                int columnIndex = c.getColumnIndex(filePath[0]);
+                String picturePath = c.getString(columnIndex);
+                c.close();
+                Bitmap thumbnail = (BitmapFactory.decodeFile(picturePath));
+                visitorPhoto.setImageBitmap(thumbnail);
+                uploading_bitmap = thumbnail;
+            }
+        }
+    }
+
 }

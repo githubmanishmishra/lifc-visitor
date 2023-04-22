@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.laxmi.lifcvisitors.R;
 import com.laxmi.lifcvisitors.model.MSG;
 import com.laxmi.lifcvisitors.retrofitservices.APIService;
@@ -28,12 +29,26 @@ public class GaurdLogin extends AppCompatActivity {
     TextView tv_login, registration_text;
     EditText ev_empcodes, ev_password;
     public static PrefConfig prefConfig;
-
+String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gaurd_login);
+        // Key token
+        //Token Generate
+        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(task -> {
+
+            if (!task.isSuccessful()) {
+                Toast.makeText(getApplicationContext(), "Token Not Generated", Toast.LENGTH_SHORT).show();
+            }
+            token = task.getResult();
+            Log.e("Toooooooo", "" + token);
+
+            // storeToken(token);
+
+
+        });
 
         prefConfig = new PrefConfig(this);
 
@@ -75,7 +90,7 @@ public class GaurdLogin extends AppCompatActivity {
 
     private void getLogin(String emp_code, String emp_Password) {
         APIService service = ApiClient.getClient().create(APIService.class);
-        Call<MSG> call = service.getLogin(emp_code, emp_Password);
+        Call<MSG> call = service.getLogin(emp_code, emp_Password,token);
         call.enqueue(new Callback<MSG>() {
             @Override
             public void onResponse(@NonNull Call<MSG> call, @NonNull Response<MSG> response) {
@@ -84,7 +99,7 @@ public class GaurdLogin extends AppCompatActivity {
             /*        Log.d("Mainsj Mishra", "" + response.body().getMessage());
 
                     Log.d("token>>>>", response.body().getToken());*/
-                    if (response.body().getMessage().equalsIgnoreCase("Guard Login Successfully")) {
+                    if (response.body().getMessage().equalsIgnoreCase("Login Successfully")) {
 
                         prefConfig.writeLoginStatus(true);
                         prefConfig.writeName("Manish", response.body().getToken());

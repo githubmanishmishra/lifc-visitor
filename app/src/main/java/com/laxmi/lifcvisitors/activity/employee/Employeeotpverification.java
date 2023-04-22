@@ -3,6 +3,7 @@ package com.laxmi.lifcvisitors.activity.employee;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +19,13 @@ public class Employeeotpverification extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otpverification_forget);
         getotp = findViewById(R.id.tv_getotp);
+         ImageView iv_back =findViewById(R.id.iv_back);
+         iv_back.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 finish();
+             }
+         });
         getotp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

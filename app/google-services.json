@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "301202892919",
+    "project_id": "lifc-visitor",
+    "storage_bucket": "lifc-visitor.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:301202892919:android:fae7036478380fc904fe72",
+        "android_client_info": {
+          "package_name": "com.laxmi.lifcvisitors"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "301202892919-fdongpuh0fe8kb8see2gs4oegh70to6a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB47hI8JrsPKvv-jERLQnBfoRZj8XXQywg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "301202892919-fdongpuh0fe8kb8see2gs4oegh70to6a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

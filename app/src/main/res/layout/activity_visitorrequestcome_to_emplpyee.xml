@@ -12,14 +12,13 @@
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#ff4500">
+            android:background="@color/reds">
 
             <ImageView
                 android:id="@+id/iv_back"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/ic_baseline_arrow_back_ios_24"/>
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -72,6 +71,7 @@
             android:layout_below="@id/logo_3"
             android:layout_centerInParent="true"
             android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
             android:text="@string/request"
             android:textColor="@color/red"
             android:textSize="26sp"
@@ -142,7 +142,6 @@
             android:layout_height="wrap_content"
             android:hint="@string/third_visitor_name"
             android:layout_marginStart="5dp">
-
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/ev_visitor_name3rd"
                 android:layout_width="match_parent"
@@ -265,7 +264,7 @@
         <ImageView
             android:id="@+id/view_photo"
             android:layout_width="260dp"
-            android:layout_height="100dp"/>
+            android:layout_height="200dp"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

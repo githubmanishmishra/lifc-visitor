@@ -33,7 +33,7 @@ public class GuardProfileActivity extends AppCompatActivity {
 
         et_name = findViewById(R.id.ev_enter_name);
         et_email = findViewById(R.id.ev_email);
-        et_mobile = findViewById(R.id.ev_mobile_no_);
+        et_mobile = findViewById(R.id.ev_mobile_no);
         et_role = findViewById(R.id.ev_role);
         et_department = findViewById(R.id.ev_department);
         btn_submit = findViewById(R.id.btn_submit);

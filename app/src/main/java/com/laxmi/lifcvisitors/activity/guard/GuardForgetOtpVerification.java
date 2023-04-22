@@ -3,6 +3,7 @@ package com.laxmi.lifcvisitors.activity.guard;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +18,13 @@ String mob_no;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gaurdforgetotp);
+       ImageView iv_back = findViewById(R.id.iv_back);
+       iv_back.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               finish();
+           }
+       });
 
         Bundle bundle = getIntent().getExtras();
         if(bundle!=null){

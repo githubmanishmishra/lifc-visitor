@@ -3,6 +3,7 @@ package com.laxmi.lifcvisitors.activity.guard;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,9 +23,15 @@ public class Gaurd_mobileno_forget extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gaurd_mobileno_forget);
+         ImageView iv_back =findViewById(R.id.iv_back);
         confirmpsw = findViewById(R.id.tv_confirmpsw);
         textInputMobile = findViewById(R.id.mobile_no);
-
+iv_back.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        finish();
+    }
+});
         confirmpsw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -23,6 +23,23 @@ public interface APIService {
     Call<MSG> getOtp(@Query("mobile_number") String mobile_number
     );
 
+    @FormUrlEncoded
+    @POST("visitor/request")
+    Call<MSG> getVisitorRequest(@Query("name") String name,
+                                @Query("mobile_number") String mobile_number,
+                                @Query("otp") String otp,
+                                @Query("purpose_of_coming") String purpose_of_coming,
+                                @Query("pincode") String pincode,
+                                @Query("state") String state,
+                                @Query("city") String city,
+                                @Query("check_in") String check_in,
+                                @Query("check_out") String check_out,
+                                @Query("employee_id") String employee_id,
+                                @Query("employee_name") String employee_name,
+                                @Query("employee_mobile_number") String employee_mobile_number,
+                                @Query("address_proof_image") String address_proof_image,
+                                @Query("image") String image);
+
     //    @Headers("Content-Type: application/x-www-form-urlencoded")
     @FormUrlEncoded
     @POST("guard/signup/request")
@@ -40,7 +57,9 @@ public interface APIService {
     @FormUrlEncoded
     @POST("login/request")
     Call<MSG> getLogin(@Field("mobile_code") String mobile_code,
-                       @Field("password") String password);
+                       @Field("password") String password,
+                       @Field("device_token") String deviceToken
+                       );
 
     @FormUrlEncoded
     @POST("profile/update")
