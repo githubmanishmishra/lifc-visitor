@@ -10,11 +10,12 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -22,7 +23,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -32,17 +32,15 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.textfield.TextInputEditText;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -51,9 +49,12 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.laxmi.lifcvisitors.Employee_Send_Request_toGaurd;
 import com.laxmi.lifcvisitors.ImageFilePath;
 import com.laxmi.lifcvisitors.R;
+import com.laxmi.lifcvisitors.activity.employee.EmployeeDashboard;
+import com.laxmi.lifcvisitors.activity.employee.EmployeeLogin;
 import com.laxmi.lifcvisitors.languageconvert.BaseActivity;
 import com.laxmi.lifcvisitors.model.Branches;
 import com.laxmi.lifcvisitors.model.Departments;
+import com.laxmi.lifcvisitors.model.EmployeeByDepartment;
 import com.laxmi.lifcvisitors.retrofitservices.APIService;
 import com.laxmi.lifcvisitors.retrofitservices.ApiClient;
 import com.laxmi.lifcvisitors.savedata.PrefConfig;
@@ -67,44 +68,57 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashSet;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Response;
 
-public class New_visitordetail extends BaseActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
+public class New_visitordetail extends BaseActivity implements
+        View.OnClickListener {
 
     ImageView btn_uploadvisitor_photo;
+    TextInputEditText visitor_name, pin_code, visitor_name1, visitor_name2, visitor_name3, purpose_of_comeing, visitor_mobileno;
     ImageView visitorPhoto;
     AppCompatButton fbDialog;
     TextView rv_log;
+    String cityValue;
     LinearLayout linearLayout;
     public boolean checkHide = false;
-    Spinner spinner, spinner_department, spinner_branches;
+    Spinner spinner, spinner_department, spinner_branches, spinner_employeedept;
     TextView tv_spinner_state;
     List<String> listSpinner = new ArrayList<>();
-    List<String> listDepartment = new ArrayList<>();
     List<String> listBranches = new ArrayList<>();
+
+    Departments.Data departments;
+    EmployeeByDepartment.Data empByDepartment;
+
+    List<Departments.Data> dataList = new ArrayList<>();
+    List<EmployeeByDepartment.Data> dataListEmp = new ArrayList<>();
+
+    // String departmentsValue;
+    String departmentsEmp;
     AppCompatButton btnSubmit, Getotp;
     PrefConfig prefConfig;
+    private final Handler handler = new Handler();
 
+    TextView tv_emp_code;
     ImageView iv_back;
 
     Button btnTimePickerIn, btnTimePickerOut;
     EditText txtTimeIn, txtTimeOut;
     private int mHour, mMinute;
+    Bitmap uploading_bitmap = null;
+    String empMobileNo;
 
     private ProgressDialog pDialog;
 
     //Image Work
     private static final int CAMERA_REQUEST = 1888;
-    Bitmap uploading_bitmap = null;
-
     String realPath;
     private static final int PERMISSION_REQUEST_CODE = 1;
 
@@ -114,6 +128,7 @@ public class New_visitordetail extends BaseActivity implements AdapterView.OnIte
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.CAMERA,
     };
+    String visitorName, TxtTimeout, TxtTimeIn, Visitorname1, Visitorname2, Visitorname3, Purposeofcomeing, Visitor_mobile_no;
 
 
     @Override
@@ -121,14 +136,32 @@ public class New_visitordetail extends BaseActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_visitordetail);
         prefConfig = new PrefConfig(this);
-
         //Timer Work
+        visitor_name = findViewById(R.id.ev_visitor_name);
+        visitor_name1 = findViewById(R.id.ev_visitor_one);
+        visitor_name2 = findViewById(R.id.ev_visitor_two);
+        visitor_name3 = findViewById(R.id.ev_visitor_three);
+        purpose_of_comeing = findViewById(R.id.purposeof_meeting);
+        visitor_mobileno = findViewById(R.id.visitormobile_no);
+
         TextView _tv = (TextView) findViewById(R.id.textView1);
         btnTimePickerIn = (Button) findViewById(R.id.btn__in_time);
         btnTimePickerOut = (Button) findViewById(R.id.btn_out_time);
         txtTimeIn = (EditText) findViewById(R.id.in_time);
         txtTimeOut = findViewById(R.id.out_time);
+        spinner_employeedept = findViewById(R.id.spinner_employeedept);
+        tv_emp_code = findViewById(R.id.tv_emp_code);
         iv_back = findViewById(R.id.iv_back);
+
+        visitorName = visitor_name.getText().toString().trim();
+        Visitorname1 = visitor_name1.getText().toString().trim();
+        Visitorname2 = visitor_name2.getText().toString().trim();
+        Visitorname3 = visitor_name3.getText().toString().trim();
+        Visitor_mobile_no = visitor_mobileno.getText().toString().trim();
+        TxtTimeout = txtTimeOut.getText().toString().trim();
+        TxtTimeIn = txtTimeIn.getText().toString().trim();
+        Purposeofcomeing = purpose_of_comeing.getText().toString().trim();
+
 
         iv_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,10 +186,10 @@ public class New_visitordetail extends BaseActivity implements AdapterView.OnIte
         }.start();
 
         Log.d("token>>>>>>>M", prefConfig.readToken());
+
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //Permission
         allowPermission();
-        progressDialogInitialisaton();
         Getotp = findViewById(R.id.btn_otp);
         Getotp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -169,13 +202,12 @@ public class New_visitordetail extends BaseActivity implements AdapterView.OnIte
         fbDialog = findViewById(R.id.floating_btn);
         visitorPhoto = findViewById(R.id.visitor_photo);
         linearLayout = findViewById(R.id.editTextContainer);
-        EditText pin_code = findViewById(R.id.pin_code);
+        pin_code = findViewById(R.id.pin_code);
         tv_spinner_state = findViewById(R.id.tv_spinner_state);
         spinner = findViewById(R.id.spinner_city);
         spinner_department = findViewById(R.id.spinner_department);
         spinner_branches = findViewById(R.id.spinner_branches);
         btnSubmit = findViewById(R.id.btn_submiit);
-        spinner.setOnItemSelectedListener(this);
 
         btnSubmit.setOnClickListener(view -> {
             if (pin_code.getText().toString().isEmpty() &&
@@ -218,13 +250,14 @@ public class New_visitordetail extends BaseActivity implements AdapterView.OnIte
 
         rv_log = findViewById(R.id.sendrequest);
         rv_log.setOnClickListener(view -> {
-            Intent intent = new Intent(New_visitordetail.this, Employee_Send_Request_toGaurd.class);
-            startActivity(intent);
+
+            save_image_to_memory();
+
         });
         TextView tv = this.findViewById(R.id.mywidget);
         tv.setSelected(true);
         getDepartments();
-        getBranches();
+        //  getBranches();
 
     }
 
@@ -307,8 +340,9 @@ public class New_visitordetail extends BaseActivity implements AdapterView.OnIte
         builder.show();
     }
 
-    public void save_image_to_memory(Bitmap bm1) {
+    public void save_image_to_memory() {
         try {
+            Bitmap bm1 = null;
             //---------------
             ContextWrapper cw = new ContextWrapper(New_visitordetail.this);
             // path to /data/data/yourapp/app_data/imageDir
@@ -320,7 +354,8 @@ public class New_visitordetail extends BaseActivity implements AdapterView.OnIte
             try {
                 fos = new FileOutputStream(mypath);
                 // Use the compress method on the BitMap object to write image to the OutputStream
-                bm1.compress(Bitmap.CompressFormat.PNG, 100, fos);
+//                bm1 = ((BitmapDrawable) visitorPhoto.getDrawable()).getBitmap();
+//                bm1.compress(Bitmap.CompressFormat.PNG, 100, fos);
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
@@ -334,7 +369,7 @@ public class New_visitordetail extends BaseActivity implements AdapterView.OnIte
             }
             //-------------------
             File file1 = new File(directory.getAbsolutePath(), "12.PNG");
-            //  performDataUpdation(file1, data);
+            registrationApi(file1);
         } catch (Exception e) {
             // progress.cancel();
         }
@@ -375,6 +410,23 @@ public class New_visitordetail extends BaseActivity implements AdapterView.OnIte
                         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         //Setting the ArrayAdapter data on the Spinner  
                         spinner.setAdapter(aa);
+                        aa.notifyDataSetChanged();
+
+                        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                try {
+                                    cityValue = onwardflights.get(position).toString();
+                                } catch (JSONException e) {
+                                    throw new RuntimeException(e);
+                                }
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> parent) {
+
+                            }
+                        });
                     }
 
                 } catch (JSONException e) {
@@ -386,13 +438,7 @@ public class New_visitordetail extends BaseActivity implements AdapterView.OnIte
 
             }
 
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-                Log.i("Manish", "Error :" + error.toString());
-            }
-        });
+        }, error -> Log.i("Manish", "Error :" + error.toString()));
 
         mRequestQueue.add(mStringRequest);
 
@@ -411,15 +457,15 @@ public class New_visitordetail extends BaseActivity implements AdapterView.OnIte
 
                         Log.d("Departmentsssss", "" + response.body().getData());
 
-                        List<Departments.Data> dataList = response.body().getData();
-
+                        dataList = response.body().getData();
+                        List<String> listDepartment = new ArrayList<>();
                         for (int i = 0; i < dataList.size(); i++) {
 
                             Log.d("kjxngksjnkjsdn", dataList.toString());
-                            HashSet<String> hashSet = new HashSet<String>();
-                            hashSet.addAll(listDepartment);
-                            listDepartment.clear();
-                            listDepartment.addAll(hashSet);
+//                            HashSet<String> hashSet = new HashSet<String>();
+//                            hashSet.addAll(listDepartment);
+//                            listDepartment.clear();
+//                            listDepartment.addAll(hashSet);
                             listDepartment.add(dataList.get(i).getDepartmentName());
 
 
@@ -430,8 +476,35 @@ public class New_visitordetail extends BaseActivity implements AdapterView.OnIte
                         //Setting the ArrayAdapter data on the Spinner
 
                         spinner_department.setAdapter(aa);
+                        aa.notifyDataSetChanged();
 
                     }
+
+                    spinner_department.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                            try {
+                                departments = dataList.get(position);
+
+                                String departmentsValue = departments.getDepartmentName();
+                                //  String  departmentsValueCode = departments.getDepartmentCode();
+
+                                //   Log.d("menu111", departmentsValueCode);
+
+                                getdepartmentOfEmployee(departmentsValue);
+
+
+                            } catch (Exception e) {
+
+                            }
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+
+                        }
+                    });
+
                 } else {
                     Toast.makeText(New_visitordetail.this, "Wrong Credentials", Toast.LENGTH_SHORT).show();
 
@@ -448,40 +521,136 @@ public class New_visitordetail extends BaseActivity implements AdapterView.OnIte
         });
     }
 
+    private void getdepartmentOfEmployee(String departmentsValue) {
+        Log.d("Employe name", departmentsValue);
+        APIService service = ApiClient.getClient().create(APIService.class);
+        Call<EmployeeByDepartment> call = service.getemployeesbydepartment("Bearer " + prefConfig.readToken(), departmentsValue);
+        call.enqueue(new Callback<EmployeeByDepartment>() {
+            @Override
+            public void onResponse(@NonNull Call<EmployeeByDepartment> call, @NonNull retrofit2.Response<EmployeeByDepartment> response) {
+
+                if (response.body() != null) {
+                    //  pDialog.dismiss();
+                    if (response.body().getMessage().equalsIgnoreCase("Department Wise Employee Fatched successfully")) {
+
+                        Log.d("DepartmentsssssE", "" + response.body().getData());
+
+
+                        dataListEmp = response.body().getData();
+                        List<String> listDepartmentEmp = new ArrayList<>();
+                        for (int i = 0; i < dataListEmp.size(); i++) {
+
+                            Log.d("kjxngksjnkjsdnE", dataListEmp.toString());
+//                            HashSet<String> hashSet = new HashSet<String>();
+//                            hashSet.addAll(listDepartment);
+//                            listDepartment.clear();
+//                            listDepartment.addAll(hashSet);
+                            listDepartmentEmp.add(dataListEmp.get(i).getName());
+
+
+                        }
+                        //Creating the ArrayAdapter instance having the country list
+                        ArrayAdapter aa = new ArrayAdapter(New_visitordetail.this, android.R.layout.simple_spinner_item, listDepartmentEmp);
+                        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        //Setting the ArrayAdapter data on the Spinner
+
+                        spinner_employeedept.setAdapter(aa);
+                        aa.notifyDataSetChanged();
+
+                    }
+
+                    spinner_employeedept.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                            try {
+                                empByDepartment = dataListEmp.get(position);
+
+                                departmentsEmp = empByDepartment.getName();
+                                String departmentsValueCode = empByDepartment.getEmpCode();
+                                empMobileNo = empByDepartment.getMobileNumber();
+
+                                tv_emp_code.setText(departmentsValueCode);
+
+
+                                Log.d("departmentsEmp", New_visitordetail.this.departmentsEmp);
+
+                            } catch (Exception e) {
+
+                            }
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+
+                        }
+                    });
+
+                } else {
+                    Toast.makeText(New_visitordetail.this, "Wrong Credentials", Toast.LENGTH_SHORT).show();
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<EmployeeByDepartment> call, @NonNull Throwable t) {
+
+                // pDialog.dismiss();
+                Log.d("Error", t.getMessage());
+            }
+        });
+    }
+
     private void getBranches() {
+
+        Runnable runnable = new Runnable() {
+            public void run() {
+                progressDialogInitialisaton();
+
+                handler.postDelayed(this, 5000);
+            }
+        };
+        runnable.run();
+
         APIService service = ApiClient.getClient().create(APIService.class);
         Call<Branches> call = service.getBranches("Bearer " + prefConfig.readToken());
         call.enqueue(new Callback<Branches>() {
             @Override
             public void onResponse(@NonNull Call<Branches> call, @NonNull retrofit2.Response<Branches> response) {
                 if (response.body() != null) {
-                    if (response.body().getMessage().equalsIgnoreCase("Branches List")) {
+                    try {
+                        if (response.body().getMessage().equalsIgnoreCase("Branches List")) {
 
-                        Log.d("Branchessssss", "" + response.body().getData());
+                            Log.d("Branchessssss", "" + response.body().getData());
 
-                        List<Branches.Data> dataList = response.body().getData();
-                        for (int i = 0; i < dataList.size(); i++) {
-                            Log.d("kjxngksjnkjsdn", dataList.toString());
+                            List<Branches.Data> dataList = response.body().getData();
+                            for (int i = 0; i < dataList.size(); i++) {
+                                Log.d("kjxngksjnkjsdn", dataList.toString());
 
-                            HashSet<String> hashSet = new HashSet<String>();
-                            hashSet.addAll(listBranches);
-                            listBranches.clear();
-                            listBranches.addAll(hashSet);
-                            listBranches.add(dataList.get(i).getBranchName());
+//                                HashSet<String> hashSet = new HashSet<String>();
+//                                hashSet.addAll(listBranches);
+//                                listBranches.clear();
+//                                listBranches.addAll(hashSet);
+                                listBranches.add(dataList.get(i).getBranchName());
+
+                            }
+                            //Creating the ArrayAdapter instance having the country list
+                            ArrayAdapter aa = new ArrayAdapter(New_visitordetail.this, android.R.layout.simple_spinner_item, listBranches);
+                            aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            //Setting the ArrayAdapter data on the Spinner
+                            spinner_branches.setAdapter(aa);
+                            aa.notifyDataSetChanged();
+                            handler.removeCallbacks(runnable);
+                            pDialog.dismiss();
+
 
                         }
-                        //Creating the ArrayAdapter instance having the country list
-                        ArrayAdapter aa = new ArrayAdapter(New_visitordetail.this, android.R.layout.simple_spinner_item, listBranches);
-                        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        //Setting the ArrayAdapter data on the Spinner
-                        spinner_branches.setAdapter(aa);
-                        pDialog.dismiss();
 
+                    } catch (Exception e) {
 
                     }
                 } else {
                     Toast.makeText(New_visitordetail.this, "Wrong Credentials", Toast.LENGTH_SHORT).show();
-
                 }
 
             }
@@ -495,22 +664,12 @@ public class New_visitordetail extends BaseActivity implements AdapterView.OnIte
         });
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
-
-    }
-
     private void progressDialogInitialisaton() {
 
         pDialog = new ProgressDialog(this);
         pDialog.setMessage("Loading Data Please wait...");
         pDialog.setIndeterminate(false);
-        pDialog.setCancelable(false);
+        pDialog.setCancelable(true);
         pDialog.show();
     }
 
@@ -592,6 +751,44 @@ public class New_visitordetail extends BaseActivity implements AdapterView.OnIte
                 uploading_bitmap = thumbnail;
             }
         }
+    }
+
+    private void registrationApi(File file) {
+
+        RequestBody reqFile1 = RequestBody.create(MediaType.parse("image/*"), file);
+        MultipartBody.Part image1 = MultipartBody.Part.createFormData("image", file.getName(), reqFile1);
+
+        APIService service = ApiClient.getClient().create(APIService.class);
+        Call<ResponseBody> call = service.getVisitorRequest(prefConfig.readToken(), visitorName,
+                Visitor_mobile_no, "1234", Purposeofcomeing,
+                pin_code.getText().toString().trim(),
+                tv_spinner_state.getText().toString(), cityValue,
+                TxtTimeIn, TxtTimeout, tv_emp_code.getText().toString(),
+                departmentsEmp,
+                empMobileNo, image1, image1);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                if (response.body() != null) {
+
+                    if (response.body().toString().equalsIgnoreCase("Visitor Created Successfully")) {
+
+                    Intent intent = new Intent(New_visitordetail.this,Visitorrequestcome_to_emplpyee.class);
+                    startActivity(intent);
+                    }
+                } else {
+                    Toast.makeText(New_visitordetail.this, "Wrong Credentials", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                // pDialog.dismiss();
+                Log.d("Error", t.getMessage());
+            }
+        });
     }
 
 }

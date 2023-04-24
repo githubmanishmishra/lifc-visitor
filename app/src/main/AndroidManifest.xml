@@ -4,9 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
@@ -19,8 +17,8 @@
         android:theme="@style/Theme.LifcVisitors"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".activity.employee.EmployeeSIgnup"
-            android:exported="false"/>
+            android:name=".activity.employee.EmployeeSignup"
+            android:exported="false" />
         <activity
             android:name=".activity.employee.Employee_profile_update"
             android:exported="false" />

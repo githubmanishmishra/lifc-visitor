@@ -68,61 +68,7 @@
             android:layout_centerInParent="true"
             android:src="@drawable/life_logo" />
     </RelativeLayout>
-   <!-- <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:paddingStart="10dp"
-        android:paddingTop="10dp"
-        android:paddingEnd="20dp"
-        android:paddingBottom="20dp"
-        android:text="New Password"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        android:textStyle="bold" />-->
 
-   <!-- <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:background="@drawable/bgtext"
-        android:layout_toRightOf="@+id/tv_emp_name"
-        android:singleLine="true"
-        android:padding="10dp" />-->
-        <!--<com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/new_password">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/newpswd"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:maxLength="16"
-                android:singleLine="true"/>
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/confirm_password">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/mobile_no"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:inputType="textPassword"
-                android:maxLength="10"
-                android:layout_margin="10dp"
-                android:singleLine="true" />
-
-        </com.google.android.material.textfield.TextInputLayout>-->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

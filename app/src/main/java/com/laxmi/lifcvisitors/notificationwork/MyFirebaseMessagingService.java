@@ -63,31 +63,39 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 //                }
 
 //                else {
-                    if (message.equalsIgnoreCase("Lead Accepted By Other")) {
+                    if (message.equalsIgnoreCase("Lead Accepted By Other"))
+                    {
                         updateMyActivity(getApplicationContext(), message);
-                    } else if (message.equalsIgnoreCase("You Get A New Lead")) {
+                    }
+                    else if (message.equalsIgnoreCase("You Get A New Lead")) {
                         sendPushNotification(json);
                         updateMyActivity(getApplicationContext(), message);
-                    } else if (message.equalsIgnoreCase("You Get A Recomplaint Lead")) {
+                    }
+                    else if (message.equalsIgnoreCase("You Get A Recomplaint Lead")) {
                         sendPushNotification(json);
                         updateMyActivity(getApplicationContext(), message);
-                    } else {
+                    }
+                    else
+                    {
                         sendPushNotification(json);
                     }
 //                }
 
 
-                } catch (Exception e) {
+                }
+            catch (Exception e) {
                     Log.e(TAG, "Exception: " + e.getMessage());
                 }
 
-            try {
+            try
+            {
                 if (remoteMessage.getNotification() != null) {
                     Log.d(TAG, "Message Notification Body: " +
                             remoteMessage.getNotification().getBody());
                 }
 
-            } catch (Exception e) {
+            }
+            catch (Exception e) {
                 Log.e(TAG, "Exception: " + e.getMessage());
             }
         }
@@ -120,18 +128,21 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 //displaying a big notification
                 mNotificationManager.showBigNotification(title, message, imageUrl, intent);
             }
-        } catch (JSONException e) {
+        }
+        catch (JSONException e) {
             //  Log.e(TAG, "Json Exception: " + e.getMessage());
-        } catch (Exception e) {
+        }
+        catch
+        (Exception e)
+        {
             //  Log.e(TAG, "Exception: " + e.getMessage());
         }
     }
 
     // This function will create an intent. This intent must take as parameter the "unique_name" that you registered your activity with
-    public static void updateMyActivity(Context context, String message) {
-
+    public static void updateMyActivity(Context context, String message)
+    {
         Intent intent = new Intent("unique_name");
-
         //put whatever data you want to send, if any
         intent.putExtra("message", message);
         //send broadcast

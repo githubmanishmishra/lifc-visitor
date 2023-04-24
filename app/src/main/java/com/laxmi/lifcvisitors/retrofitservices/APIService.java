@@ -5,7 +5,10 @@ import com.laxmi.lifcvisitors.model.Departments;
 import com.laxmi.lifcvisitors.model.EmployeeByDepartment;
 import com.laxmi.lifcvisitors.model.MSG;
 import com.laxmi.lifcvisitors.model.Profile;
+import com.laxmi.lifcvisitors.model.VisitorsByGuard;
 
+import okhttp3.MultipartBody;
+import okhttp3.Response;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -13,7 +16,9 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Query;
 
 public interface APIService {
@@ -23,22 +28,24 @@ public interface APIService {
     Call<MSG> getOtp(@Query("mobile_number") String mobile_number
     );
 
-    @FormUrlEncoded
+    @Headers({"Content-Type: application/json;charset=UTF-8"})
+    @Multipart
     @POST("visitor/request")
-    Call<MSG> getVisitorRequest(@Query("name") String name,
-                                @Query("mobile_number") String mobile_number,
-                                @Query("otp") String otp,
-                                @Query("purpose_of_coming") String purpose_of_coming,
-                                @Query("pincode") String pincode,
-                                @Query("state") String state,
-                                @Query("city") String city,
-                                @Query("check_in") String check_in,
-                                @Query("check_out") String check_out,
-                                @Query("employee_id") String employee_id,
-                                @Query("employee_name") String employee_name,
-                                @Query("employee_mobile_number") String employee_mobile_number,
-                                @Query("address_proof_image") String address_proof_image,
-                                @Query("image") String image);
+    Call<ResponseBody> getVisitorRequest(@Header("Authorization") String auth,
+                                         @Part("name") String name,
+                                         @Part("mobile_number") String mobile_number,
+                                         @Part("otp") String otp,
+                                         @Part("purpose_of_coming") String purpose_of_coming,
+                                         @Part("pincode") String pincode,
+                                         @Part("state") String state,
+                                         @Part("city") String city,
+                                         @Part("check_in") String check_in,
+                                         @Part("check_out") String check_out,
+                                         @Part("employee_id") String employee_id,
+                                         @Part("employee_name") String employee_name,
+                                         @Part("employee_mobile_number") String employee_mobile_number,
+                                         @Part MultipartBody.Part  address_proof_image,
+                                         @Part MultipartBody.Part image);
 
     //    @Headers("Content-Type: application/x-www-form-urlencoded")
     @FormUrlEncoded
@@ -46,7 +53,16 @@ public interface APIService {
     Call<ResponseBody> getSignup(@Field("mobile_number") String mobile_number,
                                  @Field("emp_code") String emp_code,
                                  @Field("otp") String otp,
-                                 @Field("password") String password);
+                                 @Field("password") String password,
+                                 @Field("device_token") String deviceToken);
+
+    @FormUrlEncoded
+    @POST("employee/signup/request")
+    Call<ResponseBody> getEmployeeSignup(@Field("mobile_number") String mobile_number,
+                                         @Field("emp_code") String emp_code,
+                                         @Field("otp") String otp,
+                                         @Field("password") String password,
+                                         @Field("device_token") String deviceToken);
 
     @FormUrlEncoded
     @POST("signup/forget-password/request")
@@ -59,7 +75,7 @@ public interface APIService {
     Call<MSG> getLogin(@Field("mobile_code") String mobile_code,
                        @Field("password") String password,
                        @Field("device_token") String deviceToken
-                       );
+    );
 
     @FormUrlEncoded
     @POST("profile/update")
@@ -67,6 +83,11 @@ public interface APIService {
                                    @Field("mobile_number") String mobile_number,
                                    @Field("name") String name,
                                    @Field("email") String email);
+
+    @Headers({"Content-Type: application/json;charset=UTF-8"})
+    @GET("employees-by-department")
+    Call<EmployeeByDepartment> getemployeesbydepartment(@Header("Authorization") String auth,
+                                                        @Query("department") String department);
 
 
     @Headers({"Content-Type: application/json;charset=UTF-8"})
@@ -77,13 +98,14 @@ public interface APIService {
     @GET("branches")
     Call<Branches> getBranches(@Header("Authorization") String auth);
 
-    @Headers({"Content-Type: application/json;charset=UTF-8"})
-    @GET("employees-by-department")
-    Call<EmployeeByDepartment> getEmployeeByDepartment(@Header("Authorization") String auth);
 
     @Headers({"Content-Type: application/json;charset=UTF-8"})
     @GET("profile")
     Call<Profile> getProfile(@Header("Authorization") String auth);
+
+    @Headers({"Content-Type: application/json;charset=UTF-8"})
+    @GET("visitors-by-guard")
+    Call<VisitorsByGuard> getVisitorsByGuard(@Header("Authorization") String auth);
 
 
 }

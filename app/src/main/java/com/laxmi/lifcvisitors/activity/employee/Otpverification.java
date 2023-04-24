@@ -13,6 +13,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.laxmi.lifcvisitors.R;
+import com.laxmi.lifcvisitors.activity.guard.Gaurdotp_verification;
+import com.laxmi.lifcvisitors.activity.guard.Guard_createpswd;
 import com.laxmi.lifcvisitors.model.MSG;
 import com.laxmi.lifcvisitors.retrofitservices.APIService;
 
@@ -25,11 +27,19 @@ public class Otpverification extends AppCompatActivity {
     TextView tv_getotp;
     EditText editTextotp1, editTextotp2, editTextotp3, editTextotp4;
     public static APIService service;
+    String mob_no,emp_code;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otpverification);
+
+
+        Bundle bundle = getIntent().getExtras();
+        if(bundle!=null){
+            mob_no = bundle.getString("mob_no");
+            emp_code = bundle.getString("emp_code");
+        }
          ImageView iv_back = findViewById(R.id.iv_back);
          iv_back.setOnClickListener(new View.OnClickListener() {
              @Override
@@ -132,19 +142,33 @@ public class Otpverification extends AppCompatActivity {
 
         });
 
-        tv_getotp.setOnClickListener(new View.OnClickListener() {
+       /* tv_getotp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (editTextotp1.getText().toString().equalsIgnoreCase("1") &&
                         editTextotp2.getText().toString().equalsIgnoreCase("2") &&
                         editTextotp3.getText().toString().equalsIgnoreCase("3") &&
-                        editTextotp4.getText().toString().equalsIgnoreCase("4")) {
-                    OtpApi();
-                } else
+                        editTextotp4.getText().toString().equalsIgnoreCase("4"))
+                {
+                   // OtpApi();
+                }
+                else
                 {
                     Toast.makeText(Otpverification.this, "Invalid Otp", Toast.LENGTH_SHORT).show();
                 }
 
+            }
+        });*/
+
+        tv_getotp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Otpverification.this, EmpcreatepswActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("mob_no", mob_no);
+                bundle.putString("emp_code", emp_code);
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
         TextView tv = (TextView) this.findViewById(R.id.mywidget);
@@ -152,7 +176,7 @@ public class Otpverification extends AppCompatActivity {
     }
 
     private void OtpApi() {
-        Call<MSG> call = service.getOtp("7503196856");
+        Call<MSG> call = service.getOtp(mob_no);
         call.enqueue(new Callback<MSG>() {
             @Override
             public void onResponse(Call<MSG> call, Response<MSG> response) {

@@ -23,16 +23,19 @@ public class EmployeeDashboard extends AppCompatActivity implements NavigationVi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee_dashboard);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        TextView txt_status = findViewById(R.id.total_visitor_status);
         setSupportActionBar(toolbar);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-        /*NavigationView navigationView = findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        navigationView.setCheckedItem(R.id.nav_camera);*/
+
+     /*  TextView tv_emp_name = navigationView.findViewById(R.id.tv_emp_name);
+
+       tv_emp_name.setText("sdvfcb");*/
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         DashboardFragment fragment = new DashboardFragment();
         fragmentManager.beginTransaction().replace(R.id.frameLayout, fragment).commit();

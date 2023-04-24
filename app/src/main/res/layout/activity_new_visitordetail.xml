@@ -119,6 +119,7 @@
 -->
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+           android:id="@+id/visitor_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp">
@@ -148,6 +149,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -197,7 +199,7 @@
             android:layout_margin="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/purposeof_coming"
+                android:id="@+id/purposeof_meeting"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:hint="@string/purpose_of_meeting" />
@@ -246,7 +248,7 @@
             android:layout_margin="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/mobile_no"
+                android:id="@+id/visitormobile_no"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:hint="Visitor Phone-No"
@@ -592,48 +594,44 @@
                 android:padding="20dp"
                 android:singleLine="true" />
         </LinearLayout>
-      <!--  <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp">
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/employeename"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:hint="@string/employee_name"/>
-
-        </com.google.android.material.textfield.TextInputLayout>-->
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/employeename"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:hint="@string/employee_name"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="EMPCode-"
-            android:layout_margin="10dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/employee_code"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-
+            <TextView
+                android:id="@+id/tv_dep_emp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:singleLine="true"
-                android:inputType="number"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                android:text="Employee Name"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
+            <Spinner
+                android:id="@+id/spinner_employeedept"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/bgtext"
+                android:dropDownHeight="100dp"
+                android:padding="20dp"
+                android:singleLine="true" />
+        </LinearLayout>
+
+
+
+
+<TextView
+    android:id="@+id/tv_emp_code"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:textColor="@color/white"
+    android:background="@drawable/btn_bg_rectangle"/>
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/sendrequest"
             android:layout_width="wrap_content"

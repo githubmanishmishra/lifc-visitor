@@ -42,7 +42,8 @@ public class GuardDashboard extends BaseActivity implements NavigationView.OnNav
         NavigationView navigationView = findViewById(R.id.nav_view_guard);
         View headerView = navigationView.inflateHeaderView(R.layout.gaurd_header);
         TextView tvGuardName = headerView.findViewById(R.id.tv_guard_name);
-        tvGuardName.setText(prefConfig.readName());
+        TextView tvGuardEmail = headerView.findViewById(R.id.tv_guard_email);
+        tvGuardName.setText(prefConfig.readName()+"+");
 
 
         FragmentManager fragmentManager = getSupportFragmentManager();

@@ -15,16 +15,17 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.laxmi.lifcvisitors.R;
+import com.laxmi.lifcvisitors.model.VisitorsByGuard;
 
 import java.util.List;
 import java.util.Random;
 
 public class MailAdapter extends RecyclerView.Adapter<MailViewHolder> {
 
-    private List<EmailData> mEmailData;
+    private List<VisitorsByGuard.Data> mEmailData;
     private Context mContext;
 
-    public MailAdapter(Context mContext, List<EmailData> mEmailData) {
+    public MailAdapter(Context mContext, List<VisitorsByGuard.Data> mEmailData) {
         this.mEmailData = mEmailData;
         this.mContext = mContext;
     }
@@ -38,11 +39,11 @@ public class MailAdapter extends RecyclerView.Adapter<MailViewHolder> {
 
     @Override
     public void onBindViewHolder(final MailViewHolder holder, int position) {
-        holder.mIcon.setText(mEmailData.get(position).getmSender().substring(0, 1));
-        holder.mSender.setText(mEmailData.get(position).getmSender());
-        holder.mEmailTitle.setText(mEmailData.get(position).getmTitle());
-        holder.mEmailDetails.setText(mEmailData.get(position).getmDetails());
-        holder.mEmailTime.setText(mEmailData.get(position).getmTime());
+        holder.mIcon.setText(mEmailData.get(position).getName().substring(0, 1));
+        holder.mSender.setText(mEmailData.get(position).getMobileNumber());
+        holder.mEmailTitle.setText(mEmailData.get(position).getState());
+        holder.mEmailDetails.setText(mEmailData.get(position).getCity());
+        holder.mEmailTime.setText(mEmailData.get(position).getPincode());
         Random mRandom = new Random();
         final int color = Color.argb(255, mRandom.nextInt(256), mRandom.nextInt(256), mRandom.nextInt(256));
         ((GradientDrawable) holder.mIcon.getBackground()).setColor(color);

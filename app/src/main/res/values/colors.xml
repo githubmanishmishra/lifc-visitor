@@ -12,4 +12,6 @@
     <color name="kaithik">#656E75</color>
     <color name="grey">#ededed</color>
     <color name="reds">#CB6471</color>
+    <color name="dialog_color_1">#FDD736</color>
+    <color name="dialog_color_2">#3B5796</color>
 </resources>

@@ -1,7 +1,6 @@
 package com.laxmi.lifcvisitors.activity.employee;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -52,6 +51,7 @@ public class EmployeeLogin extends AppCompatActivity {
 
 
         });
+
         tv_login = findViewById(R.id.tv_login);
         TextView tv = findViewById(R.id.mywidget);
         tv.setSelected(true);
@@ -66,7 +66,7 @@ public class EmployeeLogin extends AppCompatActivity {
         registration_text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(EmployeeLogin.this, EmployeeSIgnup.class);
+                Intent intent = new Intent(EmployeeLogin.this, EmployeeSignup.class);
                 startActivity(intent);
             }
         });

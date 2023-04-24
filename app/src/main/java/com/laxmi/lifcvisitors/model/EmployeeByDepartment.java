@@ -40,6 +40,7 @@ public class EmployeeByDepartment {
         this.data = data;
     }
 
+
     public static class Data {
 
         @SerializedName("id")
@@ -96,7 +97,5 @@ public class EmployeeByDepartment {
 
         public void setEmail(String email) {
             this.email = email;
-        }
-
-    }
+        }    }
 }

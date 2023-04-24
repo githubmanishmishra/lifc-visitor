@@ -2,11 +2,9 @@ plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
 }
-
 android {
     namespace 'com.laxmi.lifcvisitors'
     compileSdk 33
-
     defaultConfig {
         applicationId "com.laxmi.lifcvisitors"
         minSdk 24
@@ -57,4 +55,5 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
     //lottie
     implementation "com.airbnb.android:lottie:6.0.0"
+
 }

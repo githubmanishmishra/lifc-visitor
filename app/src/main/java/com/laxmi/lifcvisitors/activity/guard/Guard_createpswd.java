@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.laxmi.lifcvisitors.R;
 import com.laxmi.lifcvisitors.retrofitservices.APIService;
 import com.laxmi.lifcvisitors.retrofitservices.ApiClient;
@@ -30,11 +31,28 @@ public class Guard_createpswd extends AppCompatActivity {
     TextView tv_createpsw;
     EditText ev_new_password, ev_confirm_password;
     String mob_no, emp_code;
+    String  token;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gaurd_createpswd);
+
+        // Key token
+        //Token Generate
+        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(task -> {
+
+            if (!task.isSuccessful()) {
+                Toast.makeText(getApplicationContext(), "Token Not Generated", Toast.LENGTH_SHORT).show();
+            }
+            token = task.getResult();
+            Log.e("Toooooooo", "" + token);
+
+            // storeToken(token);
+
+
+        });
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             mob_no = bundle.getString("mob_no");
@@ -80,7 +98,8 @@ public class Guard_createpswd extends AppCompatActivity {
 
     private void registrationApi(String newPassword) {
         APIService service = ApiClient.getClient().create(APIService.class);
-        Call<ResponseBody> call = service.getSignup(mob_no, emp_code, "1234", newPassword);
+        Call<ResponseBody> call = service.getSignup(mob_no, emp_code, "1234",
+                newPassword,token);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
