@@ -41,11 +41,9 @@ public class GuardProfileActivity extends AppCompatActivity {
         getProfile();
 
         btn_submit.setOnClickListener(view -> {
-            if (et_name.getText().toString().matches("")
-                    && et_email.getText().toString().matches("")
-                    && et_mobile.getText().toString().matches("")
-                    && et_role.getText().toString().matches("")
-                    && et_department.getText().toString().matches("")) {
+            if (et_name.getText().toString().equalsIgnoreCase("")
+                    && et_email.getText().toString().equalsIgnoreCase("")
+                    && et_mobile.getText().toString().equalsIgnoreCase("")) {
                 Toast.makeText(this, "Enter Empty Fields", Toast.LENGTH_SHORT).show();
             } else {
                 getProfileUpdate(et_name.getText().toString(), et_email.getText().toString(), et_mobile.getText().toString());
@@ -69,9 +67,11 @@ public class GuardProfileActivity extends AppCompatActivity {
 
                         Profile.Data dataList = response.body().getData();
 
-
                         et_mobile.setText(dataList.getMobileNumber());
                         et_role.setText(dataList.getRole());
+                        et_name.setText(dataList.getName());
+                        et_email.setText(dataList.getEmail());
+                        et_department.setText(dataList.getDepartment());
 
                     }
                 } else {

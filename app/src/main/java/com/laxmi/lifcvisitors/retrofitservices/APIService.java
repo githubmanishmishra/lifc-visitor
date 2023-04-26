@@ -8,6 +8,7 @@ import com.laxmi.lifcvisitors.model.Profile;
 import com.laxmi.lifcvisitors.model.VisitorsByGuard;
 
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -28,10 +29,9 @@ public interface APIService {
     Call<MSG> getOtp(@Query("mobile_number") String mobile_number
     );
 
-    @Headers({"Content-Type: application/json;charset=UTF-8"})
     @Multipart
     @POST("visitor/request")
-    Call<ResponseBody> getVisitorRequest(@Header("Authorization") String auth,
+    Call<ResponseBody> getVisitorRequest(@Header("Token") String token,
                                          @Part("name") String name,
                                          @Part("mobile_number") String mobile_number,
                                          @Part("otp") String otp,
@@ -44,7 +44,7 @@ public interface APIService {
                                          @Part("employee_id") String employee_id,
                                          @Part("employee_name") String employee_name,
                                          @Part("employee_mobile_number") String employee_mobile_number,
-                                         @Part MultipartBody.Part  address_proof_image,
+                                         @Part MultipartBody.Part address_proof_image,
                                          @Part MultipartBody.Part image);
 
     //    @Headers("Content-Type: application/x-www-form-urlencoded")
@@ -106,6 +106,25 @@ public interface APIService {
     @Headers({"Content-Type: application/json;charset=UTF-8"})
     @GET("visitors-by-guard")
     Call<VisitorsByGuard> getVisitorsByGuard(@Header("Authorization") String auth);
+
+    @Headers({"Content-Type: application/json;charset=UTF-8"})
+    @GET("visitors-by-employees")
+    Call<VisitorsByEmployee> getVisitorsByEmployee(@Header("Authorization") String auth);
+
+    @Headers({"Content-Type: application/json;charset=UTF-8"})
+    @GET("office-boy-assign")
+    Call<MSG> getOfficeBoyAssign(@Header("Authorization") String auth);
+
+    @FormUrlEncoded
+    @POST("feedback/update")
+    Call<MSG> getFeedbackUpdate(@Field("status") String status,
+                                @Field("message") String message
+    );
+
+    @Headers({"Content-Type: application/json;charset=UTF-8"})
+    @GET("feedbackByVisitor")
+    Call<FeedBackByVisitor> getFeedBackByVisitor(@Header("Authorization") String auth,
+                                                 @Query("visitor_id") String visitor_id);
 
 
 }

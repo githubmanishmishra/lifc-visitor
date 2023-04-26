@@ -100,14 +100,14 @@ public class EmpcreatepswActivity extends AppCompatActivity {
 
     private void registrationApi(String newPassword) {
         APIService service = ApiClient.getClient().create(APIService.class);
-        Call<ResponseBody> call = service.getSignup(mob_no, emp_code, "1234",
+        Call<ResponseBody> call = service.getEmployeeSignup(mob_no, emp_code, "1234",
                 newPassword,token);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
                 try {
-//                    assert response.body() != null;
+                    assert response.body() != null;
                     JSONArray myListsAll = new JSONArray("[" + response.body().string() + "]");
                     for (int i = 0; i < myListsAll.length(); i++) {
                         JSONObject jsonobject = (JSONObject) myListsAll.get(i);

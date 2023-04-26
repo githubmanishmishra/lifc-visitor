@@ -53,7 +53,7 @@ public class EmployeeSignup extends AppCompatActivity {
         tv_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(com.laxmi.lifcvisitors.activity.employee.EmployeeSignup.this, GaurdLogin.class);
+                Intent intent = new Intent(EmployeeSignup.this, EmployeeLogin.class);
                 startActivity(intent);
             }
         });

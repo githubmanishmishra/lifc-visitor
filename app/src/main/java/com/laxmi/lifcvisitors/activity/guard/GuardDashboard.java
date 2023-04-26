@@ -1,9 +1,14 @@
 package com.laxmi.lifcvisitors.activity.guard;
 
+import static com.laxmi.lifcvisitors.languageconvert.LocaleManager.setNewLocale;
+
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -18,6 +23,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.laxmi.lifcvisitors.R;
 import com.laxmi.lifcvisitors.fragments.GuardDashboardFragment;
 import com.laxmi.lifcvisitors.languageconvert.BaseActivity;
+import com.laxmi.lifcvisitors.languageconvert.LocaleManager;
 import com.laxmi.lifcvisitors.savedata.PrefConfig;
 
 public class GuardDashboard extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -40,10 +46,12 @@ public class GuardDashboard extends BaseActivity implements NavigationView.OnNav
         toggle.syncState();
 
         NavigationView navigationView = findViewById(R.id.nav_view_guard);
+        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.bringToFront();
         View headerView = navigationView.inflateHeaderView(R.layout.gaurd_header);
         TextView tvGuardName = headerView.findViewById(R.id.tv_guard_name);
         TextView tvGuardEmail = headerView.findViewById(R.id.tv_guard_email);
-        tvGuardName.setText(prefConfig.readName()+"+");
+        tvGuardName.setText(prefConfig.readName()+"");
 
 
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -66,23 +74,68 @@ public class GuardDashboard extends BaseActivity implements NavigationView.OnNav
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        Fragment fragment = null;
-        FragmentManager fragmentManager = getSupportFragmentManager();
+
+//        Fragment fragment = null;
+//        FragmentManager fragmentManager = getSupportFragmentManager();
         if (id == R.id.nav_slideshow) {
         } else if (id == R.id.nav_guarddesignation) {
-        } else if (id == R.id.nav_guardContactus) {
+        } else if (id == R.id.nav_guardlanguage) {
+
+                final Dialog dialogLanguages =
+                        new Dialog(GuardDashboard.this, android.R.style.Theme_DeviceDefault);
+                dialogLanguages.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+                dialogLanguages.setCancelable(true);
+                dialogLanguages.setContentView(R.layout.dialog_languages);
+
+                dialogLanguages.show();
+
+                final RadioButton rbEnglish = dialogLanguages.findViewById(R.id.rb_english);
+                final RadioButton rbHindi = dialogLanguages.findViewById(R.id.rb_hindi);
+                final RadioButton rbGujarati = dialogLanguages.findViewById(R.id.rb_gujarati);
+
+                rbEnglish.setOnClickListener(view1 -> {
+                    dialogLanguages.dismiss();
+                    setNewLocale(GuardDashboard.this, LocaleManager.ENGLISH);
+
+                    //Finish All Activity and return to main Screen or wherever you want
+                    Intent intent1 = new Intent(GuardDashboard.this, GuardDashboard.class);
+                    startActivity(intent1);
+                    finishAffinity();
+                });
+
+                rbHindi.setOnClickListener(view12 -> {
+                    dialogLanguages.dismiss();
+                    setNewLocale(GuardDashboard.this, LocaleManager.HINDI);
+
+                    Intent intent2 = new Intent(GuardDashboard.this, GuardDashboard.class);
+                    startActivity(intent2);
+                    finishAffinity();
+                });
+                rbGujarati.setOnClickListener(view13 -> {
+                    dialogLanguages.dismiss();
+                    setNewLocale(GuardDashboard.this, LocaleManager.GUJARATI);
+
+                    Intent intent3 = new Intent(GuardDashboard.this, GuardDashboard.class);
+                    startActivity(intent3);
+                    finishAffinity();
+                });
+
+
+
 
         }else if (id == R.id.nav_guardslideshow) {
 
 
         } else if (id == R.id.nav_guardlogout) {
 
+
             prefConfig.writeLoginStatus(false);
             startActivity(new Intent(GuardDashboard.this,GaurdLogin.class));
             finishAffinity();
 
        }
-        fragmentManager.beginTransaction().replace(R.id.frameLayoutguard, fragment).commit();
+      //  fragmentManager.beginTransaction().replace(R.id.frameLayoutguard, fragment).commit();
         DrawerLayout drawer = findViewById(R.id.drawer_layout_guard);
         drawer.closeDrawer(GravityCompat.START);
         return true;

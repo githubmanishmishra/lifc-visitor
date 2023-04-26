@@ -41,21 +41,21 @@
 
             </androidx.appcompat.widget.Toolbar>
 
-         <!--   <EditText
-                android:id="@+id/et_name"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/custom_edit_text"
-                android:paddingStart="5dp"
-                android:paddingEnd="5dp"
-                android:singleLine="true"
-                android:hint="Enter Name"
-                android:textColorHint="@color/black"
-                android:textColor="@color/black" />-->
+            <!--   <EditText
+                   android:id="@+id/et_name"
+                   android:layout_width="match_parent"
+                   android:layout_height="48dp"
+                   android:layout_marginStart="20dp"
+                   android:layout_marginTop="10dp"
+                   android:layout_marginEnd="20dp"
+                   android:layout_marginBottom="20dp"
+                   android:background="@drawable/custom_edit_text"
+                   android:paddingStart="5dp"
+                   android:paddingEnd="5dp"
+                   android:singleLine="true"
+                   android:hint="Enter Name"
+                   android:textColorHint="@color/black"
+                   android:textColor="@color/black" />-->
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
@@ -66,9 +66,10 @@
                     android:id="@+id/ev_enter_name"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:hint="Enter Name"/>
+                    android:hint="Enter Name" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
@@ -79,36 +80,41 @@
                     android:id="@+id/ev_department"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:hint="New Password" />
+                    android:hint="Department" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ev_email"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:hint="New Password"
+                    android:hint="Email"
                     android:imeOptions="actionNext"
-                    android:inputType="textPassword" />
+                    android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ev_mobile_no"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:hint="New Password"
+                    android:hint="Mobile Number"
                     android:imeOptions="actionNext"
-                    android:inputType="textPassword" />
+                    android:inputType="text" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
@@ -119,73 +125,11 @@
                     android:id="@+id/ev_role"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:hint="New Password"
+                    android:hint="Role"
                     android:imeOptions="actionNext"
-                    android:inputType="textPassword" />
+                    android:inputType="text" />
 
             </com.google.android.material.textfield.TextInputLayout>
-
-           <!-- <EditText
-                android:id="@+id/et_email"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/custom_edit_text"
-                android:paddingStart="5dp"
-                android:paddingEnd="5dp"
-                android:singleLine="true"
-                android:hint="Enter Email"
-                android:textColorHint="@color/black"
-                android:textColor="@color/black" />-->
-
-<!--            <EditText
-                android:id="@+id/et_mobile"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/custom_edit_text"
-                android:inputType="textFilter|textMultiLine"
-                android:paddingStart="5dp"
-                android:paddingEnd="5dp"
-                android:singleLine="true"
-                android:textColor="@color/black" />-->
-
-    <!--        <EditText
-                android:id="@+id/et_role"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/custom_edit_text"
-                android:inputType="textFilter|textMultiLine"
-                android:paddingStart="5dp"
-                android:paddingEnd="5dp"
-                android:singleLine="true"
-                android:textColor="@color/black" />-->
-
-        <!--    <EditText
-                android:id="@+id/et_reporting_branch"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/custom_edit_text"
-                android:paddingStart="5dp"
-                android:paddingEnd="5dp"
-                android:singleLine="true"
-                android:textColor="@color/black" />-->
-
-
 
             <Button
                 android:id="@+id/btn_submit"
@@ -200,7 +144,6 @@
                 android:singleLine="true"
                 android:text="Update"
                 android:textColor="@color/white" />
-
 
 
         </LinearLayout>

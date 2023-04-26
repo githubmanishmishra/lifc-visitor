@@ -102,7 +102,7 @@ String token;
                     if (response.body().getMessage().equalsIgnoreCase("Login Successfully")) {
 
                         prefConfig.writeLoginStatus(true);
-                        prefConfig.writeName("Manish", response.body().getToken());
+                        prefConfig.writeName("Guard", response.body().getToken());
                         Log.d("token>>>>>>>>>>>>", response.body().getToken());
 
                         Intent intents = new Intent(GaurdLogin.this, GuardDashboard.class);

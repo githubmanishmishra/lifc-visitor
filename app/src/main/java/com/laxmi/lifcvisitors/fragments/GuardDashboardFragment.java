@@ -46,55 +46,6 @@ public class GuardDashboardFragment extends Fragment {
         TextView tv = (TextView) view.findViewById(R.id.mywidget);
         tv.setSelected(true);
 
-        RelativeLayout relSelectLanguage = view.findViewById(R.id.rel_select_language);
-
-        relSelectLanguage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //  startActivity(new Intent(getContext(), LanguageActivity.class));
-
-                final Dialog dialogLanguages =
-                        new Dialog(requireContext(), android.R.style.Theme_DeviceDefault);
-                dialogLanguages.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-                dialogLanguages.setCancelable(true);
-                dialogLanguages.setContentView(R.layout.dialog_languages);
-
-                dialogLanguages.show();
-
-                final RadioButton rbEnglish = dialogLanguages.findViewById(R.id.rb_english);
-                final RadioButton rbHindi = dialogLanguages.findViewById(R.id.rb_hindi);
-                final RadioButton rbGujarati = dialogLanguages.findViewById(R.id.rb_gujarati);
-
-                rbEnglish.setOnClickListener(view1 -> {
-                    dialogLanguages.dismiss();
-                    setNewLocale(getContext(), LocaleManager.ENGLISH);
-
-                    //Finish All Activity and return to main Screen or wherever you want
-                    Intent intent1 = new Intent(getActivity(), GuardDashboard.class);
-                    requireActivity().startActivity(intent1);
-                    requireActivity().finishAffinity();
-                });
-
-                rbHindi.setOnClickListener(view12 -> {
-                    dialogLanguages.dismiss();
-                    setNewLocale(getContext(), LocaleManager.HINDI);
-
-                    Intent intent2 = new Intent(getActivity(), GuardDashboard.class);
-                    requireActivity().startActivity(intent2);
-                    requireActivity().finishAffinity();
-                });
-                rbGujarati.setOnClickListener(view13 -> {
-                    dialogLanguages.dismiss();
-                    setNewLocale(getContext(), LocaleManager.GUJARATI);
-
-                    Intent intent3 = new Intent(getActivity(), GuardDashboard.class);
-                    requireActivity().startActivity(intent3);
-                    requireActivity().finishAffinity();
-                });
-
-            }
-        });
 
         return view;
 

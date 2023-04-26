@@ -10,7 +10,6 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,6 +18,8 @@ import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -46,13 +47,9 @@ import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
-import com.laxmi.lifcvisitors.Employee_Send_Request_toGaurd;
 import com.laxmi.lifcvisitors.ImageFilePath;
 import com.laxmi.lifcvisitors.R;
-import com.laxmi.lifcvisitors.activity.employee.EmployeeDashboard;
-import com.laxmi.lifcvisitors.activity.employee.EmployeeLogin;
 import com.laxmi.lifcvisitors.languageconvert.BaseActivity;
-import com.laxmi.lifcvisitors.model.Branches;
 import com.laxmi.lifcvisitors.model.Departments;
 import com.laxmi.lifcvisitors.model.EmployeeByDepartment;
 import com.laxmi.lifcvisitors.retrofitservices.APIService;
@@ -78,11 +75,16 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class New_visitordetail extends BaseActivity implements
-        View.OnClickListener {
+public class New_visitordetail extends BaseActivity implements View.OnClickListener {
 
     ImageView btn_uploadvisitor_photo;
-    TextInputEditText visitor_name, pin_code, visitor_name1, visitor_name2, visitor_name3, purpose_of_comeing, visitor_mobileno;
+    TextInputEditText visitor_name;
+    TextInputEditText pin_code;
+    TextInputEditText visitor_name1;
+    TextInputEditText visitor_name2;
+    TextInputEditText visitor_name3;
+    TextInputEditText purpose_of_comeing;
+    TextInputEditText visitor_mobileno;
     ImageView visitorPhoto;
     AppCompatButton fbDialog;
     TextView rv_log;
@@ -251,13 +253,48 @@ public class New_visitordetail extends BaseActivity implements
         rv_log = findViewById(R.id.sendrequest);
         rv_log.setOnClickListener(view -> {
 
-            save_image_to_memory();
+            try {
+                InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+            } catch (Exception e) {
+                // TODO: handle exception
+            }
+
+            requestGuard();
 
         });
         TextView tv = this.findViewById(R.id.mywidget);
         tv.setSelected(true);
         getDepartments();
         //  getBranches();
+
+    }
+
+    private void requestGuard() {
+
+        if (!validate()) {
+            onUpdateFailed();
+        } else {
+            save_image_to_memory(uploading_bitmap);
+
+        }
+
+    }
+
+    private boolean validate() {
+        boolean valid = true;
+
+        String visitorNamee = visitor_name.getText().toString();
+
+        if (visitorNamee.isEmpty()) {
+            visitor_name.setError("Name is Empty");
+            requestFocus(visitor_name);
+            valid = false;
+        } else {
+            visitor_name.setError(null);
+        }
+
+        return valid;
 
     }
 
@@ -340,9 +377,8 @@ public class New_visitordetail extends BaseActivity implements
         builder.show();
     }
 
-    public void save_image_to_memory() {
+    public void save_image_to_memory(Bitmap bm1) {
         try {
-            Bitmap bm1 = null;
             //---------------
             ContextWrapper cw = new ContextWrapper(New_visitordetail.this);
             // path to /data/data/yourapp/app_data/imageDir
@@ -354,8 +390,7 @@ public class New_visitordetail extends BaseActivity implements
             try {
                 fos = new FileOutputStream(mypath);
                 // Use the compress method on the BitMap object to write image to the OutputStream
-//                bm1 = ((BitmapDrawable) visitorPhoto.getDrawable()).getBitmap();
-//                bm1.compress(Bitmap.CompressFormat.PNG, 100, fos);
+                bm1.compress(Bitmap.CompressFormat.PNG, 100, fos);
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
@@ -405,10 +440,10 @@ public class New_visitordetail extends BaseActivity implements
                             tv_spinner_state.setText(returnFlightChild.getString("Circle"));
 
                         }
-                        //Creating the ArrayAdapter instance having the country list  
+                        //Creating the ArrayAdapter instance having the country list
                         ArrayAdapter aa = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listSpinner);
                         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        //Setting the ArrayAdapter data on the Spinner  
+                        //Setting the ArrayAdapter data on the Spinner
                         spinner.setAdapter(aa);
                         aa.notifyDataSetChanged();
 
@@ -566,7 +601,7 @@ public class New_visitordetail extends BaseActivity implements
                                 empByDepartment = dataListEmp.get(position);
 
                                 departmentsEmp = empByDepartment.getName();
-                                String departmentsValueCode = empByDepartment.getEmpCode();
+                                int departmentsValueCode = empByDepartment.getId();
                                 empMobileNo = empByDepartment.getMobileNumber();
 
                                 tv_emp_code.setText(departmentsValueCode);
@@ -594,69 +629,6 @@ public class New_visitordetail extends BaseActivity implements
 
             @Override
             public void onFailure(@NonNull Call<EmployeeByDepartment> call, @NonNull Throwable t) {
-
-                // pDialog.dismiss();
-                Log.d("Error", t.getMessage());
-            }
-        });
-    }
-
-    private void getBranches() {
-
-        Runnable runnable = new Runnable() {
-            public void run() {
-                progressDialogInitialisaton();
-
-                handler.postDelayed(this, 5000);
-            }
-        };
-        runnable.run();
-
-        APIService service = ApiClient.getClient().create(APIService.class);
-        Call<Branches> call = service.getBranches("Bearer " + prefConfig.readToken());
-        call.enqueue(new Callback<Branches>() {
-            @Override
-            public void onResponse(@NonNull Call<Branches> call, @NonNull retrofit2.Response<Branches> response) {
-                if (response.body() != null) {
-                    try {
-                        if (response.body().getMessage().equalsIgnoreCase("Branches List")) {
-
-                            Log.d("Branchessssss", "" + response.body().getData());
-
-                            List<Branches.Data> dataList = response.body().getData();
-                            for (int i = 0; i < dataList.size(); i++) {
-                                Log.d("kjxngksjnkjsdn", dataList.toString());
-
-//                                HashSet<String> hashSet = new HashSet<String>();
-//                                hashSet.addAll(listBranches);
-//                                listBranches.clear();
-//                                listBranches.addAll(hashSet);
-                                listBranches.add(dataList.get(i).getBranchName());
-
-                            }
-                            //Creating the ArrayAdapter instance having the country list
-                            ArrayAdapter aa = new ArrayAdapter(New_visitordetail.this, android.R.layout.simple_spinner_item, listBranches);
-                            aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                            //Setting the ArrayAdapter data on the Spinner
-                            spinner_branches.setAdapter(aa);
-                            aa.notifyDataSetChanged();
-                            handler.removeCallbacks(runnable);
-                            pDialog.dismiss();
-
-
-                        }
-
-                    } catch (Exception e) {
-
-                    }
-                } else {
-                    Toast.makeText(New_visitordetail.this, "Wrong Credentials", Toast.LENGTH_SHORT).show();
-                }
-
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<Branches> call, @NonNull Throwable t) {
 
                 // pDialog.dismiss();
                 Log.d("Error", t.getMessage());
@@ -758,14 +730,28 @@ public class New_visitordetail extends BaseActivity implements
         RequestBody reqFile1 = RequestBody.create(MediaType.parse("image/*"), file);
         MultipartBody.Part image1 = MultipartBody.Part.createFormData("image", file.getName(), reqFile1);
 
+       /* RequestBody visitorName1 = RequestBody.create(MediaType.parse("text/plain"), "visitorName");
+        RequestBody Visitor_mobile_no1 = RequestBody.create(MediaType.parse("text/plain"), "Visitor_mobile_no");
+        RequestBody otp = RequestBody.create(MediaType.parse("text/plain"), "1234");
+        RequestBody Purposeofcomeing1 = RequestBody.create(MediaType.parse("text/plain"), Purposeofcomeing);
+        RequestBody pincode1 = RequestBody.create(MediaType.parse("text/plain"), pin_code.getText().toString());
+        RequestBody state1 = RequestBody.create(MediaType.parse("text/plain"), tv_spinner_state.getText().toString());
+        RequestBody cityValue1 = RequestBody.create(MediaType.parse("text/plain"), "cityValue");
+        RequestBody TxtTimeIn1 = RequestBody.create(MediaType.parse("text/plain"), TxtTimeIn);
+        RequestBody TxtTimeout1 = RequestBody.create(MediaType.parse("text/plain"), TxtTimeout);
+        RequestBody emp_code = RequestBody.create(MediaType.parse("text/plain"), tv_emp_code.getText().toString());
+        RequestBody departmentsEmp1 = RequestBody.create(MediaType.parse("text/plain"), departmentsEmp);
+        RequestBody empMobileNo1 = RequestBody.create(MediaType.parse("text/plain"), empMobileNo);*/
+
+        Log.d("tokennnnnnnnn", prefConfig.readToken());
+
         APIService service = ApiClient.getClient().create(APIService.class);
-        Call<ResponseBody> call = service.getVisitorRequest(prefConfig.readToken(), visitorName,
-                Visitor_mobile_no, "1234", Purposeofcomeing,
-                pin_code.getText().toString().trim(),
-                tv_spinner_state.getText().toString(), cityValue,
-                TxtTimeIn, TxtTimeout, tv_emp_code.getText().toString(),
-                departmentsEmp,
-                empMobileNo, image1, image1);
+        Call<ResponseBody> call = service.getVisitorRequest("Bearer " + prefConfig.readToken(), "visitorName", "9874563215"
+                , "1234", "Purposeofcomeing", "842002", "BIHAR"
+                , "SUSTA", "11:50 A.M."
+                , "11:50 P.M.", "9", departmentsEmp
+                , "9835202012"
+                , image1, image1);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -774,8 +760,8 @@ public class New_visitordetail extends BaseActivity implements
 
                     if (response.body().toString().equalsIgnoreCase("Visitor Created Successfully")) {
 
-                    Intent intent = new Intent(New_visitordetail.this,Visitorrequestcome_to_emplpyee.class);
-                    startActivity(intent);
+                        Intent intent = new Intent(New_visitordetail.this, Visitorrequestcome_to_emplpyee.class);
+                        startActivity(intent);
                     }
                 } else {
                     Toast.makeText(New_visitordetail.this, "Wrong Credentials", Toast.LENGTH_SHORT).show();
@@ -789,6 +775,81 @@ public class New_visitordetail extends BaseActivity implements
                 Log.d("Error", t.getMessage());
             }
         });
+    }
+
+    /*private void getBranches() {
+
+        Runnable runnable = new Runnable() {
+            public void run() {
+                progressDialogInitialisaton();
+
+                handler.postDelayed(this, 5000);
+            }
+        };
+        runnable.run();
+
+        APIService service = ApiClient.getClient().create(APIService.class);
+        Call<Branches> call = service.getBranches("Bearer " + prefConfig.readToken());
+        call.enqueue(new Callback<Branches>() {
+            @Override
+            public void onResponse(@NonNull Call<Branches> call, @NonNull retrofit2.Response<Branches> response) {
+                if (response.body() != null) {
+                    try {
+                        if (response.body().getMessage().equalsIgnoreCase("Branches List")) {
+
+                            Log.d("Branchessssss", "" + response.body().getData());
+
+                            List<Branches.Data> dataList = response.body().getData();
+                            for (int i = 0; i < dataList.size(); i++) {
+                                Log.d("kjxngksjnkjsdn", dataList.toString());
+
+//                                HashSet<String> hashSet = new HashSet<String>();
+//                                hashSet.addAll(listBranches);
+//                                listBranches.clear();
+//                                listBranches.addAll(hashSet);
+                                listBranches.add(dataList.get(i).getBranchName());
+
+                            }
+                            //Creating the ArrayAdapter instance having the country list
+                            ArrayAdapter aa = new ArrayAdapter(New_visitordetail.this, android.R.layout.simple_spinner_item, listBranches);
+                            aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            //Setting the ArrayAdapter data on the Spinner
+                            spinner_branches.setAdapter(aa);
+                            aa.notifyDataSetChanged();
+                            handler.removeCallbacks(runnable);
+                            pDialog.dismiss();
+
+
+                        }
+
+                    } catch (Exception e) {
+
+                    }
+                } else {
+                    Toast.makeText(New_visitordetail.this, "Wrong Credentials", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Branches> call, @NonNull Throwable t) {
+
+                // pDialog.dismiss();
+                Log.d("Error", t.getMessage());
+            }
+        });
+    }*/
+
+    private void onUpdateFailed() {
+        Toast.makeText(New_visitordetail.this, "Creating account failed", Toast.LENGTH_LONG).show();
+
+        //  btnCreateAccount.setEnabled(true);
+    }
+
+    private void requestFocus(View view) {
+        if (view.requestFocus()) {
+            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        }
     }
 
 }

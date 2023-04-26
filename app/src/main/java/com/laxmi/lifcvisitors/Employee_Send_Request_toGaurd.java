@@ -55,7 +55,7 @@ public class Employee_Send_Request_toGaurd extends AppCompatActivity {
 
         APIService service = ApiClient.getClient().create(APIService.class);
 
-        Call<VisitorsByGuard> call = service.getVisitorsByGuard(prefConfig.readToken());
+        Call<VisitorsByGuard> call = service.getVisitorsByGuard("220|1sOJv702mE0YfTnbETyqW6DhAO5qT21izSo2lDFE");
         call.enqueue(new Callback<VisitorsByGuard>() {
             @Override
             public void onResponse(Call<VisitorsByGuard> call, Response<VisitorsByGuard> response) {

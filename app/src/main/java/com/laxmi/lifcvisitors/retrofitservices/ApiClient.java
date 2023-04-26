@@ -30,8 +30,9 @@ public class ApiClient {
                             chain -> {
                                 Request original = chain.request();
                                 // Request customization: add request headers
-                                Request.Builder requestBuilder =original.newBuilder().
-                                        method(original.method(), original.body());
+                                Request.Builder requestBuilder =original.newBuilder()
+                                        .addHeader("Authorization", "Bearer " + "232|XKqMfxfbIMP8pHUjQ23W3hOC0kz11KX6awsn1mcy")
+                                                .method(original.method(), original.body());
                                 Request request = requestBuilder.build();
                                 return chain.proceed(request);
                             })

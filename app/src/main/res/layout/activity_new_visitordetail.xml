@@ -357,8 +357,8 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_alignParentEnd="true"
-                android:layout_toEndOf="@id/visitor_photo"
                 android:layout_marginTop="40dp"
+                android:layout_toEndOf="@id/visitor_photo"
                 android:src="@drawable/camera" />
         </RelativeLayout>
 
@@ -497,9 +497,9 @@
                 android:id="@+id/btn__in_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
-                android:layout_alignParentRight="true"
                 android:layout_toEndOf="@+id/in_time"
+                android:layout_toRightOf="@+id/in_time"
+                android:layout_below="@+id/btn_out_time"
                 android:text="SELECT IN TIME" />
 
         </RelativeLayout>
@@ -595,6 +595,7 @@
                 android:singleLine="true" />
         </LinearLayout>
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -622,10 +623,7 @@
                 android:singleLine="true" />
         </LinearLayout>
 
-
-
-
-<TextView
+        <TextView
     android:id="@+id/tv_emp_code"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"

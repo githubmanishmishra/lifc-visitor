@@ -48,10 +48,10 @@ public class Profile {
         private String empCode;
         @SerializedName("name")
         @Expose
-        private Object name;
+        private String name;
         @SerializedName("email")
         @Expose
-        private Object email;
+        private String email;
         @SerializedName("mobile_number")
         @Expose
         private String mobileNumber;
@@ -60,13 +60,13 @@ public class Profile {
         private String otp;
         @SerializedName("email_verified_at")
         @Expose
-        private Object emailVerifiedAt;
+        private String emailVerifiedAt;
         @SerializedName("reporting_branch")
         @Expose
-        private Object reportingBranch;
+        private String reportingBranch;
         @SerializedName("department")
         @Expose
-        private Object department;
+        private String department;
         @SerializedName("role")
         @Expose
         private String role;
@@ -96,19 +96,19 @@ public class Profile {
             this.empCode = empCode;
         }
 
-        public Object getName() {
+        public String getName() {
             return name;
         }
 
-        public void setName(Object name) {
+        public void setName(String name) {
             this.name = name;
         }
 
-        public Object getEmail() {
+        public String getEmail() {
             return email;
         }
 
-        public void setEmail(Object email) {
+        public void setEmail(String email) {
             this.email = email;
         }
 
@@ -128,27 +128,27 @@ public class Profile {
             this.otp = otp;
         }
 
-        public Object getEmailVerifiedAt() {
+        public String getEmailVerifiedAt() {
             return emailVerifiedAt;
         }
 
-        public void setEmailVerifiedAt(Object emailVerifiedAt) {
+        public void setEmailVerifiedAt(String emailVerifiedAt) {
             this.emailVerifiedAt = emailVerifiedAt;
         }
 
-        public Object getReportingBranch() {
+        public String getReportingBranch() {
             return reportingBranch;
         }
 
-        public void setReportingBranch(Object reportingBranch) {
+        public void setReportingBranch(String reportingBranch) {
             this.reportingBranch = reportingBranch;
         }
 
-        public Object getDepartment() {
+        public String getDepartment() {
             return department;
         }
 
-        public void setDepartment(Object department) {
+        public void setDepartment(String department) {
             this.department = department;
         }
 
