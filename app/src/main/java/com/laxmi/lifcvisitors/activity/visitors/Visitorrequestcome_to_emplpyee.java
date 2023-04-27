@@ -57,6 +57,10 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
 
         prefConfig = new PrefConfig(this);
 
+        btn_approve = findViewById(R.id.btn_approve);
+        btn_disapprove = findViewById(R.id.btn_disapprove);
+        ev_disapprove = findViewById(R.id.ev_disapprove);
+
         Bundle mBundle = getIntent().getExtras();
         if (mBundle != null) {
             visitorId = mBundle.getString("visitorId");
@@ -69,7 +73,16 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
             UserImage = mBundle.getString("UserImage");
             Status = mBundle.getString("Status");
 
+
         }
+
+       /* if(Status.equalsIgnoreCase("Pending")){
+            btn_approve.setVisibility(View.VISIBLE);
+            btn_disapprove.setVisibility(View.VISIBLE);
+        }else {
+            btn_approve.setVisibility(View.GONE);
+            btn_disapprove.setVisibility(View.GONE);
+        }*/
 
         tv_visitor_name = findViewById(R.id.tv_visitor_name);
         tv_visitor_name2 = findViewById(R.id.tv_visitor_name2);
@@ -118,17 +131,6 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
         ArrayAdapter<String> springAdapter_Conference = new ArrayAdapter<>(this,
                 android.R.layout.simple_dropdown_item_1line, arrConference);
         spinner_Conference.setAdapter(springAdapter_Conference);
-        btn_approve = findViewById(R.id.btn_approve);
-        btn_disapprove = findViewById(R.id.btn_disapprove);
-        ev_disapprove = findViewById(R.id.ev_disapprove);
-
-        if(Status.equalsIgnoreCase("Pending")){
-            btn_approve.setVisibility(View.VISIBLE);
-            btn_disapprove.setVisibility(View.VISIBLE);
-        }else {
-            btn_approve.setVisibility(View.GONE);
-            btn_disapprove.setVisibility(View.GONE);
-        }
 
 
         btn_disapprove.setOnClickListener(new View.OnClickListener() {
@@ -159,6 +161,7 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
             public void onClick(View view) {
                  getVisitorApproval();
             }
+
         });
     }
 

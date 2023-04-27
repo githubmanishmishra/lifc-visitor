@@ -49,7 +49,7 @@ public class DetailActivity extends AppCompatActivity {
             mEmailTime.setText(mBundle.getString("time"));
            String Status = mBundle.getString("Status");
 
-           if(Status.equalsIgnoreCase("Pending") |Status.equalsIgnoreCase("Disapprove") ){
+          /* if(Status.equalsIgnoreCase("Pending") |Status.equalsIgnoreCase("Disapprove") ){
                btn_status.setOnClickListener(null);
                Toast.makeText(DetailActivity.this, "Wait for Approval", Toast.LENGTH_SHORT).show();
 
@@ -62,7 +62,16 @@ public class DetailActivity extends AppCompatActivity {
 
                    }
                });
-           }
+           }*/
+
+            btn_status.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    startActivity(new Intent(DetailActivity.this, Office_boyassign.class));
+
+                }
+            });
 
             btn_status.setText("Assign Office Boy");
         }
