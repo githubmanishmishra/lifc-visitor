@@ -78,160 +78,107 @@
             android:textStyle="bold" />
     </RelativeLayout>
 
-<!--
-        <RelativeLayout
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp">
+            android:padding="10dp"
+            android:text="VisitorName"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/tv_visitor_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="Visitor Name -           "
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/ev_visitor_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_toRightOf="@+id/tv_visitor_name"
-                android:background="@drawable/bgtext"
-                android:padding="10dp"
-                android:singleLine="true" />
-
-        </RelativeLayout>
--->
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        <TextView
+            android:id="@+id/tv_visitor_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/visitor_name"
-            android:layout_marginStart="5dp">
+            android:background="@drawable/rounded_corner"
+            android:padding="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:textColor="@color/black" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/ev_visitor_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="12dp"
-                android:layout_margin="10dp"
-                android:singleLine="true"/>
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/second_visitor_name"
-            android:layout_marginStart="5dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/ev_visitor_name2nd"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="12dp"
-                android:layout_margin="10dp"
-                android:singleLine="true"/>
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:padding="10dp"
+            android:text="Visitor Name One"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/tv_visitor_name2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/third_visitor_name"
-            android:layout_marginStart="5dp">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/ev_visitor_name3rd"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="12dp"
-                android:layout_margin="10dp"
-                android:singleLine="true"/>
-        </com.google.android.material.textfield.TextInputLayout>
+            android:background="@drawable/rounded_corner"
+            android:padding="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:textColor="@color/black" />
 
-
-<!--
-        <RelativeLayout
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp">
-            <TextView
-                android:id="@+id/tv_visitormob"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="Mobile No. - +91          "
-                android:textSize="16sp"
-                android:textStyle="bold" />
-            <EditText
-                android:id="@+id/ev_visitor_mobile_no"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:layout_toEndOf="@+id/tv_visitormob"
-                android:background="@drawable/bgtext"
-                android:padding="10dp"
-                android:singleLine="true"/>
-        </RelativeLayout>
--->
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:padding="10dp"
+            android:text="Visitor Name Three"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/tv_visitor_name3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/visitor_phoneno_91">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/mobile_no"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:inputType="phone"
-                android:maxLength="10"
-                android:layout_margin="10dp"
-                android:singleLine="true" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-<!--
-        <RelativeLayout
+            android:background="@drawable/rounded_corner"
+            android:padding="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:textColor="@color/black" />
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp">
-            <TextView
-                android:id="@+id/tv_visitor_purpose"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="Purpose of Coming   "
-                android:textSize="16sp"
-                android:textStyle="bold"/>
-            <EditText
-                android:id="@+id/emp_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_toEndOf="@+id/tv_visitor_purpose"
-                android:background="@drawable/bgtext"
-                android:padding="10dp"
-                android:singleLine="true" />
-        </RelativeLayout>
--->
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:padding="10dp"
+            android:text="VisitoMobileNo-"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/tv_visitor_mobile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/purpose_of_meeting">
+            android:background="@drawable/rounded_corner"
+            android:padding="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:textColor="@color/black" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Purpose of Meeting"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/tv_purpose_of_meeting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_corner"
+            android:padding="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:textColor="@color/black" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/purposeof_coming"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:layout_margin="10dp"
-                android:singleLine="true" />
-        </com.google.android.material.textfield.TextInputLayout>
+
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -290,9 +237,9 @@
         </LinearLayout>
         <EditText
             android:id="@+id/ev_disapprove"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Remark*"
+            android:hint="Disapprove Reason *"
             android:textColorHint="@color/red"
             android:textColor="@color/red"
             android:visibility="invisible"/>

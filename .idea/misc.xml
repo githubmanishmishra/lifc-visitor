@@ -3,12 +3,28 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ASUS/Downloads/lifc-visitor/app/src/main/res/drawable/btn_bg_rectangle.xml" value="0.1665" />
+        <entry key="..\:/Users/ASUS/Downloads/lifc-visitor/app/src/main/res/drawable/button_style_custom.xml" value="0.1665" />
+        <entry key="..\:/Users/ASUS/Downloads/lifc-visitor/app/src/main/res/drawable/button_with_shdow.xml" value="0.1665" />
+        <entry key="..\:/Users/ASUS/Downloads/lifc-visitor/app/src/main/res/drawable/custom_edit_text.xml" value="0.1665" />
+        <entry key="..\:/Users/ASUS/Downloads/lifc-visitor/app/src/main/res/drawable/rounded_corner.xml" value="0.1665" />
+        <entry key="..\:/Users/ASUS/Downloads/lifc-visitor/app/src/main/res/drawable/rounded_drawable.xml" value="0.1665" />
+        <entry key="..\:/Users/ASUS/Downloads/lifc-visitor/app/src/main/res/layout/activity_detail.xml" value="0.25" />
         <entry key="..\:/Users/ASUS/Downloads/lifc-visitor/app/src/main/res/layout/activity_employee_dashboard.xml" value="0.25" />
+        <entry key="..\:/Users/ASUS/Downloads/lifc-visitor/app/src/main/res/layout/activity_employee_send_request_to_gaurd.xml" value="0.25" />
         <entry key="..\:/Users/ASUS/Downloads/lifc-visitor/app/src/main/res/layout/activity_gaurd_dashboard.xml" value="0.25" />
+        <entry key="..\:/Users/ASUS/Downloads/lifc-visitor/app/src/main/res/layout/activity_gaurd_login.xml" value="0.25" />
+        <entry key="..\:/Users/ASUS/Downloads/lifc-visitor/app/src/main/res/layout/activity_guard_send_request_to_employee_list.xml" value="0.25" />
         <entry key="..\:/Users/ASUS/Downloads/lifc-visitor/app/src/main/res/layout/activity_guardprofile.xml" value="0.25" />
         <entry key="..\:/Users/ASUS/Downloads/lifc-visitor/app/src/main/res/layout/activity_new_visitordetail.xml" value="0.25" />
+        <entry key="..\:/Users/ASUS/Downloads/lifc-visitor/app/src/main/res/layout/activity_office_boyassign.xml" value="0.25" />
+        <entry key="..\:/Users/ASUS/Downloads/lifc-visitor/app/src/main/res/layout/activity_visitorrequestcome_to_emplpyee.xml" value="0.25" />
+        <entry key="..\:/Users/ASUS/Downloads/lifc-visitor/app/src/main/res/layout/app_bar_mainguard.xml" value="0.25" />
         <entry key="..\:/Users/ASUS/Downloads/lifc-visitor/app/src/main/res/layout/content_main.xml" value="0.25" />
+        <entry key="..\:/Users/ASUS/Downloads/lifc-visitor/app/src/main/res/layout/content_mainguard.xml" value="0.25" />
+        <entry key="..\:/Users/ASUS/Downloads/lifc-visitor/app/src/main/res/layout/dashboard_fragment.xml" value="0.25" />
         <entry key="..\:/Users/ASUS/Downloads/lifc-visitor/app/src/main/res/layout/guard_dashboard.xml" value="0.25" />
+        <entry key="..\:/Users/ASUS/Downloads/lifc-visitor/app/src/main/res/layout/recyelerview_floor_item.xml" value="0.25" />
         <entry key="..\:/Users/ASUS/Downloads/lifc-visitor/app/src/main/res/menu/guard_menu.xml" value="0.25" />
       </map>
     </option>

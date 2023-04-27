@@ -17,7 +17,7 @@
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/tvEmailSender"
+        android:id="@+id/tv_visitor_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -29,10 +29,10 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/tvEmailTitle"
+        android:id="@+id/tv_visitor_mobile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvEmailSender"
+        android:layout_below="@+id/tv_visitor_name"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
@@ -42,10 +42,10 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/tvEmailDetails"
+        android:id="@+id/tv_visitor_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvEmailTitle"
+        android:layout_below="@+id/tv_visitor_mobile"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
@@ -53,24 +53,25 @@
         android:layout_toRightOf="@+id/tvIcon"
         android:ellipsize="end"
         android:maxLines="1"
-        android:text="This is a very long text and we need to show 3...(dots)" />
+        android:text="This is a very long " />
 
     <TextView
-        android:id="@+id/tvEmailTime"
+        android:id="@+id/tvTimeIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@id/tvEmailSender"
+        android:layout_alignBaseline="@id/tv_visitor_name"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:text="TextView" />
 
-    <ImageView
-        android:id="@+id/ivFavorite"
+    <TextView
+        android:id="@+id/tv_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvEmailTime"
+        android:layout_below="@+id/tvTimeIn"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:padding="5dp"
-        android:src="@drawable/ic_star_black_24dp" />
+        android:text="TextView" />
+
+
 </RelativeLayout>

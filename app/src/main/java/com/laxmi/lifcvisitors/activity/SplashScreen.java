@@ -6,12 +6,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
-import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.laxmi.lifcvisitors.R;
+import com.laxmi.lifcvisitors.activity.employee.EmployeeDashboard;
 import com.laxmi.lifcvisitors.activity.guard.GuardDashboard;
 import com.laxmi.lifcvisitors.savedata.PrefConfig;
 
@@ -20,14 +20,15 @@ import com.laxmi.lifcvisitors.savedata.PrefConfig;
 public class SplashScreen extends AppCompatActivity {
     private static final String TAG = "AnimationStarter";
     public static PrefConfig prefConfig;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
         prefConfig = new PrefConfig(this);
         LottieAnimationView lottie = findViewById(R.id.lottie);
-      //  final ImageView bounceBallImage = findViewById(R.id.bounceBallImage);
-       lottie.clearAnimation();
+        //  final ImageView bounceBallImage = findViewById(R.id.bounceBallImage);
+        lottie.clearAnimation();
         TranslateAnimation transAnim = new TranslateAnimation(0, 0, 0, 0);
         transAnim.setStartOffset(1000);
         transAnim.setDuration(5000);
@@ -37,6 +38,7 @@ public class SplashScreen extends AppCompatActivity {
             public void onAnimationStart(Animation animation) {
                 Log.i(TAG, "Starting button dropdown animation");
             }
+
             @Override
             public void onAnimationRepeat(Animation animation) {
                 // TODO Auto-generated method stub
@@ -47,11 +49,14 @@ public class SplashScreen extends AppCompatActivity {
             public void onAnimationEnd(Animation animation) {
 
                 if (prefConfig.readLoginStatus()) {
-                    startActivity(new Intent(SplashScreen.this, GuardDashboard.class));
-                    finish();
-                }
-                else
-                {
+                    if (prefConfig.readType().equalsIgnoreCase("Guard")) {
+                        startActivity(new Intent(SplashScreen.this, GuardDashboard.class));
+                        finish();
+                    }else {
+                        startActivity(new Intent(SplashScreen.this, EmployeeDashboard.class));
+                        finish();
+                    }
+                } else {
                     startActivity(new Intent(SplashScreen.this, MainActivity.class));
                     finish();
                 }
@@ -62,8 +67,7 @@ public class SplashScreen extends AppCompatActivity {
 
     }
 
-    private int getDisplayHeight()
-    {
+    private int getDisplayHeight() {
         return this.getResources().getDisplayMetrics().heightPixels;
 
     }

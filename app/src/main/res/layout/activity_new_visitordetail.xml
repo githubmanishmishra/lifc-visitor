@@ -40,6 +40,7 @@
             android:id="@+id/lifc_logo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <TextView
                 android:id="@+id/mywidget"
                 android:layout_width="match_parent"
@@ -54,16 +55,19 @@
                 android:textColor="#ff4500"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+
             <ImageView
                 android:id="@+id/elipse_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ellipse_1" />
+
             <ImageView
                 android:id="@+id/elipse_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ellipse_2" />
+
             <ImageView
                 android:id="@+id/logo_3"
                 android:layout_width="wrap_content"
@@ -71,7 +75,7 @@
                 android:layout_below="@id/elipse_1"
                 android:layout_centerInParent="true"
                 android:layout_marginBottom="10dp"
-                android:src="@drawable/life_logo"/>
+                android:src="@drawable/life_logo" />
         </RelativeLayout>
 
         <!--<RelativeLayout
@@ -100,26 +104,26 @@
                 android:singleLine="true" />
 
         </RelativeLayout>-->
-<!--
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:hint="  Visitor Name">
+        <!--
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:hint="  Visitor Name">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/ev_visitor_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:padding="12dp"
-                android:singleLine="true" />
-        </com.google.android.material.textfield.TextInputLayout>
--->
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/ev_visitor_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:padding="12dp"
+                        android:singleLine="true" />
+                </com.google.android.material.textfield.TextInputLayout>
+        -->
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/visitor_name"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-           android:id="@+id/visitor_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp">
@@ -140,6 +144,7 @@
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="5dp"
             android:background="@drawable/baseline_add_box_24" />
+
         <LinearLayout
             android:id="@+id/editTextContainer"
             android:layout_width="match_parent"
@@ -149,11 +154,11 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:hint="  Visitor Name">
+                android:hint="  Visitor Name 1">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ev_visitor_one"
                     android:layout_width="match_parent"
@@ -162,12 +167,14 @@
                     android:padding="12dp"
                     android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:hint="  Visitor Name">
+                android:hint="  Visitor Name 2">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ev_visitor_two"
                     android:layout_width="match_parent"
@@ -176,12 +183,13 @@
                     android:padding="12dp"
                     android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:hint="  Visitor Name">
+                android:hint="  Visitor Name 3">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ev_visitor_three"
@@ -192,6 +200,7 @@
                     android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
@@ -206,41 +215,41 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-<!--
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/purpose_of_meeting">
+        <!--
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/purpose_of_meeting">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/purposeof_coming"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:padding="10dp"
-                android:singleLine="true" />
-        </com.google.android.material.textfield.TextInputLayout>
--->
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/purposeof_coming"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:padding="10dp"
+                        android:singleLine="true" />
+                </com.google.android.material.textfield.TextInputLayout>
+        -->
 
-<!--
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/visitor_phoneno_91">
+        <!--
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/visitor_phoneno_91">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/mobile_no"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:inputType="phone"
-                android:maxLength="10"
-                android:padding="10dp"
-                android:singleLine="true" />
-        </com.google.android.material.textfield.TextInputLayout>
--->
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/mobile_no"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:inputType="phone"
+                        android:maxLength="10"
+                        android:padding="10dp"
+                        android:singleLine="true" />
+                </com.google.android.material.textfield.TextInputLayout>
+        -->
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
@@ -253,7 +262,7 @@
                 android:layout_height="60dp"
                 android:hint="Visitor Phone-No"
                 android:inputType="phone"
-                android:maxLength="10"/>
+                android:maxLength="10" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -266,12 +275,12 @@
                 android:id="@+id/btn_otp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="end"
                 android:layout_marginLeft="280dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:padding="10dp"
-                android:text="Getotp"
-                android:layout_gravity="end"/>
+                android:text="Getotp" />
 
             <TextView
                 android:id="@+id/textView1"
@@ -338,7 +347,7 @@
                 android:padding="10dp"
                 android:text="@string/visitor_photo"
                 android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <!--     <androidx.appcompat.widget.AppCompatButton
                      android:id="@+id/btn_uploadphoto"
@@ -366,6 +375,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
@@ -380,28 +390,28 @@
                     android:hint="@string/pincode"
                     android:inputType="phone"
                     android:maxLength="6"
-                    android:singleLine="true"/>
+                    android:singleLine="true" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
 
-<!--
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="@string/pincode">
+            <!--
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:hint="@string/pincode">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/pin_code"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:padding="10dp"
-                     />
-            </com.google.android.material.textfield.TextInputLayout>
--->
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/pin_code"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="10dp"
+                                android:padding="10dp"
+                                 />
+                        </com.google.android.material.textfield.TextInputLayout>
+            -->
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_submiit"
@@ -476,7 +486,14 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
+                android:padding="10dp"
+                android:layout_marginEnd="10dp"
+                android:focusable="false"
+                android:clickable="false"
+                android:hint="Time Out"
+                android:background="@drawable/rounded_corner"
                 android:layout_marginTop="22dp" />
+
             <Button
                 android:id="@+id/btn_out_time"
                 android:layout_width="wrap_content"
@@ -491,15 +508,22 @@
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/btn_out_time"
+                android:background="@drawable/rounded_corner"
+                android:padding="10dp"
+                android:hint="Time In"
+                android:focusable="false"
+                android:clickable="false"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_alignParentStart="true" />
 
             <Button
                 android:id="@+id/btn__in_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_out_time"
                 android:layout_toEndOf="@+id/in_time"
                 android:layout_toRightOf="@+id/in_time"
-                android:layout_below="@+id/btn_out_time"
                 android:text="SELECT IN TIME" />
 
         </RelativeLayout>
@@ -510,13 +534,13 @@
             android:layout_height="wrap_content">
 
             <TextView
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text = "WHOM TO MEET"
+                android:text="WHOM TO MEET"
                 android:textAlignment="center"
                 android:textColor="@color/red"
                 android:textSize="18sp"
+                android:layout_marginTop="10dp"
                 android:textStyle="bold" />
         </RelativeLayout>
 
@@ -581,7 +605,8 @@
                 android:padding="10dp"
                 android:text="@string/branch"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:visibility="gone" />
 
             <Spinner
                 android:id="@+id/spinner_branches"
@@ -592,7 +617,8 @@
                 android:background="@drawable/bgtext"
                 android:dropDownHeight="100dp"
                 android:padding="20dp"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:visibility="gone" />
         </LinearLayout>
 
 
@@ -624,18 +650,31 @@
         </LinearLayout>
 
         <TextView
-    android:id="@+id/tv_emp_code"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="10dp"
-    android:textColor="@color/white"
-    android:background="@drawable/btn_bg_rectangle"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Employee Code"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="10dp"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_emp_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_corner"
+            android:padding="10dp"
+            android:layout_margin="20dp"
+            android:textColor="@color/black" />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/sendrequest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/btn_bg_rectangle"
             android:padding="20dp"
             android:text="@string/send_request"

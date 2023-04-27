@@ -13,36 +13,36 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.laxmi.lifcvisitors.R;
-import com.laxmi.lifcvisitors.retrofitservices.VisitorsByEmployee;
+import com.laxmi.lifcvisitors.model.VisitorsByGuard;
 
 import java.util.List;
 import java.util.Random;
 
-public class MailAdapter extends RecyclerView.Adapter<MailViewHolder> {
+public class MailAdapterGuard extends RecyclerView.Adapter<MailViewHolderGuard> {
 
-    private List<VisitorsByEmployee.Data> mEmailData;
+    private List<VisitorsByGuard.Data> mEmailData;
     private Context mContext;
 
-    public MailAdapter(Context mContext, List<VisitorsByEmployee.Data> mEmailData) {
+    public MailAdapterGuard(Context mContext, List<VisitorsByGuard.Data> mEmailData) {
         this.mEmailData = mEmailData;
         this.mContext = mContext;
     }
 
     @Override
-    public MailViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MailViewHolderGuard onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyelerview_floor_item,
                 parent, false);
-        return new MailViewHolder(view);
+        return new MailViewHolderGuard(view);
     }
 
     @Override
-    public void onBindViewHolder(final MailViewHolder holder, int position) {
+    public void onBindViewHolder(final MailViewHolderGuard holder, int position) {
         holder.mIcon.setText(mEmailData.get(position).getName().substring(0, 1));
         holder.tv_visitor_name.setText(mEmailData.get(position).getName());
         holder.tv_visitor_mobile.setText(mEmailData.get(position).getMobileNumber());
         holder.tv_status.setText(mEmailData.get(position).getStatus());
-        holder.tv_visitor_address.setText(mEmailData.get(position).getCity() + ", " + mEmailData.get(position).getState());
-        holder.tvTimeIn.setText("Check In " + mEmailData.get(position).getCheckIn());
+        holder.tv_visitor_address.setText(mEmailData.get(position).getCity()+ ", "+mEmailData.get(position).getState());
+        holder.tvTimeIn.setText("Check In "+mEmailData.get(position).getCheckIn());
         Random mRandom = new Random();
         final int color = Color.argb(255, mRandom.nextInt(256), mRandom.nextInt(256), mRandom.nextInt(256));
         ((GradientDrawable) holder.mIcon.getBackground()).setColor(color);
@@ -56,8 +56,20 @@ public class MailAdapter extends RecyclerView.Adapter<MailViewHolder> {
                 mIntent.putExtra("details", holder.tv_visitor_address.getText().toString());
                 mIntent.putExtra("time", holder.tvTimeIn.getText().toString());
                 mIntent.putExtra("icon", holder.mIcon.getText().toString());
-                mIntent.putExtra("tv_status", holder.tv_status.getText().toString());
+                mIntent.putExtra("Status", holder.tv_status.getText().toString());
                 mIntent.putExtra("colorIcon", color);
+
+                 /*  Intent mIntent = new Intent(GuardSendRequestToEmployeeList.this, DetailActivity.class);
+                        mIntent.putExtra("visitorId", newArrival.getId());
+                        mIntent.putExtra("VisitorName", newArrival.getName());
+                        mIntent.putExtra("VisitorOne", newArrival.getNameOne());
+                        mIntent.putExtra("VisitorTwo", newArrival.getNameTwo());
+                        mIntent.putExtra("VisitorThree", newArrival.getNameThree());
+                        mIntent.putExtra("Purpose", newArrival.getPurposeOfComing());
+                        mIntent.putExtra("MobileNo", newArrival.getMobileNumber());
+                        mIntent.putExtra("UserImage", newArrival.getImage());
+                        mIntent.putExtra("Status", newArrival.getStatus());
+                        startActivity(mIntent);*/
                 mContext.startActivity(mIntent);
             }
         });
@@ -70,7 +82,7 @@ public class MailAdapter extends RecyclerView.Adapter<MailViewHolder> {
     }
 }
 
-class MailViewHolder extends RecyclerView.ViewHolder {
+class MailViewHolderGuard extends RecyclerView.ViewHolder {
 
     TextView mIcon;
     TextView tv_visitor_name;
@@ -80,7 +92,7 @@ class MailViewHolder extends RecyclerView.ViewHolder {
     TextView tv_status;
     RelativeLayout mLayout;
 
-    MailViewHolder(View itemView) {
+    MailViewHolderGuard(View itemView) {
         super(itemView);
 
         mIcon = itemView.findViewById(R.id.tvIcon);

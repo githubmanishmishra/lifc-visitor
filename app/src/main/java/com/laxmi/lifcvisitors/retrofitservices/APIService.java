@@ -8,8 +8,6 @@ import com.laxmi.lifcvisitors.model.Profile;
 import com.laxmi.lifcvisitors.model.VisitorsByGuard;
 
 import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
-import okhttp3.Response;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -42,6 +40,9 @@ public interface APIService {
                                          @Part("check_in") String check_in,
                                          @Part("check_out") String check_out,
                                          @Part("employee_id") String employee_id,
+                                         @Part("name_one") String name_one,
+                                         @Part("name_two") String name_two,
+                                         @Part("name_three") String name_three,
                                          @Part("employee_name") String employee_name,
                                          @Part("employee_mobile_number") String employee_mobile_number,
                                          @Part MultipartBody.Part address_proof_image,
@@ -119,6 +120,15 @@ public interface APIService {
     @POST("feedback/update")
     Call<MSG> getFeedbackUpdate(@Field("status") String status,
                                 @Field("message") String message
+    );
+
+    @FormUrlEncoded
+    @POST("visitor/status/update")
+    Call<MSG> getVisitorStatusUpdate(@Header("Token") String token,
+                                     @Field("visitor_id") String visitor_id,
+                                     @Field("status") String status,
+                                     @Field("meet_place") String meet_place,
+                                     @Field("disapprove_reason") String disapprove_reason
     );
 
     @Headers({"Content-Type: application/json;charset=UTF-8"})

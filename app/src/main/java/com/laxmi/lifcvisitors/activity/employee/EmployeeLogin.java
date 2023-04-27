@@ -14,6 +14,8 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.laxmi.lifcvisitors.R;
+import com.laxmi.lifcvisitors.activity.guard.GaurdLogin;
+import com.laxmi.lifcvisitors.activity.guard.GuardDashboard;
 import com.laxmi.lifcvisitors.model.MSG;
 import com.laxmi.lifcvisitors.retrofitservices.APIService;
 import com.laxmi.lifcvisitors.retrofitservices.ApiClient;
@@ -108,12 +110,15 @@ public class EmployeeLogin extends AppCompatActivity {
 
                     Log.d("token>>>>", response.body().getToken());*/
                     if (response.body().getMessage().equalsIgnoreCase("Login Successfully")) {
-                        prefConfig.writeLoginStatus(true);
-                        prefConfig.writeName("Employee", response.body().getToken());
-                        Log.d("token>>>>>>>>>>>>", response.body().getToken());
-                        Intent intents = new Intent(EmployeeLogin.this, EmployeeDashboard.class);
-                        startActivity(intents);
-                        Toast.makeText(EmployeeLogin.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                        if(response.body().getType().equalsIgnoreCase("Employee")){
+                            prefConfig.writeLoginStatus(true);
+                            prefConfig.writeName("Guard", response.body().getToken(), response.body().getType());
+                            Log.d("token>>>>>>>>>>>>", response.body().getToken());
+
+                            Intent intents = new Intent(EmployeeLogin.this, EmployeeDashboard.class);
+                            startActivity(intents);
+                            Toast.makeText(EmployeeLogin.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
                 else

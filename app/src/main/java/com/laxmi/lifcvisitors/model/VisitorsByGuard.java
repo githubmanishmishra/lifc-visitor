@@ -50,6 +50,15 @@ public class VisitorsByGuard {
         @SerializedName("name")
         @Expose
         private String name;
+        @SerializedName("name_one")
+        @Expose
+        private String nameOne;
+        @SerializedName("name_two")
+        @Expose
+        private String nameTwo;
+        @SerializedName("name_three")
+        @Expose
+        private String nameThree;
         @SerializedName("mobile_number")
         @Expose
         private String mobileNumber;
@@ -58,7 +67,7 @@ public class VisitorsByGuard {
         private String otp;
         @SerializedName("image")
         @Expose
-        private Object image;
+        private String image;
         @SerializedName("address_proof_image")
         @Expose
         private Object addressProofImage;
@@ -129,6 +138,30 @@ public class VisitorsByGuard {
             this.name = name;
         }
 
+        public String getNameOne() {
+            return nameOne;
+        }
+
+        public void setNameOne(String nameOne) {
+            this.nameOne = nameOne;
+        }
+
+        public String getNameTwo() {
+            return nameTwo;
+        }
+
+        public void setNameTwo(String nameTwo) {
+            this.nameTwo = nameTwo;
+        }
+
+        public String getNameThree() {
+            return nameThree;
+        }
+
+        public void setNameThree(String nameThree) {
+            this.nameThree = nameThree;
+        }
+
         public String getMobileNumber() {
             return mobileNumber;
         }
@@ -145,11 +178,11 @@ public class VisitorsByGuard {
             this.otp = otp;
         }
 
-        public Object getImage() {
+        public String getImage() {
             return image;
         }
 
-        public void setImage(Object image) {
+        public void setImage(String image) {
             this.image = image;
         }
 
@@ -272,6 +305,7 @@ public class VisitorsByGuard {
         public void setUpdatedAt(String updatedAt) {
             this.updatedAt = updatedAt;
         }
+
 
     }
 }

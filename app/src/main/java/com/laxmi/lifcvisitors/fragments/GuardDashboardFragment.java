@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import com.laxmi.lifcvisitors.R;
 import com.laxmi.lifcvisitors.activity.guard.GuardDashboard;
 import com.laxmi.lifcvisitors.activity.guard.GuardProfileActivity;
+import com.laxmi.lifcvisitors.activity.guard.GuardSendRequestToEmployeeList;
 import com.laxmi.lifcvisitors.activity.visitors.New_visitordetail;
 import com.laxmi.lifcvisitors.languageconvert.LocaleManager;
 import static com.laxmi.lifcvisitors.languageconvert.LocaleManager.setNewLocale;
@@ -24,7 +25,7 @@ import static com.laxmi.lifcvisitors.languageconvert.LocaleManager.setNewLocale;
 import java.util.Objects;
 
 public class GuardDashboardFragment extends Fragment {
-    TextView tv_newvisitor, tv_my_profile;
+    TextView tv_newvisitor, tv_my_profile,total_visitor_count;
     Intent intent;
 
 
@@ -37,6 +38,15 @@ public class GuardDashboardFragment extends Fragment {
         tv_newvisitor.setOnClickListener(view1 -> {
             intent = new Intent(getContext(), New_visitordetail.class);
             startActivity(intent);
+        });
+
+        total_visitor_count = view.findViewById(R.id.total_visitor_count);
+
+        total_visitor_count.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), GuardSendRequestToEmployeeList.class));
+            }
         });
 
         tv_my_profile.setOnClickListener(view1 -> {

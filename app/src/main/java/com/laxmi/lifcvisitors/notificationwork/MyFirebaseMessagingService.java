@@ -9,6 +9,8 @@ import androidx.annotation.NonNull;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.laxmi.lifcvisitors.activity.employee.EmployeeDashboard;
+import com.laxmi.lifcvisitors.activity.employee.EmployeeLogin;
 import com.laxmi.lifcvisitors.activity.guard.GuardDashboard;
 import com.laxmi.lifcvisitors.savedata.PrefConfig;
 
@@ -117,17 +119,35 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             MyNotificationManager mNotificationManager = new MyNotificationManager(getApplicationContext());
 
             //creating an intent for the notification
-            Intent intent = new Intent(getApplicationContext(), GuardDashboard.class);
+            if(prefConfig.readLoginStatus()){
+                if(prefConfig.readType().equalsIgnoreCase("Guard")){
+                    Intent intent = new Intent(getApplicationContext(), GuardDashboard.class);
 
-            //if there is no image
-            if (imageUrl.equals("null")) {
-                //displaying small notification
-                mNotificationManager.showSmallNotification(title, message, intent);
-            } else {
-                //if there is an image
-                //displaying a big notification
-                mNotificationManager.showBigNotification(title, message, imageUrl, intent);
+                    //if there is no image
+                    if (imageUrl.equals("null")) {
+                        //displaying small notification
+                        mNotificationManager.showSmallNotification(title, message, intent);
+                    } else {
+                        //if there is an image
+                        //displaying a big notification
+                        mNotificationManager.showBigNotification(title, message, imageUrl, intent);
+                    }
+
+                }else {
+                    Intent intent = new Intent(getApplicationContext(), EmployeeDashboard.class);
+
+                    //if there is no image
+                    if (imageUrl.equals("null")) {
+                        //displaying small notification
+                        mNotificationManager.showSmallNotification(title, message, intent);
+                    } else {
+                        //if there is an image
+                        //displaying a big notification
+                        mNotificationManager.showBigNotification(title, message, imageUrl, intent);
+                    }
+                }
             }
+
         }
         catch (JSONException e) {
             //  Log.e(TAG, "Json Exception: " + e.getMessage());

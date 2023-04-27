@@ -101,13 +101,15 @@ String token;
                     Log.d("token>>>>", response.body().getToken());*/
                     if (response.body().getMessage().equalsIgnoreCase("Login Successfully")) {
 
-                        prefConfig.writeLoginStatus(true);
-                        prefConfig.writeName("Guard", response.body().getToken());
-                        Log.d("token>>>>>>>>>>>>", response.body().getToken());
+                        if(response.body().getType().equalsIgnoreCase("Guard")){
+                            prefConfig.writeLoginStatus(true);
+                            prefConfig.writeName("Guard", response.body().getToken(), response.body().getType());
+                            Log.d("token>>>>>>>>>>>>", response.body().getToken());
 
-                        Intent intents = new Intent(GaurdLogin.this, GuardDashboard.class);
-                        startActivity(intents);
-                        Toast.makeText(GaurdLogin.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                            Intent intents = new Intent(GaurdLogin.this, GuardDashboard.class);
+                            startActivity(intents);
+                            Toast.makeText(GaurdLogin.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
                     }
                 } else {
                     Toast.makeText(GaurdLogin.this, "Wrong Credentials", Toast.LENGTH_SHORT).show();

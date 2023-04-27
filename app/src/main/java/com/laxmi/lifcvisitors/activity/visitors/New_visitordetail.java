@@ -42,6 +42,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -66,14 +68,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class New_visitordetail extends BaseActivity implements View.OnClickListener {
 
@@ -95,6 +103,8 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
     TextView tv_spinner_state;
     List<String> listSpinner = new ArrayList<>();
     List<String> listBranches = new ArrayList<>();
+    int currentItem = 0;
+
 
     Departments.Data departments;
     EmployeeByDepartment.Data empByDepartment;
@@ -130,8 +140,6 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.CAMERA,
     };
-    String visitorName, TxtTimeout, TxtTimeIn, Visitorname1, Visitorname2, Visitorname3, Purposeofcomeing, Visitor_mobile_no;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -154,16 +162,6 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
         spinner_employeedept = findViewById(R.id.spinner_employeedept);
         tv_emp_code = findViewById(R.id.tv_emp_code);
         iv_back = findViewById(R.id.iv_back);
-
-        visitorName = visitor_name.getText().toString().trim();
-        Visitorname1 = visitor_name1.getText().toString().trim();
-        Visitorname2 = visitor_name2.getText().toString().trim();
-        Visitorname3 = visitor_name3.getText().toString().trim();
-        Visitor_mobile_no = visitor_mobileno.getText().toString().trim();
-        TxtTimeout = txtTimeOut.getText().toString().trim();
-        TxtTimeIn = txtTimeIn.getText().toString().trim();
-        Purposeofcomeing = purpose_of_comeing.getText().toString().trim();
-
 
         iv_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -284,14 +282,50 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
     private boolean validate() {
         boolean valid = true;
 
-        String visitorNamee = visitor_name.getText().toString();
+        String visitorNamee = Objects.requireNonNull(visitor_name.getText()).toString();
+        String purposeOfMeeting = Objects.requireNonNull(purpose_of_comeing.getText()).toString();
+        String visitorMobileNo = Objects.requireNonNull(visitor_mobileno.getText()).toString();
+        String timeOut = txtTimeOut.getText().toString();
+        String timeIn = txtTimeIn.getText().toString();
 
-        if (visitorNamee.isEmpty()) {
+
+        if (visitorNamee.isEmpty() | visitorNamee.length() < 3) {
             visitor_name.setError("Name is Empty");
             requestFocus(visitor_name);
             valid = false;
         } else {
             visitor_name.setError(null);
+        }
+
+        if (purposeOfMeeting.isEmpty() | purposeOfMeeting.length() < 6) {
+            purpose_of_comeing.setError("Purpose Of Meeting at least 6 Character");
+            requestFocus(purpose_of_comeing);
+            valid = false;
+        } else {
+            purpose_of_comeing.setError(null);
+        }
+
+        if (visitorMobileNo.isEmpty() | visitorMobileNo.length() != 10) {
+            visitor_mobileno.setError("Please enter mobile no.");
+            requestFocus(visitor_mobileno);
+            valid = false;
+        } else {
+            visitor_mobileno.setError(null);
+        }
+
+        if (timeOut.isEmpty()) {
+            txtTimeOut.setError("Select Time Out");
+            requestFocus(txtTimeOut);
+            valid = false;
+        } else {
+            txtTimeOut.setError(null);
+        }
+        if (timeIn.isEmpty()) {
+            txtTimeIn.setError("Select Time In");
+            requestFocus(txtTimeIn);
+            valid = false;
+        } else {
+            txtTimeIn.setError(null);
         }
 
         return valid;
@@ -450,11 +484,9 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
                         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                try {
-                                    cityValue = onwardflights.get(position).toString();
-                                } catch (JSONException e) {
-                                    throw new RuntimeException(e);
-                                }
+
+                              cityValue =  spinner.getSelectedItem().toString();
+
                             }
 
                             @Override
@@ -727,6 +759,17 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
 
     private void registrationApi(File file) {
 
+
+
+        String visitorName = visitor_name.getText().toString().trim();
+        String Visitorname1 = visitor_name1.getText().toString().trim();
+        String Visitorname2 = visitor_name2.getText().toString().trim();
+        String Visitorname3 = visitor_name3.getText().toString().trim();
+        String Visitor_mobile_no = visitor_mobileno.getText().toString().trim();
+        String TxtTimeout = txtTimeOut.getText().toString().trim();
+        String TxtTimeIn = txtTimeIn.getText().toString().trim();
+        String Purposeofcomeing = purpose_of_comeing.getText().toString().trim();
+
         RequestBody reqFile1 = RequestBody.create(MediaType.parse("image/*"), file);
         MultipartBody.Part image1 = MultipartBody.Part.createFormData("image", file.getName(), reqFile1);
 
@@ -745,13 +788,38 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
 
         Log.d("tokennnnnnnnn", prefConfig.readToken());
 
-        APIService service = ApiClient.getClient().create(APIService.class);
-        Call<ResponseBody> call = service.getVisitorRequest("Bearer " + prefConfig.readToken(), "visitorName", "9874563215"
-                , "1234", "Purposeofcomeing", "842002", "BIHAR"
-                , "SUSTA", "11:50 A.M."
-                , "11:50 P.M.", "9", departmentsEmp
-                , "9835202012"
-                , image1, image1);
+        // APIService service = ApiClient.getClient().create(APIService.class);
+
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+        OkHttpClient okHttpClient = new OkHttpClient.Builder().addInterceptor(
+                        chain -> {
+                            okhttp3.Request original = chain.request();
+                            // Request customization: add request headers
+                            okhttp3.Request.Builder requestBuilder = original.newBuilder()
+                                    .addHeader("Authorization", "Bearer " + prefConfig.readToken())
+                                    .method(original.method(), original.body());
+                            okhttp3.Request request = requestBuilder.build();
+                            return chain.proceed(request);
+                        })
+                .addInterceptor(interceptor).connectTimeout(60, TimeUnit.SECONDS).
+                readTimeout(60, TimeUnit.SECONDS).build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://lifc.shailsoft.com/api/")
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .client(okHttpClient)
+                .build();
+        APIService service = retrofit.create(APIService.class);
+
+        Call<ResponseBody> call = service.getVisitorRequest("Bearer " + prefConfig.readToken(), visitorName, Visitor_mobile_no
+                , "1234", Purposeofcomeing, pin_code.getText().toString(), tv_spinner_state.getText().toString()
+                , cityValue, TxtTimeIn, TxtTimeout, "9",Visitorname1,Visitorname2,Visitorname3, departmentsEmp
+                , "9799954635", image1, image1);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

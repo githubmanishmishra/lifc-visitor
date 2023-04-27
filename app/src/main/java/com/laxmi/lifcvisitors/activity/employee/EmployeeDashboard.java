@@ -68,7 +68,7 @@ public class EmployeeDashboard extends AppCompatActivity implements NavigationVi
         } else if (id == R.id.nav_Contactus) {
         } else if (id == R.id.nav_logout) {
             prefConfig.writeLoginStatus(false);
-            startActivity(new Intent(EmployeeDashboard.this, GaurdLogin.class));
+            startActivity(new Intent(EmployeeDashboard.this, EmployeeLogin.class));
             finishAffinity();
 
         }

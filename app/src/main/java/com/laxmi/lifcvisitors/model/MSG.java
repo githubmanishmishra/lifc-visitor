@@ -5,7 +5,7 @@ public class MSG {
     private String status;
     private String message;
     private String otp;
-
+    private String type;
     private String token;
 
     public MSG() {
@@ -39,5 +39,17 @@ public class MSG {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

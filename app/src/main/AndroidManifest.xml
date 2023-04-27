@@ -17,6 +17,9 @@
         android:theme="@style/Theme.LifcVisitors"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activity.guard.GuardSendRequestToEmployeeList"
+            android:exported="false" />
+        <activity
             android:name=".activity.employee.EmployeeSignup"
             android:exported="false" />
         <activity

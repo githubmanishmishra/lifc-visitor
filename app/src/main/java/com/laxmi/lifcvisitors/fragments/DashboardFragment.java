@@ -10,17 +10,22 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.laxmi.lifcvisitors.Employee_Send_Request_toGaurd;
 import com.laxmi.lifcvisitors.R;
 import com.laxmi.lifcvisitors.activity.visitors.Visitorrequestcome_to_emplpyee;
 
 public class DashboardFragment extends Fragment {
     TextView tv_newvisitors;
     Intent intent;
+
+   private TextView total_visitor_status;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dashboard_fragment, container, false);
         tv_newvisitors = view.findViewById(R.id.new_Visitor_employee);
+        total_visitor_status = view.findViewById(R.id.total_visitor_status);
         tv_newvisitors.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -28,6 +33,15 @@ public class DashboardFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        total_visitor_status.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                intent = new Intent(getContext(), Employee_Send_Request_toGaurd.class);
+                startActivity(intent);
+            }
+        });
+
         TextView tv = (TextView) view.findViewById(R.id.mywidget);
         tv.setSelected(true);
         return view;

@@ -28,12 +28,13 @@ public class PrefConfig {
         return sharedPreferences.getBoolean(context.getString(R.string.pref_login_status), false);
     }
 
-    public void writeName(String name, String token) {
+    public void writeName(String name, String token, String type) {
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         editor.putString(context.getString(R.string.pref_username), name);
         editor.putString(context.getString(R.string.pref_token), token);
+        editor.putString(context.getString(R.string.pref_type), type);
         editor.apply();
 
     }
@@ -46,5 +47,10 @@ public class PrefConfig {
     public String readToken() {
 
         return sharedPreferences.getString(context.getString(R.string.pref_token), "");
+    }
+
+    public String readType() {
+
+        return sharedPreferences.getString(context.getString(R.string.pref_type), "");
     }
 }
