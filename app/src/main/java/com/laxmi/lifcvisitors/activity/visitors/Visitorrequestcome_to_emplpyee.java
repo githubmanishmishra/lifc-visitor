@@ -48,7 +48,8 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
     TextView tv_visitor_name, tv_visitor_name2, tv_visitor_name3, tv_visitor_mobile, tv_purpose_of_meeting;
     ImageView view_photo;
 
-    String visitorId, VisitorName, VisitorOne, VisitorTwo, VisitorThree, Purpose, UserImage, MobileNo,Status;
+    int visitorId;
+     String       VisitorName, VisitorOne, VisitorTwo, VisitorThree, Purpose, UserImage, MobileNo,Status;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +64,7 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
 
         Bundle mBundle = getIntent().getExtras();
         if (mBundle != null) {
-            visitorId = mBundle.getString("visitorId");
+            visitorId = mBundle.getInt("visitorId");
             VisitorName = mBundle.getString("VisitorName");
             VisitorOne = mBundle.getString("VisitorOne");
             VisitorTwo = mBundle.getString("VisitorTwo");
@@ -192,7 +193,7 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
                 .build();
         APIService service = retrofit.create(APIService.class);
 
-        Call<MSG> call = service.getVisitorStatusUpdate("Bearer " + prefConfig.readToken(), visitorId, "Approve",
+        Call<MSG> call = service.getVisitorStatusUpdate("Bearer " + prefConfig.readToken(), ""+visitorId, "Approve",
                 spinner_Conference.getSelectedItem().toString()+", "+Floor.getSelectedItem().toString(), "");
         call.enqueue(new Callback<MSG>() {
             @Override
@@ -248,7 +249,7 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
                 .build();
         APIService service = retrofit.create(APIService.class);
 
-        Call<MSG> call = service.getVisitorStatusUpdate("Bearer " + prefConfig.readToken(), visitorId, "Disapprove",
+        Call<MSG> call = service.getVisitorStatusUpdate("Bearer " + prefConfig.readToken(), ""+visitorId, "Disapprove",
                 spinner_Conference.getSelectedItem().toString()+", "+Floor.getSelectedItem().toString(), ev_disapprove.getText().toString());
         call.enqueue(new Callback<MSG>() {
             @Override
