@@ -124,7 +124,7 @@ public class EmployeeLogin extends AppCompatActivity {
         } else {
             ev_empcodes.setError(null);
         }
-        if (emp_Password.isEmpty() | emp_Password.length() <= 5) {
+        if (emp_Password.isEmpty()) {
             ev_password.setError("Enter Password");
             requestFocus(ev_password);
             valid = false;

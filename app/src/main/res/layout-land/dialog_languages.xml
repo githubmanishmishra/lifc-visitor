@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    card_view:cardElevation="10dp"
+    android:layout_centerHorizontal="true"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    card_view:cardBackgroundColor="@color/grey"
+    android:stateListAnimator="@drawable/button_style_custom"
+    card_view:cardCornerRadius="7dp">
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:background="#f9f9f9"
+            android:padding="10dp">
+
+            <RadioButton
+                android:id="@+id/rb_english"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:buttonTint="#bcbcbc"
+                android:text="English"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
+
+            <RadioButton
+                android:id="@+id/rb_hindi"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:buttonTint="#bcbcbc"
+                android:text="Hindi"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+            <RadioButton
+                android:id="@+id/rb_gujarati"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:buttonTint="#bcbcbc"
+                android:text="Gujarati"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

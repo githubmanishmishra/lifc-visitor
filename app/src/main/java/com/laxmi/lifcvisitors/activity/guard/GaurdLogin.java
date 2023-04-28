@@ -15,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.laxmi.lifcvisitors.R;
-import com.laxmi.lifcvisitors.activity.visitors.New_visitordetail;
 import com.laxmi.lifcvisitors.model.MSG;
 import com.laxmi.lifcvisitors.retrofitservices.APIService;
 import com.laxmi.lifcvisitors.retrofitservices.ApiClient;
@@ -34,7 +33,7 @@ public class GaurdLogin extends AppCompatActivity {
     TextView tv_login, registration_text;
     EditText ev_empcodes, ev_password;
     public static PrefConfig prefConfig;
-String token;
+    String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,32 +106,29 @@ String token;
 
 
         });
-    //validation field
+        //validation field
     }
 
     private boolean validate() {
         boolean valid = true;
 
         String empCodes = Objects.requireNonNull(ev_empcodes.getText()).toString();
-       String emp_Password = Objects.requireNonNull(ev_password.getText().toString());
+        String emp_Password = Objects.requireNonNull(ev_password.getText().toString());
 
 
-
-        if (empCodes.isEmpty() | empCodes.length()!=10) {
+        if (empCodes.isEmpty() | empCodes.length() != 10) {
             ev_empcodes.setError("Enter Mobile Number ");
             requestFocus(ev_empcodes);
             valid = false;
         } else {
             ev_empcodes.setError(null);
         }
-       if (emp_Password.isEmpty() | emp_Password.length()<4) {
+        if (emp_Password.isEmpty() | emp_Password.length() < 4) {
             ev_password.setError("Enter Password");
             requestFocus(ev_password);
             valid = false;
 
-        }
-        else
-        {
+        } else {
             ev_password.setError(null);
         }
         return valid;
@@ -153,7 +149,7 @@ String token;
 
     private void getLogin(String emp_code, String emp_Password) {
         APIService service = ApiClient.getClient().create(APIService.class);
-        Call<MSG> call = service.getLogin(emp_code, emp_Password,token);
+        Call<MSG> call = service.getLogin(emp_code, emp_Password, token);
         call.enqueue(new Callback<MSG>() {
             @Override
             public void onResponse(@NonNull Call<MSG> call, @NonNull Response<MSG> response) {
@@ -164,7 +160,7 @@ String token;
                     Log.d("token>>>>", response.body().getToken());*/
                     if (response.body().getMessage().equalsIgnoreCase("Login Successfully")) {
 
-                        if(response.body().getType().equalsIgnoreCase("Guard")){
+                        if (response.body().getType().equalsIgnoreCase("Guard")) {
                             prefConfig.writeLoginStatus(true);
                             prefConfig.writeName("Guard", response.body().getToken(), response.body().getType());
                             Log.d("token>>>>>>>>>>>>", response.body().getToken());

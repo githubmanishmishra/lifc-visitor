@@ -113,8 +113,13 @@ public interface APIService {
     Call<VisitorsByEmployee> getVisitorsByEmployee(@Header("Authorization") String auth);
 
     @Headers({"Content-Type: application/json;charset=UTF-8"})
-    @GET("office-boy-assign")
-    Call<MSG> getOfficeBoyAssign(@Header("Authorization") String auth);
+    @GET("officeboy/assign")
+    Call<MSG> getOfficeBoyAssign(@Header("Authorization") String auth,
+                                 @Query("visitor_id") String visitor_id,
+                                 @Query("emp_code") String emp_code,
+                                 @Query("name") String name,
+                                 @Query("mobile_number") String mobile_number,
+                                 @Query("floor") String floor);
 
     @FormUrlEncoded
     @POST("feedback/update")
@@ -134,7 +139,8 @@ public interface APIService {
     @Headers({"Content-Type: application/json;charset=UTF-8"})
     @GET("feedbackByVisitor")
     Call<FeedBackByVisitor> getFeedBackByVisitor(@Header("Authorization") String auth,
-                                                 @Query("visitor_id") String visitor_id);
+                                                 @Query("visitor_id") String visitor_id
+                                                 );
 
 
 }

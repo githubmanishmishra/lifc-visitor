@@ -47,6 +47,8 @@ public class MailAdapterGuard extends RecyclerView.Adapter<MailViewHolderGuard> 
                 mIntent.putExtra("time", holder.tvTimeIn.getText().toString());
                 mIntent.putExtra("icon", holder.mIcon.getText().toString());
                 mIntent.putExtra("Status", holder.tv_status.getText().toString());
+                mIntent.putExtra("visitorId", mEmailData.get(position).getId());
+                mIntent.putExtra("employeeId", mEmailData.get(position).getEmployeeId());
                 mIntent.putExtra("colorIcon", color);
                 mContext.startActivity(mIntent);
             }

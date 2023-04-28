@@ -9,11 +9,16 @@
         <entry key="..\:/Users/ASUS/Downloads/lifc-visitor/app/src/main/res/drawable/custom_edit_text.xml" value="0.1665" />
         <entry key="..\:/Users/ASUS/Downloads/lifc-visitor/app/src/main/res/drawable/rounded_corner.xml" value="0.1665" />
         <entry key="..\:/Users/ASUS/Downloads/lifc-visitor/app/src/main/res/drawable/rounded_drawable.xml" value="0.1665" />
+        <entry key="..\:/Users/ASUS/Downloads/lifc-visitor/app/src/main/res/layout-land/activity_detail.xml" value="0.18958333333333333" />
+        <entry key="..\:/Users/ASUS/Downloads/lifc-visitor/app/src/main/res/layout-land/activity_empcreatepsw.xml" value="0.18958333333333333" />
+        <entry key="..\:/Users/ASUS/Downloads/lifc-visitor/app/src/main/res/layout-land/activity_employee_dashboard.xml" value="0.18958333333333333" />
+        <entry key="..\:/Users/ASUS/Downloads/lifc-visitor/app/src/main/res/layout-land/layout_land.xml" value="0.18958333333333333" />
         <entry key="..\:/Users/ASUS/Downloads/lifc-visitor/app/src/main/res/layout/activity_detail.xml" value="0.25" />
         <entry key="..\:/Users/ASUS/Downloads/lifc-visitor/app/src/main/res/layout/activity_employee_dashboard.xml" value="0.25" />
         <entry key="..\:/Users/ASUS/Downloads/lifc-visitor/app/src/main/res/layout/activity_employee_send_request_to_gaurd.xml" value="0.25" />
         <entry key="..\:/Users/ASUS/Downloads/lifc-visitor/app/src/main/res/layout/activity_gaurd_dashboard.xml" value="0.25" />
         <entry key="..\:/Users/ASUS/Downloads/lifc-visitor/app/src/main/res/layout/activity_gaurd_login.xml" value="0.25" />
+        <entry key="..\:/Users/ASUS/Downloads/lifc-visitor/app/src/main/res/layout/activity_gaurd_mobileno_forget.xml" value="0.25" />
         <entry key="..\:/Users/ASUS/Downloads/lifc-visitor/app/src/main/res/layout/activity_guard_send_request_to_employee_list.xml" value="0.25" />
         <entry key="..\:/Users/ASUS/Downloads/lifc-visitor/app/src/main/res/layout/activity_guardprofile.xml" value="0.25" />
         <entry key="..\:/Users/ASUS/Downloads/lifc-visitor/app/src/main/res/layout/activity_new_visitordetail.xml" value="0.25" />

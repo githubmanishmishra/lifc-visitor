@@ -48,6 +48,8 @@ public class DetailActivity extends AppCompatActivity {
             mEmailDetails.setText(mBundle.getString("details"));
             mEmailTime.setText(mBundle.getString("time"));
            String Status = mBundle.getString("Status");
+           int visitorId = mBundle.getInt("visitorId");
+           String employeeId = mBundle.getString("employeeId");
 
           /* if(Status.equalsIgnoreCase("Pending") |Status.equalsIgnoreCase("Disapprove") ){
                btn_status.setOnClickListener(null);
@@ -68,7 +70,14 @@ public class DetailActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
 
-                    startActivity(new Intent(DetailActivity.this, Office_boyassign.class));
+                   // startActivity(new Intent(DetailActivity.this, Office_boyassign.class));
+
+                    Intent mIntent = new Intent(DetailActivity.this, Office_boyassign.class);
+                    mIntent.putExtra("Status", Status);
+                    mIntent.putExtra("visitorId", visitorId);
+                    mIntent.putExtra("sender", mBundle.getString("sender"));
+                    mIntent.putExtra("title", mBundle.getString("title"));
+                    startActivity(mIntent);
 
                 }
             });
