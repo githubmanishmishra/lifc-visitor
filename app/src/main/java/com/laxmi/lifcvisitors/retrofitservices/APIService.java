@@ -115,7 +115,7 @@ public interface APIService {
     @Headers({"Content-Type: application/json;charset=UTF-8"})
     @GET("officeboy/assign")
     Call<MSG> getOfficeBoyAssign(@Header("Authorization") String auth,
-                                 @Query("visitor_id") String visitor_id,
+                                 @Query("visitor_id") int visitor_id,
                                  @Query("emp_code") String emp_code,
                                  @Query("name") String name,
                                  @Query("mobile_number") String mobile_number,
