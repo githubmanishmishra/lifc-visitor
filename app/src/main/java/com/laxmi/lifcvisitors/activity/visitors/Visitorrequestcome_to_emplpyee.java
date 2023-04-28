@@ -132,8 +132,6 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
         ArrayAdapter<String> springAdapter_Conference = new ArrayAdapter<>(this,
                 android.R.layout.simple_dropdown_item_1line, arrConference);
         spinner_Conference.setAdapter(springAdapter_Conference);
-
-
         btn_disapprove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -141,7 +139,6 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
                     if (!isVisible) {
                         ev_disapprove.setVisibility(View.VISIBLE);
                         isVisible = true;
-
                         if(ev_disapprove.getText().toString().equalsIgnoreCase("")){
                             Toast.makeText(Visitorrequestcome_to_emplpyee.this, "Please add disapprove reason", Toast.LENGTH_SHORT).show();
                         }else {
@@ -172,7 +169,6 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
                 .create();
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-
         OkHttpClient okHttpClient = new OkHttpClient.Builder().addInterceptor(
                         chain -> {
                             okhttp3.Request original = chain.request();

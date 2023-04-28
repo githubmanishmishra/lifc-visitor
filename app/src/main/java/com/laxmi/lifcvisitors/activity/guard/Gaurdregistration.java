@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -12,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.laxmi.lifcvisitors.R;
+
+import java.util.Objects;
 
 public class Gaurdregistration extends AppCompatActivity {
     TextView tv_gaurd_getotp,tv_login;
@@ -46,7 +49,7 @@ public class Gaurdregistration extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
-                if(!ev_guard_mob_no.getText().toString().isEmpty() &&
+               /* if(!ev_guard_mob_no.getText().toString().isEmpty() &&
                         ev_guard_mob_no.getText().toString().length() ==10){
                     Intent intent = new Intent(Gaurdregistration.this,Gaurdotp_verification.class);
                     Bundle bundle = new Bundle();
@@ -54,10 +57,16 @@ public class Gaurdregistration extends AppCompatActivity {
                     bundle.putString("emp_code", emp_code.getText().toString());
                     intent.putExtras(bundle);
                     startActivity(intent);
+                }*/
+                if (!validate()) {
+                    onUpdateFailed();
                 }
                 else
                 {
-                    Toast.makeText(Gaurdregistration.this, "Enter Mobile No.", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(Gaurdregistration.this, "Enter Mobile No.", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Gaurdregistration.this,Gaurdotp_verification.class);
+
+                    startActivity(intent);
                 }
 
             }
@@ -73,4 +82,37 @@ public class Gaurdregistration extends AppCompatActivity {
         TextView  tv = (TextView) this.findViewById(R.id.mywidget);
         tv.setSelected(true);
     }
+
+    private void onUpdateFailed() {
+        Toast.makeText(Gaurdregistration.this, "Please Give Complete Mobile Number & Employeecode", Toast.LENGTH_SHORT).show();
+    }
+
+    private boolean validate() {
+        boolean valid = true;
+        String empCode = Objects.requireNonNull(emp_code.getText().toString());
+        String mobileNo = Objects.requireNonNull(ev_guard_mob_no.getText()).toString();
+        if (mobileNo.isEmpty() | mobileNo.length()!=10) {
+            ev_guard_mob_no.setError("Enter Valid Mobile Number ");
+            requestFocus(ev_guard_mob_no);
+            valid = false;
+        }
+        else {
+            ev_guard_mob_no.setError(null);
+        }
+        if (empCode.isEmpty() | empCode.length()!=4) {
+            emp_code.setError("Enter Valid Employee Code");
+            requestFocus(emp_code);
+            valid = false;
+        }
+        else {
+            emp_code.setError(null);
+        }
+        return valid;
+    }
+    private void requestFocus(View view) {
+        if (view.requestFocus()) {
+            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        }
+    }
+
 }

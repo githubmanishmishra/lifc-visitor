@@ -92,6 +92,9 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
+
+whatsapp
+call
             <EditText
                 android:id="@+id/ev_guard_mob_no"
                 android:layout_width="match_parent"
@@ -107,56 +110,28 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/mobile_no_91">
-
+            android:hint="MobileNo"
+            android:padding="10dp">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/ev_guard_mob_no"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
+                android:layout_height="60dp"
                 android:inputType="phone"
                 android:maxLength="10"
-                android:layout_margin="10dp"
                 android:singleLine="true"/>
         </com.google.android.material.textfield.TextInputLayout>
-        <!--<RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp">
-
-            <TextView
-                android:id="@+id/tv_password"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="Empcode-                       "
-                android:textSize="18sp"
-                android:textStyle="bold"/>
-
-            <EditText
-                android:id="@+id/ev_empcodes"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_toRightOf="@+id/tv_password"
-                android:background="@drawable/bgtext"
-                android:padding="10dp"
-                android:singleLine="true" />
-        </RelativeLayout>-->
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/empcode">
-
+            android:padding="10dp"
+             android:hint="EmpCode">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/ev_empcodes"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
+                android:layout_height="60dp"
+
                 android:inputType="phone"
-                android:layout_margin="10dp"
                 android:singleLine="true"/>
         </com.google.android.material.textfield.TextInputLayout>
         <TextView
@@ -177,7 +152,6 @@
             android:textColor="@color/white"
             android:textStyle="bold"
             android:textSize="14sp"/>
-
         <TextView
             android:id="@+id/tv_login"
             android:layout_width="match_parent"
@@ -195,6 +169,5 @@
             android:textColor="@color/black"
             android:textStyle="bold"
             android:textSize="14sp"/>
-
     </LinearLayout>
 </ScrollView>

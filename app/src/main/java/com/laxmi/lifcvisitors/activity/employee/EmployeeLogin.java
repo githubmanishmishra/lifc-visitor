@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +21,9 @@ import com.laxmi.lifcvisitors.model.MSG;
 import com.laxmi.lifcvisitors.retrofitservices.APIService;
 import com.laxmi.lifcvisitors.retrofitservices.ApiClient;
 import com.laxmi.lifcvisitors.savedata.PrefConfig;
+
+import java.util.Objects;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -84,20 +88,73 @@ public class EmployeeLogin extends AppCompatActivity {
         ev_password = this.<EditText>findViewById(R.id.ev_password);
        // String deviceToken="";
         tv_login.setOnClickListener(view -> {
-            if (ev_empcodes.getText().toString().isEmpty() &&
+         /*   if (ev_empcodes.getText().toString().isEmpty() &&
                     ev_empcodes.getText().toString().length() != 10
                     && ev_password.getText().toString().isEmpty()) {
                 Toast.makeText(EmployeeLogin.this, "Enter 10 digit mobile no. and password", Toast.LENGTH_SHORT).show();
             }
+
             else
 
             {
                 String emp_code = ev_empcodes.getText().toString();
                 String emp_Password = ev_password.getText().toString();
                 getLogin(emp_code, emp_Password,token);
+            }*/
+            if (!validate()) {
+                onUpdateFailed();
+            } else {
+                String emp_code = ev_empcodes.getText().toString();
+                String emp_Password = ev_password.getText().toString();
+                getLogin(emp_code, emp_Password,token);
+
             }
         });
     }
+    private boolean validate() {
+        boolean valid = true;
+
+        String empCodes = Objects.requireNonNull(ev_empcodes.getText()).toString();
+        String emp_Password = Objects.requireNonNull(ev_password.getText().toString());
+
+        if (empCodes.isEmpty() | empCodes.length() != 10) {
+            ev_empcodes.setError("Enter Mobile Number ");
+            requestFocus(ev_empcodes);
+            valid = false;
+        } else {
+            ev_empcodes.setError(null);
+        }
+        if (emp_Password.isEmpty() | emp_Password.length() <= 5) {
+            ev_password.setError("Enter Password");
+            requestFocus(ev_password);
+            valid = false;
+
+        } else {
+            ev_password.setError(null);
+        }
+        return valid;
+    }
+        private void onUpdateFailed() {
+            Toast.makeText(EmployeeLogin.this, "Creating account failed", Toast.LENGTH_LONG).show();
+
+            //  btnCreateAccount.setEnabled(true);
+        }
+        private void requestFocus(View view) {
+            if (view.requestFocus()) {
+                getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
 
     private void getLogin(String emp_code, String emp_Password,String deviceToken) {
         APIService service = ApiClient.getClient().create(APIService.class);

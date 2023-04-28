@@ -23,10 +23,8 @@ public class Office_boyassign extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_office_boyassign);
-
         ev_officeBoy_name = findViewById(R.id.ev_officeBoy_name);
         mobile_no = findViewById(R.id.mobile_no);
-        
         tv_submit = findViewById(R.id.tv_submit);
 
         tv_submit.setOnClickListener(new View.OnClickListener() {

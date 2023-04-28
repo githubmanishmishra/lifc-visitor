@@ -259,6 +259,7 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
             }
 
             requestGuard();
+            Toast.makeText(New_visitordetail.this, "Request send to Employee", Toast.LENGTH_SHORT).show();
 
         });
         TextView tv = this.findViewById(R.id.mywidget);
@@ -287,7 +288,6 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
         String visitorMobileNo = Objects.requireNonNull(visitor_mobileno.getText()).toString();
         String timeOut = txtTimeOut.getText().toString();
         String timeIn = txtTimeIn.getText().toString();
-
 
         if (visitorNamee.isEmpty() | visitorNamee.length() < 3) {
             visitor_name.setError("Name is Empty");
@@ -759,8 +759,6 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
 
     private void registrationApi(File file) {
 
-
-
         String visitorName = visitor_name.getText().toString().trim();
         String Visitorname1 = visitor_name1.getText().toString().trim();
         String Visitorname2 = visitor_name2.getText().toString().trim();
@@ -795,7 +793,6 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
                 .create();
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-
         OkHttpClient okHttpClient = new OkHttpClient.Builder().addInterceptor(
                         chain -> {
                             okhttp3.Request original = chain.request();
@@ -844,7 +841,7 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
             }
         });
     }
-
+//Branch wala delete nhi kerna
     /*private void getBranches() {
 
         Runnable runnable = new Runnable() {

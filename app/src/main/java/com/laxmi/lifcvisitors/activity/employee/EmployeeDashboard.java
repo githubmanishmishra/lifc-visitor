@@ -63,8 +63,8 @@ public class EmployeeDashboard extends AppCompatActivity implements NavigationVi
         int id = item.getItemId();
       //  Fragment fragment = null;
      //   FragmentManager fragmentManager = getSupportFragmentManager();
-        if (id == R.id.nav_slideshow) {
-        } else if (id == R.id.nav_designation) {
+        if (id == R.id.nav_slideshow)
+        {
         } else if (id == R.id.nav_Contactus) {
         } else if (id == R.id.nav_logout) {
             prefConfig.writeLoginStatus(false);

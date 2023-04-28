@@ -103,7 +103,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:imeOptions="actionNext"
-                android:hint="@string/mobileno_91"
+                android:hint ="MobileNo"
+                android:maxLength="10"
                 android:inputType="number"/>
         </com.google.android.material.textfield.TextInputLayout>
 

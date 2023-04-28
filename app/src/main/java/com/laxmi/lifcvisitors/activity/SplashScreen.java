@@ -15,12 +15,10 @@ import com.laxmi.lifcvisitors.activity.employee.EmployeeDashboard;
 import com.laxmi.lifcvisitors.activity.guard.GuardDashboard;
 import com.laxmi.lifcvisitors.savedata.PrefConfig;
 
-
 @SuppressLint("CustomSplashScreen")
 public class SplashScreen extends AppCompatActivity {
     private static final String TAG = "AnimationStarter";
     public static PrefConfig prefConfig;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +40,6 @@ public class SplashScreen extends AppCompatActivity {
             @Override
             public void onAnimationRepeat(Animation animation) {
                 // TODO Auto-generated method stub
-
             }
 
             @Override

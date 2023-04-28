@@ -1,5 +1,4 @@
 package com.laxmi.lifcvisitors.floor_confrence;
-
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -9,32 +8,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.laxmi.lifcvisitors.R;
 import com.laxmi.lifcvisitors.model.VisitorsByGuard;
-
 import java.util.List;
 import java.util.Random;
-
 public class MailAdapterGuard extends RecyclerView.Adapter<MailViewHolderGuard> {
-
     private List<VisitorsByGuard.Data> mEmailData;
     private Context mContext;
-
     public MailAdapterGuard(Context mContext, List<VisitorsByGuard.Data> mEmailData) {
         this.mEmailData = mEmailData;
         this.mContext = mContext;
     }
-
     @Override
     public MailViewHolderGuard onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyelerview_floor_item,
                 parent, false);
         return new MailViewHolderGuard(view);
     }
-
     @Override
     public void onBindViewHolder(final MailViewHolderGuard holder, int position) {
         holder.mIcon.setText(mEmailData.get(position).getName().substring(0, 1));
@@ -46,7 +37,6 @@ public class MailAdapterGuard extends RecyclerView.Adapter<MailViewHolderGuard> 
         Random mRandom = new Random();
         final int color = Color.argb(255, mRandom.nextInt(256), mRandom.nextInt(256), mRandom.nextInt(256));
         ((GradientDrawable) holder.mIcon.getBackground()).setColor(color);
-
         holder.mLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,22 +48,9 @@ public class MailAdapterGuard extends RecyclerView.Adapter<MailViewHolderGuard> 
                 mIntent.putExtra("icon", holder.mIcon.getText().toString());
                 mIntent.putExtra("Status", holder.tv_status.getText().toString());
                 mIntent.putExtra("colorIcon", color);
-
-                 /*  Intent mIntent = new Intent(GuardSendRequestToEmployeeList.this, DetailActivity.class);
-                        mIntent.putExtra("visitorId", newArrival.getId());
-                        mIntent.putExtra("VisitorName", newArrival.getName());
-                        mIntent.putExtra("VisitorOne", newArrival.getNameOne());
-                        mIntent.putExtra("VisitorTwo", newArrival.getNameTwo());
-                        mIntent.putExtra("VisitorThree", newArrival.getNameThree());
-                        mIntent.putExtra("Purpose", newArrival.getPurposeOfComing());
-                        mIntent.putExtra("MobileNo", newArrival.getMobileNumber());
-                        mIntent.putExtra("UserImage", newArrival.getImage());
-                        mIntent.putExtra("Status", newArrival.getStatus());
-                        startActivity(mIntent);*/
                 mContext.startActivity(mIntent);
             }
         });
-
     }
 
     @Override
@@ -94,7 +71,6 @@ class MailViewHolderGuard extends RecyclerView.ViewHolder {
 
     MailViewHolderGuard(View itemView) {
         super(itemView);
-
         mIcon = itemView.findViewById(R.id.tvIcon);
         tv_visitor_name = itemView.findViewById(R.id.tv_visitor_name);
         tv_visitor_mobile = itemView.findViewById(R.id.tv_visitor_mobile);
