@@ -69,7 +69,7 @@ public class Office_boyassign extends AppCompatActivity {
 
         APIService service = ApiClient.getClient().create(APIService.class);
         Call<MSG> call = service.getOfficeBoyAssign("Bearer " + prefConfig.readToken(),
-                ""+visitorId, "", sender, title, "");
+                visitorId, "", sender, title, "");
         call.enqueue(new Callback<MSG>() {
             @Override
             public void onResponse(@NonNull Call<MSG> call, @NonNull retrofit2.Response<MSG> response) {
