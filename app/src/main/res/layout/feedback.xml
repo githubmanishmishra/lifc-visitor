@@ -43,7 +43,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:text="               Rate Our App"
+                android:text="Feedback"
+                android:gravity="center"
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 android:textStyle="bold" />
@@ -93,7 +94,7 @@
                     android:id="@+id/rateNowBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
-                    android:text="Rate Now"
+                    android:text="Submit"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:paddingStart="20dp"

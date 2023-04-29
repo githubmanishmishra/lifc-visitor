@@ -35,6 +35,7 @@ public class Feedback extends Dialog {
             @Override
             public void onClick(View v) {
                 //your code goes here
+                dismiss();
             }
         });
         laterBtn.setOnClickListener(new View.OnClickListener() {

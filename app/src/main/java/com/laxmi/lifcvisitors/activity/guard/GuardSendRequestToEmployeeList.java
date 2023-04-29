@@ -55,6 +55,8 @@ public class GuardSendRequestToEmployeeList extends AppCompatActivity {
         mRecyclerView = findViewById(R.id.recyclerView);
         LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(GuardSendRequestToEmployeeList.this, LinearLayoutManager.VERTICAL, false);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(GuardSendRequestToEmployeeList.this, DividerItemDecoration.VERTICAL));
+        mLinearLayoutManager.setReverseLayout(true);
+        mLinearLayoutManager.setStackFromEnd(true);
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
 
         //  progressDialogInitialisaton();

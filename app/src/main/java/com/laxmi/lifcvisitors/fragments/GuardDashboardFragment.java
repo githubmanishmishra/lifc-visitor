@@ -2,6 +2,7 @@ package com.laxmi.lifcvisitors.fragments;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import com.laxmi.lifcvisitors.R;
 import com.laxmi.lifcvisitors.activity.guard.GuardDashboard;
 import com.laxmi.lifcvisitors.activity.guard.GuardProfileActivity;
 import com.laxmi.lifcvisitors.activity.guard.GuardSendRequestToEmployeeList;
+import com.laxmi.lifcvisitors.activity.visitors.Feedback;
 import com.laxmi.lifcvisitors.activity.visitors.New_visitordetail;
 import com.laxmi.lifcvisitors.languageconvert.LocaleManager;
 import static com.laxmi.lifcvisitors.languageconvert.LocaleManager.setNewLocale;
@@ -28,6 +30,8 @@ public class GuardDashboardFragment extends Fragment {
     TextView tv_newvisitor, tv_my_profile,total_visitor_count;
     Intent intent;
 
+    TextView tvfeedback;
+
 
     @Nullable
     @Override
@@ -35,6 +39,18 @@ public class GuardDashboardFragment extends Fragment {
         View view = inflater.inflate(R.layout.activity_gaurd_dashboard, container, false);
         tv_newvisitor = view.findViewById(R.id.new_visitor);
         tv_my_profile = view.findViewById(R.id.tv_my_profile);
+
+        tvfeedback = view.findViewById(R.id.feedback);
+
+        tvfeedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Feedback feedbacks = new Feedback(getContext());
+                feedbacks.setCancelable(false);
+                feedbacks.show();
+                feedbacks.getWindow().setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+            }
+        });
         tv_newvisitor.setOnClickListener(view1 -> {
             intent = new Intent(getContext(), New_visitordetail.class);
             startActivity(intent);

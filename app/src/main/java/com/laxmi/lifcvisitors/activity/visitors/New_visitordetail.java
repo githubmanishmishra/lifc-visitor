@@ -313,13 +313,13 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
             visitor_mobileno.setError(null);
         }
 
-        if (timeOut.isEmpty()) {
+       /* if (timeOut.isEmpty()) {
             txtTimeOut.setError("Select Time Out");
             requestFocus(txtTimeOut);
             valid = false;
         } else {
             txtTimeOut.setError(null);
-        }
+        }*/
         if (timeIn.isEmpty()) {
             txtTimeIn.setError("Select Time In");
             requestFocus(txtTimeIn);
