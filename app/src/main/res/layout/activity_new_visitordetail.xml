@@ -656,6 +656,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_corner"
             android:padding="10dp"
+            android:text="jghgc"
             android:layout_margin="20dp"
             android:textColor="@color/reds" />
 

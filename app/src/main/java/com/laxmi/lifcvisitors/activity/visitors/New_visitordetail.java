@@ -104,7 +104,7 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
     List<String> listSpinner = new ArrayList<>();
     List<String> listBranches = new ArrayList<>();
     int currentItem = 0;
-
+     int departmentsValueCode;
 
     Departments.Data departments;
     EmployeeByDepartment.Data empByDepartment;
@@ -633,10 +633,13 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
                                 empByDepartment = dataListEmp.get(position);
 
                                 departmentsEmp = empByDepartment.getName();
-                                int departmentsValueCode = empByDepartment.getId();
+                                departmentsValueCode = empByDepartment.getId();
+
+                                Log.d("hcgvmb",""+departmentsValueCode);
+                                String empCode = empByDepartment.getEmpCode();
                                 empMobileNo = empByDepartment.getMobileNumber();
 
-                                tv_emp_code.setText(departmentsValueCode);
+                                tv_emp_code.setText(empCode);
 
 
                                 Log.d("departmentsEmp", New_visitordetail.this.departmentsEmp);
@@ -815,7 +818,7 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
 
         Call<ResponseBody> call = service.getVisitorRequest("Bearer " + prefConfig.readToken(), visitorName, Visitor_mobile_no
                 , "1234", Purposeofcomeing, pin_code.getText().toString(), tv_spinner_state.getText().toString()
-                , cityValue, TxtTimeIn, TxtTimeout, "9",Visitorname1,Visitorname2,Visitorname3, departmentsEmp
+                , cityValue, TxtTimeIn, TxtTimeout, ""+departmentsValueCode,Visitorname1,Visitorname2,Visitorname3, departmentsEmp
                 , "9799954635", image1, image1);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
