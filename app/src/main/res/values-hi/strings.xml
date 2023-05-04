@@ -2,7 +2,7 @@
 <resources>
     <string name="marquee_text">लक्ष्मी इंडिया फाइनेंस प्राइवेट लिमिटेड को पहले लक्ष्मी इंडिया फेनलीसेकैप प्राइवेट लिमिटेड के नाम से जाना जाता था</string>
     <string name="new_password">नया पासवर्ड</string>
-    <string name="app_name">एलआईएफसी अतिथि</string>
+    <string name="app_name">Lifc Visitors</string>
     <string name="title_activity_employeeregistration">कर्मचारी पंजीकरण</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">पहला टुकड़ा</string>
@@ -24,8 +24,9 @@
     <string name="pref_phone">com.laxmi.lifcvisitors.preference_phone</string>
     <string name="pref_deviceId">com.laxmi.lifcvisitors.preference_deviceId</string>
     <string name="pref_services">com.laxmi.lifcvisitors.preference_service</string>
+    <string name="register_text">खाता नहीं है? एक तैयार करें !</string>
     <string name="your_string_here">![CDATA[<u>खाता नहीं है? एक बनाएँ!</u>।]></string>
-    <string name="mobile_no_91">मोबाइल नंबर - +91</string>
+    <string name="pref_token">com.laxmi.lifcvisitors.preference_token</string>
 
     <string name="confirm_password">नया पासवर्ड</string>
     <string name="confirm">पुष्टि करना</string>
@@ -46,7 +47,6 @@
     <string name="new_visitor">नया अतिथि </string>
     <string name="my_profile">मेरी प्रोफाइल</string>
     <string name="request_pending">अनुरोध लंबित है</string>
-    <string name="mobileno_91">मोबाइल नं.-+91</string>
     <string name="otp_verification">ओटीपी सत्यापन</string>
     <string name="verify">सत्यापित करना</string>
     <string name="sign_up">साइन अप करें</string>
@@ -60,31 +60,25 @@
     <string name="employee">कर्मचारी</string>
     <string name="_2_dfl_tower_gopinath_marg_m_i_road_jaipur_302001">
 2, डीएफएल टॉवर गोपीनाथ मार्ग एम.आई.रोड, जयपुर -302001</string>
-    <string name="visitor_phoneno_91"> अतिथि फोन नं.-+91
-</string>
-    <string name="purpose_of_meeting">
-बैठक का उद्देश्य</string>
-    <string name="visitor_photo"> अतिथि फोटो--
-</string>
+    <string name="purpose_of_meeting">बैठक का उद्देश्य</string>
+    <string name="visitor_photo">आगंतुक फोटो</string>
     <string name="upload">डालना</string>
     <string name="pincode">पिन कोड</string>
-    <string name="state">
-राज्य-</string>
-    <string name="city">शहर-</string>
+    <string name="state">राज्य</string>
+    <string name="city">शहर</string>
     <string name="whom_to_meet">
 किससे मिलना है</string>
     <string name="employee_name">
 कर्मचारी का नाम</string>
-    <string name="employee_id">कर्मचारी आयडी-</string>
+    <string name="employee_id">कर्मचारी आयडी</string>
     <string name="branch">शाखा</string>
     <string name="department">विभाग</string>
     <string name="send_request">अनुरोध भेजा</string>
     <string name="request">अनुरोध</string>
-    <string name="office_boy_name">ऑफिस बॉय का नाम-</string>
-    <string name="employeecode">कर्मचारी कोड-</string>
+    <string name="office_boy_name">ऑफिस बॉय का नाम</string>
+    <string name="employeecode">कर्मचारी कोड</string>
     <string name="submit">जमा करना</string>
     <string name="enter_your_otp">अपना ओटीपी दर्ज करें</string>
-    <string name="visitor_name">अतिथि का नाम</string>
     <string name="second_visitor_name">दूसरे अतिथि का नाम</string>
     <string name="third_visitor_name">तीसरे अतिथि का नाम</string>
     <string name="conference_room">
@@ -92,6 +86,39 @@
     <string name="approve">मंज़ूरी देना</string>
     <string name="disapprove">अस्वीकृत</string>
     <string name="total_visitor_status">कुल अतिथि स्थिति</string>
-
-
+    <string name="welcome_to_lifc">WELCOME TO LIFC</string>
+    <string name="feedback_from_visitor">अतिथि से प्रतिक्रिया</string>
+    <string name="visitor_detail">आगंतुक विवरण</string>
+    <string name="visitor_name">आगंतुक का नाम</string>
+    <string name="visitor_name_one">आगंतुक का नाम एक</string>
+    <string name="visitor_name_two">आगंतुक का नाम दो</string>
+    <string name="visitor_name_three">आगंतुक का नाम तीन</string>
+    <string name="getotp">प्राप्त करें</string>
+    <string name="select_your_city">अपने शहर का चयन करें</string>
+    <string name="time_in">समय शुरू</string>
+    <string name="select_in_time">समय में चयन करें</string>
+    <string name="name">નામ</string>
+    <string name="contact_us">संपर्क करें</string>
+    <string name="language">भाषा</string>
+    <string name="logout">लॉग आउट</string>
+    <string name="employee_create_password">कर्मचारी पासवर्ड बनाएं</string>
+    <string name="create_password">पासवर्ड बनाएं</string>
+    <string name="mobile_number">मोबाइल नंबर</string>
+    <string name="select_your_state">अपने राज्य का चयन करें</string>
+    <string name="enter_mobile_no">मोबाइल नंबर दर्ज करें</string>
+    <string name="employee_login">कर्मचारी लॉगिन</string>
+    <string name="profile">प्रोफ़ाइल</string>
+    <string name="contactus">संपर्क करें</string>
+    <string name="call_for_help">मदद के लिए पुकारें:</string>
+    <string name="employee_code">कर्मचारी कोड</string>
+    <string name="whom_to_meets">किससे मिलना है</string>
+    <string name="employee_profile_update">Employee Profile Update</string>
+    <string name="employee_send_request_to_guard">Employee Send Request To Guard</string>
+    <string name="visitors_list">Visitors List</string>
+    <string name="recreate_password">Recreate Password</string>
+    <string name="guard_login">Guard Login</string>
+    <string name="guard_send_request_to_employee">Guard Send Request To employee</string>
+    <string name="office_boy_assign">Office Boy Assign</string>
+    <string name="enter_otp">Enter Otp</string>
+    <string name="employee_response">Employee Response</string>
 </resources>

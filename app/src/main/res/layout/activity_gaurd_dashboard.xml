@@ -55,7 +55,7 @@
                 android:text="@string/visitors"
                 android:textColor="@color/red"
                 android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textStyle="bold|italic" />
         </RelativeLayout>
 
         <LinearLayout
@@ -131,7 +131,7 @@
                 android:layout_weight="1"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="Feedback from Visitor"
+                android:text="@string/feedback_from_visitor"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />

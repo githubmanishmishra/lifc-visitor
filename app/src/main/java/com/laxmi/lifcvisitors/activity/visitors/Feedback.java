@@ -29,7 +29,6 @@ public class Feedback extends Dialog {
         setContentView((R.layout.feedback));
         final AppCompatButton rateNowBtn = findViewById(R.id.rateNowBtn);
         final AppCompatButton laterBtn = findViewById(R.id.mayBeLaterBtn);
-        final RatingBar ratingBar = findViewById(R.id.ratingBar);
         final ImageView ratingImage = findViewById(R.id.ratingImage);
         rateNowBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,28 +42,6 @@ public class Feedback extends Dialog {
             public void onClick(View v) {
                 //hide rating dialog
                 dismiss();
-            }
-        });
-        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-            @Override
-            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                if (rating <= 1) {
-                    ratingImage.setImageResource(R.drawable.angry);
-                } else if (rating <= 2) {
-                    ratingImage.setImageResource(R.drawable.lowsad);
-
-                } else if (rating <= 3) {
-                    ratingImage.setImageResource(R.drawable.happy);
-                } else if (rating <= 4) {
-                    ratingImage.setImageResource(R.drawable.love);
-
-                } else {
-                    ratingImage.setImageResource(R.drawable.love);
-                }
-                //animate emoji image
-                animateImage(ratingImage);
-                //selected rating by user
-                userRate = rating;
             }
         });
 

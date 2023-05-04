@@ -3,6 +3,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,9 +31,10 @@ public class MailAdapterGuard extends RecyclerView.Adapter<MailViewHolderGuard> 
     public void onBindViewHolder(final MailViewHolderGuard holder, int position) {
         holder.mIcon.setText(mEmailData.get(position).getName().substring(0, 1));
         holder.tv_visitor_name.setText(mEmailData.get(position).getName());
-        holder.tv_visitor_mobile.setText(mEmailData.get(position).getMobileNumber());
+        holder.tv_visitor_mobile.setText(mEmailData.get(position).getDisapproveReason());
         holder.tv_status.setText(mEmailData.get(position).getStatus());
-        holder.tv_visitor_address.setText(mEmailData.get(position).getCity()+ ", "+mEmailData.get(position).getState());
+        holder.tv_visitor_address.setText(mEmailData.get(position).getMeetPlace());
+//        holder.tv_visitor_address.setText(mEmailData.get(position).getCity()+ ", "+mEmailData.get(position).getState());
         holder.tvTimeIn.setText("Check In "+mEmailData.get(position).getCheckIn());
         Random mRandom = new Random();
         final int color = Color.argb(255, mRandom.nextInt(256), mRandom.nextInt(256), mRandom.nextInt(256));
@@ -40,19 +42,40 @@ public class MailAdapterGuard extends RecyclerView.Adapter<MailViewHolderGuard> 
         holder.mLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent mIntent = new Intent(mContext, DetailActivity.class);
-                mIntent.putExtra("sender", holder.tv_visitor_name.getText().toString());
-                mIntent.putExtra("title", holder.tv_visitor_mobile.getText().toString());
-                mIntent.putExtra("details", holder.tv_visitor_address.getText().toString());
-                mIntent.putExtra("time", holder.tvTimeIn.getText().toString());
-                mIntent.putExtra("icon", holder.mIcon.getText().toString());
-                mIntent.putExtra("Status", holder.tv_status.getText().toString());
-                mIntent.putExtra("visitorId", mEmailData.get(position).getId());
-                mIntent.putExtra("employeeId", mEmailData.get(position).getEmployeeId());
-                mIntent.putExtra("colorIcon", color);
-                mContext.startActivity(mIntent);
+                if(!mEmailData.get(position).getStatus().equalsIgnoreCase("Disapprove")){
+                    Intent mIntent = new Intent(mContext, DetailActivity.class);
+                    mIntent.putExtra("sender", holder.tv_visitor_name.getText().toString());
+                    mIntent.putExtra("title", holder.tv_visitor_mobile.getText().toString());
+                    mIntent.putExtra("details", holder.tv_visitor_address.getText().toString());
+                    mIntent.putExtra("time", holder.tvTimeIn.getText().toString());
+                    mIntent.putExtra("icon", holder.mIcon.getText().toString());
+                    mIntent.putExtra("Status", holder.tv_status.getText().toString());
+                    mIntent.putExtra("visitorId", mEmailData.get(position).getId());
+                    mIntent.putExtra("employeeId", mEmailData.get(position).getEmployeeId());
+                    mIntent.putExtra("colorIcon", color);
+                    mContext.startActivity(mIntent);
+                }
+
             }
         });
+
+        if(mEmailData.get(position).getStatus().equalsIgnoreCase("Pending")) {
+            new CountDownTimer(120000, 1000) {
+
+                public void onTick(long millisUntilFinished) {
+                    holder._tv.setText("seconds remaining: " + millisUntilFinished / 1000);
+                    // logic to set the EditText could go here
+
+                }
+
+                public void onFinish() {
+                    holder._tv.setText("done!");
+                    holder._tv.setVisibility(View.GONE);
+                }
+
+            }.start();
+
+        }
     }
 
     @Override
@@ -69,6 +92,7 @@ class MailViewHolderGuard extends RecyclerView.ViewHolder {
     TextView tv_visitor_address;
     TextView tvTimeIn;
     TextView tv_status;
+    TextView _tv;
     RelativeLayout mLayout;
 
     MailViewHolderGuard(View itemView) {
@@ -80,5 +104,6 @@ class MailViewHolderGuard extends RecyclerView.ViewHolder {
         tvTimeIn = itemView.findViewById(R.id.tvTimeIn);
         tv_status = itemView.findViewById(R.id.tv_status);
         mLayout = itemView.findViewById(R.id.layout);
+        _tv = itemView.findViewById(R.id._tv);
     }
 }

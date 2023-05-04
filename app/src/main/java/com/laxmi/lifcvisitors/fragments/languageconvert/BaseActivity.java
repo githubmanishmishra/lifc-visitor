@@ -1,4 +1,4 @@
-package com.laxmi.lifcvisitors.languageconvert;
+package com.laxmi.lifcvisitors.fragments.languageconvert;
 
 import android.content.Context;
 import android.content.pm.ActivityInfo;

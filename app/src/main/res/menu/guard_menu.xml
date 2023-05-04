@@ -6,38 +6,22 @@
         tools:showIn="navigation_view">
         <group android:checkableBehavior="single">
             <item
-                android:id="@+id/nav_guardslideshow"
+                android:id="@+id/nav_guardprofile"
                 android:icon="@drawable/user"
-                android:title="Name"
+                android:title="@string/profile"
                 app:iconTint="@color/white"/>
-            <item
-                android:id="@+id/nav_guarddesignation"
-                android:icon="@drawable/designation"
-                android:title="Designation"/>
             <item
                 android:id="@+id/nav_guardContactus"
                 android:icon="@drawable/bgtext"
-                android:title="Contact Us"/>
+                android:title="@string/contact_us"/>
             <item
                 android:id="@+id/nav_guardlanguage"
                 android:icon="@drawable/languages"
-                android:title="Language"
+                android:title="@string/language"
                 app:iconTint="@color/red"/>
             <item
                 android:id="@+id/nav_guardlogout"
                 android:icon="@drawable/logout"
-                android:title="Logout"/>
+                android:title="@string/logout"/>
         </group>
-        <item android:title="Communicate">
-            <menu>
-                <item
-                    android:id="@+id/nav_guardshare"
-                    android:icon="@drawable/life_logo"
-                    android:title="Share" />
-                <item
-                    android:id="@+id/nav_guardsend"
-                    android:icon="@drawable/life_logo"
-                    android:title="Send" />
-            </menu>
-        </item>
     </menu>

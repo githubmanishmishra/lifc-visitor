@@ -55,18 +55,31 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
-                android:text="If you are Enjoy Using our app.would you mind rating us on the app store"
+                android:text="How did  you enjoy the meeting please give feedback?"
                 android:textSize="16sp"/>
-            <androidx.appcompat.widget.AppCompatRatingBar
-                android:id="@+id/ratingBar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:rating="3">
+           <!-- <EditText
 
-            </androidx.appcompat.widget.AppCompatRatingBar>
+            />-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ev_emp_login"
+                    android:imeOptions="actionNext"
+                    android:hint="Feedback"
+
+                    android:inputType="textMultiLine"
+                    android:lines="8"
+                    android:minLines="6"
+                    android:gravity="top|start"
+                    android:maxLines="10"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:scrollbars="vertical" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -102,6 +115,7 @@
                     android:background="@drawable/round_blue"
                     android:layout_marginStart="20dp"/>
             </LinearLayout>
+
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>

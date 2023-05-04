@@ -70,7 +70,7 @@ public class VisitorsByGuard {
         private String image;
         @SerializedName("address_proof_image")
         @Expose
-        private Object addressProofImage;
+        private String addressProofImage;
         @SerializedName("purpose_of_coming")
         @Expose
         private String purposeOfComing;
@@ -97,10 +97,10 @@ public class VisitorsByGuard {
         private String employeeMobileNumber;
         @SerializedName("meet_place")
         @Expose
-        private Object meetPlace;
+        private String meetPlace;
         @SerializedName("disapprove_reason")
         @Expose
-        private Object disapproveReason;
+        private String disapproveReason;
         @SerializedName("status")
         @Expose
         private String status;
@@ -186,11 +186,11 @@ public class VisitorsByGuard {
             this.image = image;
         }
 
-        public Object getAddressProofImage() {
+        public String getAddressProofImage() {
             return addressProofImage;
         }
 
-        public void setAddressProofImage(Object addressProofImage) {
+        public void setAddressProofImage(String addressProofImage) {
             this.addressProofImage = addressProofImage;
         }
 
@@ -258,19 +258,19 @@ public class VisitorsByGuard {
             this.employeeMobileNumber = employeeMobileNumber;
         }
 
-        public Object getMeetPlace() {
+        public String getMeetPlace() {
             return meetPlace;
         }
 
-        public void setMeetPlace(Object meetPlace) {
+        public void setMeetPlace(String meetPlace) {
             this.meetPlace = meetPlace;
         }
 
-        public Object getDisapproveReason() {
+        public String getDisapproveReason() {
             return disapproveReason;
         }
 
-        public void setDisapproveReason(Object disapproveReason) {
+        public void setDisapproveReason(String disapproveReason) {
             this.disapproveReason = disapproveReason;
         }
 

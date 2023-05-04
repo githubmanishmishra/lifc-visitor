@@ -51,7 +51,7 @@ public interface APIService {
     //    @Headers("Content-Type: application/x-www-form-urlencoded")
     @FormUrlEncoded
     @POST("guard/signup/request")
-    Call<ResponseBody> getSignup(@Field("mobile_number") String mobile_number,
+    Call<MSG> getSignup(@Field("mobile_number") String mobile_number,
                                  @Field("emp_code") String emp_code,
                                  @Field("otp") String otp,
                                  @Field("password") String password,
@@ -59,7 +59,7 @@ public interface APIService {
 
     @FormUrlEncoded
     @POST("employee/signup/request")
-    Call<ResponseBody> getEmployeeSignup(@Field("mobile_number") String mobile_number,
+    Call<MSG> getEmployeeSignup(@Field("mobile_number") String mobile_number,
                                          @Field("emp_code") String emp_code,
                                          @Field("otp") String otp,
                                          @Field("password") String password,
@@ -141,6 +141,4 @@ public interface APIService {
     Call<FeedBackByVisitor> getFeedBackByVisitor(@Header("Authorization") String auth,
                                                  @Query("visitor_id") String visitor_id
                                                  );
-
-
 }

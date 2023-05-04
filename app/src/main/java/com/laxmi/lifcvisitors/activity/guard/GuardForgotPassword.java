@@ -49,10 +49,9 @@ public class GuardForgotPassword extends AppCompatActivity {
         }
 
         tv_change_password = findViewById(R.id.tv_gaurdchangepwd);
-        iv_back = findViewById(R.id.iv_back);
         ev_confirm_password = findViewById(R.id.ev_confirm_password);
         ev_new_password = findViewById(R.id.ev_new_password);
-        iv_back.setOnClickListener(view -> finish());
+
 
         tv_change_password.setOnClickListener(view -> {
             String newPassword = ev_new_password.getText().toString();
@@ -81,6 +80,8 @@ public class GuardForgotPassword extends AppCompatActivity {
             }
 
         });
+        TextView tv = (TextView) this.findViewById(R.id.mywidget);
+        tv.setSelected(true);
     }
 
     private void forgotPasswordApi(String newPassword) {

@@ -15,6 +15,7 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import com.laxmi.lifcvisitors.R;
 import com.laxmi.lifcvisitors.activity.guard.GaurdLogin;
 import com.laxmi.lifcvisitors.activity.guard.Guard_createpswd;
+import com.laxmi.lifcvisitors.model.MSG;
 import com.laxmi.lifcvisitors.retrofitservices.APIService;
 import com.laxmi.lifcvisitors.retrofitservices.ApiClient;
 
@@ -24,7 +25,7 @@ import org.json.JSONObject;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import okhttp3.ResponseBody;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -33,9 +34,9 @@ public class EmpcreatepswActivity extends AppCompatActivity {
     Intent intent;
     TextView confirmpsw;
 
-    TextInputEditText ev_confirm_password,ev_new_password;
+    TextInputEditText ev_confirm_password, ev_new_password;
     String mob_no, emp_code;
-    String  token;
+    String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,8 +76,7 @@ public class EmpcreatepswActivity extends AppCompatActivity {
 //                    System.out.println("Not Valid");
                     TextView tv_pattern = findViewById(R.id.tv_password_pattern);
                     tv_pattern.setText(getString(R.string.content));
-                }
-                else {
+                } else {
 
                     registrationApi(newPassword);
 
@@ -94,18 +94,18 @@ public class EmpcreatepswActivity extends AppCompatActivity {
 
             }
         });
-        TextView   tv =  this.findViewById(R.id.mywidget);
+        TextView tv = this.findViewById(R.id.mywidget);
         tv.setSelected(true);
     }
 
     private void registrationApi(String newPassword) {
         APIService service = ApiClient.getClient().create(APIService.class);
-        Call<ResponseBody> call = service.getEmployeeSignup(mob_no, emp_code, "1234",
-                newPassword,token);
-        call.enqueue(new Callback<ResponseBody>() {
+        Call<MSG> call = service.getEmployeeSignup(mob_no, emp_code, "1234",
+                newPassword, token);
+        call.enqueue(new Callback<MSG>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
+            public void onResponse(Call<MSG> call, Response<MSG> response) {
+/*
                 try {
                     assert response.body() != null;
                     JSONArray myListsAll = new JSONArray("[" + response.body().string() + "]");
@@ -122,11 +122,19 @@ public class EmpcreatepswActivity extends AppCompatActivity {
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
+                }*/
+                assert response.body() != null;
+                String string_message = response.body().getMessage();
+                Toast.makeText(EmpcreatepswActivity.this, string_message, Toast.LENGTH_SHORT).show();
+
+                if (string_message.equalsIgnoreCase("Employee Registed Successfully")) {
+                    Intent intents = new Intent(EmpcreatepswActivity.this, EmployeeLogin.class);
+                    startActivity(intents);
                 }
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(Call<MSG> call, Throwable t) {
 
                 // pDialog.dismiss();
                 Log.d("Error", t.getMessage());
@@ -136,13 +144,11 @@ public class EmpcreatepswActivity extends AppCompatActivity {
 
     //Strong Password Generation
     public static boolean isValidPassword(final String password) {
-
         Pattern pattern;
         Matcher matcher;
         final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{4,}$";
         pattern = Pattern.compile(PASSWORD_PATTERN);
         matcher = pattern.matcher(password);
-
         return matcher.matches();
 
     }

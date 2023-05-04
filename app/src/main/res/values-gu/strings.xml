@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Lifc મુલાકાતીઓ</string>
+    <string name="app_name">Lifc Visitors</string>
     <string name="title_activity_employeeregistration">કર્મચારી નોંધણી
 </string>
     <!-- Strings used for fragments for navigation -->
@@ -28,7 +28,7 @@
     <string name="your_string_here"><![CDATA[<u>તમારી પાસે ખાતું નથી? એક બનાવો!</u>.]]></string>
     <string name="marquee_text">
 લક્ષ્મી ઈન્ડિયા ફાઈનાન્સ પ્રાઈવેટ લિમિટેડ જે અગાઉ લક્ષ્મી ઈન્ડિયા ફેનલીસેકેપ પ્રાઈવેટ લિમિટેડ તરીકે જાણીતી હતી</string>
-    <string name="mobile_no_91">મોબાઈલ નંબર - +91</string>
+
     <string name="new_password">નવો પાસવર્ડ
 </string>
     <string name="confirm_password">પાસવર્ડની પુષ્ટિ કરો</string>
@@ -58,7 +58,6 @@
     <string name="request_pending">
 વિનંતી બાકી છે
 </string>
-    <string name="mobileno_91">મોબાઈલ નંબર-+91</string>
     <string name="otp_verification">OTP ચકાસણી</string>
     <string name="verify">
 ચકાસો</string>
@@ -72,29 +71,63 @@
     <string name="guard">રક્ષક</string>
     <string name="employee">કર્મચારી</string>
     <string name="_2_dfl_tower_gopinath_marg_m_i_road_jaipur_302001">2, DFL ટાવર ગોપીનાથ માર્ગ M.I. રોડ, જયપુર -302001</string>
-    <string name="visitor_phoneno_91">મુલાકાતી ફોન નંબર-+91</string>
     <string name="purpose_of_meeting">મીટીંગનો હેતુ</string>
     <string name="visitor_photo">મુલાકાતી ફોટો--</string>
     <string name="upload">અપલોડ કરો</string>
     <string name="pincode">પીન કોડ</string>
-    <string name="state">રાજ્ય-</string>
-    <string name="city">શહેર-</string>
+    <string name="state">રાજ્ય</string>
+    <string name="city">શહેર</string>
     <string name="whom_to_meet">કોને મળવું</string>
     <string name="employee_name">કોને મળવું</string>
-    <string name="employee_id">કર્મચારી આઈડી-</string>
+    <string name="employee_id">કર્મચારી આઈડી</string>
     <string name="branch">શાખા</string>
     <string name="department">વિભાગ</string>
     <string name="send_request">વિનંતી મોકલી</string>
     <string name="request">વિનંતી</string>
-    <string name="office_boy_name">ઓફિસ બોયનું નામ-</string>
-    <string name="employeecode">કર્મચારી કોડ-</string>
+    <string name="office_boy_name">ઓફિસ બોયનું નામ</string>
+    <string name="employeecode">કર્મચારી કોડ</string>
     <string name="submit">સબમિટ કરો</string>
     <string name="enter_your_otp">તમારો Otp દાખલ કરો</string>
-    <string name="visitor_name">મુલાકાતી નામ</string>
     <string name="second_visitor_name">બીજા મુલાકાતીનું નામ</string>
     <string name="third_visitor_name">ત્રીજા મુલાકાતીનું નામ</string>
     <string name="conference_room">કોન્ફરન્સ રૂમ</string>
     <string name="approve">મંજૂર</string>
     <string name="disapprove">નામંજૂર કરો</string>
     <string name="total_visitor_status">કુલ મુલાકાતી સ્થિતિ</string>
+    <string name="welcome_to_lifc">WELCOME TO LIFC</string>
+    <string name="feedback_from_visitor">મુલાકાતી તરફથી પ્રતિસાદ</string>
+    <string name="visitor_detail">મુલાકાતીઓની વિગતો</string>
+    <string name="visitor_name">મુલાકાતી નામ</string>
+    <string name="visitor_name_one">મુલાકાતી નામ એક</string>
+    <string name="visitor_name_two">મુલાકાતી નામ બે</string>
+    <string name="visitor_name_three">મુલાકાતી નામ ત્રણ</string>
+    <string name="getotp">ઓટીપી મેળવો</string>
+    <string name="select_your_city">તમારું શહેર પસંદ કરો</string>
+    <string name="time_in">સમય માં</string>
+    <string name="select_in_time">સમય માં પસંદ કરો</string>
+    <string name="name">નામ</string>
+    <string name="contact_us">અમારો સંપર્ક કરો</string>
+    <string name="language">ભાષા</string>
+    <string name="logout">લૉગ આઉટ</string>
+    <string name="employee_create_password">કર્મચારી પાસવર્ડ બનાવો</string>
+    <string name="create_password">પાસવર્ડ બનાવો</string>
+    <string name="mobile_number">મોબાઇલ નંબર</string>
+    <string name="select_your_state">તમારું રાજ્ય પસંદ કરો</string>
+    <string name="enter_mobile_no">મોબાઈલ નંબર દાખલ કરો</string>
+    <string name="employee_login">કર્મચારી લૉગિન</string>
+    <string name="profile">પ્રોફાઇલ</string>
+    <string name="contactus">અમારો સંપર્ક કરો</string>
+    <string name="call_for_help">મદદ માટે કૉલ કરો:</string>
+    <string name="employee_code">કર્મચારી કોડ</string>
+    <string name="whom_to_meets" >કોને મળવું </string>
+    <string name="pref_token">com.laxmi.lifcvisitors.preference_token</string>
+    <string name="employee_profile_update">Employee Profile Update</string>
+    <string name="employee_send_request_to_guard">Employee Send Request To Guard</string>
+    <string name="visitors_list">Visitors List</string>
+    <string name="recreate_password">Recreate Password</string>
+    <string name="guard_login">Guard Login</string>
+    <string name="guard_send_request_to_employee">Guard Send Request To employee</string>
+    <string name="office_boy_assign">Office Boy Assign</string>
+    <string name="enter_otp">Enter Otp</string>
+    <string name="employee_response">Employee Response</string>
 </resources>

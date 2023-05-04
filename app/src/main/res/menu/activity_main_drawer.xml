@@ -8,18 +8,20 @@
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/user"
-            android:title="Name"
+            android:title="@string/profile"
             app:iconTint="@color/white"/>
 
         <item
             android:id="@+id/nav_Contactus"
             android:icon="@drawable/bgtext"
             android:title="Contact Us"/>
+<!--
         <item
             android:id="@+id/nav_language"
             android:icon="@drawable/languages"
             android:title="Language"
             app:iconTint="@color/red"/>
+-->
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/logout"

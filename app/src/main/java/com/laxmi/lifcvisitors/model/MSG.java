@@ -9,6 +9,7 @@ public class MSG {
     private String token;
 
     public MSG() {
+
     }
 
     public String getStatus() {

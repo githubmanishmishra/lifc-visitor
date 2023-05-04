@@ -3,6 +3,8 @@ package com.laxmi.lifcvisitors.activity.visitors;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -46,7 +48,10 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
     EditText ev_disapprove;
 
     TextView tv_visitor_name, tv_visitor_name2, tv_visitor_name3, tv_visitor_mobile, tv_purpose_of_meeting;
-    ImageView view_photo;
+    //ImageView view_photo;
+/*    private ScaleGestureDetector mScaleGestureDetector;
+    private float mScaleFactor = 1.0f;*/
+    private ImageView view_photo;
 
     int visitorId;
      String       VisitorName, VisitorOne, VisitorTwo, VisitorThree, Purpose, UserImage, MobileNo,Status;
@@ -55,6 +60,14 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visitorrequestcome_to_emplpyee);
+
+        ImageView iv_back = findViewById(R.id.iv_back);
+        iv_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         prefConfig = new PrefConfig(this);
 
@@ -90,14 +103,14 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
         tv_visitor_name3 = findViewById(R.id.tv_visitor_name3);
         tv_visitor_mobile = findViewById(R.id.tv_visitor_mobile);
         tv_purpose_of_meeting = findViewById(R.id.tv_purpose_of_meeting);
-
         tv_visitor_name.setText(VisitorName);
         tv_visitor_name2.setText(VisitorOne);
         tv_visitor_name3.setText(VisitorTwo);
         tv_visitor_mobile.setText(MobileNo);
         tv_purpose_of_meeting.setText(Purpose);
-
         view_photo = findViewById(R.id.view_photo);
+
+        //mScaleGestureDetector = new ScaleGestureDetector(this, new ScaleListener());
 
         Glide
                 .with(Visitorrequestcome_to_emplpyee.this)
@@ -105,8 +118,6 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
                 .centerCrop()
                 .placeholder(R.drawable.ic_alert_red)
                 .into(view_photo);
-
-
         Floor = findViewById(R.id.spinner_Floor);
         spinner_Conference = findViewById(R.id.spinner_conference);
         arrFlor.add("Basement");
@@ -118,8 +129,6 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
         arrFlor.add("Roshan Tower Office Unit-3");
         ArrayAdapter<String> springAdapter_Floor = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, arrFlor);
         Floor.setAdapter(springAdapter_Floor);
-
-
         arrConference.add("Albert Hall");
         arrConference.add("Jai Garh");
         arrConference.add("City Place");
@@ -162,6 +171,25 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
 
         });
     }
+/*
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        mScaleGestureDetector.onTouchEvent(motionEvent);
+        return true;
+    }
+*/
+/*
+    private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
+        @Override
+        public boolean onScale(ScaleGestureDetector scaleGestureDetector){
+            mScaleFactor *= scaleGestureDetector.getScaleFactor();
+            mScaleFactor = Math.max(0.1f,
+                    Math.min(mScaleFactor, 10.0f));
+            view_photo.setScaleX(mScaleFactor);
+            view_photo.setScaleY(mScaleFactor);
+            return true;
+        }
+    }
+*/
 
     private void getVisitorApproval() {
         Gson gson = new GsonBuilder()

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -15,8 +16,6 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.laxmi.lifcvisitors.R;
-import com.laxmi.lifcvisitors.activity.guard.GaurdLogin;
-import com.laxmi.lifcvisitors.activity.guard.GuardDashboard;
 import com.laxmi.lifcvisitors.model.MSG;
 import com.laxmi.lifcvisitors.retrofitservices.APIService;
 import com.laxmi.lifcvisitors.retrofitservices.ApiClient;
@@ -40,7 +39,13 @@ public class EmployeeLogin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employeelogin);
-
+       ImageView iv_back = findViewById(R.id.iv_back);
+       iv_back.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               finish();
+           }
+       });
         prefConfig = new PrefConfig(this);
 
         // Key token
@@ -66,7 +71,7 @@ public class EmployeeLogin extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         tv_forget.setOnClickListener(view -> {
-            Intent intent = new Intent(EmployeeLogin.this, Forgetpsw.class);
+            Intent intent = new Intent(EmployeeLogin.this, Forgetpsw_Mobile.class);
             startActivity(intent);
         });
         registration_text.setOnClickListener(new View.OnClickListener() {

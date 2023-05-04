@@ -51,7 +51,7 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.laxmi.lifcvisitors.ImageFilePath;
 import com.laxmi.lifcvisitors.R;
-import com.laxmi.lifcvisitors.languageconvert.BaseActivity;
+import com.laxmi.lifcvisitors.fragments.languageconvert.BaseActivity;
 import com.laxmi.lifcvisitors.model.Departments;
 import com.laxmi.lifcvisitors.model.EmployeeByDepartment;
 import com.laxmi.lifcvisitors.retrofitservices.APIService;
@@ -172,7 +172,7 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
 
         btnTimePickerIn.setOnClickListener(this);
         btnTimePickerOut.setOnClickListener(this);
-        new CountDownTimer(120000, 1000) {
+      /*  new CountDownTimer(120000, 1000) {
 
             public void onTick(long millisUntilFinished) {
                 _tv.setText("seconds remaining: " + millisUntilFinished / 1000);
@@ -183,7 +183,7 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
                 _tv.setText("done!");
             }
 
-        }.start();
+        }.start();*/
 
         Log.d("token>>>>>>>M", prefConfig.readToken());
 
@@ -208,7 +208,6 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
         spinner_department = findViewById(R.id.spinner_department);
         spinner_branches = findViewById(R.id.spinner_branches);
         btnSubmit = findViewById(R.id.btn_submiit);
-
         btnSubmit.setOnClickListener(view -> {
             if (pin_code.getText().toString().isEmpty() &&
                     pin_code.getText().toString().length() != 6) {
@@ -454,7 +453,7 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
         String url = "https://api.postalpincode.in/pincode";
         StringRequest mStringRequest = new StringRequest(Request.Method.GET, url + "/" + pinCode, response -> {
 
-            Toast.makeText(getApplicationContext(), "Response :" + response, Toast.LENGTH_LONG).show();//display the response on screen
+           // Toast.makeText(getApplicationContext(), "Response :" + response, Toast.LENGTH_LONG).show();//display the response on screen
             Log.i("Manish Mishra", response);
 
             if (response != null) {
@@ -523,11 +522,9 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
                     if (response.body().getMessage().equalsIgnoreCase("Departments List")) {
 
                         Log.d("Departmentsssss", "" + response.body().getData());
-
                         dataList = response.body().getData();
                         List<String> listDepartment = new ArrayList<>();
                         for (int i = 0; i < dataList.size(); i++) {
-
                             Log.d("kjxngksjnkjsdn", dataList.toString());
 //                            HashSet<String> hashSet = new HashSet<String>();
 //                            hashSet.addAll(listDepartment);
@@ -541,10 +538,8 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
                         ArrayAdapter aa = new ArrayAdapter(New_visitordetail.this, android.R.layout.simple_spinner_item, listDepartment);
                         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         //Setting the ArrayAdapter data on the Spinner
-
                         spinner_department.setAdapter(aa);
                         aa.notifyDataSetChanged();
-
                     }
 
                     spinner_department.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -620,10 +615,8 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
                         ArrayAdapter aa = new ArrayAdapter(New_visitordetail.this, android.R.layout.simple_spinner_item, listDepartmentEmp);
                         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         //Setting the ArrayAdapter data on the Spinner
-
                         spinner_employeedept.setAdapter(aa);
                         aa.notifyDataSetChanged();
-
                     }
 
                     spinner_employeedept.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -631,21 +624,14 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                             try {
                                 empByDepartment = dataListEmp.get(position);
-
                                 departmentsEmp = empByDepartment.getName();
                                 departmentsValueCode = empByDepartment.getId();
-
                                 Log.d("hcgvmb",""+departmentsValueCode);
                                 String empCode = empByDepartment.getEmpCode();
                                 empMobileNo = empByDepartment.getMobileNumber();
-
                                 tv_emp_code.setText(empCode);
-
-
                                 Log.d("departmentsEmp", New_visitordetail.this.departmentsEmp);
-
                             } catch (Exception e) {
-
                             }
                         }
 

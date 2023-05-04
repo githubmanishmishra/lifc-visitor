@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +27,13 @@ public class Gaurdregistration extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gaurdregistration);
+        ImageView iv_back = findViewById(R.id.iv_back);
+        iv_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         // Key token
         //Token Generate
         FirebaseMessaging.getInstance().getToken().addOnCompleteListener(task -> {
@@ -63,11 +71,15 @@ public class Gaurdregistration extends AppCompatActivity {
                 }
                 else
                 {
-                    //Toast.makeText(Gaurdregistration.this, "Enter Mobile No.", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(Gaurdregistration.this,Gaurdotp_verification.class);
-
+                    Bundle bundle = new Bundle();
+                    bundle.putString("mob_no", ev_guard_mob_no.getText().toString());
+                    bundle.putString("emp_code", emp_code.getText().toString());
+                    intent.putExtras(bundle);
                     startActivity(intent);
-                }
+
+                    //Toast.makeText(Gaurdregistration.this, "Enter Mobile No.", Toast.LENGTH_SHORT).show();
+                                   }
 
             }
         });

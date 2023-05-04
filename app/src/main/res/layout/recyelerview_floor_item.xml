@@ -55,6 +55,21 @@
         android:maxLines="1"
         android:text="This is a very long " />
 
+
+    <TextView
+        android:id="@+id/_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_visitor_address"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/tvIcon"
+        android:layout_toRightOf="@+id/tvIcon"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="This  " />
+
     <TextView
         android:id="@+id/tvTimeIn"
         android:layout_width="wrap_content"

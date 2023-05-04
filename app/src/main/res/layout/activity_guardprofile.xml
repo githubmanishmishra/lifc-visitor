@@ -28,7 +28,7 @@
                     android:layout_gravity="center"
                     android:layout_marginStart="10dp"
                     android:background="@drawable/ic_baseline_arrow_back_ios_24"
-                 app:tint ="@color/white"/>
+                 app:tint="@color/white"/>
                 <TextView
                     android:id="@+id/tv_text"
                     android:layout_width="match_parent"
@@ -38,8 +38,8 @@
                     android:text="Guard Profile Update"
                     android:textColor="@color/white"
                     android:textSize="18sp"
-                    android:typeface="sans" />
-
+                    android:typeface="sans"
+                    android:textStyle="bold|italic"/>
             </androidx.appcompat.widget.Toolbar>
 
             <!--   <EditText

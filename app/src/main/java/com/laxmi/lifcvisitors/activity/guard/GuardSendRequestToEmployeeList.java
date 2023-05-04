@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.laxmi.lifcvisitors.Employee_Send_Request_toGaurd;
 import com.laxmi.lifcvisitors.R;
@@ -32,13 +33,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class GuardSendRequestToEmployeeList extends AppCompatActivity {
+public class GuardSendRequestToEmployeeList extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
     RecyclerView mRecyclerView;
     List<VisitorsByGuard.Data> VisitorsByGuardList = new ArrayList<>();
     PrefConfig prefConfig;
     ProgressDialog pDialog;
-
+    SwipeRefreshLayout swipeRefreshLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +52,15 @@ public class GuardSendRequestToEmployeeList extends AppCompatActivity {
             }
         });
         prefConfig = new PrefConfig(this);
+        swipeRefreshLayout = findViewById(R.id.swipeContainer);
+
+        swipeRefreshLayout.setOnRefreshListener(this);
+        swipeRefreshLayout.setColorSchemeResources(R.color.pink,
+                android.R.color.holo_green_dark,
+                android.R.color.holo_orange_dark,
+                android.R.color.holo_blue_dark);
+
+
 
         mRecyclerView = findViewById(R.id.recyclerView);
         LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(GuardSendRequestToEmployeeList.this, LinearLayoutManager.VERTICAL, false);
@@ -59,15 +69,30 @@ public class GuardSendRequestToEmployeeList extends AppCompatActivity {
         mLinearLayoutManager.setStackFromEnd(true);
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
 
-        //  progressDialogInitialisaton();
+          progressDialogInitialisaton();
         getVisitorsByGuardList();
 
         TextView tv = (TextView) this.findViewById(R.id.mywidget);
         tv.setSelected(true);
+        swipeRefreshLayout.post(new Runnable() {
+
+            @Override
+            public void run() {
+
+                swipeRefreshLayout.setRefreshing(true);
+
+                getVisitorsByGuardList();
+
+
+            }
+        });
+
 
     }
 
     private void getVisitorsByGuardList() {
+
+        swipeRefreshLayout.setRefreshing(false);
 
         APIService service = ApiClient.getClient().create(APIService.class);
 
@@ -79,6 +104,7 @@ public class GuardSendRequestToEmployeeList extends AppCompatActivity {
                 final VisitorsByGuard allEvent = response.body();
 
                 if (allEvent != null) {
+
                     for (int i = 0; i < allEvent.getData().size(); i++) {
                         VisitorsByGuardList = allEvent.getData();
                     }
@@ -87,7 +113,7 @@ public class GuardSendRequestToEmployeeList extends AppCompatActivity {
 
                 if (VisitorsByGuardList != null) {
 
-//                    pDialog.dismiss();
+                    pDialog.dismiss();
 
                 }
 
@@ -123,9 +149,6 @@ public class GuardSendRequestToEmployeeList extends AppCompatActivity {
                         mIntent.putExtra("Status", newArrival.getStatus());
                         startActivity(mIntent);*/
 
-
-
-
                     }
 
                     @Override
@@ -139,7 +162,7 @@ public class GuardSendRequestToEmployeeList extends AppCompatActivity {
             @Override
             public void onFailure(Call<VisitorsByGuard> call, Throwable t) {
 
-                //  pDialog.dismiss();
+                  pDialog.dismiss();
             }
         });
 
@@ -148,10 +171,15 @@ public class GuardSendRequestToEmployeeList extends AppCompatActivity {
 
     private void progressDialogInitialisaton() {
 
-//        pDialog = new ProgressDialog(getApplicationContext());
-//        pDialog.setMessage("Loading Data Please wait...");
-//        pDialog.setIndeterminate(false);
-//        pDialog.setCancelable(false);
-//        pDialog.show();
+        pDialog = new ProgressDialog(GuardSendRequestToEmployeeList.this);
+        pDialog.setMessage("Loading Data Please wait...");
+        pDialog.setIndeterminate(false);
+        pDialog.setCancelable(false);
+        pDialog.show();
+    }
+
+    @Override
+    public void onRefresh() {
+        getVisitorsByGuardList();
     }
 }

@@ -1,6 +1,6 @@
 package com.laxmi.lifcvisitors.activity.guard;
 
-import static com.laxmi.lifcvisitors.languageconvert.LocaleManager.setNewLocale;
+import static com.laxmi.lifcvisitors.fragments.languageconvert.LocaleManager.setNewLocale;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -12,18 +12,17 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.navigation.NavigationView;
+import com.laxmi.lifcvisitors.Contactus;
 import com.laxmi.lifcvisitors.R;
 import com.laxmi.lifcvisitors.fragments.GuardDashboardFragment;
-import com.laxmi.lifcvisitors.languageconvert.BaseActivity;
-import com.laxmi.lifcvisitors.languageconvert.LocaleManager;
+import com.laxmi.lifcvisitors.fragments.languageconvert.BaseActivity;
+import com.laxmi.lifcvisitors.fragments.languageconvert.LocaleManager;
 import com.laxmi.lifcvisitors.savedata.PrefConfig;
 
 public class GuardDashboard extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -78,7 +77,17 @@ public class GuardDashboard extends BaseActivity implements NavigationView.OnNav
 //        Fragment fragment = null;
 //        FragmentManager fragmentManager = getSupportFragmentManager();
         if (id == R.id.nav_slideshow) {
-        } else if (id == R.id.nav_guarddesignation) {
+        }
+      /*  else if (id == R.id.nav_guarddesignation) {
+
+        }*/
+        else if (id == R.id.nav_guardContactus) {
+            Intent intents = new Intent(GuardDashboard.this, Contactus.class);
+            startActivity(intents);
+            
+        } else if (id== R.id.nav_guardprofile) {
+            Intent intent= new Intent(GuardDashboard.this,GuardProfileActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_guardlanguage) {
 
                 final Dialog dialogLanguages =
@@ -124,10 +133,7 @@ public class GuardDashboard extends BaseActivity implements NavigationView.OnNav
 
 
 
-        }else if (id == R.id.nav_guardslideshow) {
-
-
-        } else if (id == R.id.nav_guardlogout) {
+        }else if (id == R.id.nav_guardlogout) {
 
 
             prefConfig.writeLoginStatus(false);

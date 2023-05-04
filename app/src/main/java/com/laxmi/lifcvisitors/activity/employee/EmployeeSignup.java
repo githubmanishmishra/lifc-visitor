@@ -26,13 +26,10 @@ public class EmployeeSignup extends AppCompatActivity {
     TextView tv_emp_getotp, tv_login;
     EditText ev_emp_mob_no, emp_code;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee_signup);
-
-
         tv_emp_getotp = findViewById(R.id.tv_emp_otp);
         tv_login = findViewById(R.id.tv_login);
         ev_emp_mob_no = findViewById(R.id.ev_emp_mob_no);
@@ -57,8 +54,11 @@ public class EmployeeSignup extends AppCompatActivity {
                 else
                 {
                     //Toast.makeText(Gaurdregistration.this, "Enter Mobile No.", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(EmployeeSignup.this, Gaurdotp_verification.class);
-
+                    Intent intent = new Intent(EmployeeSignup.this, Otpverification.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("mob_no", ev_emp_mob_no.getText().toString());
+                    bundle.putString("emp_code", emp_code.getText().toString());
+                    intent.putExtras(bundle);
                     startActivity(intent);
                 }
 

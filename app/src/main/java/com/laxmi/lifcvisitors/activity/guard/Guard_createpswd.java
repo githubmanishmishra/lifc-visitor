@@ -9,10 +9,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.laxmi.lifcvisitors.R;
+import com.laxmi.lifcvisitors.model.MSG;
 import com.laxmi.lifcvisitors.retrofitservices.APIService;
 import com.laxmi.lifcvisitors.retrofitservices.ApiClient;
 
@@ -22,7 +24,6 @@ import org.json.JSONObject;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -106,33 +107,25 @@ public class Guard_createpswd extends AppCompatActivity {
 
     private void registrationApi(String newPassword) {
         APIService service = ApiClient.getClient().create(APIService.class);
-        Call<ResponseBody> call = service.getSignup(mob_no, emp_code, "1234",
+        Call<MSG> call = service.getSignup(mob_no, emp_code, "1234",
                 newPassword,token);
-        call.enqueue(new Callback<ResponseBody>() {
+        call.enqueue(new Callback<MSG>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
-                try {
-//                    assert response.body() != null;
-                    JSONArray myListsAll = new JSONArray("[" + response.body().string() + "]");
-                    for (int i = 0; i < myListsAll.length(); i++) {
-                        JSONObject jsonobject = (JSONObject) myListsAll.get(i);
-                        String string_message = jsonobject.getString("message");
-                        Toast.makeText(Guard_createpswd.this, string_message, Toast.LENGTH_SHORT).show();
-
-                        if (string_message.equalsIgnoreCase("Guard Registed Successfully")) {
-                            Intent intents = new Intent(Guard_createpswd.this, GaurdLogin.class);
-                            startActivity(intents);
-                        }
-
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
+            public void onResponse(@NonNull Call<MSG> call, @NonNull Response<MSG> response) {
+                assert response.body() != null;
+                String string_message = response.body().getMessage();
+                Toast.makeText(Guard_createpswd.this, string_message, Toast.LENGTH_SHORT).show();
+                if (string_message.equalsIgnoreCase("Guard Registed Successfully")) {
+                    Intent intents = new Intent(Guard_createpswd.this, GaurdLogin.class);
+                    startActivity(intents);
+                }
+                else {
+                    Toast.makeText(Guard_createpswd.this, "Guard Already Exist", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(Call<MSG> call, Throwable t) {
 
                 // pDialog.dismiss();
                 Log.d("Error", t.getMessage());

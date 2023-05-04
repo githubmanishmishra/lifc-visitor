@@ -22,10 +22,12 @@
                 app:tint ="@color/white"/>
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Create Password"
+                android:text="@string/create_password"
                 android:gravity="center"
+                android:textStyle="bold|italic"
+                android:textSize="18sp"
                 android:textColor="@color/white" />
         </androidx.appcompat.widget.Toolbar>
         <RelativeLayout

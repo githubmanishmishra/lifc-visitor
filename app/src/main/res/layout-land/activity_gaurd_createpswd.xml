@@ -22,11 +22,13 @@
                 app:tint ="@color/white"/>
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Create Password"
                 android:gravity="center"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
         </androidx.appcompat.widget.Toolbar>
         <RelativeLayout
             android:id="@+id/lifc_logo"

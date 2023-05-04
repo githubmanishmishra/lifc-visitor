@@ -1,30 +1,21 @@
 package com.laxmi.lifcvisitors.fragments;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.RadioButton;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.laxmi.lifcvisitors.R;
-import com.laxmi.lifcvisitors.activity.guard.GuardDashboard;
 import com.laxmi.lifcvisitors.activity.guard.GuardProfileActivity;
 import com.laxmi.lifcvisitors.activity.guard.GuardSendRequestToEmployeeList;
 import com.laxmi.lifcvisitors.activity.visitors.Feedback;
 import com.laxmi.lifcvisitors.activity.visitors.New_visitordetail;
-import com.laxmi.lifcvisitors.languageconvert.LocaleManager;
-import static com.laxmi.lifcvisitors.languageconvert.LocaleManager.setNewLocale;
-
-import java.util.Objects;
 
 public class GuardDashboardFragment extends Fragment {
     TextView tv_newvisitor, tv_my_profile,total_visitor_count;

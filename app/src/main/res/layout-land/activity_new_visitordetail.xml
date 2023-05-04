@@ -78,32 +78,6 @@
                 android:src="@drawable/life_logo" />
         </RelativeLayout>
 
-        <!--<RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp">
-
-            <TextView
-                android:id="@+id/tv_visitor_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="Visitor Name -                 "
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/ev_visitor_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_toRightOf="@+id/tv_visitor_name"
-                android:background="@drawable/bgtext"
-                android:padding="10dp"
-                android:singleLine="true" />
-
-        </RelativeLayout>-->
         <!--
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
