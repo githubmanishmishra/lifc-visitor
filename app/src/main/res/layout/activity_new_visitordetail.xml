@@ -158,15 +158,13 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
+                android:layout_margin="10dp"
                 android:hint="@string/visitor_name_one">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ev_visitor_one"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:padding="12dp"
+                    android:layout_height="60dp"
                     android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -174,40 +172,34 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
+                android:layout_margin="10dp"
                 android:hint="@string/visitor_name_two">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ev_visitor_two"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:padding="12dp"
-                    android:singleLine="true" />
+                    android:layout_height="60dp"
+                    android:singleLine="true"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
+                android:layout_margin="10dp"
                 android:hint="@string/visitor_name_three">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ev_visitor_three"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:padding="12dp"
+                    android:layout_height="60dp"
                     android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
-
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp">
-
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/purposeof_meeting"
                 android:layout_width="match_parent"
@@ -261,16 +253,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:hint="@string/mobile_number"
-                android:inputType="phone"
-                android:maxLength="10" />
-
+                android:inputType="number"
+                android:maxLength="10"/>
         </com.google.android.material.textfield.TextInputLayout>
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_otp"
                 android:layout_width="0dp"
@@ -286,9 +275,7 @@
                 android:id="@+id/textView1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:visibility="gone" />
-
-
+                android:visibility="gone"/>
         </LinearLayout>
 
 

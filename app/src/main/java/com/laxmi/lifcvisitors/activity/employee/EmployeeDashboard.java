@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
@@ -26,9 +27,7 @@ import com.laxmi.lifcvisitors.savedata.PrefConfig;
 public class EmployeeDashboard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     PrefConfig prefConfig;
-    AlertDialog.Builder abd;
-
-    AlertDialog  alertDialog;
+    AlertDialog.Builder alertDialogBuilder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +46,24 @@ public class EmployeeDashboard extends AppCompatActivity implements NavigationVi
      /*  TextView tv_emp_name = navigationView.findViewById(R.id.tv_emp_name);
 
        tv_emp_name.setText("sdvfcb");*/
+alertDialogBuilder = new AlertDialog.Builder(EmployeeDashboard.this);
+alertDialogBuilder.setTitle("Logout");
+alertDialogBuilder.setIcon(R.drawable.logout);
+alertDialogBuilder.setMessage("Are you sure want to logout?");
+alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+        startActivity(new Intent(EmployeeDashboard.this, EmployeeLogin.class));
+        Toast.makeText(EmployeeDashboard.this, "You successfully logout", Toast.LENGTH_SHORT).show();
+    }
+});
+alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
 
+
+    }
+});
         FragmentManager fragmentManager = getSupportFragmentManager();
         DashboardFragment fragment = new DashboardFragment();
         fragmentManager.beginTransaction().replace(R.id.frameLayout, fragment).commit();
@@ -59,18 +75,6 @@ public class EmployeeDashboard extends AppCompatActivity implements NavigationVi
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            /* abd = new AlertDialog.Builder(this);
-            abd.setTitle("confirm Logout?");
-                    abd.setMessage("Are you sure You Want to logout");
-                            abd.setCancelable(false);
-                                    abd.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            finish();
-                                        }
-                                    });
-                                    abd.setPositiveButton("No",null);
-            AlertDialog  alertDialog = abd.create();*/
 
            super.onBackPressed();
         }
@@ -90,22 +94,11 @@ public class EmployeeDashboard extends AppCompatActivity implements NavigationVi
             Intent intents = new Intent(EmployeeDashboard.this, Contactus.class);
             startActivity(intents);
         } else if (id == R.id.nav_logout) {
-            abd = new AlertDialog.Builder(this);
-            abd.setTitle("confirm Logout?");
-            abd.setMessage("Are you sure You Want to logout");
-            abd.setCancelable(false);
-            abd.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    finish();
-                }
-            });
-            abd.setPositiveButton("No",null);
-            AlertDialog  alertDialog = abd.create();
             prefConfig.writeLoginStatus(false);
-            alertDialog.show();
-            startActivity(new Intent(EmployeeDashboard.this, EmployeeLogin.class));
-            finishAffinity();
+            alertDialogBuilder.show();
+
+            //startActivity(new Intent(EmployeeDashboard.this, EmployeeLogin.class));
+        //    finishAffinity();
 
         }
       //  fragmentManager.beginTransaction().replace(R.id.frameLayout, fragment).commit();
@@ -114,5 +107,4 @@ public class EmployeeDashboard extends AppCompatActivity implements NavigationVi
         return true;
 
     }
-
 }

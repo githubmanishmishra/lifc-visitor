@@ -1,7 +1,7 @@
 package com.laxmi.lifcvisitors.activity.visitors;
-
 import android.Manifest;
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.ContextWrapper;
@@ -70,7 +70,6 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
-
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
@@ -102,7 +101,7 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
     Spinner spinner, spinner_department, spinner_branches, spinner_employeedept;
     TextView tv_spinner_state;
     List<String> listSpinner = new ArrayList<>();
-    List<String> listBranches = new ArrayList<>();
+    //List<String> listBranches = new ArrayList<>();
     int currentItem = 0;
      int departmentsValueCode;
 
@@ -117,10 +116,8 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
     AppCompatButton btnSubmit, Getotp;
     PrefConfig prefConfig;
     private final Handler handler = new Handler();
-
     TextView tv_emp_code;
     ImageView iv_back;
-
     Button btnTimePickerIn, btnTimePickerOut;
     EditText txtTimeIn, txtTimeOut;
     private int mHour, mMinute;
@@ -153,7 +150,6 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
         visitor_name3 = findViewById(R.id.ev_visitor_three);
         purpose_of_comeing = findViewById(R.id.purposeof_meeting);
         visitor_mobileno = findViewById(R.id.visitormobile_no);
-
         TextView _tv = (TextView) findViewById(R.id.textView1);
         btnTimePickerIn = (Button) findViewById(R.id.btn__in_time);
         btnTimePickerOut = (Button) findViewById(R.id.btn_out_time);
@@ -169,7 +165,6 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
                 finish();
             }
         });
-
         btnTimePickerIn.setOnClickListener(this);
         btnTimePickerOut.setOnClickListener(this);
       /*  new CountDownTimer(120000, 1000) {
@@ -198,7 +193,6 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
             }
         });
         btn_uploadvisitor_photo = findViewById(R.id.btn_uploadphoto);
-
         fbDialog = findViewById(R.id.floating_btn);
         visitorPhoto = findViewById(R.id.visitor_photo);
         linearLayout = findViewById(R.id.editTextContainer);
@@ -258,9 +252,18 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
             }
 
             requestGuard();
-            Toast.makeText(New_visitordetail.this, "Request send to Employee", Toast.LENGTH_SHORT).show();
-
-        });
+           Toast.makeText(New_visitordetail.this, "Request send to Employee", Toast.LENGTH_SHORT).show();
+  /*final Dialog dialog = new Dialog(this);
+dialog.setContentView(R.layout.custom_dialog_send_request);
+AppCompatButton btnOkay = findViewById(R.id.btn_okay);
+btnOkay.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Toast.makeText(New_visitordetail.this, "Closed", Toast.LENGTH_SHORT).show();
+        dialog.dismiss();
+    }
+});
+       dialog.show();*/  });
         TextView tv = this.findViewById(R.id.mywidget);
         tv.setSelected(true);
         getDepartments();
@@ -323,7 +326,8 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
             txtTimeIn.setError("Select Time In");
             requestFocus(txtTimeIn);
             valid = false;
-        } else {
+        }
+        else {
             txtTimeIn.setError(null);
         }
 
@@ -476,6 +480,7 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
                         //Creating the ArrayAdapter instance having the country list
                         ArrayAdapter aa = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listSpinner);
                         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
                         //Setting the ArrayAdapter data on the Spinner
                         spinner.setAdapter(aa);
                         aa.notifyDataSetChanged();
@@ -596,8 +601,6 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
                     if (response.body().getMessage().equalsIgnoreCase("Department Wise Employee Fatched successfully")) {
 
                         Log.d("DepartmentsssssE", "" + response.body().getData());
-
-
                         dataListEmp = response.body().getData();
                         List<String> listDepartmentEmp = new ArrayList<>();
                         for (int i = 0; i < dataListEmp.size(); i++) {
