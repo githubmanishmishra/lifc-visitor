@@ -160,16 +160,13 @@ public class Otpverification extends AppCompatActivity {
             }
         });*/
 
-        tv_getotp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Otpverification.this, EmpcreatepswActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("mob_no", mob_no);
-                bundle.putString("emp_code", emp_code);
-                intent.putExtras(bundle);
-                startActivity(intent);
-            }
+        tv_getotp.setOnClickListener(view -> {
+            Intent intent = new Intent(Otpverification.this, EmpcreatepswActivity.class);
+            Bundle bundle1 = new Bundle();
+            bundle1.putString("mob_no", mob_no);
+            bundle1.putString("emp_code", emp_code);
+            intent.putExtras(bundle1);
+            startActivity(intent);
         });
         TextView tv = (TextView) this.findViewById(R.id.mywidget);
         tv.setSelected(true);

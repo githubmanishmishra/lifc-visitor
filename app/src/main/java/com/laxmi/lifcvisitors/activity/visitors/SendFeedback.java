@@ -1,0 +1,100 @@
+package com.laxmi.lifcvisitors.activity.visitors;
+
+import android.app.Dialog;
+import android.content.Context;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatButton;
+
+import com.laxmi.lifcvisitors.R;
+import com.laxmi.lifcvisitors.model.MSG;
+import com.laxmi.lifcvisitors.retrofitservices.APIService;
+import com.laxmi.lifcvisitors.retrofitservices.ApiClient;
+import com.laxmi.lifcvisitors.savedata.PrefConfig;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+
+
+public class SendFeedback extends Dialog {
+
+    PrefConfig prefConfig;
+    String visitorNameValue;
+    int visitorId;
+    String employeeId;
+
+    public SendFeedback(@NonNull Context context,String visitorNameValue, String employeeId,Integer visitorId) {
+        super(context);
+        this.visitorNameValue = visitorNameValue;
+        this.employeeId = employeeId;
+        this.visitorId = visitorId;
+
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView((R.layout.feedback_send));
+
+        prefConfig = new PrefConfig(getContext());
+        final AppCompatButton rateNowBtn = findViewById(R.id.rateNowBtn);
+        final AppCompatButton laterBtn = findViewById(R.id.mayBeLaterBtn);
+        final TextView visitorName = findViewById(R.id.visitorName);
+
+        visitorName.setText("Hello "+visitorNameValue);
+
+        rateNowBtn.setOnClickListener(v -> {//your code goes here
+            getFeedBack();
+        });
+        laterBtn.setOnClickListener(v -> {
+            //hide rating dialog
+            dismiss();
+        });
+
+    }
+
+    private void getFeedBack() {
+        APIService service = ApiClient.getClient().create(APIService.class);
+        Call<MSG> call = service.getFeedbackUpdate("Bearer " + prefConfig.readToken(), visitorId, employeeId,
+                "email", "", "");
+        call.enqueue(new Callback<MSG>() {
+            @Override
+            public void onResponse(@NonNull Call<MSG> call, @NonNull retrofit2.Response<MSG> response) {
+
+                if (response.body() != null) {
+                    if (response.body().getMessage().equalsIgnoreCase("Feedback Update Successfully")) {
+
+                        Toast.makeText(getContext(), "Feedback Submitted", Toast.LENGTH_SHORT).show();
+
+                    }
+                } else {
+                    Toast.makeText(getContext(), "Wrong Credentials", Toast.LENGTH_SHORT).show();
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<MSG> call, @NonNull Throwable t) {
+
+                Log.d("Error", t.getMessage());
+            }
+        });
+
+
+    }
+
+    private void animateImage(ImageView ratingImage) {
+        ScaleAnimation scaleAnimation = new ScaleAnimation(0, 1f, 0, 1f, Animation.RELATIVE_TO_SELF, 0.5f);
+        scaleAnimation.setFillAfter(true);
+        scaleAnimation.setDuration(200);
+        ratingImage.startAnimation(scaleAnimation);
+    }
+}

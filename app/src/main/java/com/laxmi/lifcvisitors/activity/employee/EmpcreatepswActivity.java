@@ -100,7 +100,7 @@ public class EmpcreatepswActivity extends AppCompatActivity {
 
     private void registrationApi(String newPassword) {
         APIService service = ApiClient.getClient().create(APIService.class);
-        Call<MSG> call = service.getEmployeeSignup(mob_no, emp_code, "1234",
+        Call<MSG> call = service.getEmployeeSignup(mob_no, emp_code, "1234","Employee",
                 newPassword, token);
         call.enqueue(new Callback<MSG>() {
             @Override

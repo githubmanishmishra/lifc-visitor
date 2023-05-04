@@ -52,18 +52,20 @@ public interface APIService {
     @FormUrlEncoded
     @POST("guard/signup/request")
     Call<MSG> getSignup(@Field("mobile_number") String mobile_number,
-                                 @Field("emp_code") String emp_code,
-                                 @Field("otp") String otp,
-                                 @Field("password") String password,
-                                 @Field("device_token") String deviceToken);
+                        @Field("emp_code") String emp_code,
+                        @Field("otp") String otp,
+                        @Field("type") String type,
+                        @Field("password") String password,
+                        @Field("device_token") String deviceToken);
 
     @FormUrlEncoded
     @POST("employee/signup/request")
     Call<MSG> getEmployeeSignup(@Field("mobile_number") String mobile_number,
-                                         @Field("emp_code") String emp_code,
-                                         @Field("otp") String otp,
-                                         @Field("password") String password,
-                                         @Field("device_token") String deviceToken);
+                                @Field("emp_code") String emp_code,
+                                @Field("otp") String otp,
+                                @Field("type") String type,
+                                @Field("password") String password,
+                                @Field("device_token") String deviceToken);
 
     @FormUrlEncoded
     @POST("signup/forget-password/request")
@@ -123,8 +125,12 @@ public interface APIService {
 
     @FormUrlEncoded
     @POST("feedback/update")
-    Call<MSG> getFeedbackUpdate(@Field("status") String status,
-                                @Field("message") String message
+    Call<MSG> getFeedbackUpdate(@Header("Token") String token,
+                                @Field("visitor_id") int visitor_id,
+                                @Field("employee_id") String employee_id,
+                                @Field("guard_id") String guard_id,
+                                @Field("employee_feedback") String employee_feedback,
+                                @Field("visitor_feedback") String visitor_feedback
     );
 
     @FormUrlEncoded
@@ -140,5 +146,5 @@ public interface APIService {
     @GET("feedbackByVisitor")
     Call<FeedBackByVisitor> getFeedBackByVisitor(@Header("Authorization") String auth,
                                                  @Query("visitor_id") String visitor_id
-                                                 );
+    );
 }

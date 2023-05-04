@@ -66,7 +66,11 @@ public class Guard_createpswd extends AppCompatActivity {
         if (bundle != null) {
             mob_no = bundle.getString("mob_no");
             emp_code = bundle.getString("emp_code");
+            Log.d("dfhfhfgh",""+mob_no);
+
+
         }
+
         tv_createpsw = findViewById(R.id.tv_confirmpsw);
         ev_new_password = findViewById(R.id.ev_new_password);
         ev_confirm_password = findViewById(R.id.ev_confirm_password);
@@ -107,7 +111,7 @@ public class Guard_createpswd extends AppCompatActivity {
 
     private void registrationApi(String newPassword) {
         APIService service = ApiClient.getClient().create(APIService.class);
-        Call<MSG> call = service.getSignup(mob_no, emp_code, "1234",
+        Call<MSG> call = service.getSignup(mob_no, emp_code, "1234","Guard",
                 newPassword,token);
         call.enqueue(new Callback<MSG>() {
             @Override

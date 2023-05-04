@@ -36,7 +36,7 @@ public class GuardDashboardFragment extends Fragment {
         tvfeedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Feedback feedbacks = new Feedback(getContext());
+                Feedback feedbacks = new Feedback(requireActivity());
                 feedbacks.setCancelable(false);
                 feedbacks.show();
                 feedbacks.getWindow().setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
