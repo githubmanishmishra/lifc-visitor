@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,11 +22,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.laxmi.lifcvisitors.ColorGridDrawable;
+import com.laxmi.lifcvisitors.Employee_Send_Request_toGaurd;
 import com.laxmi.lifcvisitors.R;
 import com.laxmi.lifcvisitors.activity.employee.EmployeeDashboard;
 import com.laxmi.lifcvisitors.model.MSG;
 import com.laxmi.lifcvisitors.retrofitservices.APIService;
 import com.laxmi.lifcvisitors.savedata.PrefConfig;
+import com.otaliastudios.zoom.ZoomImageView;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
@@ -51,10 +56,10 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
     //ImageView view_photo;
 /*    private ScaleGestureDetector mScaleGestureDetector;
     private float mScaleFactor = 1.0f;*/
-    private ImageView view_photo;
+    private ZoomImageView view_photo;
 
     int visitorId;
-     String       VisitorName, VisitorOne, VisitorTwo, VisitorThree, Purpose, UserImage, MobileNo,Status;
+    String VisitorName, VisitorOne, VisitorTwo, VisitorThree, Purpose, UserImage, MobileNo, Status;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,9 +113,12 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
         tv_visitor_name3.setText(VisitorTwo);
         tv_visitor_mobile.setText(MobileNo);
         tv_purpose_of_meeting.setText(Purpose);
+
+
         view_photo = findViewById(R.id.view_photo);
 
-        //mScaleGestureDetector = new ScaleGestureDetector(this, new ScaleListener());
+        view_photo.setImageDrawable(new ColorGridDrawable());
+
 
         Glide
                 .with(Visitorrequestcome_to_emplpyee.this)
@@ -148,10 +156,14 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
                     if (!isVisible) {
                         ev_disapprove.setVisibility(View.VISIBLE);
                         isVisible = true;
-                        if(ev_disapprove.getText().toString().equalsIgnoreCase("")){
+                        if (ev_disapprove.getText().toString().equalsIgnoreCase("")) {
                             Toast.makeText(Visitorrequestcome_to_emplpyee.this, "Please add disapprove reason", Toast.LENGTH_SHORT).show();
-                        }else {
+                        } else {
                             getVisitorDisApproval();
+                            Intent intent = new Intent(Visitorrequestcome_to_emplpyee.this, Employee_Send_Request_toGaurd.class);
+                            startActivity(intent);
+                            finish();
+
                         }
                     } else {
                         ev_disapprove.setVisibility(View.GONE);
@@ -166,7 +178,10 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
         btn_approve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                 getVisitorApproval();
+                getVisitorApproval();
+//                Intent intent = new Intent(Visitorrequestcome_to_emplpyee.this,Employee_Send_Request_toGaurd.class);
+//                startActivity(intent);
+
             }
 
         });
@@ -217,8 +232,8 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
                 .build();
         APIService service = retrofit.create(APIService.class);
 
-        Call<MSG> call = service.getVisitorStatusUpdate("Bearer " + prefConfig.readToken(), ""+visitorId, "Approve",
-                spinner_Conference.getSelectedItem().toString()+", "+Floor.getSelectedItem().toString(), "");
+        Call<MSG> call = service.getVisitorStatusUpdate("Bearer " + prefConfig.readToken(), "" + visitorId, "Approve",
+                spinner_Conference.getSelectedItem().toString() + ", " + Floor.getSelectedItem().toString(), "");
         call.enqueue(new Callback<MSG>() {
             @Override
             public void onResponse(@NonNull Call<MSG> call, @NonNull retrofit2.Response<MSG> response) {
@@ -273,8 +288,8 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
                 .build();
         APIService service = retrofit.create(APIService.class);
 
-        Call<MSG> call = service.getVisitorStatusUpdate("Bearer " + prefConfig.readToken(), ""+visitorId, "Disapprove",
-                spinner_Conference.getSelectedItem().toString()+", "+Floor.getSelectedItem().toString(), ev_disapprove.getText().toString());
+        Call<MSG> call = service.getVisitorStatusUpdate("Bearer " + prefConfig.readToken(), "" + visitorId, "Disapprove",
+                spinner_Conference.getSelectedItem().toString() + ", " + Floor.getSelectedItem().toString(), ev_disapprove.getText().toString());
         call.enqueue(new Callback<MSG>() {
             @Override
             public void onResponse(@NonNull Call<MSG> call, @NonNull retrofit2.Response<MSG> response) {

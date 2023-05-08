@@ -96,7 +96,7 @@ public class Forgetcreatepswemployee extends AppCompatActivity {
 
                 if (response.body() != null) {
 
-                    if (response.body().getMessage().equalsIgnoreCase("Guard Password Update Successfully")) {
+                    if (response.body().getMessage().equalsIgnoreCase("Password Update Successfully")) {
 
                         Intent intents = new Intent(Forgetcreatepswemployee.this, EmployeeLogin.class);
                         startActivity(intents);

@@ -1,4 +1,4 @@
-package com.laxmi.lifcvisitors.floor_confrence;
+package com.laxmi.lifcvisitors.fragments.floor_confrence;
 
 import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;

@@ -10,17 +10,25 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.laxmi.lifcvisitors.R;
+import com.laxmi.lifcvisitors.model.MSG;
+import com.laxmi.lifcvisitors.retrofitservices.APIService;
+import com.laxmi.lifcvisitors.retrofitservices.ApiClient;
 
 import java.util.Objects;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class Gaurdregistration extends AppCompatActivity {
-    TextView tv_gaurd_getotp,tv_login;
-    EditText ev_guard_mob_no,emp_code;
-    String  token;
+    TextView tv_gaurd_getotp, tv_login;
+    EditText ev_guard_mob_no, emp_code;
+    String token;
 
 
     @Override
@@ -55,31 +63,14 @@ public class Gaurdregistration extends AppCompatActivity {
         emp_code = findViewById(R.id.ev_empcodes);
         tv_gaurd_getotp.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
-               /* if(!ev_guard_mob_no.getText().toString().isEmpty() &&
-                        ev_guard_mob_no.getText().toString().length() ==10){
-                    Intent intent = new Intent(Gaurdregistration.this,Gaurdotp_verification.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putString("mob_no", ev_guard_mob_no.getText().toString());
-                    bundle.putString("emp_code", emp_code.getText().toString());
-                    intent.putExtras(bundle);
-                    startActivity(intent);
-                }*/
+            public void onClick(View view) {
                 if (!validate()) {
                     onUpdateFailed();
-                }
-                else
-                {
-                    Intent intent = new Intent(Gaurdregistration.this,Gaurdotp_verification.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putString("mob_no", ev_guard_mob_no.getText().toString());
-                    bundle.putString("emp_code", emp_code.getText().toString());
-                    intent.putExtras(bundle);
-                    startActivity(intent);
+                } else {
 
-                    //Toast.makeText(Gaurdregistration.this, "Enter Mobile No.", Toast.LENGTH_SHORT).show();
-                                   }
+                    otpApi();
+
+                }
 
             }
         });
@@ -87,11 +78,11 @@ public class Gaurdregistration extends AppCompatActivity {
         tv_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Gaurdregistration.this,GaurdLogin.class);
+                Intent intent = new Intent(Gaurdregistration.this, GaurdLogin.class);
                 startActivity(intent);
             }
         });
-        TextView  tv = (TextView) this.findViewById(R.id.mywidget);
+        TextView tv = (TextView) this.findViewById(R.id.mywidget);
         tv.setSelected(true);
     }
 
@@ -103,28 +94,61 @@ public class Gaurdregistration extends AppCompatActivity {
         boolean valid = true;
         String empCode = Objects.requireNonNull(emp_code.getText().toString());
         String mobileNo = Objects.requireNonNull(ev_guard_mob_no.getText()).toString();
-        if (mobileNo.isEmpty() | mobileNo.length()!=10) {
+        if (mobileNo.isEmpty() | mobileNo.length() != 10) {
             ev_guard_mob_no.setError("Enter Valid Mobile Number ");
             requestFocus(ev_guard_mob_no);
             valid = false;
-        }
-        else {
+        } else {
             ev_guard_mob_no.setError(null);
         }
-        if (empCode.isEmpty() | empCode.length()!=4) {
+        if (empCode.isEmpty() | empCode.length() != 4) {
             emp_code.setError("Enter Valid Employee Code");
             requestFocus(emp_code);
             valid = false;
-        }
-        else {
+        } else {
             emp_code.setError(null);
         }
         return valid;
     }
+
     private void requestFocus(View view) {
         if (view.requestFocus()) {
             getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         }
+    }
+
+    private void otpApi() {
+        APIService service = ApiClient.getClient().create(APIService.class);
+
+        Call<MSG> call = service.getOtp(ev_guard_mob_no.getText().toString());
+        call.enqueue(new Callback<MSG>() {
+            @Override
+            public void onResponse(@NonNull Call<MSG> call, @NonNull Response<MSG> response) {
+                if (response.body() != null) {
+                    Toast.makeText(Gaurdregistration.this, "success", Toast.LENGTH_LONG).show();
+
+                   String otpValue = response.body().getOtp();
+
+                    Intent intent = new Intent(Gaurdregistration.this, Gaurdotp_verification.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("mob_no", ev_guard_mob_no.getText().toString());
+                    bundle.putString("emp_code", emp_code.getText().toString());
+                    bundle.putString("otpValue", otpValue);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(Gaurdregistration.this, "Invalid Otp", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<MSG> call, Throwable t) {
+
+                // pDialog.dismiss();
+                //  Log.d("Error", t.getMessage());
+            }
+        });
     }
 
 }

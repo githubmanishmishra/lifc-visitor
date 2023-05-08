@@ -1,4 +1,5 @@
 package com.laxmi.lifcvisitors.activity.visitors;
+
 import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
@@ -10,6 +11,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -70,6 +72,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
+
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
@@ -103,7 +106,7 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
     List<String> listSpinner = new ArrayList<>();
     //List<String> listBranches = new ArrayList<>();
     int currentItem = 0;
-     int departmentsValueCode;
+    int departmentsValueCode;
 
     Departments.Data departments;
     EmployeeByDepartment.Data empByDepartment;
@@ -252,18 +255,8 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
             }
 
             requestGuard();
-           Toast.makeText(New_visitordetail.this, "Request send to Employee", Toast.LENGTH_SHORT).show();
-  /*final Dialog dialog = new Dialog(this);
-dialog.setContentView(R.layout.custom_dialog_send_request);
-AppCompatButton btnOkay = findViewById(R.id.btn_okay);
-btnOkay.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        Toast.makeText(New_visitordetail.this, "Closed", Toast.LENGTH_SHORT).show();
-        dialog.dismiss();
-    }
-});
-       dialog.show();*/  });
+
+        });
         TextView tv = this.findViewById(R.id.mywidget);
         tv.setSelected(true);
         getDepartments();
@@ -326,8 +319,7 @@ btnOkay.setOnClickListener(new View.OnClickListener() {
             txtTimeIn.setError("Select Time In");
             requestFocus(txtTimeIn);
             valid = false;
-        }
-        else {
+        } else {
             txtTimeIn.setError(null);
         }
 
@@ -457,7 +449,7 @@ btnOkay.setOnClickListener(new View.OnClickListener() {
         String url = "https://api.postalpincode.in/pincode";
         StringRequest mStringRequest = new StringRequest(Request.Method.GET, url + "/" + pinCode, response -> {
 
-           // Toast.makeText(getApplicationContext(), "Response :" + response, Toast.LENGTH_LONG).show();//display the response on screen
+            // Toast.makeText(getApplicationContext(), "Response :" + response, Toast.LENGTH_LONG).show();//display the response on screen
             Log.i("Manish Mishra", response);
 
             if (response != null) {
@@ -475,7 +467,7 @@ btnOkay.setOnClickListener(new View.OnClickListener() {
                             Log.d("kjxngksjnkjsdn", returnFlightChild.getString("Circle"));
                             listSpinner.add(returnFlightChild.getString("Name"));
                             tv_spinner_state.setText(returnFlightChild.getString("Circle"));
-
+                            tv_spinner_state.setTypeface(null, Typeface.BOLD);
                         }
                         //Creating the ArrayAdapter instance having the country list
                         ArrayAdapter aa = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listSpinner);
@@ -489,7 +481,7 @@ btnOkay.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                              cityValue =  spinner.getSelectedItem().toString();
+                                cityValue = spinner.getSelectedItem().toString();
 
                             }
 
@@ -629,7 +621,7 @@ btnOkay.setOnClickListener(new View.OnClickListener() {
                                 empByDepartment = dataListEmp.get(position);
                                 departmentsEmp = empByDepartment.getName();
                                 departmentsValueCode = empByDepartment.getId();
-                                Log.d("hcgvmb",""+departmentsValueCode);
+                                Log.d("hcgvmb", "" + departmentsValueCode);
                                 String empCode = empByDepartment.getEmpCode();
                                 empMobileNo = empByDepartment.getMobileNumber();
                                 tv_emp_code.setText(empCode);
@@ -807,7 +799,7 @@ btnOkay.setOnClickListener(new View.OnClickListener() {
 
         Call<ResponseBody> call = service.getVisitorRequest("Bearer " + prefConfig.readToken(), visitorName, Visitor_mobile_no
                 , "1234", Purposeofcomeing, pin_code.getText().toString(), tv_spinner_state.getText().toString()
-                , cityValue, TxtTimeIn, TxtTimeout, ""+departmentsValueCode,Visitorname1,Visitorname2,Visitorname3, departmentsEmp
+                , cityValue, TxtTimeIn, TxtTimeout, "" + departmentsValueCode, Visitorname1, Visitorname2, Visitorname3, departmentsEmp
                 , "9799954635", image1, image1);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -817,8 +809,19 @@ btnOkay.setOnClickListener(new View.OnClickListener() {
 
                     if (response.body().toString().equalsIgnoreCase("Visitor Created Successfully")) {
 
-                        Intent intent = new Intent(New_visitordetail.this, Visitorrequestcome_to_emplpyee.class);
-                        startActivity(intent);
+                        Toast.makeText(New_visitordetail.this, "Request send to Employee", Toast.LENGTH_SHORT).show();
+                        final Dialog dialog = new Dialog(New_visitordetail.this);
+                        dialog.setContentView(R.layout.custom_dialog_send_request);
+                        AppCompatButton btnOkay = dialog.findViewById(R.id.btn_okay);
+                        btnOkay.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(New_visitordetail.this, Visitorrequestcome_to_emplpyee.class);
+                                startActivity(intent);
+                                dialog.dismiss();
+                            }
+                        });
+                        dialog.show();
                     }
                 } else {
                     Toast.makeText(New_visitordetail.this, "Wrong Credentials", Toast.LENGTH_SHORT).show();

@@ -114,11 +114,15 @@
     <string name="whom_to_meets">किससे मिलना है</string>
     <string name="employee_profile_update">Employee Profile Update</string>
     <string name="employee_send_request_to_guard">Employee Send Request To Guard</string>
-    <string name="visitors_list">Visitors List</string>
-    <string name="recreate_password">Recreate Password</string>
-    <string name="guard_login">Guard Login</string>
+    <string name="visitors_list">आगंतुकों की सूची</string>
+    <string name="recreate_password">पासवर्ड फिर से बनाएं</string>
+    <string name="guard_login">गार्ड लॉगिन</string>
     <string name="guard_send_request_to_employee">Guard Send Request To employee</string>
-    <string name="office_boy_assign">Office Boy Assign</string>
-    <string name="enter_otp">Enter Otp</string>
+    <string name="office_boy_assign">ऑफिस बॉय असाइन करें</string>
+    <string name="enter_otp">ओटीपी दर्ज करें</string>
     <string name="employee_response">Employee Response</string>
+    <string name="enter_name">नाम दर्ज करें</string>
+    <string name="email">ईमेल</string>
+    <string name="role">भूमिका</string>
+    <string name="update">अद्यतन</string>
 </resources>

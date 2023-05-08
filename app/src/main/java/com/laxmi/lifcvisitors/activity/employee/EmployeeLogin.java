@@ -150,17 +150,6 @@ public class EmployeeLogin extends AppCompatActivity {
             }
         }
 
-
-
-
-
-
-
-
-
-
-
-
     private void getLogin(String emp_code, String emp_Password,String deviceToken) {
         APIService service = ApiClient.getClient().create(APIService.class);
         Call<MSG> call = service.getLogin(emp_code, emp_Password, deviceToken);
@@ -174,7 +163,8 @@ public class EmployeeLogin extends AppCompatActivity {
                     if (response.body().getMessage().equalsIgnoreCase("Login Successfully")) {
                         if(response.body().getType().equalsIgnoreCase("Employee")){
                             prefConfig.writeLoginStatus(true);
-                            prefConfig.writeName("Guard", response.body().getToken(), response.body().getType());
+                            prefConfig.writeName(response.body().getUser().getName(), response.body().getToken(), response.body().getType(),
+                                    response.body().getUser().getId());
                             Log.d("token>>>>>>>>>>>>", response.body().getToken());
 
                             Intent intents = new Intent(EmployeeLogin.this, EmployeeDashboard.class);

@@ -46,7 +46,7 @@ public class EmployeeDashboard extends AppCompatActivity implements NavigationVi
      /*  TextView tv_emp_name = navigationView.findViewById(R.id.tv_emp_name);
 
        tv_emp_name.setText("sdvfcb");*/
-alertDialogBuilder = new AlertDialog.Builder(EmployeeDashboard.this);
+alertDialogBuilder = new AlertDialog.Builder(this);
 alertDialogBuilder.setTitle("Logout");
 alertDialogBuilder.setIcon(R.drawable.logout);
 alertDialogBuilder.setMessage("Are you sure want to logout?");
@@ -55,11 +55,12 @@ alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener(
     public void onClick(DialogInterface dialog, int which) {
         startActivity(new Intent(EmployeeDashboard.this, EmployeeLogin.class));
         Toast.makeText(EmployeeDashboard.this, "You successfully logout", Toast.LENGTH_SHORT).show();
-    }
+ finish();   }
 });
 alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
     @Override
     public void onClick(DialogInterface dialog, int which) {
+        getApplicationContext();
 
 
     }
@@ -76,7 +77,7 @@ alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener()
             drawer.closeDrawer(GravityCompat.START);
         } else {
 
-           super.onBackPressed();
+          // super.onBackPressed();
         }
     }
     @SuppressWarnings("StatementWithEmptyBody")
@@ -94,8 +95,9 @@ alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener()
             Intent intents = new Intent(EmployeeDashboard.this, Contactus.class);
             startActivity(intents);
         } else if (id == R.id.nav_logout) {
-            prefConfig.writeLoginStatus(false);
             alertDialogBuilder.show();
+            prefConfig.writeLoginStatus(false);
+
 
             //startActivity(new Intent(EmployeeDashboard.this, EmployeeLogin.class));
         //    finishAffinity();

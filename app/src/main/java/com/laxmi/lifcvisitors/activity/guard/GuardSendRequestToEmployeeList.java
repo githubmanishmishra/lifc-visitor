@@ -1,7 +1,6 @@
 package com.laxmi.lifcvisitors.activity.guard;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,17 +12,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.laxmi.lifcvisitors.Employee_Send_Request_toGaurd;
 import com.laxmi.lifcvisitors.R;
 import com.laxmi.lifcvisitors.RecyclerTouchListener;
-import com.laxmi.lifcvisitors.activity.visitors.Visitorrequestcome_to_emplpyee;
-import com.laxmi.lifcvisitors.floor_confrence.DetailActivity;
-import com.laxmi.lifcvisitors.floor_confrence.MailAdapter;
-import com.laxmi.lifcvisitors.floor_confrence.MailAdapterGuard;
+import com.laxmi.lifcvisitors.fragments.floor_confrence.MailAdapterGuard;
 import com.laxmi.lifcvisitors.model.VisitorsByGuard;
 import com.laxmi.lifcvisitors.retrofitservices.APIService;
 import com.laxmi.lifcvisitors.retrofitservices.ApiClient;
-import com.laxmi.lifcvisitors.retrofitservices.VisitorsByEmployee;
 import com.laxmi.lifcvisitors.savedata.PrefConfig;
 
 import java.util.ArrayList;

@@ -17,6 +17,7 @@ import com.laxmi.lifcvisitors.activity.guard.Gaurdotp_verification;
 import com.laxmi.lifcvisitors.activity.guard.Guard_createpswd;
 import com.laxmi.lifcvisitors.model.MSG;
 import com.laxmi.lifcvisitors.retrofitservices.APIService;
+import com.laxmi.lifcvisitors.retrofitservices.ApiClient;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,8 +27,7 @@ public class Otpverification extends AppCompatActivity {
     Intent intents;
     TextView tv_getotp;
     EditText editTextotp1, editTextotp2, editTextotp3, editTextotp4;
-    public static APIService service;
-    String mob_no,emp_code;
+    String mob_no,emp_code,otpValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +39,7 @@ public class Otpverification extends AppCompatActivity {
         if(bundle!=null){
             mob_no = bundle.getString("mob_no");
             emp_code = bundle.getString("emp_code");
+            otpValue = bundle.getString("otpValue");
         }
          ImageView iv_back = findViewById(R.id.iv_back);
          iv_back.setOnClickListener(new View.OnClickListener() {
@@ -142,54 +143,35 @@ public class Otpverification extends AppCompatActivity {
 
         });
 
-       /* tv_getotp.setOnClickListener(new View.OnClickListener() {
+        tv_getotp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (editTextotp1.getText().toString().equalsIgnoreCase("1") &&
-                        editTextotp2.getText().toString().equalsIgnoreCase("2") &&
-                        editTextotp3.getText().toString().equalsIgnoreCase("3") &&
-                        editTextotp4.getText().toString().equalsIgnoreCase("4"))
+                if (!editTextotp1.getText().toString().isEmpty() &&
+                        !editTextotp2.getText().toString().isEmpty() &&
+                        !editTextotp3.getText().toString().isEmpty() &&
+                       ! editTextotp4.getText().toString().isEmpty())
                 {
-                   // OtpApi();
+                    if(otpValue.equalsIgnoreCase(editTextotp1.getText().toString()+
+                            editTextotp2.getText().toString()+editTextotp3.getText().toString()
+                            +editTextotp4.getText().toString())){
+
+                        Intent intent = new Intent(Otpverification.this, EmpcreatepswActivity.class);
+                        Bundle bundle1 = new Bundle();
+                        bundle1.putString("mob_no", mob_no);
+                        bundle1.putString("emp_code", emp_code);
+                        intent.putExtras(bundle1);
+                        startActivity(intent);
+
+                    }
                 }
                 else
                 {
-                    Toast.makeText(Otpverification.this, "Invalid Otp", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Otpverification.this, "Enter Otp sent on your mobile", Toast.LENGTH_SHORT).show();
                 }
 
             }
-        });*/
-
-        tv_getotp.setOnClickListener(view -> {
-            Intent intent = new Intent(Otpverification.this, EmpcreatepswActivity.class);
-            Bundle bundle1 = new Bundle();
-            bundle1.putString("mob_no", mob_no);
-            bundle1.putString("emp_code", emp_code);
-            intent.putExtras(bundle1);
-            startActivity(intent);
         });
         TextView tv = (TextView) this.findViewById(R.id.mywidget);
         tv.setSelected(true);
-    }
-
-    private void OtpApi() {
-        Call<MSG> call = service.getOtp(mob_no);
-        call.enqueue(new Callback<MSG>() {
-            @Override
-            public void onResponse(Call<MSG> call, Response<MSG> response) {
-               if( response.body()!=null){
-                   intents = new Intent(Otpverification.this, EmpcreatepswActivity.class);
-                   startActivity(intents);
-               }
-
-            }
-
-            @Override
-            public void onFailure(Call<MSG> call, Throwable t) {
-
-                // pDialog.dismiss();
-                //  Log.d("Error", t.getMessage());
-            }
-        });
     }
 }

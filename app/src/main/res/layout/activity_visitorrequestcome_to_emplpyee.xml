@@ -211,10 +211,23 @@
             android:layout_height="wrap_content"
             android:padding="10dp"/>
 
-        <ImageView
+        <com.otaliastudios.zoom.ZoomImageView
             android:id="@+id/view_photo"
             android:layout_width="260dp"
-            android:layout_height="200dp"/>
+            android:layout_height="200dp"
+            android:layout_margin="40dp"
+            android:layout_weight="1"
+            android:scrollbars="horizontal|vertical"
+            android:visibility="visible"
+            app:horizontalPanEnabled="true"
+            app:verticalPanEnabled="true"
+            app:zoomEnabled="true" />
+
+       <!-- <ImageView
+            android:id="@+id/view_photo"
+            android:layout_width="260dp"
+            android:layout_height="200dp"
+            android:layout_margin="40dp"/>-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

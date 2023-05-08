@@ -26,7 +26,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 
 
-public class SendFeedback extends Dialog {
+public class SendFeedbackEmployee extends Dialog {
 
     PrefConfig prefConfig;
     String visitorNameValue;
@@ -36,7 +36,7 @@ public class SendFeedback extends Dialog {
 
     TextInputEditText ev_feedback;
 
-    public SendFeedback(@NonNull Context context, String visitorNameValue, String employeeId, String guardId, Integer visitorId) {
+    public SendFeedbackEmployee(@NonNull Context context, String visitorNameValue, String employeeId, String guardId, Integer visitorId) {
         super(context);
         this.visitorNameValue = visitorNameValue;
         this.employeeId = employeeId;
@@ -53,7 +53,7 @@ public class SendFeedback extends Dialog {
         prefConfig = new PrefConfig(getContext());
         final AppCompatButton rateNowBtn = findViewById(R.id.rateNowBtn);
         final AppCompatButton laterBtn = findViewById(R.id.mayBeLaterBtn);
-        ev_feedback = findViewById(R.id.ev_feedback);
+         ev_feedback = findViewById(R.id.ev_feedback);
         final TextView visitorName = findViewById(R.id.visitorName);
 
         visitorName.setText("Hello "+visitorNameValue);
@@ -70,7 +70,7 @@ public class SendFeedback extends Dialog {
     private void getFeedBack() {
         APIService service = ApiClient.getClient().create(APIService.class);
         Call<MSG> call = service.getFeedbackUpdate("Bearer " + prefConfig.readToken(), visitorId, employeeId,
-                guardId, "", ""+ Objects.requireNonNull(ev_feedback.getText()));
+                guardId, ""+ Objects.requireNonNull(ev_feedback.getText()), "");
         call.enqueue(new Callback<MSG>() {
             @Override
             public void onResponse(@NonNull Call<MSG> call, @NonNull retrofit2.Response<MSG> response) {

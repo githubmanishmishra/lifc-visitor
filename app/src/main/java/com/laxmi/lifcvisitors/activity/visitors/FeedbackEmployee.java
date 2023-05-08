@@ -1,5 +1,6 @@
 package com.laxmi.lifcvisitors.activity.visitors;
 
+
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -18,6 +19,7 @@ import com.laxmi.lifcvisitors.RecyclerTouchListener;
 import com.laxmi.lifcvisitors.model.VisitorsByGuard;
 import com.laxmi.lifcvisitors.retrofitservices.APIService;
 import com.laxmi.lifcvisitors.retrofitservices.ApiClient;
+import com.laxmi.lifcvisitors.retrofitservices.VisitorsByEmployee;
 import com.laxmi.lifcvisitors.savedata.PrefConfig;
 
 import java.util.ArrayList;
@@ -28,19 +30,19 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class Feedback extends Dialog implements SwipeRefreshLayout.OnRefreshListener {
+public class FeedbackEmployee extends Dialog implements SwipeRefreshLayout.OnRefreshListener {
 
     PrefConfig prefConfig;
 
     RecyclerView mRecyclerView;
-    List<VisitorsByGuard.Data> VisitorsByGuardList = new ArrayList<>();
+    List<VisitorsByEmployee.Data> VisitorsByEmployeeList = new ArrayList<>();
     ProgressDialog pDialog;
     SwipeRefreshLayout swipeRefreshLayout;
 
     Feedback feedbacks;
     String approveValue = "Approve";
 
-    public Feedback(@NonNull Context context) {
+    public FeedbackEmployee(@NonNull Context context) {
         super(context);
     }
 
@@ -105,30 +107,30 @@ public class Feedback extends Dialog implements SwipeRefreshLayout.OnRefreshList
 
         APIService service = ApiClient.getClient().create(APIService.class);
 
-        Call<VisitorsByGuard> call = service.getVisitorsByGuard("Bearer " + prefConfig.readToken());
-        call.enqueue(new Callback<VisitorsByGuard>() {
+        Call<VisitorsByEmployee> call = service.getVisitorsByEmployee("Bearer " + prefConfig.readToken());
+        call.enqueue(new Callback<VisitorsByEmployee>() {
             @Override
-            public void onResponse(Call<VisitorsByGuard> call, Response<VisitorsByGuard> response) {
+            public void onResponse(Call<VisitorsByEmployee> call, Response<VisitorsByEmployee> response) {
 
-                final VisitorsByGuard allEvent = response.body();
+                final VisitorsByEmployee allEvent = response.body();
 
                 if (allEvent != null) {
 
                     for (int i = 0; i < allEvent.getData().size(); i++) {
                         if(allEvent.getData().get(i).getStatus().equalsIgnoreCase(approveValue)){
-                            VisitorsByGuardList = allEvent.getData();
+                            VisitorsByEmployeeList = allEvent.getData();
                         }
                     }
                 }
 
 
-                if (VisitorsByGuardList != null) {
+                if (VisitorsByEmployeeList != null) {
 
                     pDialog.dismiss();
 
                 }
 
-                MailAdapterFeedbackGuard mMailAdapter = new MailAdapterFeedbackGuard(getContext(), VisitorsByGuardList);
+                MailAdapterFeedbackEmployee mMailAdapter = new MailAdapterFeedbackEmployee(getContext(), VisitorsByEmployeeList);
                 mRecyclerView.setAdapter(mMailAdapter);
 
                 mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getContext(),
@@ -136,8 +138,8 @@ public class Feedback extends Dialog implements SwipeRefreshLayout.OnRefreshList
                     @Override
                     public void onClick(View view, int position) {
 
-                        VisitorsByGuard.Data newArrival = VisitorsByGuardList.get(position);
-                        feedbacks.show();
+                     //   VisitorsByEmployee.Data newArrival = VisitorsByEmployeeList.get(position);
+                     //   feedbacks.show();
 
                     }
 
@@ -150,7 +152,7 @@ public class Feedback extends Dialog implements SwipeRefreshLayout.OnRefreshList
             }
 
             @Override
-            public void onFailure(Call<VisitorsByGuard> call, Throwable t) {
+            public void onFailure(Call<VisitorsByEmployee> call, Throwable t) {
 
                 pDialog.dismiss();
             }

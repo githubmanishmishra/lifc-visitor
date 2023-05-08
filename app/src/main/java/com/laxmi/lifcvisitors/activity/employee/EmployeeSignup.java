@@ -2,7 +2,6 @@ package com.laxmi.lifcvisitors.activity.employee;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import android.view.WindowManager;
@@ -11,15 +10,20 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.messaging.FirebaseMessaging;
 import com.laxmi.lifcvisitors.R;
-import com.laxmi.lifcvisitors.activity.guard.GaurdLogin;
-import com.laxmi.lifcvisitors.activity.guard.Gaurdotp_verification;
-import com.laxmi.lifcvisitors.activity.guard.Gaurdregistration;
+import com.laxmi.lifcvisitors.activity.guard.Guard_createpswd;
+import com.laxmi.lifcvisitors.model.MSG;
+import com.laxmi.lifcvisitors.retrofitservices.APIService;
+import com.laxmi.lifcvisitors.retrofitservices.ApiClient;
 
 import java.util.Objects;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class EmployeeSignup extends AppCompatActivity {
@@ -37,29 +41,12 @@ public class EmployeeSignup extends AppCompatActivity {
         tv_emp_getotp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               /* if (!ev_emp_mob_no.getText().toString().isEmpty() &&
-                        ev_emp_mob_no.getText().toString().length() == 10) {
-                    Intent intent = new Intent(EmployeeSignup.this, Otpverification.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putString("mob_no", ev_emp_mob_no.getText().toString());
-                    bundle.putString("emp_code", emp_code.getText().toString());
-                    intent.putExtras(bundle);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(EmployeeSignup.this, "Enter Mobile No.", Toast.LENGTH_SHORT).show();
-                }*/
                 if (!validate()) {
                     onUpdateFailed();
                 }
                 else
                 {
-                    //Toast.makeText(Gaurdregistration.this, "Enter Mobile No.", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(EmployeeSignup.this, Otpverification.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putString("mob_no", ev_emp_mob_no.getText().toString());
-                    bundle.putString("emp_code", emp_code.getText().toString());
-                    intent.putExtras(bundle);
-                    startActivity(intent);
+                    otpApi();
                 }
 
             }
@@ -75,6 +62,7 @@ public class EmployeeSignup extends AppCompatActivity {
         TextView tv = (TextView) this.findViewById(R.id.mywidget);
         tv.setSelected(true);
     }
+
     private void onUpdateFailed() {
         Toast.makeText(EmployeeSignup.this, "Please Give Complete Mobile Number & Employeecode", Toast.LENGTH_SHORT).show();
     }
@@ -106,6 +94,38 @@ public class EmployeeSignup extends AppCompatActivity {
         }
     }
 
+    private void otpApi() {
+        APIService service = ApiClient.getClient().create(APIService.class);
 
+        Call<MSG> call = service.getOtp(ev_emp_mob_no.getText().toString());
+        call.enqueue(new Callback<MSG>() {
+            @Override
+            public void onResponse(@NonNull Call<MSG> call, @NonNull Response<MSG> response) {
+                if( response.body()!=null){
+                    Toast.makeText(EmployeeSignup.this, "success", Toast.LENGTH_LONG).show();
+
+
+
+                    Intent intent = new Intent(EmployeeSignup.this, Otpverification.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("mob_no", ev_emp_mob_no.getText().toString());
+                    bundle.putString("emp_code", emp_code.getText().toString());
+                    bundle.putString("otpValue", response.body().getOtp());
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }else {
+                    Toast.makeText(EmployeeSignup.this, "Invalid Otp", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<MSG> call, Throwable t) {
+
+                // pDialog.dismiss();
+                //  Log.d("Error", t.getMessage());
+            }
+        });
+    }
 }
 

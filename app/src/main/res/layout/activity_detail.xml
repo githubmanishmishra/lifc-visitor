@@ -17,14 +17,17 @@
     android:textSize="20sp" />
 
   <ImageView
-    android:id="@+id/ivFavorite"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentEnd="true"
-    android:layout_alignParentRight="true"
-    android:layout_margin="16dp"
-    android:padding="5dp"
-    android:src="@drawable/ic_star_black_24dp" />
+      android:id="@+id/ivFavorite"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentEnd="true"
+      android:layout_alignParentRight="true"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="16dp"
+      android:layout_marginEnd="16dp"
+      android:layout_marginBottom="16dp"
+      android:padding="5dp"
+      android:src="@drawable/ic_star_black_24dp" />
   <View
     android:id="@+id/line"
     android:layout_width="match_parent"
@@ -54,6 +57,7 @@
     android:layout_alignTop="@+id/tvIcon"
     android:layout_marginLeft="10dp"
     android:layout_marginStart="10dp"
+      android:layout_marginTop="5dp"
     android:layout_toEndOf="@+id/tvIcon"
     android:layout_toRightOf="@+id/tvIcon"
     android:text="TextView"
@@ -83,9 +87,10 @@
       android:id="@+id/btn_status"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_below="@+id/tvEmailDetails"
-      android:layout_marginStart="12dp"
-      android:layout_marginLeft="12dp"
-      android:layout_marginTop="20dp"
+      android:layout_toRightOf="@id/tvEmailSender"
+      android:layout_alignParentEnd="true"
+      android:layout_marginTop="75dp"
+      android:layout_marginStart="70dp"
+      android:layout_marginEnd="20dp"
       android:text="Status" />
 </RelativeLayout>

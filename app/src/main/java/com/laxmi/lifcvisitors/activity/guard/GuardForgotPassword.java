@@ -96,7 +96,7 @@ public class GuardForgotPassword extends AppCompatActivity {
 
                 if (response.body() != null) {
 
-                    if (response.body().getMessage().equalsIgnoreCase("Guard Password Update Successfully")) {
+                    if (response.body().getMessage().equalsIgnoreCase("Password Update Successfully")) {
 
                         Intent intents = new Intent(GuardForgotPassword.this, GaurdLogin.class);
                         startActivity(intents);

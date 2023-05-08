@@ -24,7 +24,7 @@ public interface APIService {
 
     @FormUrlEncoded
     @POST("otp/send")
-    Call<MSG> getOtp(@Query("mobile_number") String mobile_number
+    Call<MSG> getOtp(@Field("mobile_number") String mobile_number
     );
 
     @Multipart

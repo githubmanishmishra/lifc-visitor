@@ -47,6 +47,10 @@ public class VisitorsByGuard {
         @SerializedName("employee_id")
         @Expose
         private String employeeId;
+
+        @SerializedName("guard_id")
+        @Expose
+        private String guardId;
         @SerializedName("name")
         @Expose
         private String name;
@@ -128,6 +132,14 @@ public class VisitorsByGuard {
 
         public void setEmployeeId(String employeeId) {
             this.employeeId = employeeId;
+        }
+
+        public String getGuardId() {
+            return guardId;
+        }
+
+        public void setGuardId(String guardId) {
+            this.guardId = guardId;
         }
 
         public String getName() {

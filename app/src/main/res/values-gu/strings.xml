@@ -123,11 +123,15 @@
     <string name="pref_token">com.laxmi.lifcvisitors.preference_token</string>
     <string name="employee_profile_update">Employee Profile Update</string>
     <string name="employee_send_request_to_guard">Employee Send Request To Guard</string>
-    <string name="visitors_list">Visitors List</string>
-    <string name="recreate_password">Recreate Password</string>
-    <string name="guard_login">Guard Login</string>
+    <string name="visitors_list">મુલાકાતીઓની સૂચિ</string>
+    <string name="recreate_password">પાસવર્ડ ફરીથી બનાવો</string>
+    <string name="guard_login">ગાર્ડ લોગિન</string>
     <string name="guard_send_request_to_employee">Guard Send Request To employee</string>
-    <string name="office_boy_assign">Office Boy Assign</string>
-    <string name="enter_otp">Enter Otp</string>
-    <string name="employee_response">Employee Response</string>
+    <string name="office_boy_assign">ઓફિસ બોય સોંપો</string>
+    <string name="enter_otp">Otp દાખલ કરો</string>
+    <string name="employee_response">કર્મચારી પ્રતિભાવ</string>
+    <string name="enter_name">નામ દાખલ કરો</string>
+    <string name="email">ઈમેલ</string>
+    <string name="role">ભૂમિકા</string>
+    <string name="update">અપડેટ</string>
 </resources>

@@ -38,4 +38,8 @@
     <string name="office_boy_assign">Office Boy Assign</string>
     <string name="enter_otp">Enter Otp</string>
     <string name="employee_response">Employee Response</string>
+    <string name="enter_name">Enter Name</string>
+    <string name="email">Email</string>
+    <string name="role">Role</string>
+    <string name="update">Update</string>
 </resources>

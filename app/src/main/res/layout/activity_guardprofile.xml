@@ -28,7 +28,7 @@
                     android:layout_gravity="center"
                     android:layout_marginStart="10dp"
                     android:background="@drawable/ic_baseline_arrow_back_ios_24"
-                 app:tint="@color/white"/>
+                       app:tint="@color/white"/>
                 <TextView
                     android:id="@+id/tv_text"
                     android:layout_width="match_parent"
@@ -66,7 +66,7 @@
                     android:id="@+id/ev_enter_name"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:hint="Enter Name"/>
+                    android:hint="@string/enter_name"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -80,7 +80,7 @@
                     android:id="@+id/ev_department"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:hint="Department" />
+                    android:hint="@string/department" />
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
@@ -92,7 +92,7 @@
                     android:id="@+id/ev_email"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:hint="Email"
+                    android:hint="@string/email"
                     android:imeOptions="actionNext"
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -107,7 +107,7 @@
                     android:id="@+id/ev_mobile_no"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:hint="Mobile Number"
+                    android:hint="@string/mobile_number"
                     android:imeOptions="actionNext"
                     android:inputType="text" />
 
@@ -123,7 +123,7 @@
                     android:id="@+id/ev_role"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:hint="Role"
+                    android:hint="@string/role"
                     android:imeOptions="actionNext"
                     android:inputType="text" />
 
@@ -140,7 +140,7 @@
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
                 android:singleLine="true"
-                android:text="Update"
+                android:text="@string/update"
                 android:textColor="@color/white" />
 
 

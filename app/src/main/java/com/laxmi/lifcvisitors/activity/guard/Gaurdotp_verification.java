@@ -4,26 +4,41 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.laxmi.lifcvisitors.R;
+import com.laxmi.lifcvisitors.model.MSG;
+import com.laxmi.lifcvisitors.retrofitservices.APIService;
+import com.laxmi.lifcvisitors.retrofitservices.ApiClient;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Gaurdotp_verification extends AppCompatActivity {
-    Intent intent;
     TextView tv_getotp;
-
-    String mob_no,emp_code;
-    EditText editTextotp1,editTextotp2,editTextotp3,editTextotp4;
+    EditText editTextotp1, editTextotp2, editTextotp3, editTextotp4;
+    String mob_no,emp_code,otpValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gaurdotp_verification);
+
+
+        Bundle bundle = getIntent().getExtras();
+        if(bundle!=null){
+            mob_no = bundle.getString("mob_no");
+            emp_code = bundle.getString("emp_code");
+            otpValue = bundle.getString("otpValue");
+        }
         ImageView iv_back = findViewById(R.id.iv_back);
         iv_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,36 +46,35 @@ public class Gaurdotp_verification extends AppCompatActivity {
                 finish();
             }
         });
+
+        tv_getotp = findViewById(R.id.tv_gaurd_get_otp);
         editTextotp1 = findViewById(R.id.edittext_otp1);
         editTextotp2 = findViewById(R.id.edittext_otp2);
         editTextotp3 = findViewById(R.id.edittext_otp3);
         editTextotp4 = findViewById(R.id.edittext_otp4);
-        Bundle bundle = getIntent().getExtras();
-        if(bundle!=null){
-            mob_no = bundle.getString("mob_no");
-            emp_code = bundle.getString("emp_code");
-        }
-editTextotp1.addTextChangedListener(new TextWatcher() {
-    @Override
-    public void onTextChanged(CharSequence s, int start, int before, int count) {
-        // TODO Auto-generated method stub
-        if (editTextotp1.getText().toString().length() == 1)     //size as per your requirement
-        {
-            editTextotp2.requestFocus();
-        }
-    }
 
-    @Override
-    public void beforeTextChanged(CharSequence s, int start,
-                                  int count, int after) {
-        // TODO Auto-generated method stub
+        editTextotp1.addTextChangedListener(new TextWatcher() {
 
-    }
-    @Override
-    public void afterTextChanged(Editable editable) {
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // TODO Auto-generated method stub
+                if (editTextotp1.getText().toString().length() == 1)     //size as per your requirement
+                {
+                    editTextotp2.requestFocus();
+                }
+            }
 
-    }
-});
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+                // TODO Auto-generated method stub
+
+            }
+
+            public void afterTextChanged(Editable s) {
+                // TODO Auto-generated method stub
+            }
+
+        });
+
         editTextotp2.addTextChangedListener(new TextWatcher() {
 
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -82,6 +96,7 @@ editTextotp1.addTextChangedListener(new TextWatcher() {
             }
 
         });
+
         editTextotp3.addTextChangedListener(new TextWatcher() {
 
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -103,6 +118,7 @@ editTextotp1.addTextChangedListener(new TextWatcher() {
             }
 
         });
+
         editTextotp4.addTextChangedListener(new TextWatcher() {
 
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -124,20 +140,40 @@ editTextotp1.addTextChangedListener(new TextWatcher() {
             }
 
         });
-        tv_getotp = findViewById(R.id.tv_gaurd_get_otp);
+
         tv_getotp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Gaurdotp_verification.this, Guard_createpswd.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putString("mob_no", mob_no);
-                    bundle.putString("emp_code", emp_code);
-                    intent.putExtras(bundle);
+                if (!editTextotp1.getText().toString().isEmpty() &&
+                        !editTextotp2.getText().toString().isEmpty() &&
+                        !editTextotp3.getText().toString().isEmpty() &&
+                        ! editTextotp4.getText().toString().isEmpty())
+                {
+
+                    if(otpValue.equalsIgnoreCase(editTextotp1.getText().toString()+
+                            editTextotp2.getText().toString()+editTextotp3.getText().toString()
+                            +editTextotp4.getText().toString()))
+                    Log.d("dfdbf",editTextotp1.getText().toString()+
+                            editTextotp2.getText().toString()+editTextotp3.getText().toString()
+                            +editTextotp4.getText().toString());
+
+                    Toast.makeText(Gaurdotp_verification.this, "success", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(Gaurdotp_verification.this, Guard_createpswd.class);
+                    Bundle bundle1 = new Bundle();
+                    bundle1.putString("mob_no", mob_no);
+                    bundle1.putString("emp_code", emp_code);
+                    intent.putExtras(bundle1);
                     startActivity(intent);
+                }
+                else
+                {
+                    Toast.makeText(Gaurdotp_verification.this, "Enter Otp sent on your mobile", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
-
-        TextView  tv = (TextView) this.findViewById(R.id.mywidget);
+        TextView tv = (TextView) this.findViewById(R.id.mywidget);
         tv.setSelected(true);
     }
+
 }

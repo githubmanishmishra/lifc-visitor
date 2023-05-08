@@ -3,6 +3,7 @@ package com.laxmi.lifcvisitors.activity.guard;
 import static com.laxmi.lifcvisitors.fragments.languageconvert.LocaleManager.setNewLocale;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -10,8 +11,10 @@ import android.view.View;
 import android.view.Window;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -20,6 +23,8 @@ import androidx.fragment.app.FragmentManager;
 import com.google.android.material.navigation.NavigationView;
 import com.laxmi.lifcvisitors.Contactus;
 import com.laxmi.lifcvisitors.R;
+import com.laxmi.lifcvisitors.activity.employee.EmployeeDashboard;
+import com.laxmi.lifcvisitors.activity.employee.EmployeeLogin;
 import com.laxmi.lifcvisitors.fragments.GuardDashboardFragment;
 import com.laxmi.lifcvisitors.fragments.languageconvert.BaseActivity;
 import com.laxmi.lifcvisitors.fragments.languageconvert.LocaleManager;
@@ -28,6 +33,7 @@ import com.laxmi.lifcvisitors.savedata.PrefConfig;
 public class GuardDashboard extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     PrefConfig prefConfig;
+    AlertDialog.Builder alertDialogBuilder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +57,25 @@ public class GuardDashboard extends BaseActivity implements NavigationView.OnNav
         TextView tvGuardName = headerView.findViewById(R.id.tv_guard_name);
         TextView tvGuardEmail = headerView.findViewById(R.id.tv_guard_email);
         tvGuardName.setText(prefConfig.readName()+"");
+        alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setTitle("Logout");
+        alertDialogBuilder.setIcon(R.drawable.logout);
+        alertDialogBuilder.setMessage("Are you sure want to logout?");
+        alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                startActivity(new Intent(GuardDashboard.this, GaurdLogin.class));
+                Toast.makeText(GuardDashboard.this, "You successfully logout", Toast.LENGTH_SHORT).show();
+                finish();   }
+        });
+        alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                getApplicationContext();
+
+
+            }
+        });
 
 
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -135,10 +160,10 @@ public class GuardDashboard extends BaseActivity implements NavigationView.OnNav
 
         }else if (id == R.id.nav_guardlogout) {
 
-
+            alertDialogBuilder.show();
             prefConfig.writeLoginStatus(false);
-            startActivity(new Intent(GuardDashboard.this,GaurdLogin.class));
-            finishAffinity();
+        //    startActivity(new Intent(GuardDashboard.this,GaurdLogin.class));
+          //  finishAffinity();
 
        }
       //  fragmentManager.beginTransaction().replace(R.id.frameLayoutguard, fragment).commit();

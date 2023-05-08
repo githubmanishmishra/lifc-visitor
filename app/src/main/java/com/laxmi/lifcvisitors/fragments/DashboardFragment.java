@@ -16,7 +16,10 @@ import com.laxmi.lifcvisitors.R;
 import com.laxmi.lifcvisitors.activity.employee.Employee_profile_update;
 import com.laxmi.lifcvisitors.activity.guard.GuardProfileActivity;
 import com.laxmi.lifcvisitors.activity.visitors.Feedback;
+import com.laxmi.lifcvisitors.activity.visitors.FeedbackEmployee;
 import com.laxmi.lifcvisitors.activity.visitors.Visitorrequestcome_to_emplpyee;
+
+import java.util.Objects;
 
 public class DashboardFragment extends Fragment {
     TextView tv_newvisitors;
@@ -35,7 +38,7 @@ public class DashboardFragment extends Fragment {
         emp_Feedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Feedback feedbacks = new Feedback(getContext());
+                FeedbackEmployee feedbacks = new FeedbackEmployee(requireContext());
                 feedbacks.setCancelable(false);
                 feedbacks.show();
                 feedbacks.getWindow().setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));

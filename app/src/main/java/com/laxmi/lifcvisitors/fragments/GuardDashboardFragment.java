@@ -40,7 +40,9 @@ public class GuardDashboardFragment extends Fragment {
                 feedbacks.setCancelable(false);
                 feedbacks.show();
                 feedbacks.getWindow().setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+
             }
+
         });
         tv_newvisitor.setOnClickListener(view1 -> {
             intent = new Intent(getContext(), New_visitordetail.class);
@@ -63,9 +65,8 @@ public class GuardDashboardFragment extends Fragment {
         TextView tv = (TextView) view.findViewById(R.id.mywidget);
         tv.setSelected(true);
 
-
         return view;
 
-
     }
+
 }

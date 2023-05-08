@@ -48,7 +48,7 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".floor_confrence.DetailActivity"
+            android:name=".fragments.floor_confrence.DetailActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity

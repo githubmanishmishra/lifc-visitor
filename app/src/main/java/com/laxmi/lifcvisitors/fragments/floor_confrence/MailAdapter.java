@@ -1,4 +1,4 @@
-package com.laxmi.lifcvisitors.floor_confrence;
+package com.laxmi.lifcvisitors.fragments.floor_confrence;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -50,15 +51,23 @@ public class MailAdapter extends RecyclerView.Adapter<MailViewHolder> {
         holder.mLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent mIntent = new Intent(mContext, DetailActivity.class);
-                mIntent.putExtra("sender", holder.tv_visitor_name.getText().toString());
-                mIntent.putExtra("title", holder.tv_visitor_mobile.getText().toString());
-                mIntent.putExtra("details", holder.tv_visitor_address.getText().toString());
-                mIntent.putExtra("time", holder.tvTimeIn.getText().toString());
-                mIntent.putExtra("icon", holder.mIcon.getText().toString());
-                mIntent.putExtra("tv_status", holder.tv_status.getText().toString());
-                mIntent.putExtra("colorIcon", color);
-                mContext.startActivity(mIntent);
+
+                if(holder.tv_status.getText().toString().equalsIgnoreCase("Disapprove")  &&
+                        holder.tv_status.getText().toString().equalsIgnoreCase("Pending")){
+
+                    Toast.makeText(mContext, "not relevant", Toast.LENGTH_SHORT).show();
+
+                }else{
+                    Intent mIntent = new Intent(mContext, DetailActivity.class);
+                    mIntent.putExtra("sender", holder.tv_visitor_name.getText().toString());
+                    mIntent.putExtra("title", holder.tv_visitor_mobile.getText().toString());
+                    mIntent.putExtra("details", holder.tv_visitor_address.getText().toString());
+                    mIntent.putExtra("time", holder.tvTimeIn.getText().toString());
+                    mIntent.putExtra("icon", holder.mIcon.getText().toString());
+                    mIntent.putExtra("tv_status", holder.tv_status.getText().toString());
+                    mIntent.putExtra("colorIcon", color);
+                    mContext.startActivity(mIntent);
+                }
             }
         });
 

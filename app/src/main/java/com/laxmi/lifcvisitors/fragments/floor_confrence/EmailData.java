@@ -1,4 +1,4 @@
-package com.laxmi.lifcvisitors.floor_confrence;
+package com.laxmi.lifcvisitors.fragments.floor_confrence;
 
 /**
  * Created by abdalla on 12/18/17.
