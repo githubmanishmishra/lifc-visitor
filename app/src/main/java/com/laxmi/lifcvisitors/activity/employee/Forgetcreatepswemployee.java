@@ -47,6 +47,8 @@ public class Forgetcreatepswemployee extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             mob_no = bundle.getString("mob_no");
+
+            Log.d("gxfhcvhj",mob_no);
         }
 
         tv_change_password = findViewById(R.id.tv_changepsw);

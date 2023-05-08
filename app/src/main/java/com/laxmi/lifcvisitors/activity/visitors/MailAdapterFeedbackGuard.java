@@ -50,7 +50,8 @@ public class MailAdapterFeedbackGuard extends RecyclerView.Adapter<MailViewHolde
         holder.mLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!mEmailData.get(position).getStatus().equalsIgnoreCase("Disapprove")) {
+                if (!mEmailData.get(position).getStatus().equalsIgnoreCase("Disapprove") &&
+                        !mEmailData.get(position).getStatus().equalsIgnoreCase("Pending")) {
 
                     SendFeedback feedbacks = new SendFeedback(view.getContext(), holder.tv_visitor_name.getText().toString(),
                             mEmailData.get(position).getEmployeeId(),mEmailData.get(position).getGuardId(),

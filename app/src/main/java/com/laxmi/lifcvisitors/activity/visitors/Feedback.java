@@ -37,7 +37,7 @@ public class Feedback extends Dialog implements SwipeRefreshLayout.OnRefreshList
     ProgressDialog pDialog;
     SwipeRefreshLayout swipeRefreshLayout;
 
-    Feedback feedbacks;
+  //  Feedback feedbacks;
     String approveValue = "Approve";
 
     public Feedback(@NonNull Context context) {
@@ -51,9 +51,9 @@ public class Feedback extends Dialog implements SwipeRefreshLayout.OnRefreshList
 
         prefConfig = new PrefConfig(getContext());
 
-        feedbacks = new Feedback(getContext());
-        feedbacks.setCancelable(false);
-        feedbacks.getWindow().setBackgroundDrawable(new ColorDrawable(getContext().getResources().getColor(android.R.color.transparent)));
+//        feedbacks = new Feedback(getContext());
+//        feedbacks.setCancelable(false);
+//        feedbacks.getWindow().setBackgroundDrawable(new ColorDrawable(getContext().getResources().getColor(android.R.color.transparent)));
 
 //        final AppCompatButton rateNowBtn = findViewById(R.id.rateNowBtn);
 //        final AppCompatButton laterBtn = findViewById(R.id.mayBeLaterBtn);
@@ -137,7 +137,7 @@ public class Feedback extends Dialog implements SwipeRefreshLayout.OnRefreshList
                     public void onClick(View view, int position) {
 
                         VisitorsByGuard.Data newArrival = VisitorsByGuardList.get(position);
-                        feedbacks.show();
+//                        feedbacks.show();
 
                     }
 
@@ -176,7 +176,7 @@ public class Feedback extends Dialog implements SwipeRefreshLayout.OnRefreshList
     @Override
     protected void onStart() {
         super.onStart();
-        feedbacks.dismiss();
+      //  feedbacks.dismiss();
     }
 
 }

@@ -39,7 +39,7 @@ public class FeedbackEmployee extends Dialog implements SwipeRefreshLayout.OnRef
     ProgressDialog pDialog;
     SwipeRefreshLayout swipeRefreshLayout;
 
-    Feedback feedbacks;
+//    Feedback feedbacks;
     String approveValue = "Approve";
 
     public FeedbackEmployee(@NonNull Context context) {
@@ -53,9 +53,9 @@ public class FeedbackEmployee extends Dialog implements SwipeRefreshLayout.OnRef
 
         prefConfig = new PrefConfig(getContext());
 
-        feedbacks = new Feedback(getContext());
-        feedbacks.setCancelable(false);
-        feedbacks.getWindow().setBackgroundDrawable(new ColorDrawable(getContext().getResources().getColor(android.R.color.transparent)));
+//        feedbacks = new Feedback(getContext());
+//        feedbacks.setCancelable(false);
+//        feedbacks.getWindow().setBackgroundDrawable(new ColorDrawable(getContext().getResources().getColor(android.R.color.transparent)));
 
 //        final AppCompatButton rateNowBtn = findViewById(R.id.rateNowBtn);
 //        final AppCompatButton laterBtn = findViewById(R.id.mayBeLaterBtn);
@@ -117,9 +117,9 @@ public class FeedbackEmployee extends Dialog implements SwipeRefreshLayout.OnRef
                 if (allEvent != null) {
 
                     for (int i = 0; i < allEvent.getData().size(); i++) {
-                        if(allEvent.getData().get(i).getStatus().equalsIgnoreCase(approveValue)){
+                    //    if(allEvent.getData().get(i).getStatus().equalsIgnoreCase(approveValue)){
                             VisitorsByEmployeeList = allEvent.getData();
-                        }
+                   //     }
                     }
                 }
 
@@ -178,7 +178,7 @@ public class FeedbackEmployee extends Dialog implements SwipeRefreshLayout.OnRef
     @Override
     protected void onStart() {
         super.onStart();
-        feedbacks.dismiss();
+//        feedbacks.dismiss();
     }
 
 }

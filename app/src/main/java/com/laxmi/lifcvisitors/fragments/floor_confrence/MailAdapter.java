@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.laxmi.lifcvisitors.R;
+import com.laxmi.lifcvisitors.activity.visitors.Visitorrequestcome_to_emplpyee;
 import com.laxmi.lifcvisitors.retrofitservices.VisitorsByEmployee;
 
 import java.util.List;
@@ -48,6 +49,7 @@ public class MailAdapter extends RecyclerView.Adapter<MailViewHolder> {
         final int color = Color.argb(255, mRandom.nextInt(256), mRandom.nextInt(256), mRandom.nextInt(256));
         ((GradientDrawable) holder.mIcon.getBackground()).setColor(color);
 
+/*
         holder.mLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,7 +60,7 @@ public class MailAdapter extends RecyclerView.Adapter<MailViewHolder> {
                     Toast.makeText(mContext, "not relevant", Toast.LENGTH_SHORT).show();
 
                 }else{
-                    Intent mIntent = new Intent(mContext, DetailActivity.class);
+                    Intent mIntent = new Intent(mContext, Visitorrequestcome_to_emplpyee.class);
                     mIntent.putExtra("sender", holder.tv_visitor_name.getText().toString());
                     mIntent.putExtra("title", holder.tv_visitor_mobile.getText().toString());
                     mIntent.putExtra("details", holder.tv_visitor_address.getText().toString());
@@ -70,6 +72,7 @@ public class MailAdapter extends RecyclerView.Adapter<MailViewHolder> {
                 }
             }
         });
+*/
 
     }
 

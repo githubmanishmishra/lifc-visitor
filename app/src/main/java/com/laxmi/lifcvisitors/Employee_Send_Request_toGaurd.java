@@ -123,7 +123,7 @@ public class Employee_Send_Request_toGaurd extends AppCompatActivity
                         mobileNo = visitorsByEmployeeList.get(i).getMobileNumber();
                         Status = visitorsByEmployeeList.get(i).getStatus();*/
 
-                       /* Intent mIntent = new Intent(Employee_Send_Request_toGaurd.this, Visitorrequestcome_to_emplpyee.class);
+                        Intent mIntent = new Intent(Employee_Send_Request_toGaurd.this, Visitorrequestcome_to_emplpyee.class);
                         mIntent.putExtra("visitorId", newArrival.getId());
                         mIntent.putExtra("VisitorName", newArrival.getName());
                         mIntent.putExtra("VisitorOne", newArrival.getNameOne());
@@ -133,7 +133,7 @@ public class Employee_Send_Request_toGaurd extends AppCompatActivity
                         mIntent.putExtra("MobileNo", newArrival.getMobileNumber());
                         mIntent.putExtra("UserImage", newArrival.getImage());
                         mIntent.putExtra("Status", newArrival.getStatus());
-                        startActivity(mIntent);*/
+                        startActivity(mIntent);
                     }
 
                     @Override

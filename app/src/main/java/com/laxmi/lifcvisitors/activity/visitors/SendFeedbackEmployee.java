@@ -83,8 +83,10 @@ public class SendFeedbackEmployee extends Dialog {
                     }
                 }
                 else {
-                    Toast.makeText(getContext(), "Wrong Credentials", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getContext(), "Wrong Credentials", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Feedback Submitted", Toast.LENGTH_SHORT).show();
 
+                    dismiss();
                 }
 
             }
