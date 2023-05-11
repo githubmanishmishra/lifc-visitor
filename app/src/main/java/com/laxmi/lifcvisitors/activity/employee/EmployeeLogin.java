@@ -122,7 +122,7 @@ public class EmployeeLogin extends AppCompatActivity {
         String empCodes = Objects.requireNonNull(ev_empcodes.getText()).toString();
         String emp_Password = Objects.requireNonNull(ev_password.getText().toString());
 
-        if (empCodes.isEmpty() | empCodes.length() != 10) {
+        if (empCodes.isEmpty() | empCodes.length() != 12) {
             ev_empcodes.setError("Enter Mobile Number ");
             requestFocus(ev_empcodes);
             valid = false;

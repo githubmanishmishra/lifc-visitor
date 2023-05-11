@@ -6,14 +6,23 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.laxmi.lifcvisitors.R;
+import com.laxmi.lifcvisitors.model.MSG;
+import com.laxmi.lifcvisitors.retrofitservices.APIService;
+import com.laxmi.lifcvisitors.retrofitservices.ApiClient;
 
 import java.util.Objects;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Forgetpsw_Mobile extends AppCompatActivity {
     Intent intent;
@@ -47,11 +56,12 @@ public class Forgetpsw_Mobile extends AppCompatActivity {
                 if (!validate()) {
                     onUpdateFailed();
                 } else {
-                    Intent intent = new Intent(Forgetpsw_Mobile.this, Employeeotpverification.class);
+                    otpApi();
+                   /* Intent intent = new Intent(Forgetpsw_Mobile.this, Employeeotpverification.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("mob_no", mobileNo.getText().toString());
                     intent.putExtras(bundle);
-                    startActivity(intent);
+                    startActivity(intent);*/
                 }
 
             }
@@ -82,5 +92,34 @@ public class Forgetpsw_Mobile extends AppCompatActivity {
         }
     }
 
+    private void otpApi() {
+        APIService service = ApiClient.getClient().create(APIService.class);
 
+        Call<MSG> call = service.getOtpForgotPassword(mobileNo.getText().toString(),"forget");
+        call.enqueue(new Callback<MSG>() {
+            @Override
+            public void onResponse(@NonNull Call<MSG> call, @NonNull Response<MSG> response) {
+                if( response.body()!=null){
+                    Toast.makeText(Forgetpsw_Mobile.this, "success", Toast.LENGTH_LONG).show();
+
+                    Intent intent = new Intent(Forgetpsw_Mobile.this, Employeeotpverification.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("mob_no", mobileNo.getText().toString());
+                    bundle.putString("otpValue", response.body().getOtp());
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }else {
+                    Toast.makeText(Forgetpsw_Mobile.this, "Invalid Otp", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<MSG> call, Throwable t) {
+
+                // pDialog.dismiss();
+                //  Log.d("Error", t.getMessage());
+            }
+        });
+    }
 }

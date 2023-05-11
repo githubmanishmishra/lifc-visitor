@@ -18,6 +18,8 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -53,9 +55,12 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.laxmi.lifcvisitors.ImageFilePath;
 import com.laxmi.lifcvisitors.R;
+
+import com.laxmi.lifcvisitors.fragments.GuardDashboardFragment;
 import com.laxmi.lifcvisitors.fragments.languageconvert.BaseActivity;
 import com.laxmi.lifcvisitors.model.Departments;
 import com.laxmi.lifcvisitors.model.EmployeeByDepartment;
+import com.laxmi.lifcvisitors.model.MSG;
 import com.laxmi.lifcvisitors.retrofitservices.APIService;
 import com.laxmi.lifcvisitors.retrofitservices.ApiClient;
 import com.laxmi.lifcvisitors.savedata.PrefConfig;
@@ -107,6 +112,10 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
     //List<String> listBranches = new ArrayList<>();
     int currentItem = 0;
     int departmentsValueCode;
+
+    String mobileValue;
+
+    EditText editTextotp1, editTextotp2, editTextotp3, editTextotp4;
 
     Departments.Data departments;
     EmployeeByDepartment.Data empByDepartment;
@@ -161,6 +170,98 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
         spinner_employeedept = findViewById(R.id.spinner_employeedept);
         tv_emp_code = findViewById(R.id.tv_emp_code);
         iv_back = findViewById(R.id.iv_back);
+        editTextotp1 = findViewById(R.id.edittext_otp1);
+        editTextotp2 = findViewById(R.id.edittext_otp2);
+        editTextotp3 = findViewById(R.id.edittext_otp3);
+        editTextotp4 = findViewById(R.id.edittext_otp4);
+
+        editTextotp1.addTextChangedListener(new TextWatcher() {
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // TODO Auto-generated method stub
+                if (editTextotp1.getText().toString().length() == 1)     //size as per your requirement
+                {
+                    editTextotp2.requestFocus();
+                }
+            }
+
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+                // TODO Auto-generated method stub
+
+            }
+
+            public void afterTextChanged(Editable s) {
+                // TODO Auto-generated method stub
+            }
+
+        });
+
+        editTextotp2.addTextChangedListener(new TextWatcher() {
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // TODO Auto-generated method stub
+                if (editTextotp2.getText().toString().length() == 1)     //size as per your requirement
+                {
+                    editTextotp3.requestFocus();
+                }
+            }
+
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+                // TODO Auto-generated method stub
+
+            }
+
+            public void afterTextChanged(Editable s) {
+                // TODO Auto-generated method stub
+            }
+
+        });
+
+        editTextotp3.addTextChangedListener(new TextWatcher() {
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // TODO Auto-generated method stub
+                if (editTextotp3.getText().toString().length() == 1)     //size as per your requirement
+                {
+                    editTextotp4.requestFocus();
+                }
+            }
+
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+                // TODO Auto-generated method stub
+
+            }
+
+            public void afterTextChanged(Editable s) {
+                // TODO Auto-generated method stub
+            }
+
+        });
+
+        editTextotp4.addTextChangedListener(new TextWatcher() {
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // TODO Auto-generated method stub
+                if (editTextotp1.getText().toString().length() == 1)     //size as per your requirement
+                {
+                    Getotp.requestFocus();
+                }
+            }
+
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+                // TODO Auto-generated method stub
+
+            }
+
+            public void afterTextChanged(Editable s) {
+                // TODO Auto-generated method stub
+            }
+
+        });
 
         iv_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -192,7 +293,8 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
         Getotp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(New_visitordetail.this, "manish", Toast.LENGTH_SHORT).show();
+                otpApi();
+               // Toast.makeText(New_visitordetail.this, "manish", Toast.LENGTH_SHORT).show();
             }
         });
         btn_uploadvisitor_photo = findViewById(R.id.btn_uploadphoto);
@@ -264,12 +366,68 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
 
     }
 
+    private void otpApi() {
+        APIService service = ApiClient.getClient().create(APIService.class);
+
+        Call<MSG> call = service.getOtpVisitor(visitor_mobileno.getText().toString(),"visitor");
+        call.enqueue(new Callback<MSG>() {
+            @Override
+            public void onResponse(@NonNull Call<MSG> call, @NonNull Response<MSG> response) {
+                if( response.body()!=null){
+
+                    String otp = response.body().getOtp();
+
+                    if (!editTextotp1.getText().toString().isEmpty() &&
+                            !editTextotp2.getText().toString().isEmpty() &&
+                            !editTextotp3.getText().toString().isEmpty() &&
+                            ! editTextotp4.getText().toString().isEmpty())
+                    {
+                        if(otp.equalsIgnoreCase(editTextotp1.getText().toString()+
+                                editTextotp2.getText().toString()+editTextotp3.getText().toString()
+                                +editTextotp4.getText().toString())){
+                            Toast.makeText(New_visitordetail.this, "success", Toast.LENGTH_LONG).show();
+
+
+                        }
+                        else{
+                            Toast.makeText(New_visitordetail.this, "Invalid Otp", Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+                }else {
+                    Toast.makeText(New_visitordetail.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<MSG> call, Throwable t) {
+
+                // pDialog.dismiss();
+                //  Log.d("Error", t.getMessage());
+            }
+        });
+    }
     private void requestGuard() {
 
         if (!validate()) {
             onUpdateFailed();
         } else {
             save_image_to_memory(uploading_bitmap);
+           // Toast.makeText(New_visitordetail.this, "Request send to Employee", Toast.LENGTH_LONG).show();
+                        final Dialog dialog = new Dialog(New_visitordetail.this);
+                        dialog.setContentView(R.layout.custom_dialog_send_request);
+                        AppCompatButton btnOkay = dialog.findViewById(R.id.btn_okay);
+                        btnOkay.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(New_visitordetail.this, GuardDashboardFragment.class);
+                                startActivity(intent);
+                                dialog.dismiss();
+                            }
+                        });
+                        dialog.show();
+
 
         }
 
@@ -604,6 +762,8 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
 //                            listDepartment.addAll(hashSet);
                             listDepartmentEmp.add(dataListEmp.get(i).getName());
 
+                       mobileValue =     dataListEmp.get(i).getMobileNumber();
+
 
                         }
                         //Creating the ArrayAdapter instance having the country list
@@ -681,7 +841,7 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
 
                             txtTimeIn.setText(hourOfDay + ":" + minute);
                         }
-                    }, mHour, mMinute, false);
+                    }, mHour, mMinute, true);
             timePickerDialog.show();
         }
         if (v == btnTimePickerOut) {
@@ -701,7 +861,7 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
 
                             txtTimeOut.setText(hourOfDay + ":" + minute);
                         }
-                    }, mHour, mMinute, false);
+                    }, mHour, mMinute, true);
             timePickerDialog.show();
         }
     }
@@ -769,6 +929,7 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
         RequestBody empMobileNo1 = RequestBody.create(MediaType.parse("text/plain"), empMobileNo);*/
 
         Log.d("tokennnnnnnnn", prefConfig.readToken());
+        Log.d("mobileValeeeeee", mobileValue);
 
         // APIService service = ApiClient.getClient().create(APIService.class);
 
@@ -800,7 +961,7 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
         Call<ResponseBody> call = service.getVisitorRequest("Bearer " + prefConfig.readToken(), visitorName, Visitor_mobile_no
                 , "1234", Purposeofcomeing, pin_code.getText().toString(), tv_spinner_state.getText().toString()
                 , cityValue, TxtTimeIn, TxtTimeout, "" + departmentsValueCode, Visitorname1, Visitorname2, Visitorname3, departmentsEmp
-                , "9799954635", image1, image1);
+                , mobileValue, image1, image1);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -809,19 +970,11 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
 
                     if (response.body().toString().equalsIgnoreCase("Visitor Created Successfully")) {
 
-                        Toast.makeText(New_visitordetail.this, "Request send to Employee", Toast.LENGTH_SHORT).show();
-                        final Dialog dialog = new Dialog(New_visitordetail.this);
-                        dialog.setContentView(R.layout.custom_dialog_send_request);
-                        AppCompatButton btnOkay = dialog.findViewById(R.id.btn_okay);
-                        btnOkay.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent intent = new Intent(New_visitordetail.this, Visitorrequestcome_to_emplpyee.class);
-                                startActivity(intent);
-                                dialog.dismiss();
-                            }
-                        });
-                        dialog.show();
+                        Toast.makeText(New_visitordetail.this, "Request send to Employee", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(New_visitordetail.this, GuardDashboardFragment.class);
+                        startActivity(intent);
+                        finish();
+
                     }
                 } else {
                     Toast.makeText(New_visitordetail.this, "Wrong Credentials", Toast.LENGTH_SHORT).show();

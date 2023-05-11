@@ -22,6 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.jsibbold.zoomage.ZoomageView;
 import com.laxmi.lifcvisitors.ColorGridDrawable;
 import com.laxmi.lifcvisitors.Employee_Send_Request_toGaurd;
 import com.laxmi.lifcvisitors.R;
@@ -29,7 +30,7 @@ import com.laxmi.lifcvisitors.activity.employee.EmployeeDashboard;
 import com.laxmi.lifcvisitors.model.MSG;
 import com.laxmi.lifcvisitors.retrofitservices.APIService;
 import com.laxmi.lifcvisitors.savedata.PrefConfig;
-import com.otaliastudios.zoom.ZoomImageView;
+
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
@@ -56,7 +57,7 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
     //ImageView view_photo;
 /*    private ScaleGestureDetector mScaleGestureDetector;
     private float mScaleFactor = 1.0f;*/
-    private ZoomImageView view_photo;
+    private ZoomageView view_photo;
 
     int visitorId;
     String VisitorName, VisitorOne, VisitorTwo, VisitorThree, Purpose, UserImage, MobileNo, Status;
@@ -113,13 +114,8 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
         tv_visitor_name3.setText(VisitorTwo);
         tv_visitor_mobile.setText(MobileNo);
         tv_purpose_of_meeting.setText(Purpose);
-
-
         view_photo = findViewById(R.id.view_photo);
-
         view_photo.setImageDrawable(new ColorGridDrawable());
-
-
         Glide
                 .with(Visitorrequestcome_to_emplpyee.this)
                 .load(UserImage)

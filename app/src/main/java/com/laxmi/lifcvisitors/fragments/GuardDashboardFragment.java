@@ -37,7 +37,7 @@ public class GuardDashboardFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Feedback feedbacks = new Feedback(requireActivity());
-                feedbacks.setCancelable(false);
+                feedbacks.setCancelable(true);
                 feedbacks.show();
                 feedbacks.getWindow().setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
 

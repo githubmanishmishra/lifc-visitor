@@ -145,7 +145,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="VisitoMobileNo"
+            android:text="Visitor Mobile Number"
             android:layout_marginTop="5dp"
             android:layout_marginStart="10dp"
             android:textSize="16sp"
@@ -180,8 +180,6 @@
             android:layout_marginEnd="20dp"
             android:textColor="@color/black" />
 
-
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -211,17 +209,21 @@
             android:layout_height="wrap_content"
             android:padding="10dp"/>
 
-        <com.otaliastudios.zoom.ZoomImageView
+        <com.jsibbold.zoomage.ZoomageView
             android:id="@+id/view_photo"
-            android:layout_width="260dp"
-            android:layout_height="200dp"
-            android:layout_margin="40dp"
+            android:layout_width="360dp"
+            android:layout_height="270dp"
+            android:layout_margin="20dp"
             android:layout_weight="1"
-            android:scrollbars="horizontal|vertical"
-            android:visibility="visible"
-            app:horizontalPanEnabled="true"
-            app:verticalPanEnabled="true"
-            app:zoomEnabled="true" />
+            app:zoomage_restrictBounds="false"
+            app:zoomage_animateOnReset="true"
+            app:zoomage_autoResetMode="UNDER"
+            app:zoomage_autoCenter="true"
+            app:zoomage_zoomable="true"
+            app:zoomage_translatable="true"
+            app:zoomage_minScale="0.6"
+            app:zoomage_maxScale="8"
+            />
 
        <!-- <ImageView
             android:id="@+id/view_photo"

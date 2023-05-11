@@ -51,12 +51,13 @@ public class MailAdapterFeedbackEmployee extends RecyclerView.Adapter<MailViewHo
         holder.mLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!mEmailData.get(position).getStatus().equalsIgnoreCase("Disapprove")) {
+                if (!mEmailData.get(position).getStatus().equalsIgnoreCase("Disapprove")&&
+                        !mEmailData.get(position).getStatus().equalsIgnoreCase("Pending")) {
 
                     SendFeedbackEmployee feedbacks = new SendFeedbackEmployee(view.getContext(), holder.tv_visitor_name.getText().toString(),
                             mEmailData.get(position).getEmployeeId(),mEmailData.get(position).getGuardId(),
                             mEmailData.get(position).getId());
-                    feedbacks.setCancelable(false);
+                    feedbacks.setCancelable(true);
                     feedbacks.show();
                     feedbacks.getWindow().setBackgroundDrawable(new ColorDrawable(view.getContext().getResources().getColor(android.R.color.transparent)));
 
@@ -65,6 +66,7 @@ public class MailAdapterFeedbackEmployee extends RecyclerView.Adapter<MailViewHo
             }
         });
 
+/*
         if (mEmailData.get(position).getStatus().equalsIgnoreCase("Pending")) {
             new CountDownTimer(120000, 1000) {
 
@@ -82,6 +84,7 @@ public class MailAdapterFeedbackEmployee extends RecyclerView.Adapter<MailViewHo
             }.start();
 
         }
+*/
     }
 
     @Override

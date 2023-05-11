@@ -56,7 +56,7 @@ public class MailAdapterFeedbackGuard extends RecyclerView.Adapter<MailViewHolde
                     SendFeedback feedbacks = new SendFeedback(view.getContext(), holder.tv_visitor_name.getText().toString(),
                             mEmailData.get(position).getEmployeeId(),mEmailData.get(position).getGuardId(),
                             mEmailData.get(position).getId());
-                    feedbacks.setCancelable(false);
+                    feedbacks.setCancelable(true);
                     feedbacks.show();
                     feedbacks.getWindow().setBackgroundDrawable(new ColorDrawable(view.getContext().getResources().getColor(android.R.color.transparent)));
 
@@ -65,6 +65,7 @@ public class MailAdapterFeedbackGuard extends RecyclerView.Adapter<MailViewHolde
             }
         });
 
+/*
         if (mEmailData.get(position).getStatus().equalsIgnoreCase("Pending")) {
             new CountDownTimer(120000, 1000) {
 
@@ -82,6 +83,7 @@ public class MailAdapterFeedbackGuard extends RecyclerView.Adapter<MailViewHolde
             }.start();
 
         }
+*/
     }
 
     @Override

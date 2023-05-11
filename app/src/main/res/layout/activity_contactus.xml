@@ -108,7 +108,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Mail for information:"
+                android:text="Mail for Support:"
                 android:layout_marginTop="15dp"
                 android:textColor="@color/black"
                 android:textSize="22sp"
@@ -118,11 +118,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Sales Enquiry: glk@lifc.in"
+                android:text="ithelpdesk@lifc.in"
                 android:gravity="center"
                 android:textStyle="bold"
                 android:textColor="@color/red"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:layout_marginTop="15dp"/>
 
 

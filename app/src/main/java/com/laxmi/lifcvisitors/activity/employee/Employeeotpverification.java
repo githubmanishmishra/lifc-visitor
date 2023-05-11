@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,7 +21,7 @@ public class Employeeotpverification extends AppCompatActivity {
     TextView getotp;
     EditText editTextotp1, editTextotp2, editTextotp3, editTextotp4;
 
-    String mob_no;
+    String mob_no,otpValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,7 @@ public class Employeeotpverification extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             mob_no = bundle.getString("mob_no");
+            otpValue = bundle.getString("otpValue");
         }
         getotp = findViewById(R.id.tv_getotp);
         editTextotp1 = findViewById(R.id.edittext_otp1);
@@ -132,13 +134,35 @@ public class Employeeotpverification extends AppCompatActivity {
         getotp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                intent = new Intent(Employeeotpverification.this,Forgetcreatepswemployee.class);
-//          startActivity(intent);
-                Intent intent = new Intent(Employeeotpverification.this, Forgetcreatepswemployee.class);
+/*                Intent intent = new Intent(Employeeotpverification.this, Forgetcreatepswemployee.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("mob_no", mob_no);
                 intent.putExtras(bundle);
-                startActivity(intent);
+                startActivity(intent);*/
+                if (!editTextotp1.getText().toString().isEmpty() &&
+                        !editTextotp2.getText().toString().isEmpty() &&
+                        !editTextotp3.getText().toString().isEmpty() &&
+                        ! editTextotp4.getText().toString().isEmpty())
+                {
+                    if(otpValue.equalsIgnoreCase(editTextotp1.getText().toString()+
+                            editTextotp2.getText().toString()+editTextotp3.getText().toString()
+                            +editTextotp4.getText().toString())){
+
+                        Intent intent = new Intent(Employeeotpverification.this, Forgetcreatepswemployee.class);
+                        Bundle bundle1 = new Bundle();
+                        bundle1.putString("mob_no", mob_no);
+              //          bundle1.putString("emp_code", emp_code);
+                        intent.putExtras(bundle1);
+                        startActivity(intent);
+
+                    }
+                }
+                else
+                {
+                    Toast.makeText(Employeeotpverification.this, "Enter Otp sent on your mobile", Toast.LENGTH_SHORT).show();
+                }
+
+
             }
         });
         TextView   tv = (TextView) this.findViewById(R.id.mywidget);

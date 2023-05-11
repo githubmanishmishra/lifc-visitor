@@ -27,6 +27,16 @@ public interface APIService {
     Call<MSG> getOtp(@Field("mobile_number") String mobile_number
     );
 
+    @FormUrlEncoded
+    @POST("otp/send")
+    Call<MSG> getOtpVisitor(@Field("mobile_number") String mobile_number,
+                            @Field("type") String visitor
+    );@FormUrlEncoded
+    @POST("otp/send")
+    Call<MSG> getOtpForgotPassword(@Field("mobile_number") String mobile_number,
+                            @Field("type") String visitor
+    );
+
     @Multipart
     @POST("visitor/request")
     Call<ResponseBody> getVisitorRequest(@Header("Token") String token,

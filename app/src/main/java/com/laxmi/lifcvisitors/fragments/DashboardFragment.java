@@ -37,7 +37,7 @@ public class DashboardFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 FeedbackEmployee feedbacks = new FeedbackEmployee(requireContext());
-                feedbacks.setCancelable(false);
+                feedbacks.setCancelable(true);
                 feedbacks.show();
                 feedbacks.getWindow().setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
             }

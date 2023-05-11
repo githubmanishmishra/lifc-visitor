@@ -92,7 +92,8 @@
                 android:layout_height="50dp"
                 android:layout_margin="5dp"
                 android:background="@drawable/otp_box"
-                android:maxLength="1" />
+                android:maxLength="1"
+                android:inputType="number"/>
 
             <EditText
                 android:id="@+id/edittext_otp2"
@@ -100,6 +101,7 @@
                 android:layout_height="50dp"
                 android:layout_margin="5dp"
                 android:background="@drawable/otp_box"
+                android:inputType="number"
                 android:maxLength="1" />
 
             <EditText
@@ -108,6 +110,7 @@
                 android:layout_height="50dp"
                 android:layout_margin="5dp"
                 android:background="@drawable/otp_box"
+                android:inputType="number"
                 android:maxLength="1" />
 
             <EditText
@@ -115,6 +118,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_margin="5dp"
+                android:inputType="number"
                 android:background="@drawable/otp_box"
                 android:maxLength="1" />
         </LinearLayout>

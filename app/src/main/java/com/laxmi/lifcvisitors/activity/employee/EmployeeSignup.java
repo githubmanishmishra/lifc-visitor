@@ -70,7 +70,7 @@ public class EmployeeSignup extends AppCompatActivity {
         boolean valid = true;
         String empCode = Objects.requireNonNull(emp_code.getText().toString());
         String mobileNo = Objects.requireNonNull(ev_emp_mob_no.getText()).toString();
-        if (mobileNo.isEmpty() | mobileNo.length()!=10) {
+        if (mobileNo.isEmpty() | mobileNo.length()!=12) {
             ev_emp_mob_no.setError("Enter Valid Mobile Number ");
             requestFocus(ev_emp_mob_no);
             valid = false;
@@ -103,9 +103,6 @@ public class EmployeeSignup extends AppCompatActivity {
             public void onResponse(@NonNull Call<MSG> call, @NonNull Response<MSG> response) {
                 if( response.body()!=null){
                     Toast.makeText(EmployeeSignup.this, "success", Toast.LENGTH_LONG).show();
-
-
-
                     Intent intent = new Intent(EmployeeSignup.this, Otpverification.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("mob_no", ev_emp_mob_no.getText().toString());
@@ -113,7 +110,9 @@ public class EmployeeSignup extends AppCompatActivity {
                     bundle.putString("otpValue", response.body().getOtp());
                     intent.putExtras(bundle);
                     startActivity(intent);
-                }else {
+                }
+                else
+                {
                     Toast.makeText(EmployeeSignup.this, "Invalid Otp", Toast.LENGTH_SHORT).show();
                 }
 
