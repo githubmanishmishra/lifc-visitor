@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import com.laxmi.lifcvisitors.R;
 import com.laxmi.lifcvisitors.activity.guard.Gaurdotp_verification;
@@ -25,7 +26,7 @@ import retrofit2.Response;
 
 public class Otpverification extends AppCompatActivity {
     Intent intents;
-    TextView tv_getotp;
+    AppCompatButton tv_getotp;
     EditText editTextotp1, editTextotp2, editTextotp3, editTextotp4;
     String mob_no,emp_code,otpValue;
 

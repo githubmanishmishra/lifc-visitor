@@ -147,7 +147,7 @@
                 android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/tv_getotp"
             android:layout_width="122dp"
             android:layout_height="42dp"
@@ -163,6 +163,6 @@
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="14sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
     </LinearLayout>
 </ScrollView>

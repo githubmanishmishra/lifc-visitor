@@ -174,7 +174,7 @@
             android:textStyle="bold" />
 
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/tv_changepsw"
             android:layout_width="222dp"
             android:layout_height="42dp"
@@ -190,7 +190,7 @@
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textStyle="bold"
-            android:textSize="14sp" />
+            android:textSize="14sp"/>
     </LinearLayout>
 
 </ScrollView>

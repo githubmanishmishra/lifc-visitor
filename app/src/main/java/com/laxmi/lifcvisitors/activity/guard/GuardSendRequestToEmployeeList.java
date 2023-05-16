@@ -47,56 +47,40 @@ public class GuardSendRequestToEmployeeList extends AppCompatActivity implements
         });
         prefConfig = new PrefConfig(this);
         swipeRefreshLayout = findViewById(R.id.swipeContainer);
-
         swipeRefreshLayout.setOnRefreshListener(this);
         swipeRefreshLayout.setColorSchemeResources(R.color.pink,
                 android.R.color.holo_green_dark,
                 android.R.color.holo_orange_dark,
                 android.R.color.holo_blue_dark);
-
-
-
         mRecyclerView = findViewById(R.id.recyclerView);
         LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(GuardSendRequestToEmployeeList.this, LinearLayoutManager.VERTICAL, false);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(GuardSendRequestToEmployeeList.this, DividerItemDecoration.VERTICAL));
         mLinearLayoutManager.setReverseLayout(true);
         mLinearLayoutManager.setStackFromEnd(true);
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
-
-          progressDialogInitialisaton();
+        progressDialogInitialisaton();
         getVisitorsByGuardList();
-
         TextView tv = (TextView) this.findViewById(R.id.mywidget);
         tv.setSelected(true);
         swipeRefreshLayout.post(new Runnable() {
 
             @Override
             public void run() {
-
                 swipeRefreshLayout.setRefreshing(true);
-
                 getVisitorsByGuardList();
-
-
             }
         });
-
 
     }
 
     private void getVisitorsByGuardList() {
-
         swipeRefreshLayout.setRefreshing(false);
-
         APIService service = ApiClient.getClient().create(APIService.class);
-
         Call<VisitorsByGuard> call = service.getVisitorsByGuard("Bearer " + prefConfig.readToken());
         call.enqueue(new Callback<VisitorsByGuard>() {
             @Override
             public void onResponse(Call<VisitorsByGuard> call, Response<VisitorsByGuard> response) {
-
                 final VisitorsByGuard allEvent = response.body();
-
                 if (allEvent != null) {
 
                     for (int i = 0; i < allEvent.getData().size(); i++) {
@@ -104,21 +88,16 @@ public class GuardSendRequestToEmployeeList extends AppCompatActivity implements
                     }
                 }
 
-
                 if (VisitorsByGuardList != null) {
 
                     pDialog.dismiss();
 
                 }
-
                 MailAdapterGuard mMailAdapter = new MailAdapterGuard(GuardSendRequestToEmployeeList.this, VisitorsByGuardList);
                 mRecyclerView.setAdapter(mMailAdapter);
-
-                mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(),
-                        mRecyclerView, new RecyclerTouchListener.ClickListener() {
+                mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), mRecyclerView, new RecyclerTouchListener.ClickListener() {
                     @Override
                     public void onClick(View view, int position) {
-
                         VisitorsByGuard.Data newArrival = VisitorsByGuardList.get(position);
 
                        /* userId = String.valueOf(visitorsByEmployeeList.get(i).getId());
@@ -144,7 +123,6 @@ public class GuardSendRequestToEmployeeList extends AppCompatActivity implements
                         startActivity(mIntent);*/
 
                     }
-
                     @Override
                     public void onLongClick(View view, int position) {
 
@@ -175,5 +153,6 @@ public class GuardSendRequestToEmployeeList extends AppCompatActivity implements
     @Override
     public void onRefresh() {
         getVisitorsByGuardList();
+
     }
 }

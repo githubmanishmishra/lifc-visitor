@@ -22,7 +22,9 @@ import com.laxmi.lifcvisitors.retrofitservices.VisitorsByEmployee;
 import com.laxmi.lifcvisitors.savedata.PrefConfig;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.TimeZone;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -42,6 +44,16 @@ public class Employee_Send_Request_toGaurd extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee_send_request_to_gaurd);
+
+        //Default Time
+        TimeZone tz = TimeZone.getTimeZone("GMT+05:30");
+        Calendar c = Calendar.getInstance(tz);
+        String time = String.format("%02d" , c.get(Calendar.HOUR_OF_DAY))+":"+
+                String.format("%02d" , c.get(Calendar.MINUTE))+":"+
+                String.format("%02d" , c.get(Calendar.SECOND))+":"+
+              String.format("%03d" , c.get(Calendar.MILLISECOND));
+
+        Log.d("my Time",time);
         ImageView iv_back = findViewById(R.id.iv_back);
         iv_back.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.GradientDrawable;
-import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,6 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.laxmi.lifcvisitors.R;
-import com.laxmi.lifcvisitors.model.VisitorsByGuard;
 import com.laxmi.lifcvisitors.retrofitservices.VisitorsByEmployee;
 
 import java.util.List;
@@ -31,7 +29,7 @@ public class MailAdapterFeedbackEmployee extends RecyclerView.Adapter<MailViewHo
 
     @Override
     public MailViewHolderEmployee onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_floor_item_guard,
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_floor_item_employee,
                 parent, false);
         return new MailViewHolderEmployee(view);
     }
@@ -51,8 +49,7 @@ public class MailAdapterFeedbackEmployee extends RecyclerView.Adapter<MailViewHo
         holder.mLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!mEmailData.get(position).getStatus().equalsIgnoreCase("Disapprove")&&
-                        !mEmailData.get(position).getStatus().equalsIgnoreCase("Pending")) {
+                if (!mEmailData.get(position).getStatus().equalsIgnoreCase("Disapprove")) {
 
                     SendFeedbackEmployee feedbacks = new SendFeedbackEmployee(view.getContext(), holder.tv_visitor_name.getText().toString(),
                             mEmailData.get(position).getEmployeeId(),mEmailData.get(position).getGuardId(),

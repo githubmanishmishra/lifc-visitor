@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+
 
     <application
         android:name=".fragments.languageconvert.MultiLanguageApp"
@@ -21,8 +23,7 @@
             android:exported="false" />
         <activity
             android:name=".activity.guard.GuardSendRequestToEmployeeList"
-            android:exported="false"
-            android:screenOrientation="portrait" />
+            android:exported="false" />
         <activity
             android:name=".activity.employee.EmployeeSignup"
             android:exported="false"
@@ -33,64 +34,54 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.guard.GuardProfileActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
+            android:exported="false"/>
         <activity
             android:name=".Employee_Send_Request_toGaurd"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.guard.Gaurd_mobileno_forget"
-            android:exported="false"
-            android:screenOrientation="portrait" />
+            android:exported="false"/>
         <activity
             android:name=".activity.officeboy.Office_boyassign"
             android:exported="false"
-            android:screenOrientation="portrait" />
+          />
         <activity
             android:name=".fragments.floor_confrence.DetailActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
+            android:exported="false" />
         <activity
             android:name=".activity.visitors.Visitorrequestcome_to_emplpyee"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.visitors.New_visitordetail"
-            android:exported="false"
-            android:screenOrientation="portrait" />
+            android:exported="false"/>
         <activity
             android:name=".activity.guard.GuardDashboard"
             android:exported="false"
-            android:screenOrientation="portrait" />
+            />
         <activity
             android:name=".activity.guard.GuardForgetOtpVerification"
-            android:exported="false"
-            android:screenOrientation="portrait" />
+            android:exported="false"/>
         <activity
             android:name=".activity.guard.GuardForgotPassword"
-            android:exported="false"
-            android:screenOrientation="portrait" />
+            android:exported="false"/>
         <activity
             android:name=".activity.guard.GaurdLogin"
-            android:exported="false"
-            android:screenOrientation="portrait" />
+            android:exported="false"/>
         <activity
             android:name=".activity.guard.Guard_createpswd"
-            android:exported="false"
-            android:screenOrientation="portrait" />
+            android:exported="false"/>
         <activity
             android:name=".activity.guard.Gaurdotp_verification"
-            android:exported="false"
-            android:screenOrientation="portrait" />
+            android:exported="false"/>
         <activity
             android:name=".activity.guard.Gaurdregistration"
-            android:exported="false"
-            android:screenOrientation="portrait" />
+            android:exported="false"/>
         <activity
             android:name=".activity.employee.EmployeeDashboard"
             android:exported="false"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.employee.Forgetcreatepswemployee"
             android:exported="false"
@@ -102,27 +93,25 @@
         <activity
             android:name=".activity.employee.Forgetpsw_Mobile"
             android:exported="false"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.employee.EmployeeLogin"
             android:exported="false"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.employee.EmpcreatepswActivity"
             android:exported="false"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.employee.Otpverification"
             android:exported="false"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.MainActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
+            android:exported="false"/>
         <activity
             android:name=".activity.SplashScreen"
-            android:exported="true"
-            android:screenOrientation="portrait">
+            android:exported="true" android:configChanges="orientation|screenLayout">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

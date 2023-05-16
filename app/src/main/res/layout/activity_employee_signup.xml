@@ -132,7 +132,7 @@
                 android:inputType="phone"
                 android:singleLine="true"/>
         </com.google.android.material.textfield.TextInputLayout>
-        <TextView
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/tv_emp_otp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

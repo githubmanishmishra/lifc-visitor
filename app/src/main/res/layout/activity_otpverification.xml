@@ -128,7 +128,7 @@
                 android:background="@drawable/otp_box"
                 android:maxLength="1" />
         </LinearLayout>
-        <TextView
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/get_otp"
             android:layout_width="202dp"
             android:layout_height="42dp"

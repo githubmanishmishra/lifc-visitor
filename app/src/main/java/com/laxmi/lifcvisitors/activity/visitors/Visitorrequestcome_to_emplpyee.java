@@ -1,22 +1,22 @@
 package com.laxmi.lifcvisitors.activity.visitors;
 
+import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MotionEvent;
-import android.view.ScaleGestureDetector;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
@@ -33,6 +33,7 @@ import com.laxmi.lifcvisitors.savedata.PrefConfig;
 
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -50,13 +51,13 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
     ArrayList<String> arrConference = new ArrayList<>();
     boolean isVisible = false;
     PrefConfig prefConfig;
+    private int mHour, mMinute;
+    EditText ev_disapprove, ev_approve;
 
-    EditText ev_disapprove;
+    Button btnTimePickerIn, btnTimePickerOut;
+    EditText txtTimeIn, txtTimeOut;
 
-    TextView tv_visitor_name, tv_visitor_name2, tv_visitor_name3, tv_visitor_mobile, tv_purpose_of_meeting;
-    //ImageView view_photo;
-/*    private ScaleGestureDetector mScaleGestureDetector;
-    private float mScaleFactor = 1.0f;*/
+    TextView tv_visitor_name, tv_visitor_name4, tv_visitor_name2, tv_visitor_name3, tv_visitor_mobile, tv_purpose_of_meeting;
     private ZoomageView view_photo;
 
     int visitorId;
@@ -75,11 +76,21 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
             }
         });
 
+        btnTimePickerOut =  findViewById(R.id.btn_out_time);
+        txtTimeOut = findViewById(R.id.out_time);
+
         prefConfig = new PrefConfig(this);
 
         btn_approve = findViewById(R.id.btn_approve);
         btn_disapprove = findViewById(R.id.btn_disapprove);
         ev_disapprove = findViewById(R.id.ev_disapprove);
+        ev_approve = findViewById(R.id.ev_approve);
+        btnTimePickerOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getTime();
+            }
+        });
 
         Bundle mBundle = getIntent().getExtras();
         if (mBundle != null) {
@@ -88,6 +99,7 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
             VisitorOne = mBundle.getString("VisitorOne");
             VisitorTwo = mBundle.getString("VisitorTwo");
             VisitorThree = mBundle.getString("VisitorThree");
+
             Purpose = mBundle.getString("Purpose");
             MobileNo = mBundle.getString("MobileNo");
             UserImage = mBundle.getString("UserImage");
@@ -107,14 +119,19 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
         tv_visitor_name = findViewById(R.id.tv_visitor_name);
         tv_visitor_name2 = findViewById(R.id.tv_visitor_name2);
         tv_visitor_name3 = findViewById(R.id.tv_visitor_name3);
+        tv_visitor_name4 = findViewById(R.id.tv_visitor_name4);
+
         tv_visitor_mobile = findViewById(R.id.tv_visitor_mobile);
         tv_purpose_of_meeting = findViewById(R.id.tv_purpose_of_meeting);
         tv_visitor_name.setText(VisitorName);
         tv_visitor_name2.setText(VisitorOne);
         tv_visitor_name3.setText(VisitorTwo);
+        tv_visitor_name4.setText(VisitorThree);
         tv_visitor_mobile.setText(MobileNo);
         tv_purpose_of_meeting.setText(Purpose);
         view_photo = findViewById(R.id.view_photo);
+
+
         view_photo.setImageDrawable(new ColorGridDrawable());
         Glide
                 .with(Visitorrequestcome_to_emplpyee.this)
@@ -145,6 +162,17 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
         ArrayAdapter<String> springAdapter_Conference = new ArrayAdapter<>(this,
                 android.R.layout.simple_dropdown_item_1line, arrConference);
         spinner_Conference.setAdapter(springAdapter_Conference);
+        btn_approve.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (v.getId() == R.id.btn_approve) {
+                    if (!isVisible) {
+                        ev_approve.setVisibility(View.VISIBLE);
+                        isVisible = true;
+                    }
+                }
+            }
+        });
         btn_disapprove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -168,39 +196,13 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
                 }
             }
         });
-        TextView tv = (TextView) this.findViewById(R.id.mywidget);
+        TextView tv = findViewById(R.id.mywidget);
         tv.setSelected(true);
 
-        btn_approve.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getVisitorApproval();
-//                Intent intent = new Intent(Visitorrequestcome_to_emplpyee.this,Employee_Send_Request_toGaurd.class);
-//                startActivity(intent);
-
-            }
-
-        });
+        btn_approve.setOnClickListener(view ->
+                getAlertDialog()
+        );
     }
-/*
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        mScaleGestureDetector.onTouchEvent(motionEvent);
-        return true;
-    }
-*/
-/*
-    private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
-        @Override
-        public boolean onScale(ScaleGestureDetector scaleGestureDetector){
-            mScaleFactor *= scaleGestureDetector.getScaleFactor();
-            mScaleFactor = Math.max(0.1f,
-                    Math.min(mScaleFactor, 10.0f));
-            view_photo.setScaleX(mScaleFactor);
-            view_photo.setScaleY(mScaleFactor);
-            return true;
-        }
-    }
-*/
 
     private void getVisitorApproval() {
         Gson gson = new GsonBuilder()
@@ -229,7 +231,8 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
         APIService service = retrofit.create(APIService.class);
 
         Call<MSG> call = service.getVisitorStatusUpdate("Bearer " + prefConfig.readToken(), "" + visitorId, "Approve",
-                spinner_Conference.getSelectedItem().toString() + ", " + Floor.getSelectedItem().toString(), "");
+                spinner_Conference.getSelectedItem().toString() + ", " + Floor.getSelectedItem().toString(),
+                "",txtTimeOut.getText().toString());
         call.enqueue(new Callback<MSG>() {
             @Override
             public void onResponse(@NonNull Call<MSG> call, @NonNull retrofit2.Response<MSG> response) {
@@ -285,7 +288,8 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
         APIService service = retrofit.create(APIService.class);
 
         Call<MSG> call = service.getVisitorStatusUpdate("Bearer " + prefConfig.readToken(), "" + visitorId, "Disapprove",
-                spinner_Conference.getSelectedItem().toString() + ", " + Floor.getSelectedItem().toString(), ev_disapprove.getText().toString());
+                spinner_Conference.getSelectedItem().toString() + ", " + Floor.getSelectedItem().toString(), ev_disapprove.getText().toString(),
+                "");
         call.enqueue(new Callback<MSG>() {
             @Override
             public void onResponse(@NonNull Call<MSG> call, @NonNull retrofit2.Response<MSG> response) {
@@ -298,7 +302,8 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
                         finish();
 
                     }
-                } else {
+                }
+                else {
                     Toast.makeText(Visitorrequestcome_to_emplpyee.this, "Wrong Credentials", Toast.LENGTH_SHORT).show();
 
                 }
@@ -312,5 +317,55 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
             }
         });
     }
+
+    public void getTime(){
+        // Get Current Time
+        final Calendar c = Calendar.getInstance();
+        mHour = c.get(Calendar.HOUR_OF_DAY);
+        mMinute = c.get(Calendar.MINUTE);
+
+        // Launch Time Picker Dialog
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this,
+                new TimePickerDialog.OnTimeSetListener() {
+
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay,
+                                          int minute) {
+
+                        txtTimeOut.setText(hourOfDay + ":" + minute);
+                    }
+                }, mHour, mMinute, true);
+        timePickerDialog.show();
+    }
+
+   public void getAlertDialog(){
+       AlertDialog.Builder builder = new AlertDialog.Builder(Visitorrequestcome_to_emplpyee.this);
+       builder.setMessage("Do you want to give specific time to Visitor ?");
+       builder.setTitle("Alert !");
+       builder.setCancelable(false);
+       builder.setPositiveButton("Yes", (DialogInterface.OnClickListener) (dialog, which) -> {
+           // When the user click yes button then app will close
+           if(txtTimeOut.getText().toString().isEmpty()){
+               finish();
+           }else {
+               finish();
+               getVisitorApproval();
+           }
+           txtTimeOut.setVisibility(View.VISIBLE);
+           btnTimePickerOut.setVisibility(View.VISIBLE);
+
+
+       });
+
+       builder.setNegativeButton("No", (DialogInterface.OnClickListener) (dialog, which) -> {
+           dialog.cancel();
+              getVisitorApproval();
+
+       });
+
+       AlertDialog alertDialog = builder.create();
+       alertDialog.show();
+
+   }
 
 }

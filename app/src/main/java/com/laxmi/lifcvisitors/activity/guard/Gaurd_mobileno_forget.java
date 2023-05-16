@@ -8,12 +8,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.laxmi.lifcvisitors.R;
+import com.laxmi.lifcvisitors.activity.employee.Employeeotpverification;
+import com.laxmi.lifcvisitors.activity.employee.Forgetpsw_Mobile;
+import com.laxmi.lifcvisitors.model.MSG;
+import com.laxmi.lifcvisitors.retrofitservices.APIService;
+import com.laxmi.lifcvisitors.retrofitservices.ApiClient;
 
 import java.util.Objects;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Gaurd_mobileno_forget extends AppCompatActivity {
     TextView confirmpsw;
@@ -43,12 +53,13 @@ public class Gaurd_mobileno_forget extends AppCompatActivity {
                 }*/
                 if (!validate()) {
                     onUpdateFailed();
-                } else {
+                } else {/*
                     Intent intent = new Intent(Gaurd_mobileno_forget.this, GuardForgetOtpVerification.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("mob_no", textInputMobile.getText().toString());
                     intent.putExtras(bundle);
-                    startActivity(intent);
+                    startActivity(intent);*/
+                    otpApi();
                 }
 
             }
@@ -80,6 +91,36 @@ public class Gaurd_mobileno_forget extends AppCompatActivity {
         if (view.requestFocus()) {
             getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         }
+    }
+    private void otpApi() {
+        APIService service = ApiClient.getClient().create(APIService.class);
+
+        Call<MSG> call = service.getOtpForgotPassword(textInputMobile.getText().toString(),"forget");
+        call.enqueue(new Callback<MSG>() {
+            @Override
+            public void onResponse(@NonNull Call<MSG> call, @NonNull Response<MSG> response) {
+                if( response.body()!=null){
+                    Toast.makeText(Gaurd_mobileno_forget.this, "success", Toast.LENGTH_LONG).show();
+
+                    Intent intent = new Intent(Gaurd_mobileno_forget.this, GuardForgetOtpVerification.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("mob_no", textInputMobile.getText().toString());
+                    bundle.putString("otpValue", response.body().getOtp());
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }else {
+                    Toast.makeText(Gaurd_mobileno_forget.this, "Invalid Otp", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<MSG> call, Throwable t) {
+
+                // pDialog.dismiss();
+                //  Log.d("Error", t.getMessage());
+            }
+        });
     }
 
 }

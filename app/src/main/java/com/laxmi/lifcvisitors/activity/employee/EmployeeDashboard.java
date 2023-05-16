@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,33 +44,37 @@ public class EmployeeDashboard extends AppCompatActivity implements NavigationVi
         toggle.syncState();
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-     /*  TextView tv_emp_name = navigationView.findViewById(R.id.tv_emp_name);
+        navigationView.bringToFront();
+        View headerView = navigationView.inflateHeaderView(R.layout.nav_header_main);
 
-       tv_emp_name.setText("sdvfcb");*/
-alertDialogBuilder = new AlertDialog.Builder(this);
-alertDialogBuilder.setTitle("Logout");
-alertDialogBuilder.setIcon(R.drawable.logout);
-alertDialogBuilder.setMessage("Are you sure want to logout?");
-alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-    @Override
-    public void onClick(DialogInterface dialog, int which) {
-        startActivity(new Intent(EmployeeDashboard.this, EmployeeLogin.class));
-        Toast.makeText(EmployeeDashboard.this, "You successfully logout", Toast.LENGTH_SHORT).show();
- finish();   }
-});
-alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-    @Override
-    public void onClick(DialogInterface dialog, int which) {
-        getApplicationContext();
+        TextView tv_emp_name = headerView.findViewById(R.id.tv_emp_name);
 
+        tv_emp_name.setText(prefConfig.readName()+"");
+        alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setTitle("Logout");
+        alertDialogBuilder.setIcon(R.drawable.logout);
+        alertDialogBuilder.setMessage("Are you sure want to logout?");
+        alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                startActivity(new Intent(EmployeeDashboard.this, EmployeeLogin.class));
+                Toast.makeText(EmployeeDashboard.this, "You successfully logout", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        });
+        alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                getApplicationContext();
 
-    }
-});
+            }
+        });
         FragmentManager fragmentManager = getSupportFragmentManager();
         DashboardFragment fragment = new DashboardFragment();
         fragmentManager.beginTransaction().replace(R.id.frameLayout, fragment).commit();
 
     }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -77,19 +82,19 @@ alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener()
             drawer.closeDrawer(GravityCompat.START);
         } else {
 
-          // super.onBackPressed();
+            // super.onBackPressed();
         }
     }
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-      //  Fragment fragment = null;
-     //   FragmentManager fragmentManager = getSupportFragmentManager();
-        if (id == R.id.nav_slideshow)
-        {
-            Intent intent = new Intent(EmployeeDashboard.this,Employee_profile_update.class);
+        //  Fragment fragment = null;
+        //   FragmentManager fragmentManager = getSupportFragmentManager();
+        if (id == R.id.nav_slideshow) {
+            Intent intent = new Intent(EmployeeDashboard.this, Employee_profile_update.class);
             startActivity(intent);
         } else if (id == R.id.nav_Contactus) {
             Intent intents = new Intent(EmployeeDashboard.this, Contactus.class);
@@ -100,10 +105,10 @@ alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener()
 
 
             //startActivity(new Intent(EmployeeDashboard.this, EmployeeLogin.class));
-        //    finishAffinity();
+            //    finishAffinity();
 
         }
-      //  fragmentManager.beginTransaction().replace(R.id.frameLayout, fragment).commit();
+        //  fragmentManager.beginTransaction().replace(R.id.frameLayout, fragment).commit();
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

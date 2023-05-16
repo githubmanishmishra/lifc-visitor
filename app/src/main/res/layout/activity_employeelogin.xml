@@ -227,7 +227,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp">
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/tv_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -243,14 +243,14 @@
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textSize="14sp"/>
-            <TextView
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/forgot_pwd_emp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:background="@drawable/btn_bg_rectangle"
-                android:paddingStart="20dp"
+                android:paddingStart="10dp"
                 android:paddingTop="10dp"
                 android:paddingEnd="20dp"
                 android:paddingBottom="10dp"

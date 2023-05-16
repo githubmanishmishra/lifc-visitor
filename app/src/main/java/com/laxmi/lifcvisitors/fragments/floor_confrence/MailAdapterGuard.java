@@ -3,12 +3,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.net.Uri;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.recyclerview.widget.RecyclerView;
 import com.laxmi.lifcvisitors.R;
 import com.laxmi.lifcvisitors.model.VisitorsByGuard;
@@ -39,6 +42,15 @@ public class MailAdapterGuard extends RecyclerView.Adapter<MailViewHolderGuard> 
         Random mRandom = new Random();
         final int color = Color.argb(255, mRandom.nextInt(256), mRandom.nextInt(256), mRandom.nextInt(256));
         ((GradientDrawable) holder.mIcon.getBackground()).setColor(color);
+
+        holder.tv_call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:"+mEmailData.get(position).getEmployeeMobileNumber()));
+              mContext.startActivity(intent);
+            }
+        });
         holder.mLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,7 +104,7 @@ class MailViewHolderGuard extends RecyclerView.ViewHolder {
     TextView tv_visitor_address;
     TextView tvTimeIn;
     TextView tv_status;
-    TextView _tv;
+    TextView _tv,tv_call;
     RelativeLayout mLayout;
 
     MailViewHolderGuard(View itemView) {
@@ -104,6 +116,7 @@ class MailViewHolderGuard extends RecyclerView.ViewHolder {
         tvTimeIn = itemView.findViewById(R.id.tvTimeIn);
         tv_status = itemView.findViewById(R.id.tv_status);
         mLayout = itemView.findViewById(R.id.layout);
+        tv_call = itemView.findViewById(R.id.tv_call);
         _tv = itemView.findViewById(R.id._tv);
     }
 }

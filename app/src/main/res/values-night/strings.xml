@@ -3,5 +3,6 @@
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>
     <string name="register_text">Don\'t have an Account ? Create One !</string>
-    <string name="marquee_text">Laxmi India Finance Private Limited Formerly Known as Laxmi India Feanleasecap Private Limited</string>
+    <string name="marquee_text">Laxmi India Finance Private Limited (Formerly Known as Laxmi India Finleasecap Private Limited)</string>
+    <string name="co_visitor">सह आगंतुक</string>
 </resources>

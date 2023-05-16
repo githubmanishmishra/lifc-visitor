@@ -125,4 +125,21 @@
     <string name="email">ईमेल</string>
     <string name="role">भूमिका</string>
     <string name="update">अद्यतन</string>
+    <string name="co_visitor">सह आगंतुक</string>
+    <string name="Select_Purpose_Of_Meeting">मीटिंग का उद्देश्य चुनें</string>
+    <string name="Auditor">लेखा परीक्षक</string>
+    <string name="Advisor">सलाहकार</string>
+    <string name="Emi">ईएमआई</string>
+    <string name="Forclosure">फोरक्लोजर</string>
+    <string name="Interview">साक्षात्कार</string>
+    <string name="Investor">निवेशक</string>
+    <string name="Insurance">बीमा</string>
+    <string name="Loan_Enquiry">ऋण पूछताछ</string>
+    <string name="Lender">ऋणदाता</string>
+    <string name="Noc">अनापत्ति प्रमाण पत्र</string>
+    <string name="Settlement">समझौता</string>
+    <string name="Other_branch_employee">अन्य शाखा कर्मचारी</string>
+    <string name="Vendor">विक्रेता</string>
+    <string name="Personal_meeting">व्यक्तिगत बैठक</string>
+    <string name="Other">अन्य</string>
 </resources>

@@ -102,7 +102,7 @@
         android:layout_margin="10dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/purposeof_meeting"
+            android:id="@+id/office_boy_name"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:hint="Office Boy Name"/>
@@ -124,6 +124,7 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+<!--
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="match_parent"
@@ -140,6 +141,7 @@
             android:layout_margin="10dp"
             android:singleLine="true"/>
     </com.google.android.material.textfield.TextInputLayout>
+-->
     <TextView
         android:id="@+id/tv_submit"
         android:layout_width="222dp"

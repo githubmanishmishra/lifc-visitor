@@ -1,7 +1,6 @@
 package com.laxmi.lifcvisitors.fragments.floor_confrence;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
@@ -9,12 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.laxmi.lifcvisitors.R;
-import com.laxmi.lifcvisitors.activity.visitors.Visitorrequestcome_to_emplpyee;
 import com.laxmi.lifcvisitors.retrofitservices.VisitorsByEmployee;
 
 import java.util.List;
@@ -32,7 +29,7 @@ public class MailAdapter extends RecyclerView.Adapter<MailViewHolder> {
 
     @Override
     public MailViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyelerview_floor_item,
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_floor_item_employee,
                 parent, false);
         return new MailViewHolder(view);
     }

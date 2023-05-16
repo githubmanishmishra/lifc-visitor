@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,7 +28,7 @@ import retrofit2.Callback;
 
 
 public class SendFeedbackEmployee extends Dialog {
-
+    private float userRate = 0;
     PrefConfig prefConfig;
     String visitorNameValue;
     int visitorId;
@@ -49,14 +50,38 @@ public class SendFeedbackEmployee extends Dialog {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView((R.layout.feedback_send));
-
         prefConfig = new PrefConfig(getContext());
         final AppCompatButton rateNowBtn = findViewById(R.id.rateNowBtn);
         final AppCompatButton laterBtn = findViewById(R.id.mayBeLaterBtn);
          ev_feedback = findViewById(R.id.ev_feedback);
-        final TextView visitorName = findViewById(R.id.visitorName);
+        final RatingBar ratingBar = findViewById(R.id.ratingBar);
+        final ImageView ratingImage = findViewById(R.id.ratingImage);
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                if (rating <= 1) {
+                    ratingImage.setImageResource(R.drawable.angry);
+                } else if (rating <= 2) {
+                    ratingImage.setImageResource(R.drawable.lowsad);
 
-        visitorName.setText("Hello "+visitorNameValue);
+                } else if (rating <= 3) {
+                    ratingImage.setImageResource(R.drawable.happy);
+                } else if (rating <= 4) {
+                    ratingImage.setImageResource(R.drawable.love);
+
+                } else {
+                    ratingImage.setImageResource(R.drawable.love);
+                }
+                //animate emoji image
+                animateImage(ratingImage);
+                //selected rating by user
+                userRate = rating;
+            }
+        });
+
+//        final TextView visitorName = findViewById(R.id.visitorName);
+//
+//        visitorName.setText("Hello "+visitorNameValue);
 
         rateNowBtn.setOnClickListener(v -> {//your code goes here
             getFeedBack();

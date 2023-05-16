@@ -19,23 +19,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/reds">
-
                 <ImageView
                     android:id="@+id/iv_back"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:src="@drawable/ic_baseline_arrow_back_ios_24"
                     app:tint="@color/white" />
-
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Visitor Detail"
-                    android:textColor="@color/white" />
+                    android:text="@string/visitor_detail"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic"/>
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>
-
         <RelativeLayout
             android:id="@+id/lifc_logo"
             android:layout_width="match_parent"
@@ -78,6 +77,32 @@
                 android:src="@drawable/life_logo" />
         </RelativeLayout>
 
+        <!--<RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:id="@+id/tv_visitor_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="Visitor Name -                 "
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/ev_visitor_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_toRightOf="@+id/tv_visitor_name"
+                android:background="@drawable/bgtext"
+                android:padding="10dp"
+                android:singleLine="true" />
+
+        </RelativeLayout>-->
         <!--
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
@@ -106,7 +131,7 @@
                 android:id="@+id/ev_visitor_name"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:hint=" Visitor Name" />
+                android:hint= "@string/visitor_name" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -130,15 +155,13 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:hint="  Visitor Name 1">
+                android:layout_margin="10dp"
+                android:hint="Co Visitor">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ev_visitor_one"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:padding="12dp"
+                    android:layout_height="60dp"
                     android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -146,84 +169,45 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:hint="  Visitor Name 2">
-
+                android:layout_margin="10dp"
+                android:hint="@string/co_visitor">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ev_visitor_two"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:padding="12dp"
-                    android:singleLine="true" />
+                    android:layout_height="60dp"
+                    android:singleLine="true"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:hint="  Visitor Name 3">
-
+                android:layout_margin="10dp"
+                android:hint="@string/co_visitor">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ev_visitor_three"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:padding="12dp"
-                    android:singleLine="true" />
+                    android:layout_height="60dp"
+                    android:singleLine="true"/>
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        <Spinner
+            android:id="@+id/spinner_purpose"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp">
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginStart="10dp">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/purposeof_meeting"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:hint="@string/purpose_of_meeting" />
+        </Spinner>
 
-        </com.google.android.material.textfield.TextInputLayout>
+        <EditText
+            android:id="@+id/et_purpose"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Purpose of meeting"
+            android:visibility="gone"/>
 
-        <!--
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/purpose_of_meeting">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/purposeof_coming"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:padding="10dp"
-                        android:singleLine="true" />
-                </com.google.android.material.textfield.TextInputLayout>
-        -->
-
-        <!--
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/visitor_phoneno_91">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/mobile_no"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:inputType="phone"
-                        android:maxLength="10"
-                        android:padding="10dp"
-                        android:singleLine="true" />
-                </com.google.android.material.textfield.TextInputLayout>
-        -->
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
@@ -234,17 +218,14 @@
                 android:id="@+id/visitormobile_no"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:hint="Visitor Phone-No"
-                android:inputType="phone"
-                android:maxLength="10" />
-
+                android:hint="@string/mobile_number"
+                android:inputType="number"
+                android:maxLength="10"/>
         </com.google.android.material.textfield.TextInputLayout>
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_otp"
                 android:layout_width="0dp"
@@ -254,15 +235,13 @@
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:padding="10dp"
-                android:text="Getotp" />
+                android:text="@string/getotp" />
 
             <TextView
                 android:id="@+id/textView1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:visibility="gone" />
-
-
+                android:visibility="gone"/>
         </LinearLayout>
 
 
@@ -279,64 +258,66 @@
                 android:orientation="horizontal">
 
                 <EditText
+                    android:id="@+id/edittext_otp1"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_margin="5dp"
                     android:background="@drawable/otp_box"
+                    android:inputType="number"
                     android:maxLength="1" />
 
                 <EditText
+                    android:id="@+id/edittext_otp2"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_margin="5dp"
                     android:background="@drawable/otp_box"
+                    android:inputType="number"
                     android:maxLength="1" />
 
                 <EditText
+                    android:id="@+id/edittext_otp3"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_margin="5dp"
                     android:background="@drawable/otp_box"
+                    android:inputType="number"
                     android:maxLength="1" />
-
                 <EditText
+                    android:id="@+id/edittext_otp4"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_margin="5dp"
                     android:background="@drawable/otp_box"
+                    android:inputType="number"
                     android:maxLength="1" />
             </LinearLayout>
         </RelativeLayout>
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/visitor_photo"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_width="400dp"
+                android:layout_height="320dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginEnd="40dp"
-                android:layout_marginBottom="30dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="30dp"
                 android:padding="10dp"
-                android:background="@drawable/life_logo"
                 android:text="@string/visitor_photo"
                 android:textSize="18sp"
                 android:textStyle="bold" />
-
             <ImageView
                 android:id="@+id/btn_uploadphoto"
-                android:layout_width="300dp"
-                android:layout_height="150dp"
-                android:padding="10dp"
-                android:layout_toRightOf="@+id/visitor_photo"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="30dp"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
                 android:layout_marginTop="60dp"
+                android:padding="10dp"
                 android:src="@drawable/camera" />
-        </RelativeLayout>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -358,7 +339,6 @@
                     android:inputType="phone"
                     android:maxLength="6"
                     android:singleLine="true" />
-
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -388,7 +368,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_weight="2"
                 android:padding="10dp"
-                android:text="Submit" />
+                android:text="@string/submit"/>
         </LinearLayout>
 
         <LinearLayout
@@ -404,7 +384,7 @@
                 android:padding="10dp"
                 android:paddingTop="10dp"
                 android:text="@string/state"
-                android:textSize="18sp"
+                android:textSize="22sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -414,7 +394,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/bgtext"
-                android:hint="Select Your State"
+                android:hint="@string/select_your_state"
                 android:padding="20dp"
                 android:singleLine="true" />
 
@@ -435,7 +415,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/bgtext"
-                android:hint="Select Your city"
+                android:hint="@string/select_your_city"
                 android:padding="30dp" />
         </LinearLayout>
 
@@ -444,8 +424,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            tools:context=".MainActivity">
+            android:paddingRight="@dimen/activity_horizontal_margin">
 
             <EditText
                 android:id="@+id/out_time"
@@ -453,13 +432,14 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:padding="10dp"
+                android:layout_marginTop="22dp"
                 android:layout_marginEnd="10dp"
-                android:focusable="false"
-                android:clickable="false"
-                android:hint="Time Out"
                 android:background="@drawable/rounded_corner"
-                android:layout_marginTop="22dp" />
+                android:clickable="false"
+                android:focusable="false"
+                android:hint="Time Out"
+                android:padding="10dp"
+                android:visibility="gone" />
 
             <Button
                 android:id="@+id/btn_out_time"
@@ -468,21 +448,23 @@
                 android:layout_alignBottom="@+id/out_time"
                 android:layout_toEndOf="@+id/out_time"
                 android:layout_toRightOf="@+id/out_time"
-                android:text="SELECT TIME OUT" />
+                android:text="SELECT TIME OUT"
+                android:visibility="gone" />
 
             <EditText
                 android:id="@+id/in_time"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/btn_out_time"
-                android:background="@drawable/rounded_corner"
-                android:padding="10dp"
-                android:hint="Time In"
-                android:focusable="false"
-                android:clickable="false"
-                android:layout_marginEnd="10dp"
+                android:layout_alignParentStart="true"
                 android:layout_marginTop="5dp"
-                android:layout_alignParentStart="true" />
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/rounded_corner"
+                android:clickable="false"
+                android:focusable="false"
+                android:hint="@string/time_in"
+                android:visibility="gone"
+                android:padding="10dp"/>
 
             <Button
                 android:id="@+id/btn__in_time"
@@ -491,24 +473,21 @@
                 android:layout_below="@+id/btn_out_time"
                 android:layout_toEndOf="@+id/in_time"
                 android:layout_toRightOf="@+id/in_time"
-                android:text="SELECT IN TIME" />
-
+                android:text="@string/select_in_time"
+                android:visibility="gone"/>
         </RelativeLayout>
-
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="WHOM TO MEET"
+                android:layout_marginTop="10dp"
+                android:text="@string/whom_to_meets"
                 android:textAlignment="center"
                 android:textColor="@color/red"
                 android:textSize="18sp"
-                android:layout_marginTop="10dp"
-                android:textStyle="bold" />
+                android:textStyle="bold|italic"/>
         </RelativeLayout>
 
         <!--
@@ -585,25 +564,22 @@
                 android:dropDownHeight="100dp"
                 android:padding="20dp"
                 android:singleLine="true"
-                android:visibility="gone" />
+                android:visibility="gone"/>
         </LinearLayout>
-
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:orientation="vertical">
-
             <TextView
                 android:id="@+id/tv_dep_emp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="Employee Name"
+                android:text="@string/employee_name"
                 android:textSize="16sp"
                 android:textStyle="bold" />
-
             <Spinner
                 android:id="@+id/spinner_employeedept"
                 android:layout_width="match_parent"
@@ -615,26 +591,24 @@
                 android:padding="20dp"
                 android:singleLine="true" />
         </LinearLayout>
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="Employee Code"
-            android:layout_marginTop="20dp"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            android:text="@string/employee_code"
             android:textSize="16sp"
-            android:textStyle="bold" />
-
+            android:textStyle="bold"/>
         <TextView
             android:id="@+id/tv_emp_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="20dp"
             android:background="@drawable/rounded_corner"
             android:padding="10dp"
-            android:layout_margin="20dp"
-            android:textColor="@color/reds" />
-
+            android:text="jghgc"
+            android:textColor="@color/black" />
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/sendrequest"
             android:layout_width="wrap_content"
@@ -647,6 +621,6 @@
             android:text="@string/send_request"
             android:textColor="@color/white"
             android:textSize="14sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
     </LinearLayout>
 </ScrollView>

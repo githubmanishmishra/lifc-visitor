@@ -1,6 +1,7 @@
 package com.laxmi.lifcvisitors.activity.officeboy;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -44,7 +45,7 @@ public class Office_boyassign extends AppCompatActivity {
         });
 
         prefConfig = new PrefConfig(this);
-        ev_officeBoy_name = findViewById(R.id.ev_officeBoy_name);
+        ev_officeBoy_name = findViewById(R.id.office_boy_name);
         mobile_no = findViewById(R.id.mobile_no);
         tv_submit = findViewById(R.id.tv_submit);
 
@@ -88,9 +89,12 @@ public class Office_boyassign extends AppCompatActivity {
                     //  pDialog.dismiss();
                     if (response.body().getMessage().equalsIgnoreCase("Office Boy registed successfully")) {
 
-                        Toast.makeText(Office_boyassign.this, "Success", Toast.LENGTH_SHORT).show();
+                       /* Toast.makeText(Office_boyassign.this, "Success", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(Office_boyassign.this, GuardDashboard.class));
-                        finish();
+                        finish();*/
+                        Intent intent = new Intent(Intent.ACTION_DIAL);
+                        intent.setData(Uri.parse("tel:"+mobile_no.getText().toString()));
+                        startActivity(intent);
                     }
 
                 } else {

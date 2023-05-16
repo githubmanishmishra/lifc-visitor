@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="@dimen/nav_header_height"
-    android:background="#874568"
+    android:background="#644E71"
     android:gravity="bottom"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -14,8 +14,9 @@
     <ImageView
         android:id="@+id/logo_3"
         android:layout_width="wrap_content"
-        android:layout_height="70dp"
-        app:srcCompat="@drawable/life_logo" />
+        android:layout_height="90dp"
+        android:layout_marginEnd="190dp"
+        app:srcCompat="@drawable/profile_photo"/>
     <TextView
         android:id="@+id/tv_emp_name"
         android:layout_width="match_parent"

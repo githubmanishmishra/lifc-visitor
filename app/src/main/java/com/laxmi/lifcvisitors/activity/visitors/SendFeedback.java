@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,7 +27,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 
 
-public class SendFeedback extends Dialog {
+public class  SendFeedback extends Dialog {
+    private float userRate = 0;
 
     PrefConfig prefConfig;
     String visitorNameValue;
@@ -54,6 +56,32 @@ public class SendFeedback extends Dialog {
         final AppCompatButton rateNowBtn = findViewById(R.id.rateNowBtn);
         final AppCompatButton laterBtn = findViewById(R.id.mayBeLaterBtn);
         ev_feedback = findViewById(R.id.ev_feedback);
+        final RatingBar ratingBar = findViewById(R.id.ratingBar);
+        final ImageView ratingImage = findViewById(R.id.ratingImage);
+
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                if (rating <= 1) {
+                    ratingImage.setImageResource(R.drawable.angry);
+                } else if (rating <= 2) {
+                    ratingImage.setImageResource(R.drawable.lowsad);
+
+                } else if (rating <= 3) {
+                    ratingImage.setImageResource(R.drawable.happy);
+                } else if (rating <= 4) {
+                    ratingImage.setImageResource(R.drawable.love);
+
+                } else {
+                    ratingImage.setImageResource(R.drawable.love);
+                }
+                //animate emoji image
+                animateImage(ratingImage);
+                //selected rating by user
+                userRate = rating;
+            }
+        });
+
         final TextView visitorName = findViewById(R.id.visitorName);
 
         visitorName.setText("Hello "+visitorNameValue);
@@ -97,7 +125,6 @@ public class SendFeedback extends Dialog {
                 Log.d("Error", t.getMessage());
             }
         });
-
 
     }
 

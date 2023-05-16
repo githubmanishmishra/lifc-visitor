@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.GradientDrawable;
-import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +29,7 @@ public class MailAdapterFeedbackGuard extends RecyclerView.Adapter<MailViewHolde
 
     @Override
     public MailViewHolderGuard onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_floor_item_guard,
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_floor_item_employee,
                 parent, false);
         return new MailViewHolderGuard(view);
     }
@@ -44,14 +43,14 @@ public class MailAdapterFeedbackGuard extends RecyclerView.Adapter<MailViewHolde
         holder.tv_visitor_address.setText(mEmailData.get(position).getMeetPlace());
 //        holder.tv_visitor_address.setText(mEmailData.get(position).getCity()+ ", "+mEmailData.get(position).getState());
         holder.tvTimeIn.setText("Check In " + mEmailData.get(position).getCheckIn());
+        holder.tvTimeOut.setText("Check Out " + mEmailData.get(position).getCheckOut());
         Random mRandom = new Random();
         final int color = Color.argb(255, mRandom.nextInt(256), mRandom.nextInt(256), mRandom.nextInt(256));
         ((GradientDrawable) holder.mIcon.getBackground()).setColor(color);
         holder.mLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!mEmailData.get(position).getStatus().equalsIgnoreCase("Disapprove") &&
-                        !mEmailData.get(position).getStatus().equalsIgnoreCase("Pending")) {
+                if (!mEmailData.get(position).getStatus().equalsIgnoreCase("Disapprove") ) {
 
                     SendFeedback feedbacks = new SendFeedback(view.getContext(), holder.tv_visitor_name.getText().toString(),
                             mEmailData.get(position).getEmployeeId(),mEmailData.get(position).getGuardId(),
@@ -100,7 +99,7 @@ class MailViewHolderGuard extends RecyclerView.ViewHolder {
     TextView tv_visitor_address;
     TextView tvTimeIn;
     TextView tv_status;
-    TextView _tv;
+    TextView _tv,tvTimeOut;
     RelativeLayout mLayout;
 
     MailViewHolderGuard(View itemView) {
@@ -110,6 +109,7 @@ class MailViewHolderGuard extends RecyclerView.ViewHolder {
         tv_visitor_mobile = itemView.findViewById(R.id.tv_visitor_mobile);
         tv_visitor_address = itemView.findViewById(R.id.tv_visitor_address);
         tvTimeIn = itemView.findViewById(R.id.tvTimeIn);
+        tvTimeOut = itemView.findViewById(R.id.tvTimeOut);
         tv_status = itemView.findViewById(R.id.tv_status);
         mLayout = itemView.findViewById(R.id.layout);
         _tv = itemView.findViewById(R.id._tv);

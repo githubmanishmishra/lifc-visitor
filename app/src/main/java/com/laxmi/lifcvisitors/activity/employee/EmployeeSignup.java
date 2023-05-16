@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 
 import android.widget.TextView;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import com.laxmi.lifcvisitors.R;
 import com.laxmi.lifcvisitors.activity.guard.Guard_createpswd;
@@ -27,7 +29,8 @@ import retrofit2.Response;
 
 
 public class EmployeeSignup extends AppCompatActivity {
-    TextView tv_emp_getotp, tv_login;
+    AppCompatButton tv_emp_getotp;
+    TextView tv_login;
     EditText ev_emp_mob_no, emp_code;
 
     @Override
@@ -70,7 +73,7 @@ public class EmployeeSignup extends AppCompatActivity {
         boolean valid = true;
         String empCode = Objects.requireNonNull(emp_code.getText().toString());
         String mobileNo = Objects.requireNonNull(ev_emp_mob_no.getText()).toString();
-        if (mobileNo.isEmpty() | mobileNo.length()!=12) {
+        if (mobileNo.isEmpty() | mobileNo.length()!=10) {
             ev_emp_mob_no.setError("Enter Valid Mobile Number ");
             requestFocus(ev_emp_mob_no);
             valid = false;

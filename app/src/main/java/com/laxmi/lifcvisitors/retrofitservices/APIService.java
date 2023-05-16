@@ -149,7 +149,8 @@ public interface APIService {
                                      @Field("visitor_id") String visitor_id,
                                      @Field("status") String status,
                                      @Field("meet_place") String meet_place,
-                                     @Field("disapprove_reason") String disapprove_reason
+                                     @Field("disapprove_reason") String disapprove_reason,
+                                     @Field("meet_up_time") String meet_up_time
     );
 
     @Headers({"Content-Type: application/json;charset=UTF-8"})

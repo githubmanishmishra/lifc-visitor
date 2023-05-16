@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -26,7 +27,7 @@ import retrofit2.Response;
 
 public class Forgetpsw_Mobile extends AppCompatActivity {
     Intent intent;
-    TextView tv_getotp;
+    AppCompatButton tv_getotp;
     TextInputEditText mobileNo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

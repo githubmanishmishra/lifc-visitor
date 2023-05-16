@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import com.laxmi.lifcvisitors.R;
 import com.laxmi.lifcvisitors.activity.guard.GaurdLogin;
@@ -30,7 +31,7 @@ import retrofit2.Response;
 
 
 public class Forgetcreatepswemployee extends AppCompatActivity {
-    TextView tv_change_password;
+    AppCompatButton tv_change_password;
     EditText ev_new_password, ev_confirm_password;
     String mob_no;
     @Override

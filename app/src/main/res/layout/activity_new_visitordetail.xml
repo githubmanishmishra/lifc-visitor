@@ -19,7 +19,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/reds">
-
                 <ImageView
                     android:id="@+id/iv_back"
                     android:layout_width="30dp"
@@ -157,7 +156,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:hint="@string/visitor_name_one">
+                android:hint="Co Visitor">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ev_visitor_one"
@@ -171,7 +170,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:hint="@string/visitor_name_two">
+                android:hint="@string/co_visitor">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ev_visitor_two"
                     android:layout_width="match_parent"
@@ -184,62 +183,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:hint="@string/visitor_name_three">
-
+                android:hint="@string/co_visitor">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ev_visitor_three"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:singleLine="true" />
+                    android:singleLine="true"/>
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        <Spinner
+            android:id="@+id/spinner_purpose"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/purposeof_meeting"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginStart="10dp"/>
+
+            <EditText
+                android:id="@+id/et_purpose"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:hint="@string/purpose_of_meeting"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="wrap_content"
+                android:hint="Purpose of meeting"
+                android:visibility="gone"/>
 
-        <!--
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/purpose_of_meeting">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/purposeof_coming"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:padding="10dp"
-                        android:singleLine="true" />
-                </com.google.android.material.textfield.TextInputLayout>
-        -->
-
-        <!--
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/visitor_phoneno_91">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/mobile_no"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:inputType="phone"
-                        android:maxLength="10"
-                        android:padding="10dp"
-                        android:singleLine="true" />
-                </com.google.android.material.textfield.TextInputLayout>
-        -->
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
@@ -342,7 +309,6 @@
                 android:text="@string/visitor_photo"
                 android:textSize="18sp"
                 android:textStyle="bold" />
-
             <ImageView
                 android:id="@+id/btn_uploadphoto"
                 android:layout_width="90dp"
@@ -495,6 +461,7 @@
                 android:background="@drawable/rounded_corner"
                 android:clickable="false"
                 android:focusable="false"
+                android:visibility="gone"
                 android:hint="@string/time_in"
                 android:padding="10dp"/>
 
@@ -505,7 +472,8 @@
                 android:layout_below="@+id/btn_out_time"
                 android:layout_toEndOf="@+id/in_time"
                 android:layout_toRightOf="@+id/in_time"
-                android:text="@string/select_in_time" />
+                android:text="@string/select_in_time"
+                android:visibility="gone"/>
         </RelativeLayout>
 
         <RelativeLayout

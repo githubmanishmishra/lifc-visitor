@@ -134,4 +134,24 @@
     <string name="email">ઈમેલ</string>
     <string name="role">ભૂમિકા</string>
     <string name="update">અપડેટ</string>
+    <string name="co_visitor">સહ મુલાકાતી</string>
+    <string name="Select_Purpose_Of_Meeting">મીટિંગનો હેતુ પસંદ કરો</string>
+    <string name="Auditor">ઓડિટર</string>
+    <string name="Advisor">ઓડિટર</string>
+    <string name="Emi">ઈન્ટરવ્યુ</string>
+    <string name="Forclosure">ગીરો</string>
+    <string name="Interview">ઈન્ટરવ્યુ</string>
+    <string name="Investor">રોકાણકાર</string>
+    <string name="Insurance">વીમા</string>
+    <string name="Loan_Enquiry">લોન ઇન્ક્વાયરી</string>
+    <string name="Lender">શાહુકાર</string>
+    <string name="Noc">એનઓસી</string>
+    <string name="Settlement">સમાધાન</string>
+    <string name="Other_branch_employee">અન્ય શાખા કર્મચારી</string>
+    <string name="Vendor">વિક્રેતા</string>
+    <string name="Personal_meeting">વ્યક્તિગત મીટિંગ</string>
+    <string name="Other">અન્ય</string>
+
+
+
 </resources>

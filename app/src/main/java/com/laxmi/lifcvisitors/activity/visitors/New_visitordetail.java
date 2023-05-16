@@ -56,6 +56,7 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.laxmi.lifcvisitors.ImageFilePath;
 import com.laxmi.lifcvisitors.R;
 
+import com.laxmi.lifcvisitors.activity.guard.GuardDashboard;
 import com.laxmi.lifcvisitors.fragments.GuardDashboardFragment;
 import com.laxmi.lifcvisitors.fragments.languageconvert.BaseActivity;
 import com.laxmi.lifcvisitors.model.Departments;
@@ -76,6 +77,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
+import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.MediaType;
@@ -98,15 +100,15 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
     TextInputEditText visitor_name1;
     TextInputEditText visitor_name2;
     TextInputEditText visitor_name3;
-    TextInputEditText purpose_of_comeing;
     TextInputEditText visitor_mobileno;
     ImageView visitorPhoto;
     AppCompatButton fbDialog;
     TextView rv_log;
     String cityValue;
+    String purposeValue,purposeValueNew;
     LinearLayout linearLayout;
     public boolean checkHide = false;
-    Spinner spinner, spinner_department, spinner_branches, spinner_employeedept;
+    Spinner spinner, spinner_department, spinner_branches, spinner_employeedept,spinner_purpose;
     TextView tv_spinner_state;
     List<String> listSpinner = new ArrayList<>();
     //List<String> listBranches = new ArrayList<>();
@@ -115,13 +117,14 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
 
     String mobileValue;
 
-    EditText editTextotp1, editTextotp2, editTextotp3, editTextotp4;
+    EditText editTextotp1, editTextotp2, editTextotp3, editTextotp4,et_purpose;
 
     Departments.Data departments;
     EmployeeByDepartment.Data empByDepartment;
 
     List<Departments.Data> dataList = new ArrayList<>();
     List<EmployeeByDepartment.Data> dataListEmp = new ArrayList<>();
+    ArrayList<String> arr_Purose_of_Meeting = new ArrayList<>();
 
     // String departmentsValue;
     String departmentsEmp;
@@ -130,8 +133,8 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
     private final Handler handler = new Handler();
     TextView tv_emp_code;
     ImageView iv_back;
-    Button btnTimePickerIn, btnTimePickerOut;
-    EditText txtTimeIn, txtTimeOut;
+//    Button btnTimePickerIn, btnTimePickerOut;
+//    EditText txtTimeIn, txtTimeOut;
     private int mHour, mMinute;
     Bitmap uploading_bitmap = null;
     String empMobileNo;
@@ -160,13 +163,12 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
         visitor_name1 = findViewById(R.id.ev_visitor_one);
         visitor_name2 = findViewById(R.id.ev_visitor_two);
         visitor_name3 = findViewById(R.id.ev_visitor_three);
-        purpose_of_comeing = findViewById(R.id.purposeof_meeting);
         visitor_mobileno = findViewById(R.id.visitormobile_no);
         TextView _tv = (TextView) findViewById(R.id.textView1);
-        btnTimePickerIn = (Button) findViewById(R.id.btn__in_time);
-        btnTimePickerOut = (Button) findViewById(R.id.btn_out_time);
-        txtTimeIn = (EditText) findViewById(R.id.in_time);
-        txtTimeOut = findViewById(R.id.out_time);
+//        btnTimePickerIn = (Button) findViewById(R.id.btn__in_time);
+//        btnTimePickerOut = (Button) findViewById(R.id.btn_out_time);
+//        txtTimeIn = (EditText) findViewById(R.id.in_time);
+//        txtTimeOut = findViewById(R.id.out_time);
         spinner_employeedept = findViewById(R.id.spinner_employeedept);
         tv_emp_code = findViewById(R.id.tv_emp_code);
         iv_back = findViewById(R.id.iv_back);
@@ -174,6 +176,7 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
         editTextotp2 = findViewById(R.id.edittext_otp2);
         editTextotp3 = findViewById(R.id.edittext_otp3);
         editTextotp4 = findViewById(R.id.edittext_otp4);
+        et_purpose = findViewById(R.id.et_purpose);
 
         editTextotp1.addTextChangedListener(new TextWatcher() {
 
@@ -262,15 +265,53 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
             }
 
         });
+        spinner_purpose = findViewById(R.id.spinner_purpose);
+        arr_Purose_of_Meeting.add(getResources().getString(R.string.Select_Purpose_Of_Meeting));
+        arr_Purose_of_Meeting.add(getResources().getString(R.string.Auditor));
+        arr_Purose_of_Meeting.add(getResources().getString(R.string.Advisor));
+        arr_Purose_of_Meeting.add(getResources().getString(R.string.Emi));
+        arr_Purose_of_Meeting.add(getResources().getString(R.string.Forclosure));
+        arr_Purose_of_Meeting.add(getResources().getString(R.string.Interview));
+        arr_Purose_of_Meeting.add(getResources().getString(R.string.Investor));
+        arr_Purose_of_Meeting.add(getResources().getString(R.string.Insurance));
+        arr_Purose_of_Meeting.add(getResources().getString(R.string.Loan_Enquiry));
+        arr_Purose_of_Meeting.add(getResources().getString(R.string.Lender));
+        arr_Purose_of_Meeting.add(getResources().getString(R.string.Noc));
+        arr_Purose_of_Meeting.add(getResources().getString(R.string.Settlement));
+        arr_Purose_of_Meeting.add(getResources().getString(R.string.Other_branch_employee));
+        arr_Purose_of_Meeting.add(getResources().getString(R.string.Vendor));
+        arr_Purose_of_Meeting.add(getResources().getString(R.string.Personal_meeting));
+        arr_Purose_of_Meeting.add(getResources().getString(R.string.Other));
+        ArrayAdapter<String> springAdapter_purpose = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, arr_Purose_of_Meeting);
+        spinner_purpose.setAdapter(springAdapter_purpose);
 
+        spinner_purpose.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                purposeValue = spinner_purpose.getSelectedItem().toString();
+
+              if(purposeValue.equalsIgnoreCase(getResources().getString(R.string.Other))){
+                  et_purpose.setVisibility(View.VISIBLE);
+                  purposeValueNew = et_purpose.getText().toString();
+              }else{
+                  et_purpose.setVisibility(View.GONE);
+                  purposeValueNew =purposeValue;
+              }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         iv_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-        btnTimePickerIn.setOnClickListener(this);
-        btnTimePickerOut.setOnClickListener(this);
+//        btnTimePickerIn.setOnClickListener(this);
+//        btnTimePickerOut.setOnClickListener(this);
       /*  new CountDownTimer(120000, 1000) {
 
             public void onTick(long millisUntilFinished) {
@@ -386,10 +427,9 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
                                 editTextotp2.getText().toString()+editTextotp3.getText().toString()
                                 +editTextotp4.getText().toString())){
                             Toast.makeText(New_visitordetail.this, "success", Toast.LENGTH_LONG).show();
-
-
                         }
                         else{
+
                             Toast.makeText(New_visitordetail.this, "Invalid Otp", Toast.LENGTH_SHORT).show();
 
                         }
@@ -412,7 +452,8 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
 
         if (!validate()) {
             onUpdateFailed();
-        } else {
+        } else
+        {
             save_image_to_memory(uploading_bitmap);
            // Toast.makeText(New_visitordetail.this, "Request send to Employee", Toast.LENGTH_LONG).show();
                         final Dialog dialog = new Dialog(New_visitordetail.this);
@@ -421,13 +462,13 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
                         btnOkay.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Intent intent = new Intent(New_visitordetail.this, GuardDashboardFragment.class);
+                                Intent intent = new Intent(New_visitordetail.this, GuardDashboard.class);
                                 startActivity(intent);
                                 dialog.dismiss();
                             }
+
                         });
                         dialog.show();
-
 
         }
 
@@ -437,10 +478,10 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
         boolean valid = true;
 
         String visitorNamee = Objects.requireNonNull(visitor_name.getText()).toString();
-        String purposeOfMeeting = Objects.requireNonNull(purpose_of_comeing.getText()).toString();
+        String purposeOfMeeting = Objects.requireNonNull(purposeValueNew);
         String visitorMobileNo = Objects.requireNonNull(visitor_mobileno.getText()).toString();
-        String timeOut = txtTimeOut.getText().toString();
-        String timeIn = txtTimeIn.getText().toString();
+//        String timeOut = txtTimeOut.getText().toString();
+//        String timeIn = txtTimeIn.getText().toString();
 
         if (visitorNamee.isEmpty() | visitorNamee.length() < 3) {
             visitor_name.setError("Name is Empty");
@@ -450,13 +491,13 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
             visitor_name.setError(null);
         }
 
-        if (purposeOfMeeting.isEmpty() | purposeOfMeeting.length() < 6) {
+       /* if (purposeOfMeeting.isEmpty() | purposeOfMeeting.length() < 6) {
             purpose_of_comeing.setError("Purpose Of Meeting at least 6 Character");
             requestFocus(purpose_of_comeing);
             valid = false;
         } else {
             purpose_of_comeing.setError(null);
-        }
+        }*/
 
         if (visitorMobileNo.isEmpty() | visitorMobileNo.length() != 10) {
             visitor_mobileno.setError("Please enter mobile no.");
@@ -473,14 +514,14 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
         } else {
             txtTimeOut.setError(null);
         }*/
-        if (timeIn.isEmpty()) {
+       /* if (timeIn.isEmpty()) {
             txtTimeIn.setError("Select Time In");
             requestFocus(txtTimeIn);
             valid = false;
         } else {
             txtTimeIn.setError(null);
         }
-
+*/
         return valid;
 
     }
@@ -503,6 +544,7 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
                     public void onPermissionsChecked(MultiplePermissionsReport report) {
                         // check if all permissions are granted
                         if (report.areAllPermissionsGranted()) {
+
                             // do you work now
 
                         }
@@ -544,7 +586,8 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
                 ActivityCompat.requestPermissions(this, listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]), 100);
             }
 
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
 
         }
     }
@@ -638,9 +681,7 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
                         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
                                 cityValue = spinner.getSelectedItem().toString();
-
                             }
 
                             @Override
@@ -722,7 +763,9 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
                         }
                     });
 
-                } else {
+                }
+                else
+                {
                     Toast.makeText(New_visitordetail.this, "Wrong Credentials", Toast.LENGTH_SHORT).show();
 
                 }
@@ -761,10 +804,7 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
 //                            listDepartment.clear();
 //                            listDepartment.addAll(hashSet);
                             listDepartmentEmp.add(dataListEmp.get(i).getName());
-
-                       mobileValue =     dataListEmp.get(i).getMobileNumber();
-
-
+                            mobileValue =     dataListEmp.get(i).getMobileNumber();
                         }
                         //Creating the ArrayAdapter instance having the country list
                         ArrayAdapter aa = new ArrayAdapter(New_visitordetail.this, android.R.layout.simple_spinner_item, listDepartmentEmp);
@@ -786,7 +826,9 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
                                 empMobileNo = empByDepartment.getMobileNumber();
                                 tv_emp_code.setText(empCode);
                                 Log.d("departmentsEmp", New_visitordetail.this.departmentsEmp);
-                            } catch (Exception e) {
+                            }
+                            catch (Exception e) {
+
                             }
                         }
 
@@ -824,7 +866,7 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
 
-        if (v == btnTimePickerIn) {
+      /*  if (v == btnTimePickerIn) {
 
             // Get Current Time
             final Calendar c = Calendar.getInstance();
@@ -863,7 +905,7 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
                         }
                     }, mHour, mMinute, true);
             timePickerDialog.show();
-        }
+        }*/
     }
 
     @Override
@@ -908,9 +950,17 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
         String Visitorname2 = visitor_name2.getText().toString().trim();
         String Visitorname3 = visitor_name3.getText().toString().trim();
         String Visitor_mobile_no = visitor_mobileno.getText().toString().trim();
-        String TxtTimeout = txtTimeOut.getText().toString().trim();
-        String TxtTimeIn = txtTimeIn.getText().toString().trim();
-        String Purposeofcomeing = purpose_of_comeing.getText().toString().trim();
+//        String TxtTimeout = txtTimeOut.getText().toString().trim();
+//        String TxtTimeIn = txtTimeIn.getText().toString().trim();
+//        String Purposeofcomeing = purpose_of_comeing.getText().toString().trim();
+
+        //Default Time
+        TimeZone tz = TimeZone.getTimeZone("GMT+05:30");
+        Calendar c = Calendar.getInstance(tz);
+        String time = String.format("%02d" , c.get(Calendar.HOUR_OF_DAY))+":"+
+                String.format("%02d" , c.get(Calendar.MINUTE))+":"+
+                String.format("%02d" , c.get(Calendar.SECOND))+":"+
+                String.format("%03d" , c.get(Calendar.MILLISECOND));
 
         RequestBody reqFile1 = RequestBody.create(MediaType.parse("image/*"), file);
         MultipartBody.Part image1 = MultipartBody.Part.createFormData("image", file.getName(), reqFile1);
@@ -957,10 +1007,9 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
                 .client(okHttpClient)
                 .build();
         APIService service = retrofit.create(APIService.class);
-
         Call<ResponseBody> call = service.getVisitorRequest("Bearer " + prefConfig.readToken(), visitorName, Visitor_mobile_no
-                , "1234", Purposeofcomeing, pin_code.getText().toString(), tv_spinner_state.getText().toString()
-                , cityValue, TxtTimeIn, TxtTimeout, "" + departmentsValueCode, Visitorname1, Visitorname2, Visitorname3, departmentsEmp
+                , "1234", purposeValueNew, pin_code.getText().toString(), tv_spinner_state.getText().toString()
+                , cityValue, time, "TxtTimeout", "" + departmentsValueCode, Visitorname1, Visitorname2, Visitorname3, departmentsEmp
                 , mobileValue, image1, image1);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -969,14 +1018,14 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
                 if (response.body() != null) {
 
                     if (response.body().toString().equalsIgnoreCase("Visitor Created Successfully")) {
-
                         Toast.makeText(New_visitordetail.this, "Request send to Employee", Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(New_visitordetail.this, GuardDashboardFragment.class);
                         startActivity(intent);
                         finish();
-
                     }
-                } else {
+                }
+                else
+                {
                     Toast.makeText(New_visitordetail.this, "Wrong Credentials", Toast.LENGTH_SHORT).show();
                 }
             }

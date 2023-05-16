@@ -23,7 +23,7 @@
     <string name="pref_services">com.laxmi.lifcvisitors.preference_service</string>
     <string name="register_text">Don\'t have an Account ? Create One !</string>
     <string name="your_string_here"><![CDATA[<u>Don\'t have an Account ? Create One !</u>.]]></string>
-    <string name="marquee_text">Laxmi India Finance Private Limited Formerly Known as Laxmi India Finleasecap Private Limited</string>
+    <string name="marquee_text">                                                                    Laxmi India Finance Private Limited (Formerly Known as Laxmi India Finleasecap Private Limited)</string>
     <string name="new_password">New Password</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="confirm">Confirm</string>
@@ -115,4 +115,32 @@
     <string name="email">Email</string>
     <string name="role">Role</string>
     <string name="update">Update</string>
+    <string name="co_visitor">Co Visitor</string>
+    <string name="Select_Purpose_Of_Meeting">Select Purpose Of Meeting</string>
+    <string name="Auditor">Auditor</string>
+    <string name="Advisor">Advisor</string>
+    <string name="Emi">EMI</string>
+    <string name="Forclosure">Foreclosure</string>
+    <string name="Interview">Interview</string>
+    <string name="Investor">Investor</string>
+    <string name="Insurance">Insurance</string>
+    <string name="Loan_Enquiry">Loan Enquiry</string>
+    <string name="Lender">Lender</string>
+    <string name="Noc">NOC</string>
+    <string name="Settlement">Settlement</string>
+    <string name="Other_branch_employee">Other Branch Employee</string>
+    <string name="Vendor">Vendor</string>
+    <string name="Personal_meeting">Personal Meeting</string>
+    <string name="Other">Other</string>
+
+
+
+
+
+
+
+
+
+
+
 </resources>

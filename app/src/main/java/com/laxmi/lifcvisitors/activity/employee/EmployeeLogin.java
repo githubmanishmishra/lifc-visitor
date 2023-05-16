@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.firebase.messaging.FirebaseMessaging;
@@ -28,8 +29,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class EmployeeLogin extends AppCompatActivity {
-    TextView tv_forget;
-    TextView tv_login, registration_text;
+    AppCompatButton tv_forget,tv_login;
+    TextView  registration_text;
     EditText ev_empcodes, ev_password;
     public static PrefConfig prefConfig;
 
@@ -122,7 +123,7 @@ public class EmployeeLogin extends AppCompatActivity {
         String empCodes = Objects.requireNonNull(ev_empcodes.getText()).toString();
         String emp_Password = Objects.requireNonNull(ev_password.getText().toString());
 
-        if (empCodes.isEmpty() | empCodes.length() != 12) {
+        if (empCodes.isEmpty() | empCodes.length() != 10) {
             ev_empcodes.setError("Enter Mobile Number ");
             requestFocus(ev_empcodes);
             valid = false;
