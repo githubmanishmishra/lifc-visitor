@@ -8,7 +8,6 @@ import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 import android.widget.RatingBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,7 +20,9 @@ import com.laxmi.lifcvisitors.retrofitservices.APIService;
 import com.laxmi.lifcvisitors.retrofitservices.ApiClient;
 import com.laxmi.lifcvisitors.savedata.PrefConfig;
 
+import java.util.Calendar;
 import java.util.Objects;
+import java.util.TimeZone;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -84,7 +85,14 @@ public class SendFeedbackEmployee extends Dialog {
 //        visitorName.setText("Hello "+visitorNameValue);
 
         rateNowBtn.setOnClickListener(v -> {//your code goes here
-            getFeedBack();
+            //Default Time
+            TimeZone tz = TimeZone.getTimeZone("GMT+05:30");
+            Calendar c = Calendar.getInstance(tz);
+            String time = String.format("%02d" , c.get(Calendar.HOUR_OF_DAY))+":"+
+                    String.format("%02d" , c.get(Calendar.MINUTE))+":"+
+                    String.format("%02d" , c.get(Calendar.SECOND));
+
+            getFeedBack(time);
         });
         laterBtn.setOnClickListener(v -> {
             //hide rating dialog
@@ -92,17 +100,17 @@ public class SendFeedbackEmployee extends Dialog {
         });
     }
 
-    private void getFeedBack() {
+    private void getFeedBack(String time) {
         APIService service = ApiClient.getClient().create(APIService.class);
         Call<MSG> call = service.getFeedbackUpdate("Bearer " + prefConfig.readToken(), visitorId, employeeId,
-                guardId, ""+ Objects.requireNonNull(ev_feedback.getText()), "");
+                guardId, ""+ Objects.requireNonNull(ev_feedback.getText()), "","");
         call.enqueue(new Callback<MSG>() {
             @Override
             public void onResponse(@NonNull Call<MSG> call, @NonNull retrofit2.Response<MSG> response) {
 
                 if (response.body() != null) {
                     if (response.body().getMessage().equalsIgnoreCase("Feedback Update Successfully")) {
-
+                         dismiss();
                         Toast.makeText(getContext(), "Feedback Submitted", Toast.LENGTH_SHORT).show();
 
                     }

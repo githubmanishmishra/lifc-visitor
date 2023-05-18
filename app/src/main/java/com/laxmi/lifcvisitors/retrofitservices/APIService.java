@@ -31,10 +31,12 @@ public interface APIService {
     @POST("otp/send")
     Call<MSG> getOtpVisitor(@Field("mobile_number") String mobile_number,
                             @Field("type") String visitor
-    );@FormUrlEncoded
+    );
+
+    @FormUrlEncoded
     @POST("otp/send")
     Call<MSG> getOtpForgotPassword(@Field("mobile_number") String mobile_number,
-                            @Field("type") String visitor
+                                   @Field("type") String visitor
     );
 
     @Multipart
@@ -135,17 +137,18 @@ public interface APIService {
 
     @FormUrlEncoded
     @POST("feedback/update")
-    Call<MSG> getFeedbackUpdate(@Header("Token") String token,
+    Call<MSG> getFeedbackUpdate(@Header("Authorization") String token,
                                 @Field("visitor_id") int visitor_id,
                                 @Field("employee_id") String employee_id,
                                 @Field("guard_id") String guard_id,
                                 @Field("employee_feedback") String employee_feedback,
-                                @Field("visitor_feedback") String visitor_feedback
+                                @Field("visitor_feedback") String visitor_feedback,
+                                @Field("check_out") String check_out
     );
 
     @FormUrlEncoded
     @POST("visitor/status/update")
-    Call<MSG> getVisitorStatusUpdate(@Header("Token") String token,
+    Call<MSG> getVisitorStatusUpdate(@Header("Authorization") String token,
                                      @Field("visitor_id") String visitor_id,
                                      @Field("status") String status,
                                      @Field("meet_place") String meet_place,
@@ -153,9 +156,4 @@ public interface APIService {
                                      @Field("meet_up_time") String meet_up_time
     );
 
-    @Headers({"Content-Type: application/json;charset=UTF-8"})
-    @GET("feedbackByVisitor")
-    Call<FeedBackByVisitor> getFeedBackByVisitor(@Header("Authorization") String auth,
-                                                 @Query("visitor_id") String visitor_id
-    );
 }

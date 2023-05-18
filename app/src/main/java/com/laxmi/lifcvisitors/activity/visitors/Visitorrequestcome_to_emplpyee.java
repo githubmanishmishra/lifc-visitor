@@ -76,14 +76,12 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
             }
         });
 
-        btnTimePickerOut =  findViewById(R.id.btn_out_time);
-        txtTimeOut = findViewById(R.id.out_time);
-
         prefConfig = new PrefConfig(this);
-
         btn_approve = findViewById(R.id.btn_approve);
         btn_disapprove = findViewById(R.id.btn_disapprove);
         ev_disapprove = findViewById(R.id.ev_disapprove);
+        btnTimePickerOut =  findViewById(R.id.btn_out_time);
+        txtTimeOut = findViewById(R.id.out_time);
         ev_approve = findViewById(R.id.ev_approve);
         btnTimePickerOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,12 +97,10 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
             VisitorOne = mBundle.getString("VisitorOne");
             VisitorTwo = mBundle.getString("VisitorTwo");
             VisitorThree = mBundle.getString("VisitorThree");
-
             Purpose = mBundle.getString("Purpose");
             MobileNo = mBundle.getString("MobileNo");
             UserImage = mBundle.getString("UserImage");
             Status = mBundle.getString("Status");
-
 
         }
 
@@ -120,7 +116,6 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
         tv_visitor_name2 = findViewById(R.id.tv_visitor_name2);
         tv_visitor_name3 = findViewById(R.id.tv_visitor_name3);
         tv_visitor_name4 = findViewById(R.id.tv_visitor_name4);
-
         tv_visitor_mobile = findViewById(R.id.tv_visitor_mobile);
         tv_purpose_of_meeting = findViewById(R.id.tv_purpose_of_meeting);
         tv_visitor_name.setText(VisitorName);
@@ -130,7 +125,6 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
         tv_visitor_mobile.setText(MobileNo);
         tv_purpose_of_meeting.setText(Purpose);
         view_photo = findViewById(R.id.view_photo);
-
 
         view_photo.setImageDrawable(new ColorGridDrawable());
         Glide
@@ -198,13 +192,65 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
         });
         TextView tv = findViewById(R.id.mywidget);
         tv.setSelected(true);
-
         btn_approve.setOnClickListener(view ->
                 getAlertDialog()
         );
     }
 
     private void getVisitorApproval() {
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient okHttpClient = new OkHttpClient.Builder().addInterceptor(
+                        chain -> {
+                            okhttp3.Request original = chain.request();
+                            // Request customization: add request headers
+                            okhttp3.Request.Builder requestBuilder = original.newBuilder()
+                                    .addHeader("Authorization", "Bearer " + prefConfig.readToken())
+                                    .method(original.method(), original.body());
+                            okhttp3.Request request = requestBuilder.build();
+                            return chain.proceed(request);
+                        })
+                .addInterceptor(interceptor).connectTimeout(60, TimeUnit.SECONDS).
+                readTimeout(60, TimeUnit.SECONDS).build();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://lifc.shailsoft.com/api/")
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .client(okHttpClient)
+                .build();
+        APIService service = retrofit.create(APIService.class);
+        Call<MSG> call = service.getVisitorStatusUpdate("Bearer " + prefConfig.readToken(), "" + visitorId, "Approve",
+                spinner_Conference.getSelectedItem().toString() + ", " + Floor.getSelectedItem().toString(),
+                "",""+txtTimeOut.getText().toString());
+        call.enqueue(new Callback<MSG>() {
+            @Override
+            public void onResponse(@NonNull Call<MSG> call, @NonNull retrofit2.Response<MSG> response) {
+                if (response.body() != null) {
+                    if (response.body().getMessage().equalsIgnoreCase("Vistor Status Update Successfully")) {
+                        Toast.makeText(Visitorrequestcome_to_emplpyee.this, "Updated", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(Visitorrequestcome_to_emplpyee.this, EmployeeDashboard.class));
+                        finish();
+
+                    }
+                }
+                else {
+                    Toast.makeText(Visitorrequestcome_to_emplpyee.this, "Wrong Credentials", Toast.LENGTH_SHORT).show();
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<MSG> call, @NonNull Throwable t) {
+
+                Log.d("Error", t.getMessage());
+            }
+        });
+    }
+
+    private void getVisitorApproval1() {
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();
@@ -232,11 +278,10 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
 
         Call<MSG> call = service.getVisitorStatusUpdate("Bearer " + prefConfig.readToken(), "" + visitorId, "Approve",
                 spinner_Conference.getSelectedItem().toString() + ", " + Floor.getSelectedItem().toString(),
-                "",txtTimeOut.getText().toString());
+                "",""+txtTimeOut.getText().toString());
         call.enqueue(new Callback<MSG>() {
             @Override
             public void onResponse(@NonNull Call<MSG> call, @NonNull retrofit2.Response<MSG> response) {
-
                 if (response.body() != null) {
                     if (response.body().getMessage().equalsIgnoreCase("Vistor Status Update Successfully")) {
 
@@ -245,7 +290,8 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
                         finish();
 
                     }
-                } else {
+                }
+                else {
                     Toast.makeText(Visitorrequestcome_to_emplpyee.this, "Wrong Credentials", Toast.LENGTH_SHORT).show();
 
                 }
@@ -266,7 +312,6 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
                 .create();
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-
         OkHttpClient okHttpClient = new OkHttpClient.Builder().addInterceptor(
                         chain -> {
                             okhttp3.Request original = chain.request();
@@ -333,11 +378,11 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
                                           int minute) {
 
                         txtTimeOut.setText(hourOfDay + ":" + minute);
+
                     }
                 }, mHour, mMinute, true);
         timePickerDialog.show();
     }
-
    public void getAlertDialog(){
        AlertDialog.Builder builder = new AlertDialog.Builder(Visitorrequestcome_to_emplpyee.this);
        builder.setMessage("Do you want to give specific time to Visitor ?");
@@ -346,26 +391,22 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
        builder.setPositiveButton("Yes", (DialogInterface.OnClickListener) (dialog, which) -> {
            // When the user click yes button then app will close
            if(txtTimeOut.getText().toString().isEmpty()){
-               finish();
-           }else {
-               finish();
-               getVisitorApproval();
+               Toast.makeText(this, "Please select meeting  time", Toast.LENGTH_SHORT).show();
+               txtTimeOut.setVisibility(View.VISIBLE);
+               btnTimePickerOut.setVisibility(View.VISIBLE);
            }
-           txtTimeOut.setVisibility(View.VISIBLE);
-           btnTimePickerOut.setVisibility(View.VISIBLE);
+           else {
+               getVisitorApproval();
 
+           }
 
        });
-
        builder.setNegativeButton("No", (DialogInterface.OnClickListener) (dialog, which) -> {
            dialog.cancel();
-              getVisitorApproval();
-
+           getVisitorApproval1();
        });
-
        AlertDialog alertDialog = builder.create();
        alertDialog.show();
-
    }
 
 }

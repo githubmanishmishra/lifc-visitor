@@ -126,7 +126,7 @@
             android:paddingTop="10dp"
             android:paddingEnd="20dp"
             android:paddingBottom="10dp"
-            android:text="@string/get_otp"
+            android:text="Verify Otp"
             android:textColor="@color/white"
             android:textSize="14sp"
             android:textStyle="bold"

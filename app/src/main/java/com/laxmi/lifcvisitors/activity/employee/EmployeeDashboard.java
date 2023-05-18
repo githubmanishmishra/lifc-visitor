@@ -48,8 +48,10 @@ public class EmployeeDashboard extends AppCompatActivity implements NavigationVi
         View headerView = navigationView.inflateHeaderView(R.layout.nav_header_main);
 
         TextView tv_emp_name = headerView.findViewById(R.id.tv_emp_name);
+        TextView tv_emp_email = headerView.findViewById(R.id.tv_emp_email);
 
         tv_emp_name.setText(prefConfig.readName()+"");
+        tv_emp_email.setText(prefConfig.readEmail()+"");
         alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setTitle("Logout");
         alertDialogBuilder.setIcon(R.drawable.logout);

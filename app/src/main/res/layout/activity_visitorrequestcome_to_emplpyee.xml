@@ -27,7 +27,7 @@
                 android:gravity="center"
                 android:textSize="18sp"
                 android:textStyle="bold|italic"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"/>
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -294,12 +294,14 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="22dp"
                 android:layout_marginEnd="10dp"
+                android:layout_marginBottom="5dp"
                 android:background="@drawable/rounded_corner"
                 android:clickable="false"
                 android:focusable="false"
-                android:hint="Time Out"
+                android:hint="Meet Time"
                 android:padding="10dp"
-                android:visibility="gone" />
+                android:visibility="gone"
+                android:paddingTop="5dp"/>
 
             <Button
                 android:id="@+id/btn_out_time"
@@ -307,8 +309,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/out_time"
                 android:layout_toEndOf="@+id/out_time"
-                android:layout_toRightOf="@+id/out_time"
-                android:text="SELECT TIME OUT"
+                android:text="SELECT Meet Time"
                 android:visibility="gone" />
 
         </RelativeLayout>

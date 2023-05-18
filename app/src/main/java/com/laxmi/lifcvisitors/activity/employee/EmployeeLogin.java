@@ -135,7 +135,8 @@ public class EmployeeLogin extends AppCompatActivity {
             requestFocus(ev_password);
             valid = false;
 
-        } else {
+        }
+        else {
             ev_password.setError(null);
         }
         return valid;
@@ -165,7 +166,7 @@ public class EmployeeLogin extends AppCompatActivity {
                         if(response.body().getType().equalsIgnoreCase("Employee")){
                             prefConfig.writeLoginStatus(true);
                             prefConfig.writeName(response.body().getUser().getName(), response.body().getToken(), response.body().getType(),
-                                    response.body().getUser().getId());
+                                    response.body().getUser().getId(), response.body().getUser().getEmail());
                             Log.d("token>>>>>>>>>>>>", response.body().getToken());
 
                             Intent intents = new Intent(EmployeeLogin.this, EmployeeDashboard.class);

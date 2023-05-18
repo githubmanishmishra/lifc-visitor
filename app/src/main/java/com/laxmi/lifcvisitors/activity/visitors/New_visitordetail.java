@@ -366,7 +366,9 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
                 checkHide = false;
                 linearLayout.setVisibility(View.GONE);
 
-            } else {
+            }
+            else
+            {
                 checkHide = true;
                 linearLayout.setVisibility(View.VISIBLE);
             }
@@ -476,7 +478,6 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
 
     private boolean validate() {
         boolean valid = true;
-
         String visitorNamee = Objects.requireNonNull(visitor_name.getText()).toString();
         String purposeOfMeeting = Objects.requireNonNull(purposeValueNew);
         String visitorMobileNo = Objects.requireNonNull(visitor_mobileno.getText()).toString();
@@ -682,6 +683,7 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
                             @Override
                             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                                 cityValue = spinner.getSelectedItem().toString();
+
                             }
 
                             @Override
@@ -691,16 +693,22 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
                         });
                     }
 
-                } catch (JSONException e) {
+                }
+                catch
+                (JSONException e)
+                {
                     e.printStackTrace();
                 }
 
-            } else {
+            }
+            else
+            {
                 Toast.makeText(New_visitordetail.this, "Wrong Credentials", Toast.LENGTH_SHORT).show();
 
             }
 
-        }, error -> Log.i("Manish", "Error :" + error.toString()));
+        },
+                error -> Log.i("Manish", "Error :" + error.toString()));
 
         mRequestQueue.add(mStringRequest);
 
@@ -737,7 +745,6 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
                         spinner_department.setAdapter(aa);
                         aa.notifyDataSetChanged();
                     }
-
                     spinner_department.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -805,6 +812,7 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
 //                            listDepartment.addAll(hashSet);
                             listDepartmentEmp.add(dataListEmp.get(i).getName());
                             mobileValue =     dataListEmp.get(i).getMobileNumber();
+
                         }
                         //Creating the ArrayAdapter instance having the country list
                         ArrayAdapter aa = new ArrayAdapter(New_visitordetail.this, android.R.layout.simple_spinner_item, listDepartmentEmp);
@@ -830,6 +838,7 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
                             catch (Exception e) {
 
                             }
+
                         }
 
                         @Override
@@ -1009,7 +1018,7 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
         APIService service = retrofit.create(APIService.class);
         Call<ResponseBody> call = service.getVisitorRequest("Bearer " + prefConfig.readToken(), visitorName, Visitor_mobile_no
                 , "1234", purposeValueNew, pin_code.getText().toString(), tv_spinner_state.getText().toString()
-                , cityValue, time, "TxtTimeout", "" + departmentsValueCode, Visitorname1, Visitorname2, Visitorname3, departmentsEmp
+                , cityValue, time, "", "" + departmentsValueCode, Visitorname1, Visitorname2, Visitorname3, departmentsEmp
                 , mobileValue, image1, image1);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
