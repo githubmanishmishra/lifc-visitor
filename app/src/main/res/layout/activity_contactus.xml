@@ -97,9 +97,10 @@
                 android:gravity="center">
             </TextView>
             <TextView
+                android:id="@+id/toll_free"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TOLL FREE NO. 1800 121 7747"
+                android:text="7503196856"
                 android:gravity="center"
                 android:textStyle="bold"
                 android:textColor="@color/red"
@@ -116,6 +117,7 @@
                 android:gravity="center">
             </TextView>
             <TextView
+                android:id="@+id/contact_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="ithelpdesk@lifc.in"

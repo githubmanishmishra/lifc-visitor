@@ -2,4 +2,6 @@
 <resources>
     <string name="marquee_text">Laxmi India Finance Private Limited (Formerly Known as Laxmi India Finleasecap Private Limited)</string>
     <string name="co_visitor">Co Visitor</string>
+    <string name="visitor_status">Visitor Status</string>
+    <string name="feedback">FeedBack</string>
 </resources>

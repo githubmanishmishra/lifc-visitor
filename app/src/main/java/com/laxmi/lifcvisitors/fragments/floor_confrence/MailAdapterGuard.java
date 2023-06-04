@@ -36,6 +36,7 @@ public class MailAdapterGuard extends RecyclerView.Adapter<MailViewHolderGuard> 
         holder.tv_visitor_name.setText(mEmailData.get(position).getName());
         holder.tv_visitor_mobile.setText(mEmailData.get(position).getDisapproveReason());
         holder.tv_status.setText(mEmailData.get(position).getStatus());
+        holder.tv_meet_up_time.setText("Meet Time "+mEmailData.get(position).getMeetUpTime());
         holder.tv_visitor_address.setText(mEmailData.get(position).getMeetPlace());
 //        holder.tv_visitor_address.setText(mEmailData.get(position).getCity()+ ", "+mEmailData.get(position).getState());
         holder.tvTimeIn.setText("Check In "+mEmailData.get(position).getCheckIn());
@@ -104,7 +105,7 @@ class MailViewHolderGuard extends RecyclerView.ViewHolder {
     TextView tv_visitor_address;
     TextView tvTimeIn;
     TextView tv_status;
-    TextView _tv,tv_call;
+    TextView _tv,tv_call,tv_meet_up_time;
     RelativeLayout mLayout;
 
     MailViewHolderGuard(View itemView) {
@@ -118,5 +119,7 @@ class MailViewHolderGuard extends RecyclerView.ViewHolder {
         mLayout = itemView.findViewById(R.id.layout);
         tv_call = itemView.findViewById(R.id.tv_call);
         _tv = itemView.findViewById(R.id._tv);
+        tv_meet_up_time = itemView.findViewById(R.id.tv_meet_up_time);
     }
 }
+

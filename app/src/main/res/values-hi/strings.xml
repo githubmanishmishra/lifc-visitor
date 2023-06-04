@@ -142,4 +142,6 @@
     <string name="Vendor">विक्रेता</string>
     <string name="Personal_meeting">व्यक्तिगत बैठक</string>
     <string name="Other">अन्य</string>
+    <string name="visitor_status">Visitor Status</string>
+    <string name="feedback">FeedBack</string>
 </resources>

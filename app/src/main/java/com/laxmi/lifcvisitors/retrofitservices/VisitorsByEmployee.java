@@ -48,10 +48,6 @@ public class VisitorsByEmployee {
         @SerializedName("employee_id")
         @Expose
         private String employeeId;
-
-        @SerializedName("guard_id")
-        @Expose
-        private String guardId;
         @SerializedName("name")
         @Expose
         private String name;
@@ -102,7 +98,10 @@ public class VisitorsByEmployee {
         private String employeeMobileNumber;
         @SerializedName("meet_place")
         @Expose
-        private Object meetPlace;
+        private String meetPlace;
+        @SerializedName("meet_up_time")
+        @Expose
+        private String meetUpTime;
         @SerializedName("disapprove_reason")
         @Expose
         private Object disapproveReason;
@@ -118,6 +117,9 @@ public class VisitorsByEmployee {
         @SerializedName("updated_at")
         @Expose
         private String updatedAt;
+        @SerializedName("guard_id")
+        @Expose
+        private String guardId;
 
         public Integer getId() {
             return id;
@@ -133,14 +135,6 @@ public class VisitorsByEmployee {
 
         public void setEmployeeId(String employeeId) {
             this.employeeId = employeeId;
-        }
-
-        public String getGuardId() {
-            return guardId;
-        }
-
-        public void setGuardId(String guardId) {
-            this.guardId = guardId;
         }
 
         public String getName() {
@@ -271,12 +265,20 @@ public class VisitorsByEmployee {
             this.employeeMobileNumber = employeeMobileNumber;
         }
 
-        public Object getMeetPlace() {
+        public String getMeetPlace() {
             return meetPlace;
         }
 
-        public void setMeetPlace(Object meetPlace) {
+        public void setMeetPlace(String meetPlace) {
             this.meetPlace = meetPlace;
+        }
+
+        public String getMeetUpTime() {
+            return meetUpTime;
+        }
+
+        public void setMeetUpTime(String meetUpTime) {
+            this.meetUpTime = meetUpTime;
         }
 
         public Object getDisapproveReason() {
@@ -319,6 +321,13 @@ public class VisitorsByEmployee {
             this.updatedAt = updatedAt;
         }
 
+        public String getGuardId() {
+            return guardId;
+        }
+
+        public void setGuardId(String guardId) {
+            this.guardId = guardId;
+        }
 
     }
 }

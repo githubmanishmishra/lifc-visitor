@@ -29,7 +29,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 
 
-public class  SendFeedback extends Dialog {
+public class SendFeedback extends Dialog {
     private float userRate = 0;
 
     PrefConfig prefConfig;
@@ -86,15 +86,17 @@ public class  SendFeedback extends Dialog {
 
         final TextView visitorName = findViewById(R.id.visitorName);
 
-        visitorName.setText("Hello "+visitorNameValue);
+        visitorName.setText("Hello " + visitorNameValue);
 
         rateNowBtn.setOnClickListener(v -> {//your code goes here
             //Default Time
             TimeZone tz = TimeZone.getTimeZone("GMT+05:30");
             Calendar c = Calendar.getInstance(tz);
-            String time = String.format("%02d" , c.get(Calendar.HOUR_OF_DAY))+":"+
-                    String.format("%02d" , c.get(Calendar.MINUTE))+":"+
-                    String.format("%02d" , c.get(Calendar.SECOND));
+            String time =
+                    String.format("%02d", c.get(Calendar.DATE)) + "" +
+                            String.format("%02d", c.get(Calendar.HOUR_OF_DAY)) + ":" +
+                            String.format("%02d", c.get(Calendar.MINUTE)) + ":" +
+                            String.format("%02d", c.get(Calendar.SECOND));
 
             getFeedBack(time);
         });
@@ -108,20 +110,17 @@ public class  SendFeedback extends Dialog {
         APIService service = ApiClient.getClient().create(APIService.class);
         Call<MSG> call = service.getFeedbackUpdate("Bearer " + prefConfig.readToken(), visitorId, employeeId,
                 guardId, "", ev_feedback.getText().toString(),
-                time);
+                time,"visitor");
         call.enqueue(new Callback<MSG>() {
             @Override
             public void onResponse(@NonNull Call<MSG> call, @NonNull retrofit2.Response<MSG> response) {
-
                 if (response.body() != null) {
                     if (response.body().getMessage().equalsIgnoreCase("Feedback Update Successfully")) {
                         dismiss();
                         Toast.makeText(getContext(), "Feedback Submitted", Toast.LENGTH_SHORT).show();
-
                     }
-                }
-                else {
-                    Toast.makeText(getContext(), "Wrong Credentials", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getContext(), "Alreay Fedd", Toast.LENGTH_SHORT).show();
                     dismiss();
 
                 }

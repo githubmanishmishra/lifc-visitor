@@ -14,16 +14,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.laxmi.lifcvisitors.R;
 import com.laxmi.lifcvisitors.retrofitservices.VisitorsByEmployee;
+import com.laxmi.lifcvisitors.savedata.PrefConfig;
+
 import java.util.List;
 import java.util.Random;
 
 public class MailAdapterFeedbackEmployee extends RecyclerView.Adapter<MailViewHolderEmployee> {
     private List<VisitorsByEmployee.Data> mEmailData;
     private Context mContext;
+    PrefConfig prefConfig;
 
     public MailAdapterFeedbackEmployee(Context mContext, List<VisitorsByEmployee.Data> mEmailData) {
         this.mEmailData = mEmailData;
         this.mContext = mContext;
+        prefConfig = new PrefConfig(mContext);
     }
     @Override
     public MailViewHolderEmployee onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -37,7 +41,7 @@ public class MailAdapterFeedbackEmployee extends RecyclerView.Adapter<MailViewHo
     {
         holder.mIcon.setText(mEmailData.get(position).getName().substring(0, 1));
         holder.tv_visitor_name.setText(mEmailData.get(position).getName());
-        holder.tv_visitor_mobile.setText(mEmailData.get(position).getEmployeeId());
+      //  holder.tv_visitor_mobile.setText(mEmailData.get(position).getEmployeeId());
         holder.tv_status.setText(mEmailData.get(position).getStatus());
         holder.tv_visitor_address.setText(mEmailData.get(position).getPurposeOfComing());
 //        holder.tv_visitor_address.setText(mEmailData.get(position).getCity()+ ", "+mEmailData.get(position).getState());
@@ -106,7 +110,7 @@ class MailViewHolderEmployee extends RecyclerView.ViewHolder {
         super(itemView);
         mIcon = itemView.findViewById(R.id.tvIcon);
         tv_visitor_name = itemView.findViewById(R.id.tv_visitor_name);
-        tv_visitor_mobile = itemView.findViewById(R.id.tv_visitor_mobile);
+      //  tv_visitor_mobile = itemView.findViewById(R.id.tv_visitor_mobile);
         tv_visitor_address = itemView.findViewById(R.id.tv_visitor_address);
         tvTimeIn = itemView.findViewById(R.id.tvTimeIn);
         tv_status = itemView.findViewById(R.id.tv_status);

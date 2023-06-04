@@ -14,7 +14,7 @@
         android:gravity="center"
         android:text="A"
         android:textColor="@android:color/white"
-        android:textSize="20sp" />
+        android:textSize="20sp"/>
 
     <TextView
         android:id="@+id/tv_visitor_name"
@@ -26,7 +26,7 @@
         android:layout_toRightOf="@+id/tvIcon"
         android:text="TextView"
         android:textSize="16sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/tv_visitor_mobile"
@@ -39,6 +39,7 @@
         android:layout_toEndOf="@+id/tvIcon"
         android:layout_toRightOf="@+id/tvIcon"
         android:text="TextView"
+        android:visibility="gone"
         android:textStyle="bold" />
 
     <TextView
@@ -68,6 +69,7 @@
         android:layout_toRightOf="@+id/tvIcon"
         android:ellipsize="end"
         android:maxLines="1"
+        android:visibility="gone"
         android:text="This  " />
 
     <TextView
@@ -93,6 +95,5 @@
         android:layout_below="@+id/tvTimeOut"
         android:layout_alignParentEnd="true"
         android:text="TextView" />
-
 
 </RelativeLayout>

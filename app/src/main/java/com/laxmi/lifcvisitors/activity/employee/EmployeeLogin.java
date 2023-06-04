@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -29,24 +30,24 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class EmployeeLogin extends AppCompatActivity {
-    AppCompatButton tv_forget,tv_login;
-    TextView  registration_text;
+    AppCompatButton tv_forget, tv_login;
+    TextView registration_text;
     EditText ev_empcodes, ev_password;
     public static PrefConfig prefConfig;
 
-    String  token;
+    String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employeelogin);
-       ImageView iv_back = findViewById(R.id.iv_back);
-       iv_back.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               finish();
-           }
-       });
+        ImageView iv_back = findViewById(R.id.iv_back);
+        iv_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         prefConfig = new PrefConfig(this);
 
         // Key token
@@ -59,7 +60,7 @@ public class EmployeeLogin extends AppCompatActivity {
             token = task.getResult();
             Log.e("Toooooooo", "" + token);
 
-           // storeToken(token);
+            // storeToken(token);
 
 
         });
@@ -92,7 +93,7 @@ public class EmployeeLogin extends AppCompatActivity {
         tv_login = findViewById(R.id.tv_login);
         ev_empcodes = findViewById(R.id.ev_emp_login);
         ev_password = this.<EditText>findViewById(R.id.ev_password);
-       // String deviceToken="";
+        // String deviceToken="";
         tv_login.setOnClickListener(view -> {
          /*   if (ev_empcodes.getText().toString().isEmpty() &&
                     ev_empcodes.getText().toString().length() != 10
@@ -112,11 +113,12 @@ public class EmployeeLogin extends AppCompatActivity {
             } else {
                 String emp_code = ev_empcodes.getText().toString();
                 String emp_Password = ev_password.getText().toString();
-                getLogin(emp_code, emp_Password,token);
+                getLogin(emp_code, emp_Password, token);
 
             }
         });
     }
+
     private boolean validate() {
         boolean valid = true;
 
@@ -135,24 +137,25 @@ public class EmployeeLogin extends AppCompatActivity {
             requestFocus(ev_password);
             valid = false;
 
-        }
-        else {
+        } else {
             ev_password.setError(null);
         }
         return valid;
     }
-        private void onUpdateFailed() {
-            Toast.makeText(EmployeeLogin.this, "Creating account failed", Toast.LENGTH_LONG).show();
 
-            //  btnCreateAccount.setEnabled(true);
-        }
-        private void requestFocus(View view) {
-            if (view.requestFocus()) {
-                getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
-            }
-        }
+    private void onUpdateFailed() {
+        Toast.makeText(EmployeeLogin.this, "Creating account failed", Toast.LENGTH_LONG).show();
 
-    private void getLogin(String emp_code, String emp_Password,String deviceToken) {
+        //  btnCreateAccount.setEnabled(true);
+    }
+
+    private void requestFocus(View view) {
+        if (view.requestFocus()) {
+            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        }
+    }
+
+    private void getLogin(String emp_code, String emp_Password, String deviceToken) {
         APIService service = ApiClient.getClient().create(APIService.class);
         Call<MSG> call = service.getLogin(emp_code, emp_Password, deviceToken);
         call.enqueue(new Callback<MSG>() {
@@ -163,10 +166,11 @@ public class EmployeeLogin extends AppCompatActivity {
 
                     Log.d("token>>>>", response.body().getToken());*/
                     if (response.body().getMessage().equalsIgnoreCase("Login Successfully")) {
-                        if(response.body().getType().equalsIgnoreCase("Employee")){
+                        if (response.body().getType().equalsIgnoreCase("Employee")) {
                             prefConfig.writeLoginStatus(true);
-                            prefConfig.writeName(response.body().getUser().getName(), response.body().getToken(), response.body().getType(),
-                                    response.body().getUser().getId(), response.body().getUser().getEmail());
+                            prefConfig.writeName(response.body().getUser().getName(), response.body().getToken(),
+                                    response.body().getType(), response.body().getUser().getId(),
+                                    response.body().getUser().getEmail(), response.body().getUser().getProfile_image());
                             Log.d("token>>>>>>>>>>>>", response.body().getToken());
 
                             Intent intents = new Intent(EmployeeLogin.this, EmployeeDashboard.class);
@@ -174,12 +178,11 @@ public class EmployeeLogin extends AppCompatActivity {
                             Toast.makeText(EmployeeLogin.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
-                }
-                else
-                {
+                } else {
                     Toast.makeText(EmployeeLogin.this, "Wrong Credentials", Toast.LENGTH_SHORT).show();
                 }
             }
+
             @Override
             public void onFailure(@NonNull Call<MSG> call, @NonNull Throwable t) {
 

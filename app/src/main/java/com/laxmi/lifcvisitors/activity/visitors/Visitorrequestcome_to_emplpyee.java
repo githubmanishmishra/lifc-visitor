@@ -1,11 +1,12 @@
 package com.laxmi.lifcvisitors.activity.visitors;
 
+import android.app.Dialog;
 import android.app.TimePickerDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,7 +17,6 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
@@ -53,9 +53,11 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
     PrefConfig prefConfig;
     private int mHour, mMinute;
     EditText ev_disapprove, ev_approve;
+    final private static int DIALOG_LOGIN = 1;
 
     Button btnTimePickerIn, btnTimePickerOut;
     EditText txtTimeIn, txtTimeOut;
+
 
     TextView tv_visitor_name, tv_visitor_name4, tv_visitor_name2, tv_visitor_name3, tv_visitor_mobile, tv_purpose_of_meeting;
     private ZoomageView view_photo;
@@ -80,15 +82,7 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
         btn_approve = findViewById(R.id.btn_approve);
         btn_disapprove = findViewById(R.id.btn_disapprove);
         ev_disapprove = findViewById(R.id.ev_disapprove);
-        btnTimePickerOut =  findViewById(R.id.btn_out_time);
-        txtTimeOut = findViewById(R.id.out_time);
         ev_approve = findViewById(R.id.ev_approve);
-        btnTimePickerOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getTime();
-            }
-        });
 
         Bundle mBundle = getIntent().getExtras();
         if (mBundle != null) {
@@ -136,20 +130,18 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
         Floor = findViewById(R.id.spinner_Floor);
         spinner_Conference = findViewById(R.id.spinner_conference);
         arrFlor.add("Basement");
-        arrFlor.add("First Floor");
-        arrFlor.add("Second Floor");
-        arrFlor.add("Third Floor");
-        arrFlor.add("Third Floor New Site1");
+        arrFlor.add("Second Floor Wing-A");
+        arrFlor.add("Third Floor Wing-A");
+        arrFlor.add("Third Floor Wing-B");
         arrFlor.add("Fourth Floor");
         arrFlor.add("Roshan Tower Office Unit-3");
         ArrayAdapter<String> springAdapter_Floor = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, arrFlor);
         Floor.setAdapter(springAdapter_Floor);
         arrConference.add("Albert Hall");
-        arrConference.add("Jai Garh");
+        arrConference.add("Jaigarh Fort");
         arrConference.add("City Place");
         arrConference.add("Red Fort");
         arrConference.add("Nahar Garh");
-        arrConference.add("Albert Hall");
         arrConference.add("Amer Fort");
         arrConference.add("Hawamahal");
         arrConference.add("Cabin");
@@ -170,13 +162,15 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
         btn_disapprove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+/*
                 if (v.getId() == R.id.btn_disapprove) {
                     if (!isVisible) {
                         ev_disapprove.setVisibility(View.VISIBLE);
                         isVisible = true;
                         if (ev_disapprove.getText().toString().equalsIgnoreCase("")) {
                             Toast.makeText(Visitorrequestcome_to_emplpyee.this, "Please add disapprove reason", Toast.LENGTH_SHORT).show();
-                        } else {
+                        }
+                        else {
                             getVisitorDisApproval();
                             Intent intent = new Intent(Visitorrequestcome_to_emplpyee.this, Employee_Send_Request_toGaurd.class);
                             startActivity(intent);
@@ -188,6 +182,8 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
                         isVisible = false;
                     }
                 }
+*/
+                getAlertDialogDisapprove();
             }
         });
         TextView tv = findViewById(R.id.mywidget);
@@ -250,6 +246,7 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
         });
     }
 
+/*
     private void getVisitorApproval1() {
         Gson gson = new GsonBuilder()
                 .setLenient()
@@ -284,9 +281,7 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
             public void onResponse(@NonNull Call<MSG> call, @NonNull retrofit2.Response<MSG> response) {
                 if (response.body() != null) {
                     if (response.body().getMessage().equalsIgnoreCase("Vistor Status Update Successfully")) {
-
-                        Toast.makeText(Visitorrequestcome_to_emplpyee.this, "Updated", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(Visitorrequestcome_to_emplpyee.this, EmployeeDashboard.class));
+                        Toast.makeText(Visitorrequestcome_to_emplpyee.this, "Updated", Toast.LENGTH_SHORT).show();startActivity(new Intent(Visitorrequestcome_to_emplpyee.this, EmployeeDashboard.class));
                         finish();
 
                     }
@@ -305,8 +300,9 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
             }
         });
     }
+*/
 
-    private void getVisitorDisApproval() {
+    private void getVisitorDisApproval(String disapprove_reason) {
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();
@@ -333,7 +329,7 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
         APIService service = retrofit.create(APIService.class);
 
         Call<MSG> call = service.getVisitorStatusUpdate("Bearer " + prefConfig.readToken(), "" + visitorId, "Disapprove",
-                spinner_Conference.getSelectedItem().toString() + ", " + Floor.getSelectedItem().toString(), ev_disapprove.getText().toString(),
+                spinner_Conference.getSelectedItem().toString() + ", " + Floor.getSelectedItem().toString(), disapprove_reason,
                 "");
         call.enqueue(new Callback<MSG>() {
             @Override
@@ -341,11 +337,13 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
 
                 if (response.body() != null) {
                     if (response.body().getMessage().equalsIgnoreCase("Vistor Status Update Successfully")) {
-
                         Toast.makeText(Visitorrequestcome_to_emplpyee.this, "Updated", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(Visitorrequestcome_to_emplpyee.this, EmployeeDashboard.class));
+                        Intent intent = new Intent(Visitorrequestcome_to_emplpyee.this, Employee_Send_Request_toGaurd.class);
+                        startActivity(intent);
                         finish();
-
+//                        dialogs.dismiss();
+//                        startActivity(new Intent(Visitorrequestcome_to_emplpyee.this, EmployeeDashboard.class));
+//                        finish();
                     }
                 }
                 else {
@@ -357,7 +355,6 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
 
             @Override
             public void onFailure(@NonNull Call<MSG> call, @NonNull Throwable t) {
-
                 Log.d("Error", t.getMessage());
             }
         });
@@ -368,7 +365,6 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
         final Calendar c = Calendar.getInstance();
         mHour = c.get(Calendar.HOUR_OF_DAY);
         mMinute = c.get(Calendar.MINUTE);
-
         // Launch Time Picker Dialog
         TimePickerDialog timePickerDialog = new TimePickerDialog(this,
                 new TimePickerDialog.OnTimeSetListener() {
@@ -380,25 +376,17 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
                         txtTimeOut.setText(hourOfDay + ":" + minute);
 
                     }
-                }, mHour, mMinute, true);
+                }, mHour, mMinute, false);
         timePickerDialog.show();
     }
    public void getAlertDialog(){
-       AlertDialog.Builder builder = new AlertDialog.Builder(Visitorrequestcome_to_emplpyee.this);
+      /* AlertDialog.Builder builder = new AlertDialog.Builder(Visitorrequestcome_to_emplpyee.this);
        builder.setMessage("Do you want to give specific time to Visitor ?");
        builder.setTitle("Alert !");
        builder.setCancelable(false);
        builder.setPositiveButton("Yes", (DialogInterface.OnClickListener) (dialog, which) -> {
            // When the user click yes button then app will close
-           if(txtTimeOut.getText().toString().isEmpty()){
-               Toast.makeText(this, "Please select meeting  time", Toast.LENGTH_SHORT).show();
-               txtTimeOut.setVisibility(View.VISIBLE);
-               btnTimePickerOut.setVisibility(View.VISIBLE);
-           }
-           else {
-               getVisitorApproval();
 
-           }
 
        });
        builder.setNegativeButton("No", (DialogInterface.OnClickListener) (dialog, which) -> {
@@ -406,7 +394,69 @@ public class Visitorrequestcome_to_emplpyee extends AppCompatActivity {
            getVisitorApproval1();
        });
        AlertDialog alertDialog = builder.create();
-       alertDialog.show();
+       alertDialog.show();*/
+
+       final Dialog dialog = new Dialog(Visitorrequestcome_to_emplpyee.this);
+       dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+       dialog.setCancelable(false);
+       dialog.setContentView(R.layout.dialog_layout);
+       btnTimePickerOut =  dialog.findViewById(R.id.btn_out_time);
+       btnTimePickerOut.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               getTime();
+           }
+       });
+       txtTimeOut = dialog.findViewById(R.id.out_time);
+       Button dialogButton = dialog.findViewById(R.id.btn_ok);
+       dialogButton.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               if(txtTimeOut.getText().toString().isEmpty()){
+                   Toast.makeText(Visitorrequestcome_to_emplpyee.this, "Please select meeting  time", Toast.LENGTH_SHORT).show();
+                   txtTimeOut.setVisibility(View.VISIBLE);
+                   btnTimePickerOut.setVisibility(View.VISIBLE);
+               }
+               else {
+                   getVisitorApproval();
+               }
+               dialog.dismiss();
+
+           }
+       });
+
+       dialog.show();
    }
+    public void getAlertDialogDisapprove(){
+        final Dialog dialogs = new Dialog(Visitorrequestcome_to_emplpyee.this);
+        dialogs.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialogs.setCancelable(false);
+        dialogs.setContentView(R.layout.dialog_disapprove);
+       // btnTimePickerOut =  dialog.findViewById(R.id.btn_out_time);
+        EditText disapprove_reason = dialogs.findViewById(R.id.disapprove_reason);
+        Button dialogButtons = dialogs.findViewById(R.id.btn_oks);
+        dialogButtons.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(disapprove_reason.getText().toString().isEmpty()){
+
+                   // txtTimeOut.setVisibility(View.VISIBLE);
+                    dialogs.setCancelable(true);
+                    Toast.makeText(Visitorrequestcome_to_emplpyee.this, "Please Select Disapprove Reason", Toast.LENGTH_SHORT).show();
+
+                    //btn_disapprove.setVisibility(View.VISIBLE);
+                }
+
+                else {
+                    getVisitorDisApproval(disapprove_reason.getText().toString());
+
+
+                }
+
+
+            }
+        });
+        dialogs.show();
+    }
 
 }

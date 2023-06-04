@@ -26,7 +26,7 @@ public class PrefConfig {
         return sharedPreferences.getBoolean(context.getString(R.string.pref_login_status), false);
     }
 
-    public void writeName(String name, String token, String type, Integer id, String email) {
+    public void writeName(String name, String token, String type, Integer id, String email,String profile_image) {
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(context.getString(R.string.pref_username), name);
@@ -34,6 +34,7 @@ public class PrefConfig {
         editor.putString(context.getString(R.string.pref_type), type);
         editor.putInt(context.getString(R.string.pref_login_id), id);
         editor.putString(context.getString(R.string.pref_email), email);
+        editor.putString(context.getString(R.string.pref_image),profile_image);
         editor.apply();
     }
 
@@ -43,7 +44,11 @@ public class PrefConfig {
     public String readEmail() {
         return sharedPreferences.getString(context.getString(R.string.pref_email), "Welcome User");
     }
+public String readProfile_image()
+{
+    return sharedPreferences.getString(context.getString(R.string.pref_image),"image set");
 
+}
     public String readToken() {
 
         return sharedPreferences.getString(context.getString(R.string.pref_token), "");

@@ -77,6 +77,7 @@ public class DetailActivity extends AppCompatActivity {
                     mIntent.putExtra("sender", mBundle.getString("sender"));
                     mIntent.putExtra("title", mBundle.getString("title"));
                     startActivity(mIntent);
+                    finish();
 
                 }
             });

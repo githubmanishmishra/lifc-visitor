@@ -13,6 +13,7 @@
     <string name="pref_file">com.laxmi.lifcvisitors.preference_file</string>
     <string name="pref_login_status">com.laxmi.lifcvisitors.preference_login_status</string>
     <string name="pref_username">com.laxmi.lifcvisitors.preference_user_name</string>
+    <string name="pref_image">com.laxmi.lifcvisitors.preference_image</string>
     <string name="pref_token">com.laxmi.lifcvisitors.preference_token</string>
     <string name="pref_email">com.laxmi.lifcvisitors.preference_email</string>
     <string name="pref_login_id">com.laxmi.lifcvisitors.preference_login_id</string>
@@ -132,15 +133,8 @@
     <string name="Vendor">Vendor</string>
     <string name="Personal_meeting">Personal Meeting</string>
     <string name="Other">Other</string>
-
-
-
-
-
-
-
-
-
+    <string name="visitor_status">Visitor Status</string>
+    <string name="feedback">FeedBack</string>
 
 
 </resources>

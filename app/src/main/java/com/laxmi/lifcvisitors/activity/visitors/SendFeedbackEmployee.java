@@ -103,7 +103,7 @@ public class SendFeedbackEmployee extends Dialog {
     private void getFeedBack(String time) {
         APIService service = ApiClient.getClient().create(APIService.class);
         Call<MSG> call = service.getFeedbackUpdate("Bearer " + prefConfig.readToken(), visitorId, employeeId,
-                guardId, ""+ Objects.requireNonNull(ev_feedback.getText()), "","");
+                guardId, ""+ Objects.requireNonNull(ev_feedback.getText()), "","","employee");
         call.enqueue(new Callback<MSG>() {
             @Override
             public void onResponse(@NonNull Call<MSG> call, @NonNull retrofit2.Response<MSG> response) {
@@ -112,12 +112,11 @@ public class SendFeedbackEmployee extends Dialog {
                     if (response.body().getMessage().equalsIgnoreCase("Feedback Update Successfully")) {
                          dismiss();
                         Toast.makeText(getContext(), "Feedback Submitted", Toast.LENGTH_SHORT).show();
-
                     }
                 }
                 else {
 //                    Toast.makeText(getContext(), "Wrong Credentials", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(getContext(), "Feedback Submitted", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Employee Feedback already Submitted", Toast.LENGTH_SHORT).show();
 
                     dismiss();
                 }
@@ -131,7 +130,6 @@ public class SendFeedbackEmployee extends Dialog {
             }
         });
 
-
     }
 
     private void animateImage(ImageView ratingImage) {
@@ -139,6 +137,7 @@ public class SendFeedbackEmployee extends Dialog {
         scaleAnimation.setFillAfter(true);
         scaleAnimation.setDuration(200);
         ratingImage.startAnimation(scaleAnimation);
+
     }
 
 

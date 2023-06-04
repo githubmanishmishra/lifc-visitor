@@ -80,6 +80,10 @@ public class Profile {
         @Expose
         private String updatedAt;
 
+        @SerializedName("profile_image")
+        @Expose
+        private String profileImage;
+
         public Integer getId() {
             return id;
         }
@@ -184,6 +188,12 @@ public class Profile {
             this.updatedAt = updatedAt;
         }
 
-    }
+        public String getProfileImage() {
+            return profileImage;
+        }
 
+        public void setProfileImage(String profileImage) {
+            this.profileImage = profileImage;
+        }
+    }
 }

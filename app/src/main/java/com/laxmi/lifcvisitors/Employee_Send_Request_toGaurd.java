@@ -48,12 +48,11 @@ public class Employee_Send_Request_toGaurd extends AppCompatActivity
         //Default Time
         TimeZone tz = TimeZone.getTimeZone("GMT+05:30");
         Calendar c = Calendar.getInstance(tz);
-        String time = String.format("%02d" , c.get(Calendar.HOUR_OF_DAY))+":"+
-                String.format("%02d" , c.get(Calendar.MINUTE))+":"+
-                String.format("%02d" , c.get(Calendar.SECOND))+":"+
-              String.format("%03d" , c.get(Calendar.MILLISECOND));
-
-        Log.d("my Time",time);
+        String time = String.format("%02d", c.get(Calendar.DAY_OF_WEEK_IN_MONTH)) + ":" +
+                String.format("%02d", c.get(Calendar.HOUR_OF_DAY)) + ":" +
+                String.format("%02d", c.get(Calendar.MINUTE)) + ":" +
+                String.format("%02d", c.get(Calendar.SECOND));
+        Log.d("my Time", time);
         ImageView iv_back = findViewById(R.id.iv_back);
         iv_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,45 +61,35 @@ public class Employee_Send_Request_toGaurd extends AppCompatActivity
             }
         });
         prefConfig = new PrefConfig(this);
-
         progressDialogInitialisaton();
 
         //SwipeRefrshLayout
         swipeRefreshLayout = findViewById(R.id.swipeContainer);
-
         swipeRefreshLayout.setOnRefreshListener(this);
         swipeRefreshLayout.setColorSchemeResources(R.color.pink,
                 android.R.color.holo_green_dark,
                 android.R.color.holo_orange_dark,
                 android.R.color.holo_blue_dark);
-
         mRecyclerView = findViewById(R.id.recyclerView);
         LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(Employee_Send_Request_toGaurd.this, LinearLayoutManager.VERTICAL, false);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(Employee_Send_Request_toGaurd.this, DividerItemDecoration.VERTICAL));
         mLinearLayoutManager.setReverseLayout(true);
         mLinearLayoutManager.setStackFromEnd(true);
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
-
         getVisitorsByGuardList();
         TextView tv = (TextView) this.findViewById(R.id.mywidget);
         tv.setSelected(true);
-
         swipeRefreshLayout.post(new Runnable() {
 
             @Override
             public void run() {
-
                 swipeRefreshLayout.setRefreshing(true);
-
                 getVisitorsByGuardList();
-
-
             }
         });
     }
 
     private void getVisitorsByGuardList() {
-
         swipeRefreshLayout.setRefreshing(false);
         APIService service = ApiClient.getClient().create(APIService.class);
         Log.d("tokensdfdf", prefConfig.readToken());
@@ -114,7 +103,6 @@ public class Employee_Send_Request_toGaurd extends AppCompatActivity
                         visitorsByEmployeeList = allEvent.getData();
                     }
                 }
-
                 MailAdapter mMailAdapter = new MailAdapter(Employee_Send_Request_toGaurd.this, visitorsByEmployeeList);
                 mRecyclerView.setAdapter(mMailAdapter);
                 pDialog.dismiss();
@@ -122,18 +110,7 @@ public class Employee_Send_Request_toGaurd extends AppCompatActivity
                         mRecyclerView, new RecyclerTouchListener.ClickListener() {
                     @Override
                     public void onClick(View view, int position) {
-
                         VisitorsByEmployee.Data newArrival = visitorsByEmployeeList.get(position);
-
-                       /* userId = String.valueOf(visitorsByEmployeeList.get(i).getId());
-                        nameOne = visitorsByEmployeeList.get(i).getNameOne();
-                        nameTwo = visitorsByEmployeeList.get(i).getNameTwo();
-                        nameThree = visitorsByEmployeeList.get(i).getNameThree();
-                        name = visitorsByEmployeeList.get(i).getName();
-                        purposeOfMetting = visitorsByEmployeeList.get(i).getPurposeOfComing();
-                        image = visitorsByEmployeeList.get(i).getImage();
-                        mobileNo = visitorsByEmployeeList.get(i).getMobileNumber();
-                        Status = visitorsByEmployeeList.get(i).getStatus();*/
 
                         Intent mIntent = new Intent(Employee_Send_Request_toGaurd.this, Visitorrequestcome_to_emplpyee.class);
                         mIntent.putExtra("visitorId", newArrival.getId());
@@ -152,21 +129,20 @@ public class Employee_Send_Request_toGaurd extends AppCompatActivity
                     public void onLongClick(View view, int position) {
 
                     }
+
                 }));
 
             }
-
             @Override
             public void onFailure(Call<VisitorsByEmployee> call, Throwable t) {
-
                 pDialog.dismiss();
+
             }
         });
 
     }
 
     private void progressDialogInitialisaton() {
-
         pDialog = new ProgressDialog(Employee_Send_Request_toGaurd.this);
         pDialog.setMessage("Loading Data Please wait...");
         pDialog.setIndeterminate(false);

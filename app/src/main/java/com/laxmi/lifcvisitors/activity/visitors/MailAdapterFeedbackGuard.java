@@ -43,7 +43,7 @@ public class MailAdapterFeedbackGuard extends RecyclerView.Adapter<MailViewHolde
         holder.tv_visitor_address.setText(mEmailData.get(position).getMeetPlace());
 //        holder.tv_visitor_address.setText(mEmailData.get(position).getCity()+ ", "+mEmailData.get(position).getState());
         holder.tvTimeIn.setText("Check In " + mEmailData.get(position).getCheckIn());
-        holder.tvTimeOut.setText("Check Out " + mEmailData.get(position).getCheckOut());
+        holder.tvTimeOut.setText("Check Out" + mEmailData.get(position).getCheckOut());
         Random mRandom = new Random();
         final int color = Color.argb(255, mRandom.nextInt(256), mRandom.nextInt(256), mRandom.nextInt(256));
         ((GradientDrawable) holder.mIcon.getBackground()).setColor(color);

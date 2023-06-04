@@ -92,7 +92,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class New_visitordetail extends BaseActivity implements View.OnClickListener {
+public class New_visitordetail extends BaseActivity {
 
     ImageView btn_uploadvisitor_photo;
     TextInputEditText visitor_name;
@@ -829,7 +829,10 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
                                 empByDepartment = dataListEmp.get(position);
                                 departmentsEmp = empByDepartment.getName();
                                 departmentsValueCode = empByDepartment.getId();
-                                Log.d("hcgvmb", "" + departmentsValueCode);
+                                Log.d("hcgvmb", "" +  empByDepartment.getId());
+                                Log.d("hcgvmb", "" + empByDepartment.getName());
+                                Log.d("hcgvmb", "" +  empByDepartment.getEmpCode());
+                                Log.d("hcgvmb", "" + empByDepartment.getMobileNumber());
                                 String empCode = empByDepartment.getEmpCode();
                                 empMobileNo = empByDepartment.getMobileNumber();
                                 tv_emp_code.setText(empCode);
@@ -861,60 +864,6 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
                 Log.d("Error", t.getMessage());
             }
         });
-    }
-
-    private void progressDialogInitialisaton() {
-
-        pDialog = new ProgressDialog(this);
-        pDialog.setMessage("Loading Data Please wait...");
-        pDialog.setIndeterminate(false);
-        pDialog.setCancelable(true);
-        pDialog.show();
-    }
-
-    @Override
-    public void onClick(View v) {
-
-      /*  if (v == btnTimePickerIn) {
-
-            // Get Current Time
-            final Calendar c = Calendar.getInstance();
-            mHour = c.get(Calendar.HOUR_OF_DAY);
-            mMinute = c.get(Calendar.MINUTE);
-
-            // Launch Time Picker Dialog
-            TimePickerDialog timePickerDialog = new TimePickerDialog(this,
-                    new TimePickerDialog.OnTimeSetListener() {
-
-                        @Override
-                        public void onTimeSet(TimePicker view, int hourOfDay,
-                                              int minute) {
-
-                            txtTimeIn.setText(hourOfDay + ":" + minute);
-                        }
-                    }, mHour, mMinute, true);
-            timePickerDialog.show();
-        }
-        if (v == btnTimePickerOut) {
-
-            // Get Current Time
-            final Calendar c = Calendar.getInstance();
-            mHour = c.get(Calendar.HOUR_OF_DAY);
-            mMinute = c.get(Calendar.MINUTE);
-
-            // Launch Time Picker Dialog
-            TimePickerDialog timePickerDialog = new TimePickerDialog(this,
-                    new TimePickerDialog.OnTimeSetListener() {
-
-                        @Override
-                        public void onTimeSet(TimePicker view, int hourOfDay,
-                                              int minute) {
-
-                            txtTimeOut.setText(hourOfDay + ":" + minute);
-                        }
-                    }, mHour, mMinute, true);
-            timePickerDialog.show();
-        }*/
     }
 
     @Override
@@ -959,33 +908,17 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
         String Visitorname2 = visitor_name2.getText().toString().trim();
         String Visitorname3 = visitor_name3.getText().toString().trim();
         String Visitor_mobile_no = visitor_mobileno.getText().toString().trim();
-//        String TxtTimeout = txtTimeOut.getText().toString().trim();
-//        String TxtTimeIn = txtTimeIn.getText().toString().trim();
-//        String Purposeofcomeing = purpose_of_comeing.getText().toString().trim();
 
         //Default Time
         TimeZone tz = TimeZone.getTimeZone("GMT+05:30");
         Calendar c = Calendar.getInstance(tz);
         String time = String.format("%02d" , c.get(Calendar.HOUR_OF_DAY))+":"+
                 String.format("%02d" , c.get(Calendar.MINUTE))+":"+
-                String.format("%02d" , c.get(Calendar.SECOND))+":"+
-                String.format("%03d" , c.get(Calendar.MILLISECOND));
+                String.format("%02d" , c.get(Calendar.SECOND));
+                //String.format("%03d" , c.get(Calendar.MILLISECOND));
 
         RequestBody reqFile1 = RequestBody.create(MediaType.parse("image/*"), file);
         MultipartBody.Part image1 = MultipartBody.Part.createFormData("image", file.getName(), reqFile1);
-
-       /* RequestBody visitorName1 = RequestBody.create(MediaType.parse("text/plain"), "visitorName");
-        RequestBody Visitor_mobile_no1 = RequestBody.create(MediaType.parse("text/plain"), "Visitor_mobile_no");
-        RequestBody otp = RequestBody.create(MediaType.parse("text/plain"), "1234");
-        RequestBody Purposeofcomeing1 = RequestBody.create(MediaType.parse("text/plain"), Purposeofcomeing);
-        RequestBody pincode1 = RequestBody.create(MediaType.parse("text/plain"), pin_code.getText().toString());
-        RequestBody state1 = RequestBody.create(MediaType.parse("text/plain"), tv_spinner_state.getText().toString());
-        RequestBody cityValue1 = RequestBody.create(MediaType.parse("text/plain"), "cityValue");
-        RequestBody TxtTimeIn1 = RequestBody.create(MediaType.parse("text/plain"), TxtTimeIn);
-        RequestBody TxtTimeout1 = RequestBody.create(MediaType.parse("text/plain"), TxtTimeout);
-        RequestBody emp_code = RequestBody.create(MediaType.parse("text/plain"), tv_emp_code.getText().toString());
-        RequestBody departmentsEmp1 = RequestBody.create(MediaType.parse("text/plain"), departmentsEmp);
-        RequestBody empMobileNo1 = RequestBody.create(MediaType.parse("text/plain"), empMobileNo);*/
 
         Log.d("tokennnnnnnnn", prefConfig.readToken());
         Log.d("mobileValeeeeee", mobileValue);
@@ -1019,7 +952,7 @@ public class New_visitordetail extends BaseActivity implements View.OnClickListe
         Call<ResponseBody> call = service.getVisitorRequest("Bearer " + prefConfig.readToken(), visitorName, Visitor_mobile_no
                 , "1234", purposeValueNew, pin_code.getText().toString(), tv_spinner_state.getText().toString()
                 , cityValue, time, "", "" + departmentsValueCode, Visitorname1, Visitorname2, Visitorname3, departmentsEmp
-                , mobileValue, image1, image1);
+                , empMobileNo, image1, image1);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

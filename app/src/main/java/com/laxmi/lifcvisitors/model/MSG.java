@@ -125,6 +125,15 @@ public class MSG {
         public void setId(Integer id) {
             this.id = id;
         }
+        private  String profile_image;
+        public String getProfile_image()
+        {
+            return profile_image;
+        }
+        public void setProfile_image()
+        {
+            this.profile_image = profile_image;
+        }
 
         public String getEmpCode() {
             return empCode;

@@ -17,7 +17,7 @@
                 android:id="@+id/mywidget"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:ellipsize="marquee"
                 android:fadingEdge="horizontal"
                 android:marqueeRepeatLimit="marquee_forever"
@@ -73,7 +73,7 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:layout_marginEnd="5dp"
-                android:text="@string/total_visitor_status"
+                android:text="@string/visitor_status"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold"/>
@@ -89,10 +89,9 @@
                 android:text="@string/new_visitor"
                 android:textColor="@color/white"
                 android:textSize="16sp"
+                android:visibility="gone"
                 android:textStyle="bold"/>
-
         </LinearLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -108,13 +107,13 @@
                 android:padding="15dp"
                 android:layout_weight="1"
                 android:layout_gravity="center"
+                android:visibility="gone"
                 android:gravity="center"
                 android:layout_marginEnd="5dp"
                 android:text="@string/my_profile"
                 android:textColor="@color/white"
                 android:textSize="16sp"
-                android:textStyle="bold" />
-
+                android:textStyle="bold"/>
             <TextView
                 android:id="@+id/emp_feedback"
                 android:layout_width="match_parent"
@@ -124,7 +123,7 @@
                 android:layout_weight="1"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="FeedBack"
+                android:text="@string/feedback"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />

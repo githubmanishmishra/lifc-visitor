@@ -92,12 +92,21 @@ public interface APIService {
                        @Field("device_token") String deviceToken
     );
 
-    @FormUrlEncoded
+    @Multipart
     @POST("profile/update")
-    Call<Profile> getProfileUpdate(@Header("Authorization") String auth,
-                                   @Field("mobile_number") String mobile_number,
-                                   @Field("name") String name,
-                                   @Field("email") String email);
+    Call<ResponseBody> getProfileUpdate(@Header("Token") String token,
+                                   @Part("mobile_number") String mobile_number,
+                                   @Part("name") String name,
+                                   @Part MultipartBody.Part image,
+                                   @Part("email") String email);
+
+    @Multipart
+    @POST("profile/update")
+    Call<ResponseBody> getProfileUpdate1(@Header("Token") String token,
+                                   @Part("mobile_number") String mobile_number,
+                                   @Part("name") String name,
+                                   @Part MultipartBody.Part image,
+                                   @Part("email") String email);
 
     @Headers({"Content-Type: application/json;charset=UTF-8"})
     @GET("employees-by-department")
@@ -143,7 +152,8 @@ public interface APIService {
                                 @Field("guard_id") String guard_id,
                                 @Field("employee_feedback") String employee_feedback,
                                 @Field("visitor_feedback") String visitor_feedback,
-                                @Field("check_out") String check_out
+                                @Field("check_out") String check_out,
+                                @Field("type") String type
     );
 
     @FormUrlEncoded

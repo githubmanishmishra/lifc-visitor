@@ -47,10 +47,6 @@ public class VisitorsByGuard {
         @SerializedName("employee_id")
         @Expose
         private String employeeId;
-
-        @SerializedName("guard_id")
-        @Expose
-        private String guardId;
         @SerializedName("name")
         @Expose
         private String name;
@@ -102,6 +98,9 @@ public class VisitorsByGuard {
         @SerializedName("meet_place")
         @Expose
         private String meetPlace;
+        @SerializedName("meet_up_time")
+        @Expose
+        private String meetUpTime;
         @SerializedName("disapprove_reason")
         @Expose
         private String disapproveReason;
@@ -117,6 +116,9 @@ public class VisitorsByGuard {
         @SerializedName("updated_at")
         @Expose
         private String updatedAt;
+        @SerializedName("guard_id")
+        @Expose
+        private String guardId;
 
         public Integer getId() {
             return id;
@@ -132,14 +134,6 @@ public class VisitorsByGuard {
 
         public void setEmployeeId(String employeeId) {
             this.employeeId = employeeId;
-        }
-
-        public String getGuardId() {
-            return guardId;
-        }
-
-        public void setGuardId(String guardId) {
-            this.guardId = guardId;
         }
 
         public String getName() {
@@ -278,6 +272,14 @@ public class VisitorsByGuard {
             this.meetPlace = meetPlace;
         }
 
+        public String getMeetUpTime() {
+            return meetUpTime;
+        }
+
+        public void setMeetUpTime(String meetUpTime) {
+            this.meetUpTime = meetUpTime;
+        }
+
         public String getDisapproveReason() {
             return disapproveReason;
         }
@@ -318,6 +320,13 @@ public class VisitorsByGuard {
             this.updatedAt = updatedAt;
         }
 
+        public String getGuardId() {
+            return guardId;
+        }
+
+        public void setGuardId(String guardId) {
+            this.guardId = guardId;
+        }
 
     }
 }

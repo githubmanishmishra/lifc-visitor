@@ -82,9 +82,9 @@ public class GuardSendRequestToEmployeeList extends AppCompatActivity implements
             public void onResponse(Call<VisitorsByGuard> call, Response<VisitorsByGuard> response) {
                 final VisitorsByGuard allEvent = response.body();
                 if (allEvent != null) {
-
                     for (int i = 0; i < allEvent.getData().size(); i++) {
                         VisitorsByGuardList = allEvent.getData();
+
                     }
                 }
 

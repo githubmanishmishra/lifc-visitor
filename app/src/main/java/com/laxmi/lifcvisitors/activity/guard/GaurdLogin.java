@@ -163,7 +163,7 @@ public class GaurdLogin extends AppCompatActivity {
                         if (response.body().getType().equalsIgnoreCase("Guard")) {
                             prefConfig.writeLoginStatus(true);
                             prefConfig.writeName("Guard", response.body().getToken(), response.body().getType(),
-                                    response.body().getUser().getId(),  response.body().getUser().getEmail() );
+                                    response.body().getUser().getId(),  response.body().getUser().getEmail(),response.body().getUser().getProfile_image() );
                             Log.d("token>>>>>>>>>>>>", response.body().getToken());
 
                             Intent intents = new Intent(GaurdLogin.this, GuardDashboard.class);

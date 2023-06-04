@@ -3,7 +3,8 @@
     android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp">
+    android:padding="10dp"
+    android:layout_margin="10dp">
 
     <TextView
         android:id="@+id/tvIcon"
@@ -68,7 +69,7 @@
         android:layout_toRightOf="@+id/tvIcon"
         android:ellipsize="end"
         android:maxLines="1"
-        android:text=" " />
+        android:text="todo" />
 
     <TextView
         android:id="@+id/tvTimeIn"
@@ -89,10 +90,20 @@
         android:text="TextView" />
 
     <TextView
-        android:id="@+id/tv_call"
+        android:id="@+id/tv_meet_up_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_status"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/tv_call"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_meet_up_time"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_marginTop="1dp"
