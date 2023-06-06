@@ -20,11 +20,9 @@
         android:id="@+id/tv_visitor_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_toEndOf="@+id/tvIcon"
-        android:layout_toRightOf="@+id/tvIcon"
+        android:layout_marginBottom="18dp"
         android:text="TextView"
+        android:layout_toRightOf="@id/tvIcon"
         android:textSize="16sp"
         android:textStyle="bold"/>
 
@@ -40,23 +38,18 @@
         android:layout_toRightOf="@+id/tvIcon"
         android:text="TextView"
         android:visibility="gone"
-        android:textStyle="bold" />
-
+        android:textStyle="bold"/>
     <TextView
         android:id="@+id/tv_visitor_address"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_visitor_mobile"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/tvIcon"
         android:layout_marginTop="5dp"
-        android:layout_toEndOf="@+id/tvIcon"
-        android:layout_toRightOf="@+id/tvIcon"
         android:ellipsize="end"
         android:maxLines="1"
-        android:text="This is a very long " />
+        android:text="This is a very long "/>
 
-
+<!--
     <TextView
         android:id="@+id/_tv"
         android:layout_width="match_parent"
@@ -71,6 +64,7 @@
         android:maxLines="1"
         android:visibility="gone"
         android:text="This  " />
+-->
 
     <TextView
         android:id="@+id/tvTimeIn"
@@ -87,13 +81,11 @@
         android:layout_below="@+id/tvTimeIn"
         android:layout_alignParentEnd="true"
         android:text="TextView" />
-
     <TextView
         android:id="@+id/tv_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvTimeOut"
         android:layout_alignParentEnd="true"
-        android:text="TextView" />
-
+        android:text="TextView"/>
 </RelativeLayout>

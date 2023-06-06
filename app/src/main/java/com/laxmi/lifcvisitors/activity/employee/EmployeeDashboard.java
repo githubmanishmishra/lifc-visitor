@@ -74,6 +74,7 @@ public class EmployeeDashboard extends AppCompatActivity implements NavigationVi
     String realPath;
     AlertDialog.Builder alertDialogBuilder;
     CircleImageView profile_img;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,23 +93,23 @@ public class EmployeeDashboard extends AppCompatActivity implements NavigationVi
         View headerView = navigationView.inflateHeaderView(R.layout.nav_header_main);
         TextView tv_emp_name = headerView.findViewById(R.id.tv_emp_name);
         TextView tv_emp_email = headerView.findViewById(R.id.tv_emp_email);
-         profile_img = headerView.findViewById(R.id.profile_image);
-profile_img.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        selectImage();
+        profile_img = headerView.findViewById(R.id.profile_image);
+        profile_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectImage();
 
-        //  getalertcamera();
+                //  getalertcamera();
        /* ImagePicker.with(EmployeeDashboard.this)
                 .crop()	    			//Crop image(Optional), Check Customization for more option
                 .compress(1024)			//Final image size will be less than 1 MB(Optional)
                 .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
                 .start();*/
 
-    }
-});
-        tv_emp_name.setText(prefConfig.readName()+"");
-        tv_emp_email.setText(prefConfig.readEmail()+"");
+            }
+        });
+        tv_emp_name.setText(prefConfig.readName() + "");
+        tv_emp_email.setText(prefConfig.readEmail() + "");
 //        profile_img.setImageURI(Uri.parse(prefConfig.readProfile_image()+""));
         Glide
                 .with(EmployeeDashboard.this)
@@ -143,8 +144,7 @@ profile_img.setOnClickListener(new View.OnClickListener() {
 
 
     @Override
-    public void onBackPressed()
-    {
+    public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
@@ -164,12 +164,10 @@ profile_img.setOnClickListener(new View.OnClickListener() {
         if (id == R.id.nav_slideshow) {
             Intent intent = new Intent(EmployeeDashboard.this, Employee_profile_update.class);
             startActivity(intent);
-        }
-        else if (id == R.id.nav_Contactus) {
+        } else if (id == R.id.nav_Contactus) {
             Intent intents = new Intent(EmployeeDashboard.this, Contactus.class);
             startActivity(intents);
-        }
-        else if (id == R.id.nav_logout) {
+        } else if (id == R.id.nav_logout) {
             alertDialogBuilder.show();
             prefConfig.writeLoginStatus(false);
 
@@ -184,6 +182,7 @@ profile_img.setOnClickListener(new View.OnClickListener() {
         return true;
 
     }
+
     private void selectImage() {
         final CharSequence[] options = {"Take Photo", "Cancel"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -282,7 +281,7 @@ profile_img.setOnClickListener(new View.OnClickListener() {
         RequestBody reqFile1 = RequestBody.create(MediaType.parse("image/*"), file);
         MultipartBody.Part image1 = MultipartBody.Part.createFormData("image", file.getName(), reqFile1);
 
-        Log.d("ksjdgn",""+image1);
+        Log.d("ksjdgn", "" + image1);
 
 
         Gson gson = new GsonBuilder()
@@ -310,22 +309,22 @@ profile_img.setOnClickListener(new View.OnClickListener() {
                 .build();
         APIService service = retrofit.create(APIService.class);
         Call<ResponseBody> call = service.getProfileUpdate1("Bearer " + prefConfig.readToken(),
-               "7503196856", prefConfig.readName(), image1, prefConfig.readEmail());
+                "7503196856", prefConfig.readName(), image1, prefConfig.readEmail());
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(@NonNull Call<ResponseBody> call, @NonNull retrofit2.Response<ResponseBody> response) {
 
-             //   if (response.body() != null) {
-                    if (response.message().equalsIgnoreCase("Profile Updated Successfully")) {
+                //   if (response.body() != null) {
+                if (response.message().equalsIgnoreCase("Profile Updated Successfully")) {
 
-                        Toast.makeText(EmployeeDashboard.this, "Profile Updated", Toast.LENGTH_SHORT).show();
-                        finish();
+                    Toast.makeText(EmployeeDashboard.this, "Profile Updated", Toast.LENGTH_SHORT).show();
+                    finish();
 
-                    }
-             //   }
+                }
+                //   }
                 else {
-                    Toast.makeText(EmployeeDashboard.this, "Manishhhhh"+response.message(), Toast.LENGTH_SHORT).show();
-                        Log.d("jhjjjgjgjg","Manishhhhh"+response.message());
+                    Toast.makeText(EmployeeDashboard.this, "Manishhhhh" + response.message(), Toast.LENGTH_SHORT).show();
+                    Log.d("jhjjjgjgjg", "Manishhhhh" + response.message());
                 }
 
             }

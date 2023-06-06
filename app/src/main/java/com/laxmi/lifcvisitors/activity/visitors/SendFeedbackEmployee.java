@@ -20,7 +20,10 @@ import com.laxmi.lifcvisitors.retrofitservices.APIService;
 import com.laxmi.lifcvisitors.retrofitservices.ApiClient;
 import com.laxmi.lifcvisitors.savedata.PrefConfig;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.TimeZone;
 
@@ -54,7 +57,7 @@ public class SendFeedbackEmployee extends Dialog {
         prefConfig = new PrefConfig(getContext());
         final AppCompatButton rateNowBtn = findViewById(R.id.rateNowBtn);
         final AppCompatButton laterBtn = findViewById(R.id.mayBeLaterBtn);
-         ev_feedback = findViewById(R.id.ev_feedback);
+        ev_feedback = findViewById(R.id.ev_feedback);
         final RatingBar ratingBar = findViewById(R.id.ratingBar);
         final ImageView ratingImage = findViewById(R.id.ratingImage);
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
@@ -88,10 +91,13 @@ public class SendFeedbackEmployee extends Dialog {
             //Default Time
             TimeZone tz = TimeZone.getTimeZone("GMT+05:30");
             Calendar c = Calendar.getInstance(tz);
-            String time = String.format("%02d" , c.get(Calendar.HOUR_OF_DAY))+":"+
+        /*    String time = String.format("%02d" , c.get(Calendar.HOUR_OF_DAY))+":"+
                     String.format("%02d" , c.get(Calendar.MINUTE))+":"+
-                    String.format("%02d" , c.get(Calendar.SECOND));
+                    String.format("%02d" , c.get(Calendar.SECOND));*/
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-YY HH:mm:ss", Locale.getDefault());
+            String time = sdf.format(new Date());
 
+            Log.d("timeeeeeeeee", time);
             getFeedBack(time);
         });
         laterBtn.setOnClickListener(v -> {
@@ -101,24 +107,26 @@ public class SendFeedbackEmployee extends Dialog {
     }
 
     private void getFeedBack(String time) {
+
+     //   Log.d("idddddd""visitorId");
         APIService service = ApiClient.getClient().create(APIService.class);
         Call<MSG> call = service.getFeedbackUpdate("Bearer " + prefConfig.readToken(), visitorId, employeeId,
-                guardId, ""+ Objects.requireNonNull(ev_feedback.getText()), "","","employee");
+                guardId, "" + Objects.requireNonNull(ev_feedback.getText()), "", time, "employee");
         call.enqueue(new Callback<MSG>() {
             @Override
             public void onResponse(@NonNull Call<MSG> call, @NonNull retrofit2.Response<MSG> response) {
 
                 if (response.body() != null) {
                     if (response.body().getMessage().equalsIgnoreCase("Feedback Update Successfully")) {
-                         dismiss();
+                        dismiss();
                         Toast.makeText(getContext(), "Feedback Submitted", Toast.LENGTH_SHORT).show();
                     }
                 }
                 else {
-//                    Toast.makeText(getContext(), "Wrong Credentials", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(getContext(), "Employee Feedback already Submitted", Toast.LENGTH_SHORT).show();
-
+                    Toast.makeText(getContext(), "Employee Already Provided Feedback", Toast.LENGTH_SHORT).show();
                     dismiss();
+
+
                 }
 
             }

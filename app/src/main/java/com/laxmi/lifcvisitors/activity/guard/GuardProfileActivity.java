@@ -77,7 +77,7 @@ public class GuardProfileActivity extends AppCompatActivity {
         circleImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectImage();
+               //// selectImage();
 
             }
         });

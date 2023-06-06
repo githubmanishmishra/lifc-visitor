@@ -123,6 +123,7 @@ public class Employee_Send_Request_toGaurd extends AppCompatActivity
                         mIntent.putExtra("UserImage", newArrival.getImage());
                         mIntent.putExtra("Status", newArrival.getStatus());
                         startActivity(mIntent);
+                        finish();
                     }
 
                     @Override

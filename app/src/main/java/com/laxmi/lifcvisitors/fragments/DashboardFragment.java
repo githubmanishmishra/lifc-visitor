@@ -85,6 +85,7 @@ public class DashboardFragment extends Fragment {
             public void onClick(View view) {
                 intent = new Intent(getContext(), Visitorrequestcome_to_emplpyee.class);
                 startActivity(intent);
+                requireActivity().finish();
             }
         });
 

@@ -45,8 +45,8 @@ public class MailAdapterFeedbackEmployee extends RecyclerView.Adapter<MailViewHo
         holder.tv_status.setText(mEmailData.get(position).getStatus());
         holder.tv_visitor_address.setText(mEmailData.get(position).getPurposeOfComing());
 //        holder.tv_visitor_address.setText(mEmailData.get(position).getCity()+ ", "+mEmailData.get(position).getState());
-        holder.tvTimeIn.setText("Check In " + mEmailData.get(position).getCheckIn());
-        holder.tvTimeOut.setText("Check Out " + mEmailData.get(position).getCheckOut());
+        holder.tvTimeIn.setText("In " + mEmailData.get(position).getCheckIn());
+        holder.tvTimeOut.setText("Out " + mEmailData.get(position).getCheckOut());
 
         Random mRandom = new Random();
         final int color = Color.argb(255, mRandom.nextInt(256), mRandom.nextInt(256), mRandom.nextInt(256));
@@ -55,16 +55,15 @@ public class MailAdapterFeedbackEmployee extends RecyclerView.Adapter<MailViewHo
             @Override
             public void onClick(View view)
             {
-                if (!mEmailData.get(position).getStatus().equalsIgnoreCase("Disapprove")) {
+                if (!mEmailData.get(position).getStatus().equalsIgnoreCase("Disapprove"))
+                {
                     SendFeedbackEmployee feedbacks = new SendFeedbackEmployee(view.getContext(), holder.tv_visitor_name.getText().toString(),
                             mEmailData.get(position).getEmployeeId(),mEmailData.get(position).getGuardId(),
                             mEmailData.get(position).getId());
-                    feedbacks.setCancelable(true);
-                    feedbacks.show();
-                    feedbacks.getWindow().setBackgroundDrawable(new ColorDrawable(view.getContext().getResources().getColor(android.R.color.transparent)));
-
+                     feedbacks.setCancelable(true);
+                     feedbacks.show();
+                     feedbacks.getWindow().setBackgroundDrawable(new ColorDrawable(view.getContext().getResources().getColor(android.R.color.transparent)));
                 }
-
             }
         });
 
@@ -117,6 +116,5 @@ class MailViewHolderEmployee extends RecyclerView.ViewHolder {
         mLayout = itemView.findViewById(R.id.layout);
         _tv = itemView.findViewById(R.id._tv);
         tvTimeOut = itemView.findViewById(R.id.tvTimeOut);
-
     }
 }
